@@ -75,8 +75,22 @@
 ```
 
 
+## Editing and build tools
+* You can perform small changes directly on the [GitHub repository](https://github.com/codeandwork/courses)
+* For substantial work it is recommended that you work on a local repository
+* You will need to have the following tools installed
+  * A Unix shell
+  * Git
+  * [Pandoc](http://pandoc.org/)
+  * [rsync](https://rsync.samba.org/)
+* This setup is trivial on Mac and Linux systems
+* On Windows systems we recommend the installation of [Cygwin](https://www.cygwin.com/)
+
+
 ## Building and deploying
+* First clone the [GitHub repository](https://github.com/codeandwork/courses)
 * Run `make` to build the presentation and note handouts
+* This generates the material in the `web` directory
 * View the presentations through [this link](../index.html)
 * Run `make dist` to upload the changes to the web site
 
