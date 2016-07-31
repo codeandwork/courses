@@ -33,7 +33,7 @@ for course in $COURSES ; do
       {
 	sed "s/TITLE_HERE/$title/" assets/index-top.html
 	{
-	  echo "# $title"
+	  echo "# Coding Bootcamp: $title"
 	  cat $input
 	} |
 	pandoc -f markdown_github -t html
