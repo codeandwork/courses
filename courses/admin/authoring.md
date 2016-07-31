@@ -1,0 +1,93 @@
+## Basics
+* We use [reveal.js](http://lab.hakim.se/reveal-js/) for our slides,
+  but this should be transparent to you.
+* Write slides in [GitHub flavoured Markdown](https://help.github.com/categories/writing-on-github/)
+* Start title text with `##` followed by a space
+* Start bullet items with `*` followed by a space
+* Separate each slide from the next with two empty lines
+* Add hyperlinks using the `[`_text_`](`_URL_`)` syntax
+
+
+## Example
+```md
+## First slide title
+* Bullet item 1
+* Bullet item 2
+ 
+ 
+## Second slide title
+```
+
+
+## Code listings
+* Code listings are automatically highlighted
+* Start a code listing with three backticks followed by the language's suffix
+  on a single line
+* Example:
+```md
+ ```java
+ ```cs
+ ```sql
+ ```js
+ ```HTML
+```
+* End code listings with three backticks on a single line
+* Indent Markdown code with a space to avoid it being interpreted by _reveal.js_
+* Prepend a space when closing a script tag in HTML listings (`</ script>`)
+
+
+## Images and other media
+* Place images in the `media` directory under the corresponding course
+  directory
+* Insert media on a slide with the syntax `![](media/`_filename_`)`
+* Example:
+```md
+![](media/hello.png)
+```
+* Use the PNG format for clipart and JPEG for photographs
+
+
+## Organization
+* Each lecture is written as a single Markdown file
+* Name the file using Java variable identifier rules
+* Suffix the file name with `.md`
+* Example: `unitTests.md`
+* Place the file in one of the following folders
+  * `java`: Java material
+  * `cs`: C# material
+  * `common`: Material common to both courses
+  * `admin`: Course instructor and administrator material
+
+
+## Linking lectures into a course
+* Within the `courses` directory create or edit a Markdown file named after
+  the course
+  * Use a level-1 title for the course
+  * Use a level-2 title for units
+  * Enter each lecture as a separate bullet
+* Example
+
+```md
+# Coding bootcamp: Java specialization
+## Test driven development and object-oriented programming
+* [Hello world!](java/hello.md)
+* [Constructing and using objects](java/objects.md)
+```
+
+
+## Building and deploying
+* Run `make` to build the presentation and note handouts
+* View the presentations through [this link](../index.html)
+* Run `make dist` to upload the changes to the web site
+
+
+## Style
+* Use lower case in titles, Not Title Case
+* Start each bullet item with a capital
+* Don't punctuate at the end of bullet items
+* Spell-check what you write
+* Use British spelling
+* Don't pack your slides with text
+* Take care of capitalization: JavaScript, SQL, Java, C#, Git, GitHub
+* Put names of code and commands in backticks, e.g. \`main\` or \`git\`
+* Avoid lines longer than 67 characters
