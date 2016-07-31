@@ -4,7 +4,7 @@ COURSES=$(echo courses/*.md | xargs -n 1 basename -s .md)
 
 set -e
 
-rsync -a --delete assets/reveal.js web/
+rsync -a --delete --exclude=.git assets/reveal.js web/
 rsync -a --delete assets/css web/
 
 for course in $COURSES ; do
