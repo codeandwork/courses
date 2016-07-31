@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Course authoring</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Coding Bootcamp
+
+## Course authoring
+
+
+## Basics
+* We use [reveal.js](http://lab.hakim.se/reveal-js/) for our slides,
+  but this should be transparent to you.
+* Write slides in [GitHub flavoured Markdown](https://help.github.com/categories/writing-on-github/)
+* Start title text with `##` followed by a space
+* Start bullet items with `*` followed by a space
+* Separate each slide from the next with two empty lines
+* Add hyperlinks using the `[`_text_`](`_URL_`)` syntax
+
+
+## Example
+```md
+## First slide title
+* Bullet item 1
+* Bullet item 2
+ 
+ 
+## Second slide title
+```
+
+
+## Code listings
+* Code listings are automatically highlighted
+* Start a code listing with three backticks followed by the language's suffix
+  on a single line
+* Example:
+```md
+ ```java
+ ```cs
+ ```sql
+ ```js
+ ```HTML
+```
+* End code listings with three backticks on a single line
+* Indent Markdown code with a space to avoid it being interpreted by _reveal.js_
+* Prepend a space when closing a script tag in HTML listings (`</ script>`)
+
+
+## Images and other media
+* Place images in the `media` directory under the corresponding course
+  directory
+* Insert media on a slide with the syntax `![](media/`_filename_`)`
+* Example:
+```md
+![](media/hello.png)
+```
+* Use the PNG format for clipart and JPEG for photographs
+
+
+## Organization
+* Each lecture is written as a single Markdown file
+* Name the file using Java variable identifier rules
+* Suffix the file name with `.md`
+* Example: `unitTests.md`
+* Place the file in one of the following folders
+  * `java`: Java material
+  * `cs`: C# material
+  * `common`: Material common to both courses
+  * `admin`: Course instructor and administrator material
+
+
+## Linking lectures into a course
+* Within the `courses` directory create or edit a Markdown file named after
+  the course
+  * Use a level-1 title for the course
+  * Use a level-2 title for units
+  * Enter each lecture as a separate bullet
+* Example
+
+```md
+# Coding bootcamp: Java specialization
+## Test driven development and object-oriented programming
+* [Hello world!](java/hello.md)
+* [Constructing and using objects](java/objects.md)
+```
+
+
+## Building and deploying
+* Run `make` to build the presentation and note handouts
+* View the presentations through [this link](../index.html)
+* Run `make dist` to upload the changes to the web site
+
+
+## Style
+* Use lower case in titles, Not Title Case
+* Start each bullet item with a capital
+* Don't punctuate at the end of bullet items
+* Spell-check what you write
+* Use British spelling
+* Don't pack your slides with text
+* Take care of capitalization: JavaScript, SQL, Java, C#, Git, GitHub
+* Put names of code and commands in backticks, e.g. \`main\` or \`git\`
+* Avoid lines longer than 67 characters
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
