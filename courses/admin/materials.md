@@ -11,3 +11,8 @@
 ## C# specialization
 * [Presentations](../cs-p.html)
 * [Handouts](../cs.html)
+
+
+## Trainer and administrator resources
+* [Presentations](../admin-p.html)
+* [Handouts](../admin.html)
