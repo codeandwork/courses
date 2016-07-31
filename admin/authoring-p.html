@@ -33,7 +33,7 @@
 
 ## Basics
 * We use [reveal.js](http://lab.hakim.se/reveal-js/) for our slides,
-  but this should be transparent to you.
+  but this should be transparent to you
 * Write slides in [GitHub flavoured Markdown](https://help.github.com/categories/writing-on-github/)
 * Start title text with `##` followed by a space
 * Start bullet items with `*` followed by a space
@@ -108,8 +108,22 @@
 ```
 
 
+## Editing and build tools
+* You can perform small changes directly on the [GitHub repository](https://github.com/codeandwork/courses)
+* For substantial work it is recommended that you work on a local repository
+* You will need to have the following tools installed
+  * A Unix shell
+  * Git
+  * [Pandoc](http://pandoc.org/)
+  * [rsync](https://rsync.samba.org/)
+* This setup is trivial on Mac and Linux systems
+* On Windows systems we recommend the installation of [Cygwin](https://www.cygwin.com/)
+
+
 ## Building and deploying
+* First clone the [GitHub repository](https://github.com/codeandwork/courses)
 * Run `make` to build the presentation and note handouts
+* This generates the material in the `web` directory
 * View the presentations through [this link](../index.html)
 * Run `make dist` to upload the changes to the web site
 

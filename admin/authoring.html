@@ -31,7 +31,7 @@
 <h2 id="basics">Basics</h2>
 <ul>
 <li>We use <a href="http://lab.hakim.se/reveal-js/">reveal.js</a> for our slides,<br />
-but this should be transparent to you.</li>
+but this should be transparent to you</li>
 <li>Write slides in <a href="https://help.github.com/categories/writing-on-github/">GitHub flavoured Markdown</a></li>
 <li>Start title text with <code>##</code> followed by a space</li>
 <li>Start bullet items with <code>*</code> followed by a space</li>
@@ -94,9 +94,23 @@ the course</li>
 <span class="fu">## Test driven development and object-oriented programming</span>
 * <span class="ot">[Hello world!](java/hello.md)</span>
 <span class="fl">* </span><span class="ot">[Constructing and using objects](java/objects.md)</span></code></pre></div>
+<h2 id="editing-and-build-tools">Editing and build tools</h2>
+<ul>
+<li>You can perform small changes directly on the <a href="https://github.com/codeandwork/courses">GitHub repository</a></li>
+<li>For substantial work it is recommended that you work on a local repository</li>
+<li>You will need to have the following tools installed</li>
+<li>A Unix shell</li>
+<li>Git</li>
+<li><a href="http://pandoc.org/">Pandoc</a></li>
+<li><a href="https://rsync.samba.org/">rsync</a></li>
+<li>This setup is trivial on Mac and Linux systems</li>
+<li>On Windows systems we recommend the installation of <a href="https://www.cygwin.com/">Cygwin</a></li>
+</ul>
 <h2 id="building-and-deploying">Building and deploying</h2>
 <ul>
+<li>First clone the <a href="https://github.com/codeandwork/courses">GitHub repository</a></li>
 <li>Run <code>make</code> to build the presentation and note handouts</li>
+<li>This generates the material in the <code>web</code> directory</li>
 <li>View the presentations through <a href="../index.html">this link</a></li>
 <li>Run <code>make dist</code> to upload the changes to the web site</li>
 </ul>
