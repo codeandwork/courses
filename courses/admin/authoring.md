@@ -1,6 +1,6 @@
 ## Basics
 * We use [reveal.js](http://lab.hakim.se/reveal-js/) for our slides,
-  but this should be transparent to you.
+  but this should be transparent to you
 * Write slides in [GitHub flavoured Markdown](https://help.github.com/categories/writing-on-github/)
 * Start title text with `##` followed by a space
 * Start bullet items with `*` followed by a space
