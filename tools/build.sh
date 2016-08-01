@@ -5,6 +5,7 @@ COURSES=$(ls courses/*.md | sed 's/\.md$//;s/courses\///')
 set -e
 
 if [ -n "$DEBUG" ] ; then
+  pandoc --version
   set -x
 fi
 
