@@ -30,100 +30,97 @@
 <h1 id="coding-bootcamp-course-authoring">Coding Bootcamp: Course authoring</h1>
 <h2 id="basics">Basics</h2>
 <ul>
-<li>We use <a href="http://lab.hakim.se/reveal-js/">reveal.js</a> for our slides,<br />
-but this should be transparent to you</li>
-<li>Write slides in <a href="https://help.github.com/categories/writing-on-github/">GitHub flavoured Markdown</a></li>
-<li>Start title text with <code>##</code> followed by a space</li>
-<li>Start bullet items with <code>*</code> followed by a space</li>
-<li>Separate each slide from the next with two empty lines</li>
+<li>We use <a href="http://lab.hakim.se/reveal-js/">reveal.js</a> for our slides,<br /> but this should be transparent to you<br /></li>
+<li>Write slides in <a href="https://help.github.com/categories/writing-on-github/">GitHub flavoured Markdown</a><br /></li>
+<li>Start title text with <code>##</code> followed by a space<br /></li>
+<li>Start bullet items with <code>*</code> followed by a space<br /></li>
+<li>Separate each slide from the next with two empty lines<br /></li>
 <li>Add hyperlinks using the <code>[</code><em>text</em><code>](</code><em>URL</em><code>)</code> syntax</li>
 </ul>
 <h2 id="example">Example</h2>
-<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown"><span class="fu">## First slide title</span>
-* <span class="fl">Bullet item 1</span>
-<span class="fl">* Bullet item 2</span>
-<span class="fl"> </span>
-<span class="fl"> </span>
-<span class="fl">## Second slide title</span></code></pre></div>
+<pre class="md"><code>## First slide title
+* Bullet item 1
+* Bullet item 2
+ 
+ 
+## Second slide title</code></pre>
 <h2 id="code-listings">Code listings</h2>
 <ul>
-<li>Code listings are automatically highlighted</li>
-<li>Start a code listing with three backticks followed by the language's suffix<br />
-on a single line</li>
+<li>Code listings are automatically highlighted<br /></li>
+<li>Start a code listing with three backticks followed by the language's suffix<br /> on a single line<br /></li>
 <li><p>Example:</p>
-<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown"> ```java
+<pre class="md"><code> ```java
  ```cs
  ```sql
  ```js
- ```HTML</code></pre></div></li>
-<li>End code listings with three backticks on a single line</li>
-<li>Indent Markdown code with a space to avoid it being interpreted by <em>reveal.js</em></li>
+ ```HTML</code></pre></li>
+<li>End code listings with three backticks on a single line<br /></li>
+<li>Indent Markdown code with a space to avoid it being interpreted by <em>reveal.js</em><br /></li>
 <li><p>Prepend a space when closing a script tag in HTML listings (<code>&lt;/ script&gt;</code>)</p></li>
 </ul>
 <h2 id="images-and-other-media">Images and other media</h2>
 <ul>
-<li>Place images in the <code>media</code> directory under the corresponding course<br />
-directory</li>
-<li>Insert media on a slide with the syntax <code>![](media/</code><em>filename</em><code>)</code></li>
+<li>Place images in the <code>media</code> directory under the corresponding course<br /> directory<br /></li>
+<li>Insert media on a slide with the syntax <code>![](media/</code><em>filename</em><code>)</code><br /></li>
 <li><p>Example:</p>
-<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown">![](media/hello.png)</code></pre></div></li>
+<pre class="md"><code>![](media/hello.png)</code></pre></li>
 <li><p>Use the PNG format for clipart and JPEG for photographs</p></li>
 </ul>
 <h2 id="organization">Organization</h2>
 <ul>
-<li>Each lecture is written as a single Markdown file</li>
-<li>Name the file using Java variable identifier rules</li>
-<li>Suffix the file name with <code>.md</code></li>
-<li>Example: <code>unitTests.md</code></li>
-<li>Place the file in one of the following folders</li>
-<li><code>java</code>: Java material</li>
-<li><code>cs</code>: C# material</li>
-<li><code>common</code>: Material common to both courses</li>
+<li>Each lecture is written as a single Markdown file<br /></li>
+<li>Name the file using Java variable identifier rules<br /></li>
+<li>Suffix the file name with <code>.md</code><br /></li>
+<li>Example: <code>unitTests.md</code><br /></li>
+<li>Place the file in one of the following folders<br /></li>
+<li><code>java</code>: Java material<br /></li>
+<li><code>cs</code>: C# material<br /></li>
+<li><code>common</code>: Material common to both courses<br /></li>
 <li><code>admin</code>: Course instructor and administrator material</li>
 </ul>
 <h2 id="linking-lectures-into-a-course">Linking lectures into a course</h2>
 <ul>
-<li>Within the <code>courses</code> directory create or edit a Markdown file named after<br />
-the course</li>
-<li>Use a level-1 title for the course</li>
-<li>Use a level-2 title for units</li>
-<li>Enter each lecture as a separate bullet</li>
+<li>Within the <code>courses</code> directory create or edit a Markdown file named after<br /> the course<br /></li>
+<li>Use a level-1 title for the course<br /></li>
+<li>Use a level-2 title for units<br /></li>
+<li>Enter each lecture as a separate bullet<br /></li>
 <li>Example</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown"><span class="fu"># Coding bootcamp: Java specialization</span>
-<span class="fu">## Test driven development and object-oriented programming</span>
-* <span class="ot">[Hello world!](java/hello.md)</span>
-<span class="fl">* </span><span class="ot">[Constructing and using objects](java/objects.md)</span></code></pre></div>
+<pre class="md"><code># Coding bootcamp: Java specialization
+## Test driven development and object-oriented programming
+* [Hello world!](java/hello.md)
+* [Constructing and using objects](java/objects.md)</code></pre>
 <h2 id="editing-and-build-tools">Editing and build tools</h2>
 <ul>
-<li>You can perform small changes directly on the <a href="https://github.com/codeandwork/courses">GitHub repository</a></li>
-<li>For substantial work it is recommended that you work on a local repository</li>
-<li>You will need to have the following tools installed</li>
-<li>A Unix shell</li>
-<li>Git</li>
-<li><a href="http://pandoc.org/">Pandoc</a></li>
-<li><a href="https://rsync.samba.org/">rsync</a></li>
-<li>This setup is trivial on Mac and Linux systems</li>
+<li>You can perform small changes directly on the <a href="https://github.com/codeandwork/courses">GitHub repository</a><br /></li>
+<li>For substantial work it is recommended that you work on a local repository<br /></li>
+<li>You will need to have the following tools installed<br /></li>
+<li>A Unix shell<br /></li>
+<li>Git<br /></li>
+<li><a href="http://pandoc.org/">Pandoc</a><br /></li>
+<li><a href="https://rsync.samba.org/">rsync</a><br /></li>
+<li>This setup is trivial on Mac and Linux systems<br /></li>
 <li>On Windows systems we recommend the installation of <a href="https://www.cygwin.com/">Cygwin</a></li>
 </ul>
 <h2 id="building-and-deploying">Building and deploying</h2>
 <ul>
-<li>First clone the <a href="https://github.com/codeandwork/courses">GitHub repository</a></li>
-<li>Run <code>make</code> to build the presentation and note handouts</li>
-<li>This generates the material in the <code>web</code> directory</li>
-<li>View the presentations through <a href="../index.html">this link</a></li>
-<li>Run <code>make dist</code> to upload the changes to the web site</li>
+<li>First clone the <a href="https://github.com/codeandwork/courses">GitHub repository</a><br /></li>
+<li>Run <code>make</code> to build the presentation and note handouts<br /></li>
+<li>This generates the material in the <code>web</code> directory<br /></li>
+<li>View the presentations and handouts through <a href="../index.html">this link</a><br /></li>
+<li>Pushing your changes will result in an automatic update of the <a href="https://codeandwork.github.io/courses/">web site</a><br /></li>
+<li>You can also run <code>make dist</code> to manually upload the changes to the web site</li>
 </ul>
 <h2 id="style">Style</h2>
 <ul>
-<li>Use lower case in titles, Not Title Case</li>
-<li>Start each bullet item with a capital</li>
-<li>Don't punctuate at the end of bullet items</li>
-<li>Spell-check what you write</li>
-<li>Use British spelling</li>
-<li>Don't pack your slides with text</li>
-<li>Take care of capitalization: JavaScript, SQL, Java, C#, Git, GitHub</li>
-<li>Put names of code and commands in backticks, e.g. `main` or `git`</li>
+<li>Use lower case in titles, Not Title Case<br /></li>
+<li>Start each bullet item with a capital<br /></li>
+<li>Don't punctuate at the end of bullet items<br /></li>
+<li>Spell-check what you write<br /></li>
+<li>Use British spelling<br /></li>
+<li>Don't pack your slides with text<br /></li>
+<li>Take care of capitalization: JavaScript, SQL, Java, C#, Git, GitHub<br /></li>
+<li>Put names of code and commands in backticks, e.g. `main` or `git`<br /></li>
 <li>Avoid lines longer than 67 characters</li>
 </ul>
 
