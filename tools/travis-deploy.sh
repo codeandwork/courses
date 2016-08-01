@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e # Exit with nonzero exit code if anything fails
 
+if [ -n "$DEBUG" ] ; then
+  set -x
+fi
+
 SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
 
