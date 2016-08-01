@@ -1,0 +1,11 @@
+language: generic # don't install any environment
+
+addons:
+  apt_packages:
+    - pandoc
+
+script: bash tools/travis-deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: d7e0dc08b1d8
+  - COMMIT_AUTHOR_EMAIL: "dds@aueb.gr"

@@ -6,4 +6,4 @@ clean:
 
 dist: build
 	test -d web
-	tools/deploy.sh
+	tools/cli-deploy.sh

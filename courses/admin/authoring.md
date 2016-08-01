@@ -91,8 +91,9 @@
 * First clone the [GitHub repository](https://github.com/codeandwork/courses)
 * Run `make` to build the presentation and note handouts
 * This generates the material in the `web` directory
-* View the presentations through [this link](../index.html)
-* Run `make dist` to upload the changes to the web site
+* View the presentations and handouts through [this link](../index.html)
+* Pushing your changes will result in an automatic update of the [web site](https://codeandwork.github.io/courses/)
+* You can also run `make dist` to manually upload the changes to the web site
 
 
 ## Style
