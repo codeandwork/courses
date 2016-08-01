@@ -1,5 +1,8 @@
 language: generic # don't install any environment
 
+sudo: required
+dist: trusty
+
 addons:
   apt_packages:
     - pandoc
