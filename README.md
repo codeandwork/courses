@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/codeandwork/courses.svg?branch=master)](https://travis-ci.org/codeandwork/courses)
+
 # Course material for the Coding Bootcamp
 
 The course materials are available as presentations and handouts on https://codeandwork.github.io/courses/.
