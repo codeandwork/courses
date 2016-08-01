@@ -4,6 +4,11 @@ COURSES=$(ls courses/*.md | sed 's/\.md$//;s/courses\///')
 
 set -e
 
+if [ -n "$DEBUG" ] ; then
+  pandoc --version
+  set -x
+fi
+
 rsync -a --delete --exclude=.git assets/reveal.js web/
 rsync -a --delete assets/css web/
 
