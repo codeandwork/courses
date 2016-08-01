@@ -1,9 +1,9 @@
 build:
-	tools/build.sh
+	sh tools/build.sh
 
 clean:
 	rm -f web/*
 
 dist: build
 	test -d web
-	tools/cli-deploy.sh
+	sh tools/cli-deploy.sh
