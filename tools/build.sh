@@ -1,6 +1,6 @@
 #!/bin/sh
 
-COURSES=$(echo courses/*.md | xargs -n 1 basename -s .md)
+COURSES=$(ls courses/*.md | sed 's/\.md$//;s/courses\///')
 
 set -e
 
