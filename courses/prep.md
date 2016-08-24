@@ -28,7 +28,7 @@
 * [Entity-relationship diagrams] (prep/introER.md)
 * [Exercise: Develop an ER diagram] (prep/exerciseERdiagram.md)
 * [Introduction to SQL] (prep/sql.md)
-* [Exercise: Develop a Database] (prep/exercise)
+* [Exercise: Develop a Database] (prep/exerciseSQL.md)
 
 
 ## Application development methodologies
@@ -41,5 +41,5 @@
 * [GitHub] (prep/github.md)
 
 
-
+## Develop a first dynamic web application
 
