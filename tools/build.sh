@@ -12,39 +12,67 @@ fi
 rsync -a --delete --exclude=.git assets/reveal.js web/
 rsync -a --delete assets/css web/
 
+# Succeed if output must be built
+# As a side effect provide feedback and create the output directory
+build_required()
+{
+  local in=$1
+  local out=$2
+
+  if [ ! -r $out -o $in -nt $out ] ; then
+    mkdir -p $(dirname $out)
+    echo Building $out
+    return 0
+  else
+    return 1
+  fi
+}
+
 for course in $COURSES ; do
   sed -n 's/^\* \[\([^\]*\)\](\([^)]*\))/\1\2/p' courses/${course}.md |
   while IFS= read title file ; do
     input=courses/$file
+    case $file in
+      *.md) # Markdown
+	# Prepare the leaf presentation file
+	pres_out=web/$(dirname $file)/$(basename $file .md)-p.html
+	if build_required $input $pres_out ; then
+	  {
+	    sed "s/TITLE_HERE/$title/" assets/presentation-top.html
+	    tr -d \\r <$input
+	    cat assets/presentation-bottom.html
+	  } >$pres_out
+	fi
 
-    # Prepare the leaf presentation file
-    pres_out=web/$(dirname $file)/$(basename $file .md)-p.html
-    if [ ! -r $pres_out -o $input -nt $pres_out ] ; then
-      mkdir -p web/$(dirname $file)
-      echo Building $pres_out
-      {
-	sed "s/TITLE_HERE/$title/" assets/presentation-top.html
-	tr -d \\r <$input
-	cat assets/presentation-bottom.html
-      } >$pres_out
+	# Prepare handout file
+	hand_out=web/$(dirname $file)/$(basename $file .md).html
+	if build_required $input $hand_out ; then
+	  {
+	    sed "s/TITLE_HERE/$title/" assets/index-top.html
+	    {
+	      echo "# Coding Bootcamp: $title"
+	      cat $input
+	    } |
+	    pandoc -f markdown_github -t html
+	    cat assets/index-bottom.html
+	  } >$hand_out
+	fi
+	;;
 
-    fi
+      *.ipynb) # Python notebook
+	# Prepare the leaf presentation file
+	pres_out=web/$(dirname $file)/$(basename $file .ipynb)-p.html
+	if build_required $input $pres_out ; then
+	  jupyter nbconvert $input --to slides --stdout \
+	    --reveal-prefix=../reveal.js >$pres_out
+	fi
 
-    # Prepare handout file
-    hand_out=web/$(dirname $file)/$(basename $file .md).html
-    if [ ! -r $hand_out -o $input -nt $hand_out ] ; then
-      mkdir -p web/$(dirname $file)
-      echo Building $hand_out
-      {
-	sed "s/TITLE_HERE/$title/" assets/index-top.html
-	{
-	  echo "# Coding Bootcamp: $title"
-	  cat $input
-	} |
-	pandoc -f markdown_github -t html
-	cat assets/index-bottom.html
-      } >$hand_out
-    fi
+	# Prepare handout file
+	hand_out=web/$(dirname $file)/$(basename $file .ipynb).html
+	if build_required $input $hand_out ; then
+	  jupyter nbconvert $input --to html --stdout >$hand_out
+	fi
+    esac
   done
 
   # Deploy media files
@@ -55,7 +83,7 @@ for course in $COURSES ; do
     {
       sed "s/TITLE_HERE/Coding Bootcamp: Table of contents/" assets/index-top.html
       pandoc -f markdown_github -t html courses/${course}.md |
-      sed '/href/s/\.md"/'$hp'.html"/'
+      sed '/href/{;s/\.md"/'$hp'.html"/;s/\.ipynb"/'$hp'.html"/;}'
       cat assets/index-bottom.html
     } >web/${course}${hp}.html
   done
