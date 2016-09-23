@@ -13,8 +13,8 @@ rsync -a --delete --exclude=.git assets/reveal.js web/
 rsync -a --delete assets/css web/
 
 for course in $COURSES ; do
-  sed -n 's/^\* \[\([^\]*\)\](\([^)]*\))/\1\2/p' courses/${course}.md |
-  while IFS= read title file ; do
+  sed -n 's/^\* \[\([^\]*\)\](\([^)]*\))/\1\2/p' courses/${course}.md |
+  while IFS= read title file ; do
     input=courses/$file
 
     # Prepare the leaf presentation file
