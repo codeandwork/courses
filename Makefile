@@ -2,4 +2,4 @@ build:
 	sh tools/build.sh
 
 clean:
-	rm -f web/*
+	rm -rf web/*
