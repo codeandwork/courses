@@ -1,4 +1,7 @@
-language: generic # don't install any environment
+language: python
+
+python:
+  - "3.5"
 
 sudo: required
 dist: trusty
