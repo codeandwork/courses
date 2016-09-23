@@ -34,6 +34,11 @@
 ## Basics
 * We use [reveal.js](http://lab.hakim.se/reveal-js/) for our slides,
   but this should be transparent to you
+* We write slides either in Markdown or as a Jupyter Notebook
+* More details follow
+
+
+## Markdown slides
 * Write slides in [GitHub flavoured Markdown](https://help.github.com/categories/writing-on-github/)
 * Start title text with `##` followed by a space
 * Start bullet items with `*` followed by a space
@@ -80,11 +85,15 @@
 * Use the PNG format for clipart and JPEG for photographs
 
 
-## Organization
-* Each lecture is written as a single Markdown file
+## File organization
+* Each lecture is written as a single Markdown or as a Jupyter Notebook file
 * Name the file using Java variable identifier rules
-* Suffix the file name with `.md`
+* Suffix the Markdown file name with `.md`
 * Example: `unitTests.md`
+* Suffix the Jupyter file name with `.ipynb`
+
+
+## Folder organization
 * Place the file in one of the following folders
   * `java`: Java material
   * `cs`: C# material
@@ -105,19 +114,27 @@
 ## Test driven development and object-oriented programming
 * [Hello world!](java/hello.md)
 * [Constructing and using objects](java/objects.md)
+* [Python classes](common/pythonClasses.ipynb)
 ```
 
 
-## Editing and build tools
+## Contributions
 * You can perform small changes directly on the [GitHub repository](https://github.com/codeandwork/courses)
 * For substantial work it is recommended that you work on a local repository
+* Commit your changes with [proper commit messages](http://chris.beams.io/posts/git-commit/)
+* Do not forget to push after committing
+
+
+## Editing and build tools
 * You will need to have the following tools installed
   * A Unix shell
   * Git
   * [Pandoc](http://pandoc.org/)
   * [rsync](https://rsync.samba.org/)
+  * [Jupyter Notebook](http://jupyter.org/)
 * This setup is trivial on Mac and Linux systems
 * On Windows systems we recommend the installation of [Cygwin](https://www.cygwin.com/)
+* [Anaconda](https://www.continuum.io/downloads) simplifies the Jupyter Notebook installation
 
 
 ## Building and deploying

@@ -33,6 +33,11 @@
 <h2 id="basics">Basics</h2>
 <ul>
 <li>We use <a href="http://lab.hakim.se/reveal-js/">reveal.js</a> for our slides,<br /> but this should be transparent to you<br /></li>
+<li>We write slides either in Markdown or as a Jupyter Notebook<br /></li>
+<li>More details follow</li>
+</ul>
+<h2 id="markdown-slides">Markdown slides</h2>
+<ul>
 <li>Write slides in <a href="https://help.github.com/categories/writing-on-github/">GitHub flavoured Markdown</a><br /></li>
 <li>Start title text with <code>##</code> followed by a space<br /></li>
 <li>Start bullet items with <code>*</code> followed by a space<br /></li>
@@ -68,12 +73,16 @@
 <pre class="md"><code>![](media/hello.png)</code></pre></li>
 <li><p>Use the PNG format for clipart and JPEG for photographs</p></li>
 </ul>
-<h2 id="organization">Organization</h2>
+<h2 id="file-organization">File organization</h2>
 <ul>
-<li>Each lecture is written as a single Markdown file<br /></li>
+<li>Each lecture is written as a single Markdown or as a Jupyter Notebook file<br /></li>
 <li>Name the file using Java variable identifier rules<br /></li>
-<li>Suffix the file name with <code>.md</code><br /></li>
+<li>Suffix the Markdown file name with <code>.md</code><br /></li>
 <li>Example: <code>unitTests.md</code><br /></li>
+<li>Suffix the Jupyter file name with <code>.ipynb</code></li>
+</ul>
+<h2 id="folder-organization">Folder organization</h2>
+<ul>
 <li>Place the file in one of the following folders<br /></li>
 <li><code>java</code>: Java material<br /></li>
 <li><code>cs</code>: C# material<br /></li>
@@ -91,18 +100,26 @@
 <pre class="md"><code># Coding bootcamp: Java specialization
 ## Test driven development and object-oriented programming
 * [Hello world!](java/hello.md)
-* [Constructing and using objects](java/objects.md)</code></pre>
-<h2 id="editing-and-build-tools">Editing and build tools</h2>
+* [Constructing and using objects](java/objects.md)
+* [Python classes](common/pythonClasses.ipynb)</code></pre>
+<h2 id="contributions">Contributions</h2>
 <ul>
 <li>You can perform small changes directly on the <a href="https://github.com/codeandwork/courses">GitHub repository</a><br /></li>
 <li>For substantial work it is recommended that you work on a local repository<br /></li>
+<li>Commit your changes with <a href="http://chris.beams.io/posts/git-commit/">proper commit messages</a><br /></li>
+<li>Do not forget to push after committing</li>
+</ul>
+<h2 id="editing-and-build-tools">Editing and build tools</h2>
+<ul>
 <li>You will need to have the following tools installed<br /></li>
 <li>A Unix shell<br /></li>
 <li>Git<br /></li>
 <li><a href="http://pandoc.org/">Pandoc</a><br /></li>
 <li><a href="https://rsync.samba.org/">rsync</a><br /></li>
+<li><a href="http://jupyter.org/">Jupyter Notebook</a><br /></li>
 <li>This setup is trivial on Mac and Linux systems<br /></li>
-<li>On Windows systems we recommend the installation of <a href="https://www.cygwin.com/">Cygwin</a></li>
+<li>On Windows systems we recommend the installation of <a href="https://www.cygwin.com/">Cygwin</a><br /></li>
+<li><a href="https://www.continuum.io/downloads">Anaconda</a> simplifies the Jupyter Notebook installation</li>
 </ul>
 <h2 id="building-and-deploying">Building and deploying</h2>
 <ul>
