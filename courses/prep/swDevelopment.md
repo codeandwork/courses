@@ -7,7 +7,7 @@
 * Maintenance
 
 
-## Software development methodologies, paradigms and models
+## Methodologies, paradigms and models
 * Software engineering 
 * Waterfall 
 * Prototyping 
