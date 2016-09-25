@@ -61,7 +61,19 @@
 * WEEK 11: Advanced Application Development and Other Topics
 * WEEK 12: Final Project Implementation
 ```md
---- Deadline: Final Project ----
+--- Deadline: Final Project ---
+```
+
+
+## Preparatory Week
+* Day 1: Welcome - Basic Concepts
+* Day 2-3: Introduction to Programming (with Python)
+* Day 4-5: HTML/CSS - Front-end development basics
+* Day 6-7: Introduction to Databases 
+* Day 8: Application Development
+* Day 9-10: Development of a simple dynamic web site
+```md
+--- Coding Skills Test ---
 ```
 
 

@@ -7,7 +7,7 @@
 * Maintenance
 
 
-##Paradigms and models
+## Software development methodologies, paradigms and models
 * Software engineering 
 * Waterfall 
 * Prototyping 
@@ -21,42 +21,73 @@
 
 
 ## Software engineering
+Software engineering is the application of engineering to the design, development, implementation, testing and maintenance of software in a systematic method
 
 
 ## Waterfall
+![](media/waterfall.png)
+
+
+## Prototyping
+Software prototyping is the activity of creating prototypes of software applications, i.e., incomplete versions of the software program being developed
 
 
 ## Spiral
+![](media/spiral.png)
+
+[Spiral_model_(Boehm,_1988)](http://commons.wikimedia.org/wiki/File:Spiral_model_(Boehm,_1988).png)
 
 
 ## Iterative and incremental development (IID) 
+![](media/Iterative_development.png)
+[Iterative development model](https://commons.wikimedia.org/w/index.php?curid=34159246)
 
 
 ## Agile (2001)
+* Agile software development describes a set of principles for software development under which requirements and solutions evolve through the collaborative effort of self-organizing cross-functional teams
+* First coined in 2001, in the Manifesto for Agile Software Development 
 
 
 ## Lean (2003)
+* Lean software development (LSD) is a translation of lean manufacturing and lean IT principles and practices to the software development domain
+* Adapted from the Toyota Production System, it emerged from within the Agile community
+
+
+## 	Lean principles
+* Eliminate waste
+* Amplify learning
+* Decide as late as possible
+* Deliver as fast as possible
+* Empower the team
+* Build integrity in
+* See the whole
+
+
+## DevOps
+DevOps (a clipped compound of development and operations) is a culture, movement or practice that emphasizes the collaboration and communication of both software developers and other information-technology (IT) professionals while automating the process of software delivery and infrastructure changes
+
+
+## DevOps
+![](media/DevOps.png)
+
+[DevOps](https://commons.wikimedia.org/w/index.php?curid=20202905)
 
 
 ##Supporting disciplines
-Configuration management 
-Infrastructure as Code 
-Documentation 
-Software Quality assurance (SQA) 
-Project management 
-User experience
+* Configuration management 
+* Documentation 
+* Software Quality assurance (SQA) 
+* Project management 
+* User experience
 
 
 ##Tools
-Compiler 
-Debugger 
-Profiler 
-GUI designer 
-Modeling 
-IDE 
-Build automation 
-Release automation 
-Testing
-
-
-
+* Compiler 
+* Debugger 
+* Profiler 
+* GUI designer 
+* Modeling 
+* IDE 
+* Build automation 
+* Release automation 
+* Testing
