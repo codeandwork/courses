@@ -40,6 +40,7 @@ Software prototyping is the activity of creating prototypes of software applicat
 
 ## Iterative and incremental development (IID) 
 ![](media/Iterative_development.png)
+
 [Iterative development model](https://commons.wikimedia.org/w/index.php?curid=34159246)
 
 
