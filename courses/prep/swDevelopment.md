@@ -74,6 +74,14 @@ DevOps (a clipped compound of development and operations) is a culture, movement
 [DevOps](https://commons.wikimedia.org/w/index.php?curid=20202905)
 
 
+
+## Scrum
+* Scrum is an iterative and incremental agile software development framework for managing product development
+* It defines "a flexible, holistic product development strategy where a development team works as a unit to reach a common goal"
+* It challenges assumptions of the "traditional, sequential approach" to product development
+* It enables teams to self-organize by encouraging physical co-location or close online collaboration of all team members, as well as daily face-to-face communication among all team members and disciplines involved
+
+
 ##Supporting disciplines
 * Configuration management 
 * Documentation 
