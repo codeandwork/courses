@@ -1,6 +1,7 @@
 # Coding Bootcamp: Preparatory material
 ## Welcome 
 * [Program overview](prep/programOverview.md)
+* [The life of a "Like"](prep/lifeOfALike.md)
 * [Basic concepts and terms](prep/basicConcepts.md)
 * [Software development process](prep/swDevelopment.md)
 * [Introduction to software architectures](prep/introArchitectures.md)
