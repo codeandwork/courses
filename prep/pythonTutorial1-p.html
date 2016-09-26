@@ -13626,10 +13626,9 @@ TypeError: unsupported operand type(s) for ** or pow(): 'str' and 'int'</code></
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><ol>
-<li>Write a program that produces the following output:
-<code>
-000000001
+<h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><h2 id="Exercise-1">Exercise 1<a class="anchor-link" href="#Exercise-1">&#182;</a></h2><p>Write a program that produces the following output:</p>
+
+<pre><code>000000001
 000000022
 000000333
 000004444
@@ -13637,9 +13636,7 @@ TypeError: unsupported operand type(s) for ** or pow(): 'str' and 'int'</code></
 000666666
 007777777
 088888888
-999999999   
-</code></li>
-</ol>
+999999999</code></pre>
 
 </div>
 </div>
@@ -13649,19 +13646,16 @@ TypeError: unsupported operand type(s) for ** or pow(): 'str' and 'int'</code></
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol start="2">
-<li>Write a program that asks the user to provide different numbers of banknotes and coins, from €50 to €1. Then output the total sum in euros. For example:
-<code>
-Enter number of 50 euro banknotes: 10
+<h2 id="Exercise-2">Exercise 2<a class="anchor-link" href="#Exercise-2">&#182;</a></h2><p>Write a program that asks the user to provide different numbers of banknotes and coins, from €50 to €1. Then output the total sum in euros. For example:</p>
+
+<pre><code>Enter number of 50 euro banknotes: 10
 Enter number of 20 euro banknotes: 20
 Enter number of 10 euro banknotes: 30
 Enter number of 5 euro banknotes: 40
 Enter number of 2 euro coins: 50
 Enter number 1 euro coints: 60
-You have 1560 euros.
-</code>
-</li>
-</ol>
+You have 1560 euros.</code></pre>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -13670,20 +13664,17 @@ You have 1560 euros.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><ol start="3"></p>
-<li>
-If we want to calculate the area of a triange given its sides, we can use Heron's formula, which is:
+<h2 id="Exercise-3">Exercise 3<a class="anchor-link" href="#Exercise-3">&#182;</a></h2><p>If we want to calculate the area of a triange given its sides, we can use Heron's formula, which is:
 $$
 A= \frac{1}{4}\sqrt{(a+b+c)(-a+b+c)(a-b+c)(a+b-c)}
 $$
 where $a$, $b$, and $c$, are the three sides of the triangle.
 Write a program that asks the user for the three sides and calculates its area.
-Note that to calculate the square root in Python you have to include the line
-```
-import math
-```
-at the beginning of your program. Then, the square root of, say, `r`, is `math.sqrt(r)`.
-</li>
+Note that to calculate the square root in Python you have to include the line</p>
+
+<pre><code>import math</code></pre>
+<p>at the beginning of your program. Then, the square root of, say, <code>r</code>, is <code>math.sqrt(r)</code>.</p>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -13692,15 +13683,10 @@ at the beginning of your program. Then, the square root of, say, `r`, is `math.s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol start="4">
-<li>
-A quadratic equation is an equation of the form:
-$$ax^2 + bx + c$$
-The roots of a quadratic equation are given by the formula:
-$$x=\frac{-b\pm {\sqrt {b^{2}-4ac\ }}}{2a}$$
-</li>
-Note that if $b^2 - 4ac < 0$, then no real-valued solutions exist. Write a program that asks the user to enter values for $a$, $b$, $c$, then prints the solutions of the quadratic equation they define, if they exist. If they do not exist, it should output an appropriate message.
-</ol>
+<h2 id="Exercise-4">Exercise 4<a class="anchor-link" href="#Exercise-4">&#182;</a></h2><p>A quadratic equation is an equation of the form:</p>
+$$ax^2 + bx + c$$<p>The roots of a quadratic equation are given by the formula:</p>
+$$x=\frac{-b\pm {\sqrt {b^{2}-4ac\ }}}{2a}$$<p>Note that if $b^2 - 4ac < 0$, then no real-valued solutions exist. Write a program that asks the user to enter values for $a$, $b$, $c$, then prints the solutions of the quadratic equation they define, if they exist. If they do not exist, it should output an appropriate message.</p>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -13709,24 +13695,20 @@ Note that if $b^2 - 4ac < 0$, then no real-valued solutions exist. Write a progr
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol start="5">
-<li>
-Write a program that calculates the first five terms of the harmonic sequence, that is, the numbers:
+<h2 id="Exercise-5">Exercise 5<a class="anchor-link" href="#Exercise-5">&#182;</a></h2><p>Write a program that calculates the first five terms of the harmonic sequence, that is, the numbers:
 $$1$$
 $$1 + \frac{1}{2}$$
 $$1 + \frac{1}{2} + \frac{1}{3}$$
 $$1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4}$$
-$$1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5}$$
-These are the numbers:
-<code>
-1
+$$1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5}$$</p>
+<p>These are the numbers:</p>
+
+<pre><code>1
 1.5
 1.8333333333333333
 2.083333333333333
-2.283333333333333
-</code>
-</li>
-</ol>
+2.283333333333333</code></pre>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -13735,21 +13717,18 @@ These are the numbers:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><ol start="6"></p>
-<li>
-The *triangle* or *triangular numbers( are given by the following formula:
+<h2 id="Exercise-6">Exercise 6<a class="anchor-link" href="#Exercise-6">&#182;</a></h2><p>The <a href="https://en.wikipedia.org/wiki/Triangular_number">triangle or triangular numbers</a> are given by the following formula:
 $$T_{n}=\sum _{k=1}^{n}k=1+2+3+\dotsb +n={\frac {n(n+1)}{2}}$$
-So, the first six triangular numbers are: 0, 1, 3, 6, 10, 15, 21. Their name comes from the fact that it is the number of objects that we must use to [form an equilateral triangle](https://en.wikipedia.org/wiki/Triangular_number).
-Write a program that asks the user the number of triangular numbers to produce, then prints them out:
-<code>
-Enter number of triangle numbers: 9
+So, the first six triangular numbers are: 0, 1, 3, 6, 10, 15, 21. Their name comes from the fact that it is the number of objects that we must use to form an equilateral triangle.
+Write a program that asks the user the number of triangular numbers to produce, then prints them out:</p>
+
+<pre><code>Enter number of triangle numbers: 9
 1 3 6 10 15 21 28 36 45
 Enter number of triangle numbers: 15
 1 3 6 10 15 21 28 36 45 55 66 78 91 105 120
 Enter number of triangle numbers: 30
-1 3 6 10 15 21 28 36 45 55 66 78 91 105 120 136 153 171 190 210 231 253 276 300 325 351 378 406 435 465
-</code>
-</li>
+1 3 6 10 15 21 28 36 45 55 66 78 91 105 120 136 153 171 190 210 231 253 276 300 325 351 378 406 435 465</code></pre>
+
 </div>
 </div>
 </div></section></section><section><section>
@@ -13758,22 +13737,18 @@ Enter number of triangle numbers: 30
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol start="7">
-<li>
-The [pronic numbers](https://en.wikipedia.org/wiki/Pronic_number) are those that are the product of two consecutive integers, so that they have the form $n(n + 1)$. For example, the first six pronic numbers are:
+<h2 id="Exercise-7">Exercise 7<a class="anchor-link" href="#Exercise-7">&#182;</a></h2><p>The <a href="https://en.wikipedia.org/wiki/Pronic_number">pronic numbers</a> are those that are the product of two consecutive integers, so that they have the form $n(n + 1)$. For example, the first six pronic numbers are:
 $$ 1 \times 2 = 2$$
 $$ 2 \times 3 = 6$$
 $$ 3 \times 4 = 12$$
 $$ 4 \times 5 = 20$$
 $$ 5 \times 6 = 30$$
-$$ 6 \times 7 = 42$$
-Write a program that asks the user the number of pronic numbers to output, then goes on and prints them:
-<code>
-Enter number of pronic numbers: 10
-2 6 12 20 30 42 56 72 90 110
-</code>
-</li>
-</ol>
+$$ 6 \times 7 = 42$$</p>
+<p>Write a program that asks the user the number of pronic numbers to output, then goes on and prints them:</p>
+
+<pre><code>Enter number of pronic numbers: 10
+2 6 12 20 30 42 56 72 90 110</code></pre>
+
 </div>
 </div>
 </div></section></section><section><section>
