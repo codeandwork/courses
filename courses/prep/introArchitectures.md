@@ -44,6 +44,10 @@
 ![](media/client-server.png)
 
 
+## Thick-Thin Client
+!![](media/Thick-thin-client.png)
+
+
 ## 3-tier architecture
 !![](media/3tier-architecture.png)
 
@@ -52,3 +56,14 @@
 ![](media/web_architecture.png)
 
 
+## Static web site
+![](media/static_web_site.png)
+
+
+## Dynamic web site
+![](media/dynamic_web_site.png)
+
+
+## Exercise
+
+Define the architecture of popular applications
