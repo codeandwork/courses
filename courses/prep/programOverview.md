@@ -18,6 +18,11 @@
   * Start working as full-stack entry-level application developers
 
 
+## In other words...
+* Learn how to __guess__
+* Learn how to __search__
+
+
 ## Program structure 
 * Preparatory weeks (2 wks)
 ```md  
