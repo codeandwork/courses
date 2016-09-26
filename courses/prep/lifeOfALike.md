@@ -3,7 +3,7 @@
 * Logic gate: digital building block
 * How two add two bits
 * Counting with 0 and 1
-* Chip constructions
+* Chip construction
 
 
 ## Inside a modern computer
@@ -79,6 +79,7 @@
 
 
 ## Serving requests
+* Data centers
 * Load balancing
 * Application servers
 * Databases
