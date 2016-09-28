@@ -13284,6 +13284,502 @@ SyntaxError: invalid syntax</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="What-is-really-a-string?">What is really a string?<a class="anchor-link" href="#What-is-really-a-string?">&#182;</a></h1><ul>
+<li><p>A string is a sequence of <a href="https://en.wikipedia.org/wiki/Unicode">Unicode</a> code points.</p>
+</li>
+<li><p>That means that each character in a string is actually a number that corresponds to a Unicode code point.</p>
+</li>
+<li><p>To see the number that is behind a character we can use the <code>ord()</code> function.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>String in English</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[183]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Hello, World&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello, World
+72:101:108:108:111:44:32:87:111:114:108:100:
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><p>Note that uppercase English characters are numbered consecutively.</p>
+</li>
+<li><p>The same goes for lowercase English characters.</p>
+</li>
+<li><p>In what follows, <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> (American Standard Code for Information Interchange) is an older character encoding, the original encoding for English, which is now a subset of Unicode.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[191]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
+
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>    
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>A = 65 B = 66 C = 67 D = 68 E = 69 F = 70 G = 71 H = 72 I = 73 J = 74 K = 75 L = 76 M = 77 N = 78 O = 79 P = 80 Q = 81 R = 82 S = 83 T = 84 U = 85 V = 86 W = 87 X = 88 Y = 89 Z = 90 
+a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k = 107 l = 108 m = 109 n = 110 o = 111 p = 112 q = 113 r = 114 s = 115 t = 116 u = 117 v = 118 w = 119 x = 120 y = 121 z = 122 </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>String in Greek</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[167]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Καλημέρα, Κόσμε&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Καλημέρα, Κόσμε
+922:945:955:951:956:941:961:945:44:32:922:972:963:956:949:</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>String in Chinese</li>
+</ul>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[163]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;你好，世界&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>你好，世界
+20320:22909:65292:19990:30028:</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>String in Japanese</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[166]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;こんにちは世界&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>こんにちは世界
+12371:12435:12395:12385:12399:19990:30028:</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>String in Korean</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[168]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;안녕하세요 세계&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>안녕하세요 세계
+50504:45397:54616:49464:50836:32:49464:44228:</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>A numeric string is not a number!</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[179]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;12345&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>12345
+49:50:51:52:53:</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>If we want to do the opposite, that is, convert a number to a character, then we can use the <code>chr()</code> function.</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[182]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">72</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">100</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello, World</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Splitting-a-string.">Splitting a string.<a class="anchor-link" href="#Splitting-a-string.">&#182;</a></h1><ul>
+<li><p>We can split a string on a specific character using the <code>split()</code> method.</p>
+</li>
+<li><p><code>split()</code> is a <em>method</em>, because it is a function that belongs to an object (in this case, a string).</p>
+</li>
+<li><p>If we give the <code>maxsplit</code> argument, we will get that number of elements in the result.</p>
+</li>
+<li><p>If we do not specify a character to split, we split on whitespace.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[174]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;1,2,3&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[174]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[176]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;1,2,3&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[176]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;1&#39;, &#39;2,3&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[177]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;1,2,,3,&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[177]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;1&#39;, &#39;2&#39;, &#39;&#39;, &#39;3&#39;, &#39;&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[178]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s1">&#39;1 2  3   4&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[178]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Lists">Lists<a class="anchor-link" href="#Lists">&#182;</a></h1><ul>
 <li><p>Python knows a number of compound data types, used to group together other values.</p>
 </li>
@@ -15355,6 +15851,66 @@ SyntaxError: invalid syntax</code></pre>
 </div>
 </div>
 </div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Identity-testing">Identity testing<a class="anchor-link" href="#Identity-testing">&#182;</a></h1><ul>
+<li><p>The keyword <code>is</code> is used for <em>identity testing</em>.</p>
+</li>
+<li><p>The negation is <code>not is</code>.</p>
+</li>
+<li><p>Identity testing means checking that two objects are <em>the same</em>, not that they are equal.</p>
+</li>
+<li><p>A frequent use of <code>is</code> is against <code>None</code>: <code>x is None</code>, <code>x is not None</code>, <code>not x is None</code>.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[195]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">d</span> <span class="o">=</span> <span class="s2">&quot;ab&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;c == d:&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="o">==</span> <span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;c is d:&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="ow">is</span> <span class="n">d</span><span class="p">)</span>
+
+<span class="n">ra</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">rb</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ra == rb:&quot;</span><span class="p">,</span> <span class="n">ra</span> <span class="o">==</span> <span class="n">rb</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ra is rb:&quot;</span><span class="p">,</span> <span class="n">ra</span> <span class="ow">is</span> <span class="n">rb</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>c == d: True
+c is d: False
+ra == rb: True
+ra is rb: False
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -18084,7 +18640,7 @@ pear
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[147]:</div>
+<div class="prompt input_prompt">In&nbsp;[148]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">raw_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">56.2</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;NaN&#39;</span><span class="p">),</span> <span class="mf">51.7</span><span class="p">,</span> <span class="mf">55.3</span><span class="p">,</span> <span class="mf">52.5</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;NaN&#39;</span><span class="p">),</span> <span class="mf">47.8</span><span class="p">]</span>
@@ -18103,7 +18659,7 @@ pear
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[147]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[148]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18116,6 +18672,279 @@ pear
 </div>
 
 </div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h1><h1 id="Exercise-1">Exercise 1<a class="anchor-link" href="#Exercise-1">&#182;</a></h1><p>The Greek Tax Identification Number (TIN) consists of 9 digits. The last digit is a check digit. It is calculated as follows:</p>
+<ol>
+<li>We remote the check digit, so that we are left with an 8-digit number.</li>
+<li>We take the 8 digits one by one, from the right to the left. We raise each digit to the power of 2 corresponding to its position: the first from the right will be raised to the power of $2^1$, the second to the power of $2^2$, and so on.</li>
+<li>We take these powers and we sum them.</li>
+<li>We calculate the remainder of this sum by 11.</li>
+<li>We take this remainder and we calculate its remainder by 10. The result must equal the check digit.</li>
+</ol>
+<p>For example, let us say we have the TIN 090034337. The check digit is 7. The other digits are 09003433. We have:
+\begin{align<em>}
+3\times 2^1 + 3\times 2^2 + 4\times 2^3 + 3\times 2^4 + 9\times 2^7 &amp;=\
+3\times 2 + 3\times 4 + 4\times 8 + 3 \times 16 + 9\times 128 &amp;=\
+6 + 12 + 32 + 48 + 1152 &amp;= 1250
+\end{align</em>}</p>
+<p>Then, $1250 \bmod 11 = 7$ και $7 \bmod 10 = 7$.</p>
+<p>Write a program that will ask the user for TIN and will respond whether it is correct or not. For example:</p>
+
+<pre><code>Enter Tax Identification Number: 090034337
+Tax Identification Number valid.
+
+Enter Tax Identification Number: 090034336
+Tax Identification Number not valid.</code></pre>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-2">Exercise 2<a class="anchor-link" href="#Exercise-2">&#182;</a></h1><p>A simple to check binary data is the so-called <em>parity bit</em>. A byte consists of 8 bits, so that we can use the last bit to check whether the previous 7 are OK. We can do that by checking that the sum of the 1 bits is an even number 
+(this is actually called <em>even parity</em>; we might require that the sum of 1 bits is odd, which is called <em>odd parity</em>). For example, see the following table where we see the first 7 bits of some numbers, the number of 1 bits in them, the full 8-bit number (including the parity) and the number of 1 bits in the byte.</p>
+<table>
+<thead><tr>
+<th>First 7 bits</th>
+<th>Number of 1s</th>
+<th>8 bits (with parity)</th>
+<th>Number of 1s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0000000</td>
+<td>0</td>
+<td>00000000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1010001</td>
+<td>3</td>
+<td>10100011</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1101001</td>
+<td>4</td>
+<td>11010010</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1111111</td>
+<td>7</td>
+<td>11111111</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>Write a program that will ask the user for an 8-bit binary number and will reply whether the parity bit checks OK. For example:</p>
+
+<pre><code>Enter binary number: 01010101
+Parity check OK.
+
+Enter binary number: 11010101
+Parity check not OK.</code></pre>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-3">Exercise 3<a class="anchor-link" href="#Exercise-3">&#182;</a></h1><p>Write a program that will ask the user for a 10-digit number and will then print it in two lines. The first line will contain the numbers in the odd positions and the second line the numbers in the even positions. For example:</p>
+
+<pre><code>Enter 10 digit number: 1234567890
+1 3 5 7 9
+ 2 4 6 8 0</code></pre>
+<p>Take care so that the numbers line up in columns <em>exactly</em> as in the above example: each number must be in a column by itself.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-4">Exercise 4<a class="anchor-link" href="#Exercise-4">&#182;</a></h1><p>Write a program that asks the user for a 9-digit number and then prints it in three lines. Each line must contain three digits. For example:</p>
+
+<pre><code>Enter 9 digit number: 123456789
+1  4  7
+ 2  5  8
+  3  6  9</code></pre>
+<p>Take care so that the numbers line up in columns <em>exactly</em> as in the above example: each number must be in a column by itself.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-5">Exercise 5<a class="anchor-link" href="#Exercise-5">&#182;</a></h1><p>To calculate Orthodox Easter Sunday for any year between 1900 and 2099, we can use the following algorithm. Suppose that $y$ is the year.</p>
+<ol>
+<li>$a = y \bmod 4$</li>
+<li>$b = y \bmod 7$</li>
+<li>$c = y \bmod 19$</li>
+<li>$d = (19c + 15) \bmod 30$</li>
+<li>$e = (2a + 4b - d + 34) \bmod 7$</li>
+<li>$\mathit{month} = \left\lfloor{((d + e + 114) / 31)}\right\rfloor$. The symbol $\left\lfloor{x}\right\rfloor$ means the integer part of $x$, that is,  $x$ round down towards 0. This is implemented in Python with the <code>math.floor()</code> function, in the <code>math</code> module. But you may not need it, because <code>//</code> implements integer division in Python.</li>
+<li>$\mathit{day} = ((d + e + 114) \bmod 31) + 1$</li>
+<li>The result is the day and the month in the Julian calendar. To convert it to the Gregorian calendar, which we actually use, we have to add 13 days. Be careful, this may change the month. </li>
+</ol>
+<p>Write a program that asks the user for a year and then displays the month and the day of Orthodox Easter in the Gregorian calendar. For example:</p>
+
+<pre><code>Enter year: 2011
+Day: 24 Month: 4</code></pre>
+<p>You may check your program for 2012 (15/4), 2013 (5/5), 2014 (20/4), 2015 (12/4), 2016 (1/5), 2017 (16/4).</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-6">Exercise 6<a class="anchor-link" href="#Exercise-6">&#182;</a></h1><p>Write a program that asks the user for 9 numbers: 1 with 1 digit, 1 with 2 digits, 1 with 3 digits, then again 1 with 1 digit, 1 with 2 digits, 1 with 3 digits, and then again 1 with 1 digit, 1 with 2 digits, 1 with 3 digits. Then the program will print them in columns, where each column will contain 1 single digit number, 1 double digit number, and 1 triple digit number. The columns will be 3 characters wide and will be separated from each other with the character <code>+</code>. The numbers inside the columns will be right justified. For example:</p>
+
+<pre><code>Enter numbers: 1 10 100 2 20 200 3 30 300
+  1|  2|  3
+ 10| 20| 30
+100|200|300</code></pre>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-7">Exercise 7<a class="anchor-link" href="#Exercise-7">&#182;</a></h1><p>To calculate the number of days between two days we can use the following algorithm. Let's say that the first date is given by $y_1$, $m_1$, $d_1$ and the second date is given by $y_2$, $m_2$, $d_1$ ($d_i$ are days, $m_i$ are months, $y_i$ are years).</p>
+<ol>
+<li>$c1 = 365y1 + \left\lfloor{y1/4}\right\rfloor - \left\lfloor{y1/100}\right\rfloor + 
+\left\lfloor{y1/400}\right\rfloor + \left\lfloor{(306m1 + 5)/10}\right\rfloor + (d1 - 1)$. In essence, $c1$
+is the numbers of days passed since 1/1/1 until the first date.</li>
+<li>$c2 = 365y2 + \left\lfloor{y2/4}\right\rfloor - \left\lfloor{y2/100}\right\rfloor + 
+\left\lfloor{y2/400}\right\rfloor + \left\lfloor{(306m2 + 5)/10}\right\rfloor + (d2 - 1)$. In essence, $c2$ is the number of days that have passed since 1/1/1 until the second date.</li>
+<li>The days that have elapsed between the two days is $c2 - c1$.</li>
+</ol>
+<p>Write a program that asks the user to enter two dates in the form <code>dd/mm/yyyy</code> and will then display the number of days that have elapsed between the two days. Be careful, the result must not be negative, no matter the order in which the user enters the dates. For example (15/3/-44 was the day Julius Caesar was murdered):</p>
+
+<pre><code>Enter dates: 15/3/-44 4/11/2016
+752596 days.</code></pre>
+<p>Another example (17/12/1903 was the first flight by the Wright brothers).</p>
+
+<pre><code>Enter dates: 28/09/2016 17/12/1903
+41193 days.</code></pre>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-8">Exercise 8<a class="anchor-link" href="#Exercise-8">&#182;</a></h1><p>Consider a sequence of numbers that describes another sequence, as follows. The sequence in read by pairs. The first part of a pair indicates how many times we should take the second part. If the length of the sequence is an odd number, then we just take the last number by itself. So, the sequence 1234567 means "1 times 2 and 3 times 4 and 5 times 6 and 7", which is
+δηλαδή:
+$$ 1 \times 2 + 3 \times 4 + 5 \times 6 + 7$$</p>
+<p>Write a program that asks a user to enter a sequence of digits and then calculates the value of the sequence, as defined above. For example:</p>
+
+<pre><code>Enter number sequence: 123456
+44
+
+Enter number sequence: 1234567
+51
+
+Enter number sequence: 1230123
+7
+
+Enter number sequence: 001234</code></pre>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-9">Exercise 9<a class="anchor-link" href="#Exercise-9">&#182;</a></h1><p>The Caesar cipher works by substituting each character in a message with a character that occurs $x$ places later on the alphabet, wrapping around from the beginning, if neeeded. So, if $x = 3$ then "ABIGΖΟΟ" will become "DELJCRR".</p>
+<p>Write a program that will ask for the number of positions to shift each character and a phrase; then it will output the phrase encrypted with the Caesar cipher. You can assume that the phrase consists only of uppercase English letters (without punctuation or spaces). For example:</p>
+
+<pre><code>Enter shift: 20
+Enter phrase: FAILBETTER
+ZUCFVYNNYL
+
+Enter shift: 10
+Enter phrase: TOBEORNOTTOBETHATISTHEQUESTION
+DYLOYBXYDDYLODRKDSCDROAEOCDSYX</code></pre>
+<p>Note: this method may have been adequate in Caesar's time, but it is completely useless today.</p>
+<p>To be sure that your encoding is correct, write also the decryption program that takes a shift and an encrypted phrase and then produces the original plaintext.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-10">Exercise 10<a class="anchor-link" href="#Exercise-10">&#182;</a></h1><p>Write a program that asks a user to enter a sequence of 0s and 1s. Following that, it will identify the longest run of 0s or 1s of the sequence and will print an appropriate message. Examples:</p>
+
+<pre><code>Enter binary sequence: 1111000
+Longest run was ones with length: 4
+
+Enter binary sequence: 1010100000
+Longest run was zeros with length: 5
+
+Enter binary sequence: 11110000111000
+Equal longest run of ones and zeros with length: 4</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-11">Exercise 11<a class="anchor-link" href="#Exercise-11">&#182;</a></h1><p>The positive integer numbers that can be written as the sum of two or more consecutive positive integers are called 
+<a href="https://en.wikipedia.org/wiki/Polite_number">polite numbers</a>. The rest are called impolite numbers. The first polite numbers are: 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, ....</p>
+<p>It can be proven that the impolite numbers are the powers of 2. Write a program that asks the user for an upper limit and then prints out the polite numbers up to and including the limit. The program <em>should not</em> use logarithms. The numbers should be written in rows of 10 (expect possibly for the last line). Examples:</p>
+
+<pre><code>Enter limit: 10
+3 5 6 7 9 10
+
+Enter limit: 16
+3 5 6 7 9 10 11 12 13 14
+15
+
+Enter limit: 25
+3 5 6 7 9 10 11 12 13 14
+15 17 18 19 20 21 22 23 24 25
+
+Enter limit: 30
+3 5 6 7 9 10 11 12 13 14
+15 17 18 19 20 21 22 23 24 25
+26 27 28 29 30</code></pre>
+
+</div>
+</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
