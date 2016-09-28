@@ -12874,7 +12874,7 @@ SyntaxError: invalid syntax</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[165]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># characters from the second-last (included) to the end</span>
@@ -12888,11 +12888,122 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[165]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>&#39;on&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>If we use a third part in the slice, it indicates the step over which we will be traversing the string.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[167]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">word</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[167]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Pto&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Note that we can go backwards as well as forwards.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[168]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">word</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[168]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;nohtyP&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[170]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">word</span><span class="p">[:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[170]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;nh&#39;</pre>
 </div>
 
 </div>
@@ -13815,7 +13926,7 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[171]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">squares</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>  <span class="c1"># slicing returns a new list</span>
@@ -13829,11 +13940,81 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[49]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[171]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[9, 16, 25]</pre>
+<pre>[49, 64, 81]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>As in strings, we can take a part, and use a step.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[176]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">squares</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[176]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[1, 9, 25]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[175]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">squares</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[175]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[16, 9, 4]</pre>
 </div>
 
 </div>
@@ -15618,7 +15799,7 @@ SyntaxError: invalid syntax</code></pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Referencing the name a hereafter is an error (at least until another value is assigned to it). </li>
+<li>Referencing the name <code>a</code> hereafter is an error (at least until another value is assigned to it). </li>
 </ul>
 
 </div>
@@ -15768,7 +15949,7 @@ SyntaxError: invalid syntax</code></pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[97]:</div>
+<div class="prompt input_prompt">In&nbsp;[160]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
@@ -15778,8 +15959,34 @@ SyntaxError: invalid syntax</code></pre>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;c == d:&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="o">==</span> <span class="n">d</span><span class="p">)</span>
 <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;c is d:&quot;</span><span class="p">,</span> <span class="n">c</span> <span class="ow">is</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
 
-<span class="n">ra</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>c == d: True
+c is d: False
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[161]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ra</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">rb</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ra == rb:&quot;</span><span class="p">,</span> <span class="n">ra</span> <span class="o">==</span> <span class="n">rb</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ra is rb:&quot;</span><span class="p">,</span> <span class="n">ra</span> <span class="ow">is</span> <span class="n">rb</span><span class="p">)</span>
@@ -15795,9 +16002,7 @@ SyntaxError: invalid syntax</code></pre>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>c == d: True
-c is d: False
-ra == rb: True
+<pre>ra == rb: True
 ra is rb: False
 </pre>
 </div>
@@ -16040,7 +16245,7 @@ defenestrate 12
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[102]:</div>
+<div class="prompt input_prompt">In&nbsp;[162]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
@@ -16052,6 +16257,10 @@ defenestrate 12
 
 <span class="nb">print</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">30</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -16067,7 +16276,8 @@ defenestrate 12
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>5 6 7 8 9 
 0 3 6 9 
--10 -40 -70 </pre>
+-10 -40 -70 
+10 9 8 7 6 5 4 3 2 1 0 </pre>
 </div>
 </div>
 
@@ -18749,12 +18959,19 @@ pear
 <li>We calculate the remainder of this sum by 11.</li>
 <li>We take this remainder and we calculate its remainder by 10. The result must equal the check digit.</li>
 </ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>For example, let us say we have the TIN 090034337. The check digit is 7. The other digits are 09003433. We have:
-$$
-3\times 2^1 + 3\times 2^2 + 4\times 2^3 + 3\times 2^4 + 9\times 2^7 =\
-3\times 2 + 3\times 4 + 4\times 8 + 3 \times 16 + 9\times 128 &amp;=\
-6 + 12 + 32 + 48 + 1152 &amp;= 1250
-\end{align*}</p>
+$$3\times 2^1 + 3\times 2^2 + 4\times 2^3 + 3\times 2^4 + 9\times 2^7 =$$
+$$3\times 2 + 3\times 4 + 4\times 8 + 3 \times 16 + 9\times 128 =$$
+$$6 + 12 + 32 + 48 + 1152 = 1250$$</p>
 <p>Then, $1250 \bmod 11 = 7$ και $7 \bmod 10 = 7$.</p>
 <p>Write a program that will ask the user for TIN and will respond whether it is correct or not. For example:</p>
 
@@ -18867,6 +19084,15 @@ Parity check not OK.</code></pre>
 <li>$\mathit{day} = ((d + e + 114) \bmod 31) + 1$</li>
 <li>The result is the day and the month in the Julian calendar. To convert it to the Gregorian calendar, which we actually use, we have to add 13 days. Be careful, this may change the month. </li>
 </ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Write a program that asks the user for a year and then displays the month and the day of Orthodox Easter in the Gregorian calendar. For example:</p>
 
 <pre><code>Enter year: 2011
@@ -18905,6 +19131,15 @@ is the numbers of days passed since 1/1/1 until the first date.</li>
 \left\lfloor{y2/400}\right\rfloor + \left\lfloor{(306m2 + 5)/10}\right\rfloor + (d2 - 1)$. In essence, $c2$ is the number of days that have passed since 1/1/1 until the second date.</li>
 <li>The days that have elapsed between the two days is $c2 - c1$.</li>
 </ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Write a program that asks the user to enter two dates in the form <code>dd/mm/yyyy</code> and will then display the number of days that have elapsed between the two days. Be careful, the result must not be negative, no matter the order in which the user enters the dates. For example (15/3/-44 was the day Julius Caesar was murdered):</p>
 
 <pre><code>Enter dates: 15/3/-44 4/11/2016
