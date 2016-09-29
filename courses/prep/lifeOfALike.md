@@ -39,7 +39,7 @@
 
 ## Commonly used programming languages
 * C
-* C++
+* C++, Go, Swift
 * Java, C#
 * JavaScript
 * Python, Ruby, Perl
