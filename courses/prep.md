@@ -9,10 +9,11 @@
 
 ## Introduction to Programming (with Python)
 * [Programming in Python](prep/pythonTutorial1.ipynb)
-* [Programming in Python (continued)](prep/pythonTutorial2.ipynb)
+
 
 ## Introduction to front-end development 
 * [HTML Exercises](prep/html_exercises.md)
+* [CSS Exercises](prep/css_exercises.md)
 
 ## Introduction to databases 
 
