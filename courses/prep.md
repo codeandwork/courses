@@ -8,8 +8,8 @@
 
 
 ## Introduction to Programming (with Python)
-* [Programming in Python](prep/pythonTutorial1.ipynb)
-
+* [Programming in Python - Part I](prep/pythonTutorial1.ipynb)
+* [Programming in Python - Part II](prep/pythonTutorial2.ipynb)
 
 ## Introduction to front-end development 
 * [HTML Exercises](prep/html_exercises.md)
