@@ -11,11 +11,15 @@
 * [Programming in Python - Part I](prep/pythonTutorial1.ipynb)
 * [Programming in Python - Part II](prep/pythonTutorial2.ipynb)
 
+
 ## Introduction to front-end development 
 * [HTML Exercises](prep/html_exercises.md)
 * [CSS Exercises](prep/css_exercises.md)
 
+
 ## Introduction to databases 
+* [Introduction to relational databases](prep/relationDatabases1.md)
+* [Introduction to database design](prep/relationDatabases2.md)
 
 
 ## Application development methodologies
