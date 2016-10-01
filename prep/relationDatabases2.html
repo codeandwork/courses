@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Introduction to database design</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-introduction-to-database-design">Coding Bootcamp: Introduction to database design</h1>
+<h2 id="course-tasks">Course tasks</h2>
+<ul>
+<li>What an ER-Diagram is<br /></li>
+<li>ER components<br /></li>
+<li>Understand the concept of the database schema<br /></li>
+<li>SQL JOINS</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>So far, we've just been working with one table at a time, and seeing what interesting data we can select out of that table. But actually, most of the time, we have our data distributed across multiple tables, and those tables are &quot;related&quot; to each other in some way</p>
+<h2 id="er-diagram">ER diagram</h2>
+<ul>
+<li>The entity-relationship model (or ER model) is a way of graphically representing the logical relationships of entities (or objects) in order to create a database<br /><img src="media/ER1.png" /></li>
+</ul>
+<h2 id="er-diagram-components">ER Diagram Components</h2>
+<ul>
+<li><p>Entity<br />Entities are represented by means of rectangles. Rectangles are named with the entity set they represent<br /><img src="media/ER2.png" /></p></li>
+<li><p>Attributes<br />Attributes are the properties of entities. Attributes are represented by means of ellipses. Every ellipse represents one attribute and is directly connected to its entity (rectangle).<br /><img src="media/ER2.png" /></p></li>
+</ul>
+<p>If the attributes are composite, they are further divided in a tree like structure. Every node is then connected to its attribute. That is, composite attributes are represented by ellipses that are connected with an ellipse.<br /><img src="media/ER4.png" /></p>
+<ul>
+<li><p>Multivalued attributes are depicted by double ellipse<br /><img src="media/ER5.png" /></p></li>
+<li><p>Derived attributes are depicted by dashed ellipse<br /><img src="media/ER6.png" /></p></li>
+</ul>
+<h2 id="er-relationships">ER Relationships</h2>
+<p><img src="media/ER7.png" /><br /><img src="media/ER9.png" /></p>
+<h2 id="er-relationships---cardinalities">ER Relationships - Cardinalities</h2>
+<ul>
+<li>Relationships are represented by diamond-shaped box. Name of the relationship is written inside the diamond-box. All the entities (rectangles) participating in a relationship, are connected to it by a line<br /></li>
+<li><p>A relationship where two entities are participating is called a binary relationship. Cardinality is the number of instance of an entity from a relation that can be associated with the relation</p></li>
+<li><p>One-to-one: When only one instance of an entity is associated with the relationship, it is marked as '1:1'. The following image reflects that only one instance of each entity should be associated with the relationship. It depicts one-to-one relationship.<br /><img src="media/ER10.png" /></p></li>
+<li><p>One-to-many: When more than one instance of an entity is associated with a relationship, it is marked as '1:N'. The following image reflects that only one instance of entity on the left and more than one instance of an entity on the right can be associated with the relationship. It depicts one-to-many relationship<br /><img src="media/ER11.png" /></p></li>
+<li><p>Many-to-one: When more than one instance of entity is associated with the relationship, it is marked as 'N:1'. The following image reflects that more than one instance of an entity on the left and only one instance of an entity on the right can be associated with the relationship. It depicts many-to-one relationship<br /><img src="media/ER12.png" /></p></li>
+<li><p>Many-to-many: The following image reflects that more than one instance of an entity on the left and more than one instance of an entity on the right can be associated with the relationship. It depicts many-to-many relationship.<br /><img src="media/ER13.png" /></p></li>
+</ul>
+<h2 id="er-relationships---relationship-loops">ER Relationships - Relationship Loops</h2>
+<ul>
+<li>RAdditionally, restrictions on the combinations of entities participating in an entity set are needed<br /></li>
+<li>Cardinality annotations are used for this<br /><img src="media/ER14.png" /></li>
+</ul>
+<h2 id="isa">ISA</h2>
+<p>When an entity type contains certain entities that have special properties not shared by all entities, this suggests two entity types should be created with an ISA relationship type between them. I Also known as generalisation/specialisation. I E.g. An Employee ISA Person and a Student ISA Person (see next slide) I If Employee ISA Person then Employee inherits all the attributes of Person<br /><img src="media/ER16.png" /></p>
+<h2 id="structuring-an-er">Structuring an ER</h2>
+<p>Problem</p>
+<ul>
+<li>A company database needs to store information about employees (identified by ssn, with salary and phone as attributes), departments (identified by dno, with dname and budget as attributes), and children of employees (with name and age as attributes)</li>
+</ul>
+<p>Problem</p>
+<ul>
+<li>Employees work in departments; each department is managed by only one employee; a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known. We are not interested in information about a child once the parent leaves the company<br /></li>
+<li>Draw an ER diagram that captures this information</li>
+</ul>
+<h2 id="structuring-an-er-1">Structuring an ER</h2>
+<p>Solution</p>
+<ul>
+<li>First, we shall design the entities and relationships<br /></li>
+<li>“Employees work in departments…”<br /></li>
+<li>“…each department is managed by only one employee…”<br /></li>
+<li>“…a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known.”<br /><img src="media/ER17.png" /></li>
+</ul>
+<h2 id="structuring-an-er-cardinalities">Structuring an ER (cardinalities)</h2>
+<p>Solution</p>
+<ul>
+<li>Now, we will design the constraints.<br /></li>
+<li>“…each department is managed by an employee…”<br /></li>
+<li>“…a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known. “<br /></li>
+<li>“We are not interested in information about a child once the parent leaves the company.”<br /><img src="media/ER18.png" /></li>
+</ul>
+<h2 id="database-schema">Database Schema</h2>
+<ul>
+<li>A database schema is the skeleton structure that represents the logical view of the entire database. It defines how the data is organized and how the relations among them are associated. It formulates all the constraints that are to be applied on the data<br /></li>
+<li>A database schema defines its entities and the relationship among them. It contains a descriptive detail of the database, which can be depicted by means of schema diagrams. It’s the database designers who design the schema to help programmers understand the database and make it useful</li>
+</ul>
+<h2 id="primaries-and-foreign-keys">Primaries and Foreign Keys</h2>
+<ul>
+<li>A foreign key is a column or group of columns in a relational database table that provides a link between data in two tables. It acts as a cross-reference between tables because it references the primary key of another table, thereby establishing a link between them<br /></li>
+<li>The majority of tables in a relational database system adhere to the foreign key concept. In complex databases and data warehouses, data in a domain must be added across multiple tables, thus maintaining a relationship between them<br /><img src="media/ER19.png" /></li>
+</ul>
+<h2 id="from-er-to-data-base-schema">From ER to data base schema</h2>
+<p><img src="media/ER20.png" /></p>
+<h2 id="pws-ftiaxnw-diagramma-apo-to-ergaleio">PWS FTIAXNW DIAGRAMMA APO TO ERGALEIO</h2>
+<p><img src="media/.png" /></p>
+<h2 id="db-schema">DB Schema</h2>
+<p><img src="media/ER21.png" /></p>
+<h2 id="adding-an-attribute-at-a-relationship">Adding an attribute at a relationship</h2>
+<p><img src="media/ER22.png" /></p>
+<h2 id="new-db-schema">New DB Schema</h2>
+<p><img src="media/ER23.png" /></p>
+<h2 id="sql-joins">SQL JOINS</h2>
+<ul>
+<li>SQL joins are used to combine rows from two or more tables<br /></li>
+<li>An SQL JOIN clause is used to combine rows from two or more tables, based on a common field between them<br /></li>
+<li>The most common type of join is: SQL INNER JOIN (simple join).<br /></li>
+<li>An SQL INNER JOIN returns all rows from multiple tables where the join condition is met</li>
+</ul>
+<p>Let's look at a selection from the &quot;Orders&quot; table:<br />| OrderID | CustomerID | OrderData |<br />| --- | --- | --- |<br />| 10308 | 2 | 1996-09-18 |<br />| 10309 | 37 | 1996-09-19 |<br />| 10310 | 77 | 1996-09-20 |</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">CustomerID</th>
+<th align="left">CustomerName</th>
+<th align="left">ContactName</th>
+<th align="left">Country</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">Alfreds Futterkiste</td>
+<td align="left">Maria Anders</td>
+<td align="left">Germany</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">Ana Trujillo Emparedados y helados</td>
+<td align="left">Ana Trujillo</td>
+<td align="left">Mexico</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">Antonio Moreno Taquería</td>
+<td align="left">Antonio Moreno</td>
+<td align="left">Mexico</td>
+</tr>
+</tbody>
+</table>
+<p>SQL JOIN</p>
+<pre><code>SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID=Customers.CustomerID;</code></pre>
+<p>Result<br />| OrderID | CustomerName | rderDate |<br />| --- | --- | --- |<br />| 10308 | Ana Trujillo Emparedados y helados | 9/18/1996 |<br />| 10365 | Antonio Moreno Taquería | 11/27/1996 |<br />| 10383 | Around the Horn | 12/16/1996 |<br />| 10355 | Around the Horn | 11/15/1996 |<br />| 10278 | Berglunds snabbköp | 8/12/1996 |</p>
+<h2 id="different-sql-joins">Different SQL JOINs</h2>
+<ul>
+<li>INNER JOIN: Returns all rows when there is at least one match in BOTH tables<br /></li>
+<li>LEFT JOIN: Return all rows from the left table, and the matched rows from the right table<br /></li>
+<li>RIGHT JOIN: Return all rows from the right table, and the matched rows from the left table<br /></li>
+<li>FULL JOIN: Return all rows when there is a match in ONE of the tables</li>
+</ul>
+<h2 id="inner-join">INNER JOIN</h2>
+<p>Returns all rows when there is at least one match in BOTH tables<br /><img src="media/innerjoin.png" /></p>
+<pre><code>SELECT * FROM TableA
+INNER JOIN TableB
+ON TableA.name = TableB.name</code></pre>
+<p><img src="media/join1.jpg" /> <img src="media/innerjoin1.jpg" /></p>
+<h2 id="left-join">LEFT JOIN</h2>
+<p>Return all rows from the left table, and the matched rows from the right table<br /><img src="media/leftjoin.png" /></p>
+<pre><code>SELECT * FROM TableA
+LEFT OUTER JOIN TableB
+ON TableA.name = TableB.name</code></pre>
+<p><img src="media/join1.jpg" /> <img src="media/join2.jpg" /></p>
+<h2 id="right-join">RIGHT JOIN</h2>
+<p>Return all rows from the right table, and the matched rows from the left table<br /><img src="media/rightjoin.png" /></p>
+<pre><code>SELECT * FROM TableA
+RIGHT OUTER JOIN TableB
+ON TableA.name = TableB.name</code></pre>
+<p><img src="media/join1.jpg" /></p>
+<h2 id="full-join">FULL JOIN</h2>
+<p>Return all rows from the left table, and the matched rows from the right table<br /><img src="media/fulljoin.png" /></p>
+<pre><code>SELECT * FROM TableA
+FULL OUTER JOIN TableB
+ON TableA.name = TableB.name</code></pre>
+<p><img src="media/join1.jpg" /> <img src="media/fulljoin.jpg" /></p>
+<h2 id="er-in-class-exercise">ER in class Exercise</h2>
+<ul>
+<li>Consider a database of a car insurance company, used to record the accidents location and date<br /></li>
+<li>A driver is uniquely identified by his/her’s id and we also need to know his name and his address<br /></li>
+<li>A driver could own more than one cars. These cars have a unique id, and we also know the year and the model of the car<br /></li>
+<li>In an accident many drivers may be involved with their cars. Per accident we also need to record the amount of the damage per car<br /><img src="media/ERexercise.png" /></li>
+</ul>
+<h2 id="exercise">Exercise</h2>
+<ul>
+<li>Consider a database used to record the marks that students get in different exams of different course offerings<br /></li>
+<li>The courses have the following attributes: CID, Name, Lecturer, Assistant, Duration, StartDate<br /></li>
+<li>The students have the following attributes:<br /></li>
+<li>StID<br /></li>
+<li>FName<br /></li>
+<li>Lname<br /></li>
+<li>DateOfBirth</li>
+</ul>
+<h2 id="exercise-1">Exercise 1</h2>
+<p>Construct an ER diagram (Entities, Cardinalities, attributes etc.)</p>
+<h2 id="exercise-2">Exercise 2</h2>
+<p>Construct a DB schema</p>
+<h2 id="exercise-3">Exercise 3</h2>
+<p>Insert dummy grade values (varying from 1 to 10)</p>
+<h2 id="exercise-4">Exercise 4</h2>
+<p>Display those students that have participated in an (any) exam</p>
+<h2 id="exercise-5">Exercise 5</h2>
+<p>Display the students and all their grades (from all courses)</p>
+<h2 id="exercise-6">Exercise 6</h2>
+<p>Display the average grade of each student (from all courses)</p>
+<h2 id="exercise-7">Exercise 7</h2>
+<p>Display the first and last name of those students that have an average grade greater than 5</p>
+<h2 id="exercise-8">Exercise 8</h2>
+<p>Display the average grade per course (for all students)</p>
+<h2 id="exercise-9">Exercise 9</h2>
+<p>Display those students that participated at “SQL” course</p>
+<h2 id="exercise-10">Exercise 10</h2>
+<p>Display the max grade (of all courses), the First and the Last name, for each student that have a grade greater than 5 at “SQL” course</p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

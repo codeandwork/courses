@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Introduction to relational databases</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-introduction-to-relational-databases">Coding Bootcamp: Introduction to relational databases</h1>
+<h2 id="course-tasks">Course tasks</h2>
+<ul>
+<li>Understand the notion of data layer<br /></li>
+<li>Understand what an RDBMS is<br /></li>
+<li>Understand concepts of table, column, row, field, data type<br /></li>
+<li>Understand the role of SQL<br /></li>
+<li>Install an RDBMS<br /></li>
+<li>Create a simple database schema<br /></li>
+<li>Execute a simple SQL query</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>A business needs to organize its information<br /></li>
+<li>Database solution<br /></li>
+<li>Οrganized collection of information<br /></li>
+<li>Set of tables each having different class of data</li>
+</ul>
+<h2 id="data-layer">Data layer</h2>
+<ul>
+<li>The data layer is the behind-the-scenes structure<br /></li>
+<li>Sites, applications and mobile apps tap into data layer for timely and consistent visitor data<br /><img src="media/dataLayer.jpg" /></li>
+</ul>
+<h2 id="files-vs.-relational-databases">Files vs. Relational Databases</h2>
+<p>Issues when using file systems</p>
+<ul>
+<li>Data redundancy and inconsistency<br /></li>
+<li>Multiple file formats<br /></li>
+<li>Information repeated in multiple files<br /></li>
+<li>Access to information<br /></li>
+<li>Each new function requires coding from scratch<br /></li>
+<li>Data isolation<br /></li>
+<li>Cannot isolate information due to multiple files and formats</li>
+</ul>
+<p>File systems issues when dealing with data storage</p>
+<ul>
+<li>Atomicity of updates<br /></li>
+<li>Data updates may be partially executed<br /></li>
+<li>Information repeated in multiple files<br /></li>
+<li>Concurrent access (simultaneous access of multiple users)<br /></li>
+<li>Required for efficient systems<br /></li>
+<li>Multiple access may lead to inconsistencies<br /></li>
+<li>Security issues</li>
+</ul>
+<p>Relational Database Systems (RDBMS) deal with all the aforementioned</p>
+<h2 id="what-is-an-rdbms">What is an RDBMS</h2>
+<ul>
+<li>RDBMS stands for Relational Database Management System. RDBMS is the basis for SQL, and for all modern database systems like MS SQL Server, IBM DB2, Oracle, MySQL, and Microsoft Access<br /></li>
+<li>A Relational database management system (RDBMS) is a database management system (DBMS) that is based on the relational model as introduced by E. F. Codd<br /></li>
+<li>Known Relation Database Management Systems<br /></li>
+<li>MySQL<br /></li>
+<li>Oracle<br /></li>
+<li>Microsoft SQL Server<br /></li>
+<li>PostgreSQL<br /></li>
+<li>IBM DB2</li>
+</ul>
+<h2 id="what-is-a-table">What is a table</h2>
+<ul>
+<li>The data in RDBMS is stored in database objects called tables<br /></li>
+<li>A collection of related data entries and it consists of columns and rows<br /></li>
+<li>The most common and simplest form of data storage in a relational database<br /></li>
+<li>Following is the example of a CUSTOMERS table<br /><img src="media/table.jpg" /></li>
+</ul>
+<h2 id="what-is-a-field">What is a field</h2>
+<ul>
+<li>Every table is broken up into smaller entities called fields<br /></li>
+<li>The fields in the CUSTOMERS table consist of ID, NAME, AGE, ADDRESS and SALARY<br /></li>
+<li>A field is a column in a table that is designed to maintain specific information about every record in the table<br /><img src="media/table.jpg" /></li>
+</ul>
+<h2 id="what-is-a-record-or-row">What is a record or row</h2>
+<ul>
+<li>A record, is also called a row of data<br /></li>
+<li>Is each individual entry that exists in a table<br /></li>
+<li>There are 7 records in the above CUSTOMERS table<br /></li>
+<li>A record is a horizontal entity in a table<br /><img src="media/table.jpg" /></li>
+</ul>
+<h2 id="what-is-a-column">What is a column</h2>
+<ul>
+<li>A column is a vertical entity in a table that contains all information associated with a specific field in a table<br /></li>
+<li>A column in the CUSTOMERS table is ADDRESS, which represents location description and would consist of the following<br /><img src="media/column.jpg" /></li>
+</ul>
+<h2 id="what-is-a-primary-key">What is a primary key</h2>
+<ul>
+<li>Each database table must contain one or more columns that can be used to uniquely identify each row in the table. This is known in database terminology as the Primary Key<br /></li>
+<li>e.g. a table may use social security number column as the primary key<br /></li>
+<li>Primary keys allow the database management system to uniquely identify a specific row in a table<br /></li>
+<li>Without a primary key it would not be possible to retrieve or delete a specific row in a table because there can be no certainty that the correct row has been selected<br /></li>
+<li>Without a primary key it would not be possible to retrieve or delete a specific row in a table because there can be no certainty that the correct row has been selected<br /></li>
+<li>Without some guaranteed way to uniquely identify a specific row it would be impossible to ensure the correct data was being accessed at any given time<br /></li>
+<li>Primary keys can comprise a single column or multiple columns in a table. To qualify as a single column primary key, no two rows can contain matching primary key values<br /></li>
+<li>When using multiple columns to construct a primary key, individual column values do not need to be unique, but all the columns combined must be unique</li>
+</ul>
+<h2 id="sql-general-data-types">SQL General Data Types</h2>
+<ul>
+<li>Each column in a database table is required to have a name and a data type<br /></li>
+<li>Decide what types of data will be stored inside each and every table column when creating a SQL table<br /></li>
+<li>The data type is a label and a guideline for SQL to understand what type of data is expected inside of each column, and it also identifies how SQL will interact with the stored data<br /></li>
+<li>The following table lists the general data types in SQL</li>
+</ul>
+<p>| Data type | Description |<br />| --- | --- |<br />| CHARACTER(n) | Character string. Fixed-length n |<br />| VARCHAR(n) | Character string. Variable length. Maximum length n |<br />| BOOLEAN | Stores TRUE or FALSE values |<br />| INTEGER(p) | Integer numerical (no decimal). Precision p |<br />| SMALLINT | Integer numerical (no decimal). Precision 5 |<br />| INTEGER | Integer numerical (no decimal). Precision 10 |<br />| BIGINT | Integer numerical (no decimal). Precision 19 |<br />| DECIMAL(p,s) | Exact numerical, precision p, scale s. Example: decimal(5,2) is a number that has 3 digits before the decimal and 2 digits after the decimal |<br />| NUMERIC(p,s) Exact numerical, precision p, scale s. (Same as DECIMAL) |<br />| FLOAT(p) |Approximate numerical, mantissa precision p. A floating number in base 10 exponential notation. The size argument for this type consists of a single number specifying the minimum precision |<br />| REAL | Approximate numerical, mantissa precision 7 |<br />| DOUBLE PRECISION | Approximate numerical, mantissa precision 16 |<br />| DATE | Stores year, month, and day values |<br />| TIME | Stores hour, minute, and second values |<br />| TIMESTAMP | Stores year, month, day, hour, minute, and second values |</p>
+<h2 id="examples---character-string-character8">Examples - Character String: CHARACTER(8)</h2>
+<ul>
+<li>Valid examples<br /></li>
+<li>‘one’<br /></li>
+<li>‘example’<br /></li>
+<li>‘coding’<br /></li>
+<li>‘04-10-16’<br /></li>
+<li><p>‘bootcamp ’ (blank characters are truncated)</p></li>
+<li>Invalid examples<br /></li>
+<li>12345<br /></li>
+<li>Bootcamps<br /></li>
+<li><p>04-10-2016</p></li>
+</ul>
+<h2 id="examples---character-string-varchar10">Examples - Character String: VARCHAR(10)</h2>
+<ul>
+<li>Valid examples<br /></li>
+<li>‘two’<br /></li>
+<li>‘examples’<br /></li>
+<li>‘coding’<br /></li>
+<li>‘04-10-2016’<br /></li>
+<li><p>‘bootcamp’</p></li>
+<li>Invalid examples<br /></li>
+<li>12345<br /></li>
+<li>programming<br /></li>
+<li><p>04-10-2016</p></li>
+</ul>
+<h2 id="examples---boolean">Examples - BOOLEAN</h2>
+<ul>
+<li>Valid examples<br /></li>
+<li>true<br /></li>
+<li>True<br /></li>
+<li>TRUE<br /></li>
+<li>False<br /></li>
+<li><p>false</p></li>
+<li>Invalid examples<br /></li>
+<li>Yes<br /></li>
+<li>No<br /></li>
+<li>0<br /></li>
+<li><p>1</p></li>
+</ul>
+<h2 id="examples---integer7">Examples - INTEGER(7)</h2>
+<ul>
+<li>Valid examples<br /></li>
+<li>1234567<br /></li>
+<li>-1234567<br /></li>
+<li>0<br /></li>
+<li>12345<br /></li>
+<li><p>-12345</p></li>
+<li>Invalid examples<br /></li>
+<li>12345678<br /></li>
+<li>-12345678<br /></li>
+<li><p>123456789</p></li>
+</ul>
+<h2 id="examples---decimal103">Examples - DECIMAL(10,3)</h2>
+<ul>
+<li>Valid examples<br /></li>
+<li>1234567<br /></li>
+<li>1234567.123<br /></li>
+<li>1234567.1234 (final digit is truncated)<br /></li>
+<li>-1234567<br /></li>
+<li><p>-1234567.123</p></li>
+<li>Invalid examples<br /></li>
+<li>12345678<br /></li>
+<li>-12345678<br /></li>
+<li>-12345678.12<br /></li>
+<li><p>123456789.123</p></li>
+</ul>
+<h2 id="examples---date">Examples - DATE</h2>
+<ul>
+<li>Valid examples<br /></li>
+<li>2016-10-06<br /></li>
+<li>06-10-2016<br /></li>
+<li><p>6-3-2016</p></li>
+<li>Invalid examples<br /></li>
+<li>1024<br /></li>
+<li><p>date</p></li>
+</ul>
+<h2 id="examples---time">Examples - TIME</h2>
+<ul>
+<li>Valid examples<br /></li>
+<li>00:00:00<br /></li>
+<li>13:30:00<br /></li>
+<li>01:12:45.02<br /></li>
+<li><p>23:59:59.99</p></li>
+<li>Invalid examples<br /></li>
+<li>24:00:01.00<br /></li>
+<li><p>11:15</p></li>
+</ul>
+<h2 id="examples---timestamp">Examples - TIMESTAMP</h2>
+<ul>
+<li>Valid examples<br /></li>
+<li>2016-10-03 00:00:00.00<br /></li>
+<li>2016-10-03 12:30:25.10<br /></li>
+<li><p>2015-27-05 21:15:00.00</p></li>
+<li>Invalid examples<br /></li>
+<li>2016-24-24 00:00:00.00<br /></li>
+<li>2016-10-03 15:62:00.00<br /></li>
+<li><p>2016-10-03 18:34:61.00</p></li>
+</ul>
+<h2 id="understanding-the-role-of-sql">Understanding the role of SQL</h2>
+<ul>
+<li>Language to communicate with the database<br /></li>
+<li>Retrieve the required information from a database<br /></li>
+<li>Syntax of SQL is in plain English<br /></li>
+<li>Used to question the database</li>
+</ul>
+<h2 id="what-sql-can-do">What SQL can do</h2>
+<ul>
+<li>Execute queries against a database<br /></li>
+<li>Perform CRUD function examples<br /></li>
+<li>Create (new databases, new tables in database, records in a database)<br /></li>
+<li>Read (retrieve data from a database)<br /></li>
+<li>Update (update records in a database)<br /></li>
+<li>Delete (delete records from a database)</li>
+</ul>
+<h2 id="sql-statements">SQL Statements</h2>
+<p>Most of the actions needed to be performed on a database are done with SQL statements</p>
+<ul>
+<li>Most common SQL Commands<br /></li>
+<li>SELECT - extracts data from a database<br /></li>
+<li>UPDATE - updates data in a database<br /></li>
+<li>DELETE - deletes data from a database<br /></li>
+<li>INSERT INTO - inserts new data into a database<br /></li>
+<li>CREATE DATABASE - creates a new database<br /></li>
+<li>ALTER DATABASE - modifies a database<br /></li>
+<li>CREATE TABLE - creates a new table<br /></li>
+<li>ALTER TABLE - modifies a table<br /></li>
+<li>DROP TABLE - deletes a table</li>
+</ul>
+<h2 id="select-statement">SELECT Statement</h2>
+<ul>
+<li>Is used to select data from a database<br /></li>
+<li><p>The result is stored in a result table, called the result-set<br />SQL SELECT Syntax</p>
+<pre><code>SELECT column_name,column_name
+FROM table_name;</code></pre>
+<p>and</p>
+<pre><code>SELECT * FROM table_name;</code></pre></li>
+</ul>
+<p>Example</p>
+<pre><code>SELECT * FROM Customers;</code></pre>
+<h2 id="select-distinct-statement">SELECT DISTINCT Statement</h2>
+<ul>
+<li>Is used to return only distinct (different) values<br /></li>
+<li>In a table, a column may contain many duplicate values; and sometimes you only want to list the different (distinct) values<br /></li>
+<li><p>The DISTINCT keyword can be used to return only distinct (different) values<br />SQL SELECT Syntax</p>
+<pre><code>SELECT DISTINCT column_name,column_name
+FROM table_name;</code></pre></li>
+</ul>
+<p>Example</p>
+<pre><code>SELECT DISTINCT City FROM Customers;</code></pre>
+<h2 id="where-clause">WHERE Clause</h2>
+<ul>
+<li><p>Is used to filter records<br />SQL SELECT Syntax</p>
+<pre><code>SELECT column_name,column_name
+FROM table_name
+WHERE column_name operator value;</code></pre></li>
+</ul>
+<p>Example</p>
+<pre><code>SELECT * FROM Customers WHERE Country=&#39;Mexico&#39;;</code></pre>
+<h2 id="and-or-operators">AND &amp; OR Operators</h2>
+<ul>
+<li>The AND operator displays a record if both the first condition AND the second condition are true<br /></li>
+<li>The OR operator displays a record if either the first condition OR the second condition is true</li>
+</ul>
+<p>SQL AND Syntax</p>
+<pre><code>SELECT column_name,column_name
+FROM table_name
+WHERE condition1==true AND condition2==true;</code></pre>
+<p>Examples</p>
+<pre><code>Example SELECT * FROM Customers
+WHERE City=&#39;Berlin&#39;
+OR City=&#39;München&#39;;</code></pre>
+<pre><code>SELECT * FROM Customers
+WHERE Country=&#39;Germany&#39;
+AND (City=&#39;Berlin&#39; OR City=&#39;München&#39;);</code></pre>
+<h2 id="order-by-keyword">ORDER BY Keyword</h2>
+<ul>
+<li>Is used to sort the result-set by one or more columns<br /></li>
+<li>Sorts the records in ascending order by default. To sort the records in a descending order, you can use the DESC keyword</li>
+</ul>
+<p>SQL ORDER BY Syntax</p>
+<pre><code>SELECT column_name, column_name
+FROM table_name
+ORDER BY column_name ASC|DESC, column_name ASC|DESC;</code></pre>
+<p>Examples</p>
+<pre><code>SELECT * 
+FROM Customers 
+ORDER BY Country;</code></pre>
+<pre><code>SELECT * 
+FROM Customers 
+ORDER BY Country ASC, CustomerName DESC;</code></pre>
+<h2 id="the-in-operator">The IN Operator</h2>
+<ul>
+<li><p>The IN operator allows you to specify multiple values in a WHERE clause</p>
+<pre><code>SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1,value2,...);</code></pre>
+<p>Examples</p>
+<pre><code>example ISELECT * FROM Customers
+WHERE City IN (&#39;Paris&#39;,&#39;London&#39;);</code></pre>
+<p>and</p>
+<pre><code>SELECT * FROM Customers
+WHERE City IN (
+Select cityname
+From Cities
+);</code></pre></li>
+</ul>
+<h2 id="insert-into-statement">INSERT INTO Statement</h2>
+<ul>
+<li>Is used to insert new records in a table.</li>
+</ul>
+<p>SQL INSERT INTO Syntax</p>
+<ul>
+<li>It is possible to write the INSERT INTO statement in two forms.<br /></li>
+<li><p>The first form does not specify the column names where the data will be inserted, only their values</p>
+<pre><code>INSERT INTO table_name
+VALUES (value1,value2,value3,...);  </code></pre></li>
+<li><p>The second form specifies both the column names and the values to be inserted</p>
+<pre><code>INSERT INTO table_name (column1,column2,column3,...)
+VALUES (value1,value2,value3,...);</code></pre>
+<p>Example</p>
+<pre><code>INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+VALUES (&#39;Cardinal&#39;,&#39;Tom B. Erichsen&#39;,&#39;Skagen 21&#39;,&#39;Stavanger&#39;,&#39;4006&#39;,&#39;Norway&#39;);</code></pre></li>
+</ul>
+<h2 id="update-statement">UPDATE Statement</h2>
+<ul>
+<li>Is used to update records in a table<br />.</li>
+</ul>
+<p>SQL UPDATE INTO Syntax</p>
+<pre><code>UPDATE table_name
+SET column1=value1,column2=value2,...
+WHERE some_column=some_value;</code></pre>
+<p>Example</p>
+<pre><code>UPDATE Customers
+SET ContactName=&#39;Alfred Schmidt&#39;, City=&#39;Hamburg&#39;
+WHERE CustomerName=&#39;Alfreds Futterkiste&#39;;</code></pre>
+<h2 id="delete-statement">DELETE Statement</h2>
+<ul>
+<li>Is used to delete rows in a table</li>
+</ul>
+<p>SQL DELETE INTO Syntax</p>
+<pre><code>DELETE FROM table_name
+WHERE some_column=some_value;</code></pre>
+<p>Example</p>
+<pre><code>DELETE FROM Customers
+WHERE CustomerName=&#39;Alfreds Futterkiste&#39; AND ContactName=&#39;Maria Anders&#39;;</code></pre>
+<h2 id="sql-functions">SQL Functions</h2>
+<ul>
+<li>SQL has many built-in functions for performing calculations on data<br /></li>
+<li>SQL aggregate functions return a single value, calculated from values in a column</li>
+</ul>
+<p>Useful aggregate functions:</p>
+<ul>
+<li>SQL Aggregate Functions<br /></li>
+<li>AVG() - Returns the average value<br /></li>
+<li>COUNT() - Returns the number of rows<br /></li>
+<li>FIRST() - Returns the first value<br /></li>
+<li>LAST() - Returns the last value<br /></li>
+<li>MAX() - Returns the largest value<br /></li>
+<li>MIN() - Returns the smallest value<br /></li>
+<li>SUM() - Returns the sum</li>
+</ul>
+<h2 id="avg-function">AVG() Function</h2>
+<ul>
+<li>The AVG() function returns the average value of a numeric column</li>
+</ul>
+<p>SQL AVG() Syntax</p>
+<pre><code>SELECT AVG(column_name) 
+FROM table_name;</code></pre>
+<p>Example</p>
+<pre><code>SELECT AVG(Price) AS PriceAverage 
+FROM Products;</code></pre>
+<h2 id="count-function">COUNT() Function</h2>
+<ul>
+<li>The COUNT() function returns the number of rows that matches a specified criteria</li>
+</ul>
+<p>SQL COUNT(column_name) Syntax<br />The COUNT(column_name) function returns the number of values (NULL values will not be counted) of the specified column</p>
+<pre><code>SELECT COUNT(column_name) 
+FROM table_name;</code></pre>
+<p>SQL COUNT(<em>) Syntax<br />The COUNT(</em>) function returns the number of records in a table</p>
+<pre><code>SELECT COUNT(*) 
+FROM table_name;</code></pre>
+<p>Examples</p>
+<pre><code>SELECT COUNT(*) AS NumberOfOrders 
+FROM Orders;</code></pre>
+<p>and</p>
+<pre><code>SELECT COUNT(CustomerID) AS OrdersFromCustomerID7 
+FROM Orders 
+WHERE CustomerID=7;</code></pre>
+<h2 id="max-function">MAX() Function</h2>
+<ul>
+<li>Returns the largest value of the selected column</li>
+</ul>
+<p>SQL MAX() Syntax</p>
+<pre><code>SELECT MAX(column_name) 
+FROM table_name;</code></pre>
+<p>Example</p>
+<pre><code>SELECT MAX(Price) AS HighestPrice 
+FROM Products;</code></pre>
+<h2 id="min-function">MIN() Function</h2>
+<ul>
+<li>Returns the smallest value of the selected column</li>
+</ul>
+<p>SQL MIN() Syntax</p>
+<pre><code>SELECT MIN(column_name) 
+FROM table_name;</code></pre>
+<p>Example</p>
+<pre><code>SELECT MIN(Price) AS SmallestOrderPrice  
+FROM Products;</code></pre>
+<h2 id="sum-function">SUM() Function</h2>
+<ul>
+<li>Returns the total sum of a numeric column</li>
+</ul>
+<p>SQL SUM() Syntax</p>
+<pre><code>SELECT SUM(column_name) 
+FROM table_name;</code></pre>
+<p>Example</p>
+<pre><code>SELECT SUM(Quantity) AS TotalItemsOrdered 
+FROM OrderDetails;</code></pre>
+<h2 id="group-by-statement">GROUP BY Statement</h2>
+<ul>
+<li>The GROUP BY statement is used in conjunction with the aggregate functions to group the result-set by one or more columns</li>
+</ul>
+<p>SQL GROUP BY Syntax</p>
+<pre><code>SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name;</code></pre>
+<p>Example</p>
+<pre><code>SELECT ShipperName,COUNT(OrderID) AS NumberOfOrders FROM Orders
+GROUP BY ShipperName;</code></pre>
+<h2 id="having-clause">HAVING Clause</h2>
+<ul>
+<li>The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions</li>
+</ul>
+<p>SQL HAVING Syntax</p>
+<pre><code>SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name
+HAVING aggregate_function(column_name) operator value;</code></pre>
+<p>Example</p>
+<pre><code>SELECT Employees.LastName, COUNT (OrderID) AS NumberOfOrders FROM Orders
+GROUP BY LastName
+HAVING COUNT(Orders.OrderID) &gt; 10;</code></pre>
+<h2 id="install-mysql-rdbms">Install MySQL RDBMS</h2>
+<ul>
+<li>Download MySQL from <a href="http://dev.mysql.com/downloads/mysql/">http://dev.mysql.com/downloads/mysql/</a><br /><img src="media/mysql1.png" /></li>
+</ul>
+<h2 id="install-mysql-workbench-mysql-server">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql2.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-1">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql3.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-2">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql4.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-3">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql5.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-4">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql6.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-5">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql7.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-6">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql8.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-7">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql9.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-8">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql10.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-9">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql11.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-10">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql12.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-11">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql13.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-12">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql14.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-13">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql15.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-14">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql16.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-15">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql17.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-16">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql18.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-17">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql19.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-18">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql20.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-19">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql21.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-20">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql22.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-21">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql23.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-22">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql24.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-23">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql25.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-24">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql26.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-25">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql27.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-26">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql28.png" /></p>
+<h2 id="install-mysql-workbench-mysql-server-27">Install MySQL Workbench / MySQL Server</h2>
+<p><img src="media/mysql29.png" /></p>
+<h2 id="create-a-new-database">Create a new Database</h2>
+<p><img src="media/createdb1.png" /></p>
+<h2 id="create-a-new-database-1">Create a new Database</h2>
+<p><img src="media/createdb2.png" /></p>
+<h2 id="create-a-new-database-2">Create a new Database</h2>
+<p><img src="media/createdb3.png" /></p>
+<h2 id="create-a-new-database-3">Create a new Database</h2>
+<p><img src="media/createdb4.png" /></p>
+<h2 id="create-a-new-database-4">Create a new Database</h2>
+<p><img src="media/createdb5.png" /></p>
+<h2 id="create-a-new-database-5">Create a new Database</h2>
+<p><img src="media/createdb6.png" /></p>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li>Create a new table named “Courses”, having as columns<br /></li>
+<li>course id<br /></li>
+<li>name<br /></li>
+<li>name of the lecturer<br /></li>
+<li>name of the assistant<br /></li>
+<li>duration of the course (in days)<br /></li>
+<li>starting date of the course</li>
+</ul>
+<h2 id="exercise-2">Exercise 2</h2>
+<ul>
+<li>Select all values from table &quot;Students&quot;, created earlier</li>
+</ul>
+<h2 id="exercise-3">Exercise 3</h2>
+<ul>
+<li>Insert into table &quot;Students&quot; three dummy values<br /></li>
+<li>Then select the distinct values of this table</li>
+</ul>
+<h2 id="exercise-4">Exercise 4</h2>
+<ul>
+<li>Insert the following values into &quot;Courses&quot; table<br />| 1 | SQL | AG | BN | 2 | 2016-10-21 |<br />| 2 | JAVA | VS | BN | 3 | 2016-10-25 |<br />| 3 | R | KP | TT | 4 | 2016-11-09 |<br />| 4 | PYTHON | KK | DD | 5 | 2016-11-09 |</li>
+</ul>
+<h2 id="exercise-5">Exercise 5</h2>
+<ul>
+<li>Display the number of the records contained in table &quot;Students&quot;</li>
+</ul>
+<h2 id="exercise-6">Exercise 6</h2>
+<ul>
+<li>Select the courses from table &quot;Courses&quot; that have duration more than 3 days</li>
+</ul>
+<h2 id="exercise-7">Exercise 7</h2>
+<ul>
+<li>Select students that are older than the age of 17</li>
+</ul>
+<h2 id="exercise-8">Exercise 8</h2>
+<ul>
+<li>Display only the month that &quot;SQL&quot; course will take place</li>
+</ul>
+<h2 id="exercise-9">Exercise 9</h2>
+<ul>
+<li>Select the details of the courses that have duration more than 2 days and start in November</li>
+</ul>
+<h2 id="exercise-10">Exercise 10</h2>
+<ul>
+<li>Calculate the total amount of teaching days per Lecturer<br /></li>
+<li>and display the lecturers that have teaching experience more than 2 days</li>
+</ul>
+<h2 id="exercise-11">Exercise 11</h2>
+<ul>
+<li>Calculate the total amount of teaching days per Lecturer<br /></li>
+<li>and display the lecturers that have teaching experience more than 2 days</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

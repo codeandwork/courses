@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Introduction to database design</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Coding Bootcamp
+
+## Introduction to database design
+
+
+## Course tasks
+* What an ER-Diagram is
+* ER components
+* Understand the concept of the database schema
+* SQL JOINS
+
+
+## Introduction
+So far, we've just been working with one table at a time, and seeing what interesting data we can select out of that table. But actually, most of the time, we have our data distributed across multiple tables, and those tables are "related" to each other in some way
+
+
+## ER diagram
+* The entity-relationship model (or ER model) is a way of graphically representing the logical relationships of entities (or objects) in order to create a database
+![](media/ER1.png)
+
+
+## ER Diagram Components
+* Entity
+Entities are represented by means of rectangles. Rectangles are named with the entity set they represent
+![](media/ER2.png)
+
+* Attributes
+Attributes are the properties of entities. Attributes are represented by means of ellipses. Every ellipse represents one attribute and is directly connected to its entity (rectangle).
+![](media/ER2.png)
+
+If the attributes are composite, they are further divided in a tree like structure. Every node is then connected to its attribute. That is, composite attributes are represented by ellipses that are connected with an ellipse.
+![](media/ER4.png)
+
+* Multivalued attributes are depicted by double ellipse 
+![](media/ER5.png)
+
+* Derived attributes are depicted by dashed ellipse
+![](media/ER6.png)
+
+
+## ER Relationships
+![](media/ER7.png)
+![](media/ER9.png)
+
+
+## ER Relationships - Cardinalities
+* Relationships are represented by diamond-shaped box. Name of the relationship is written inside the diamond-box. All the entities (rectangles) participating in a relationship, are connected to it by a line
+* A relationship where two entities are participating is called a binary relationship. Cardinality is the number of instance of an entity from a relation that can be associated with the relation
+
+* One-to-one: When only one instance of an entity is associated with the relationship, it is marked as '1:1'. The following image reflects that only one instance of each entity should be associated with the relationship. It depicts one-to-one relationship.
+![](media/ER10.png)
+
+* One-to-many: When more than one instance of an entity is associated with a relationship, it is marked as '1:N'. The following image reflects that only one instance of entity on the left and more than one instance of an entity on the right can be associated with the relationship. It depicts one-to-many relationship
+![](media/ER11.png)
+
+* Many-to-one: When more than one instance of entity is associated with the relationship, it is marked as 'N:1'. The following image reflects that more than one instance of an entity on the left and only one instance of an entity on the right can be associated with the relationship. It depicts many-to-one relationship
+![](media/ER12.png)
+
+* Many-to-many: The following image reflects that more than one instance of an entity on the left and more than one instance of an entity on the right can be associated with the relationship. It depicts many-to-many relationship.
+![](media/ER13.png)
+
+
+## ER Relationships - Relationship Loops
+* RAdditionally, restrictions on the combinations of entities participating in an entity set are needed 
+* Cardinality annotations are used for this
+![](media/ER14.png)
+
+
+## ISA
+When an entity type contains certain entities that have special properties not shared by all entities, this suggests two entity types should be created with an ISA relationship type between them. I Also known as generalisation/specialisation. I E.g. An Employee ISA Person and a Student ISA Person (see next slide) I If Employee ISA Person then Employee inherits all the attributes of Person
+![](media/ER16.png)
+
+
+## Structuring an ER
+Problem
+* A company database needs to store information about employees (identified by ssn, with salary and phone as attributes), departments (identified by dno, with dname and budget as attributes), and children of employees (with name and age as attributes)
+
+Problem
+* Employees work in departments; each department is managed by only one employee; a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known. We are not interested in information about a child once the parent leaves the company
+* Draw an ER diagram that captures this information
+
+
+## Structuring an ER
+Solution
+* First, we shall design the entities and relationships
+  * “Employees work in departments…”
+  * “…each department is managed by only one employee…”
+  * “…a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known.”
+![](media/ER17.png)
+
+
+## Structuring an ER (cardinalities)
+Solution
+* Now, we will design the constraints.
+  * “…each department is managed by an employee…”
+  * “…a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known. “
+  * “We are not interested in information about a child once the parent leaves the company.”
+![](media/ER18.png)
+
+
+## Database Schema
+* A database schema is the skeleton structure that represents the logical view of the entire database. It defines how the data is organized and how the relations among them are associated. It formulates all the constraints that are to be applied on the data
+* A database schema defines its entities and the relationship among them. It contains a descriptive detail of the database, which can be depicted by means of schema diagrams. It’s the database designers who design the schema to help programmers understand the database and make it useful
+
+
+## Primaries and Foreign Keys
+* A foreign key is a column or group of columns in a relational database table that provides a link between data in two tables. It acts as a cross-reference between tables because it references the primary key of another table, thereby establishing a link between them
+* The majority of tables in a relational database system adhere to the foreign key concept. In complex databases and data warehouses, data in a domain must be added across multiple tables, thus maintaining a relationship between them
+![](media/ER19.png)
+
+
+## From ER to data base schema
+![](media/ER20.png)
+
+
+## PWS FTIAXNW DIAGRAMMA APO TO ERGALEIO
+![](media/.png)
+
+
+## DB Schema
+![](media/ER21.png)
+
+
+## Adding an attribute at a relationship
+![](media/ER22.png)
+
+
+## New DB Schema
+![](media/ER23.png)
+
+
+## SQL JOINS
+* SQL joins are used to combine rows from two or more tables
+* An SQL JOIN clause is used to combine rows from two or more tables, based on a common field between them
+* The most common type of join is: SQL INNER JOIN (simple join). 
+  * An SQL INNER JOIN returns all rows from multiple tables where the join condition is met
+
+Let's look at a selection from the "Orders" table:
+| OrderID | CustomerID | OrderData |
+| --- | --- | --- |
+| 10308 | 2 | 1996-09-18 |
+| 10309 | 37 | 1996-09-19 |
+| 10310 | 77 | 1996-09-20 |
+
+|CustomerID | CustomerName | ContactName | Country |
+| --- | --- | --- | --- |
+| 1 | Alfreds Futterkiste | Maria Anders | Germany |
+| 2 | Ana Trujillo Emparedados y helados | Ana Trujillo | Mexico |
+| 3 | Antonio Moreno Taquería | Antonio Moreno | Mexico |
+
+SQL JOIN
+```
+SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID=Customers.CustomerID;
+```
+
+Result
+| OrderID | CustomerName | rderDate |
+| --- | --- | --- |
+| 10308 | Ana Trujillo Emparedados y helados | 9/18/1996 |
+| 10365 | Antonio Moreno Taquería | 11/27/1996 |
+| 10383 | Around the Horn |	12/16/1996 |
+| 10355 | Around the Horn |	11/15/1996 |
+| 10278 | Berglunds snabbköp |	8/12/1996 |
+
+
+## Different SQL JOINs
+* INNER JOIN: Returns all rows when there is at least one match in BOTH tables
+* LEFT JOIN: Return all rows from the left table, and the matched rows from the right table
+* RIGHT JOIN: Return all rows from the right table, and the matched rows from the left table
+* FULL JOIN: Return all rows when there is a match in ONE of the tables
+
+
+## INNER JOIN
+Returns all rows when there is at least one match in BOTH tables
+![](media/innerjoin.png)
+```
+SELECT * FROM TableA
+INNER JOIN TableB
+ON TableA.name = TableB.name
+```
+![](media/join1.jpg) ![](media/innerjoin1.jpg)
+
+
+## LEFT JOIN
+Return all rows from the left table, and the matched rows from the right table
+![](media/leftjoin.png)
+```
+SELECT * FROM TableA
+LEFT OUTER JOIN TableB
+ON TableA.name = TableB.name
+```
+![](media/join1.jpg) ![](media/join2.jpg)
+
+
+## RIGHT JOIN
+Return all rows from the right table, and the matched rows from the left table
+![](media/rightjoin.png)
+```
+SELECT * FROM TableA
+RIGHT OUTER JOIN TableB
+ON TableA.name = TableB.name
+```
+![](media/join1.jpg) 
+
+
+## FULL JOIN
+Return all rows from the left table, and the matched rows from the right table
+![](media/fulljoin.png)
+```
+SELECT * FROM TableA
+FULL OUTER JOIN TableB
+ON TableA.name = TableB.name
+```
+![](media/join1.jpg) ![](media/fulljoin.jpg)
+
+
+## ER in class Exercise
+* Consider a database of a car insurance company, used to record the accidents location and date
+* A driver is uniquely identified by his/her’s id and we also need to know his name and his address
+* A driver could own more than one cars. These cars have a unique id, and we also know the year and the model of the car 
+* In an accident many drivers may be involved with their cars. Per accident we also need to record the amount of the damage per car
+![](media/ERexercise.png)
+
+
+## Exercise
+* Consider a database used to record the marks that students get in different exams of different course offerings
+* The courses have the following attributes: CID, Name, Lecturer, Assistant, Duration, StartDate
+* The students have the following attributes:
+  * StID
+  * FName
+  * Lname
+  * DateOfBirth
+  
+
+## Exercise 1
+Construct an ER diagram (Entities, Cardinalities, attributes etc.)
+
+
+## Exercise 2
+Construct a DB schema
+
+
+## Exercise 3
+Insert dummy grade values (varying from 1 to 10)
+
+
+## Exercise 4
+Display those students that have participated in an (any) exam 
+
+
+## Exercise 5
+Display the students and all their grades (from all courses) 
+
+
+## Exercise 6
+Display the average grade of each student (from all courses)
+
+
+## Exercise 7
+Display the first and last name of those students that have an average grade greater than 5
+
+
+## Exercise 8
+Display the average grade per course (for all students)
+
+
+## Exercise 9
+Display those students that participated at “SQL” course
+
+
+## Exercise 10
+Display the max grade (of all courses), the First and the Last name, for each student that have a grade greater than 5 at “SQL” course
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
