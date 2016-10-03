@@ -50,9 +50,9 @@
 <h2 id="data-layer">Data layer</h2>
 <ul>
 <li>The data layer is the behind-the-scenes structure<br /></li>
-<li>Sites, applications and mobile apps tap into data layer for timely and consistent visitor data<br /><img src="media/dataLayer.jpg" /></li>
+<li>Sites, applications and mobile apps tap into data layer for timely and consistent visitor data<br /><img src="media/dataLayer.png" /></li>
 </ul>
-<h2 id="files-vs.-relational-databases">Files vs. Relational Databases</h2>
+<h2 id="files-vs.-relational-databases-12">Files vs. Relational Databases (1/2)</h2>
 <p>Issues when using file systems</p>
 <ul>
 <li>Data redundancy and inconsistency<br /></li>
@@ -63,6 +63,7 @@
 <li>Data isolation<br /></li>
 <li>Cannot isolate information due to multiple files and formats</li>
 </ul>
+<h2 id="files-vs.-relational-databases-22">Files vs. Relational Databases (2/2)</h2>
 <p>File systems issues when dealing with data storage</p>
 <ul>
 <li>Atomicity of updates<br /></li>
@@ -71,9 +72,8 @@
 <li>Concurrent access (simultaneous access of multiple users)<br /></li>
 <li>Required for efficient systems<br /></li>
 <li>Multiple access may lead to inconsistencies<br /></li>
-<li>Security issues</li>
+<li>Security issues<br />Relational Database Systems (RDBMS) deal with all the aforementioned</li>
 </ul>
-<p>Relational Database Systems (RDBMS) deal with all the aforementioned</p>
 <h2 id="what-is-an-rdbms">What is an RDBMS</h2>
 <ul>
 <li>RDBMS stands for Relational Database Management System. RDBMS is the basis for SQL, and for all modern database systems like MS SQL Server, IBM DB2, Oracle, MySQL, and Microsoft Access<br /></li>
@@ -90,45 +90,86 @@
 <li>The data in RDBMS is stored in database objects called tables<br /></li>
 <li>A collection of related data entries and it consists of columns and rows<br /></li>
 <li>The most common and simplest form of data storage in a relational database<br /></li>
-<li>Following is the example of a CUSTOMERS table<br /><img src="media/table.jpg" /></li>
+<li>Following is the example of a CUSTOMERS table<br /><img src="media/table.png" /></li>
 </ul>
 <h2 id="what-is-a-field">What is a field</h2>
 <ul>
 <li>Every table is broken up into smaller entities called fields<br /></li>
 <li>The fields in the CUSTOMERS table consist of ID, NAME, AGE, ADDRESS and SALARY<br /></li>
-<li>A field is a column in a table that is designed to maintain specific information about every record in the table<br /><img src="media/table.jpg" /></li>
+<li>A field is a column in a table that is designed to maintain specific information about every record in the table<br /><img src="media/table.png" /></li>
 </ul>
 <h2 id="what-is-a-record-or-row">What is a record or row</h2>
 <ul>
 <li>A record, is also called a row of data<br /></li>
 <li>Is each individual entry that exists in a table<br /></li>
-<li>There are 7 records in the above CUSTOMERS table<br /></li>
-<li>A record is a horizontal entity in a table<br /><img src="media/table.jpg" /></li>
+<li>There are 7 records in the following CUSTOMERS table<br /></li>
+<li>A record is a horizontal entity in a table<br /><img src="media/table.png" /></li>
 </ul>
 <h2 id="what-is-a-column">What is a column</h2>
 <ul>
 <li>A column is a vertical entity in a table that contains all information associated with a specific field in a table<br /></li>
-<li>A column in the CUSTOMERS table is ADDRESS, which represents location description and would consist of the following<br /><img src="media/column.jpg" /></li>
+<li>A column in the CUSTOMERS table is ADDRESS, which represents location description and would consist of the following<br /><img src="media/column.png" /></li>
 </ul>
-<h2 id="what-is-a-primary-key">What is a primary key</h2>
+<h2 id="what-is-a-primary-key-12">What is a primary key (1/2)</h2>
 <ul>
 <li>Each database table must contain one or more columns that can be used to uniquely identify each row in the table. This is known in database terminology as the Primary Key<br /></li>
 <li>e.g. a table may use social security number column as the primary key<br /></li>
 <li>Primary keys allow the database management system to uniquely identify a specific row in a table<br /></li>
 <li>Without a primary key it would not be possible to retrieve or delete a specific row in a table because there can be no certainty that the correct row has been selected<br /></li>
-<li>Without a primary key it would not be possible to retrieve or delete a specific row in a table because there can be no certainty that the correct row has been selected<br /></li>
+<li>Without a primary key it would not be possible to retrieve or delete a specific row in a table because there can be no certainty that the correct row has been selected</li>
+</ul>
+<h2 id="what-is-a-primary-key-22">What is a primary key (2/2)</h2>
+<ul>
 <li>Without some guaranteed way to uniquely identify a specific row it would be impossible to ensure the correct data was being accessed at any given time<br /></li>
 <li>Primary keys can comprise a single column or multiple columns in a table. To qualify as a single column primary key, no two rows can contain matching primary key values<br /></li>
 <li>When using multiple columns to construct a primary key, individual column values do not need to be unique, but all the columns combined must be unique</li>
 </ul>
-<h2 id="sql-general-data-types">SQL General Data Types</h2>
+<h2 id="sql-general-data-types-13">SQL General Data Types (1/3)</h2>
 <ul>
 <li>Each column in a database table is required to have a name and a data type<br /></li>
 <li>Decide what types of data will be stored inside each and every table column when creating a SQL table<br /></li>
-<li>The data type is a label and a guideline for SQL to understand what type of data is expected inside of each column, and it also identifies how SQL will interact with the stored data<br /></li>
+<li>The data type is a label and a guideline for SQL to understand what type of data is expected inside of each column, and it also identifies how SQL will interact with the stored data</li>
+</ul>
+<h2 id="sql-general-data-types-23">SQL General Data Types (2/3)</h2>
+<ul>
 <li>The following table lists the general data types in SQL</li>
 </ul>
-<p>| Data type | Description |<br />| --- | --- |<br />| CHARACTER(n) | Character string. Fixed-length n |<br />| VARCHAR(n) | Character string. Variable length. Maximum length n |<br />| BOOLEAN | Stores TRUE or FALSE values |<br />| INTEGER(p) | Integer numerical (no decimal). Precision p |<br />| SMALLINT | Integer numerical (no decimal). Precision 5 |<br />| INTEGER | Integer numerical (no decimal). Precision 10 |<br />| BIGINT | Integer numerical (no decimal). Precision 19 |<br />| DECIMAL(p,s) | Exact numerical, precision p, scale s. Example: decimal(5,2) is a number that has 3 digits before the decimal and 2 digits after the decimal |<br />| NUMERIC(p,s) Exact numerical, precision p, scale s. (Same as DECIMAL) |<br />| FLOAT(p) |Approximate numerical, mantissa precision p. A floating number in base 10 exponential notation. The size argument for this type consists of a single number specifying the minimum precision |<br />| REAL | Approximate numerical, mantissa precision 7 |<br />| DOUBLE PRECISION | Approximate numerical, mantissa precision 16 |<br />| DATE | Stores year, month, and day values |<br />| TIME | Stores hour, minute, and second values |<br />| TIMESTAMP | Stores year, month, day, hour, minute, and second values |</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Data type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CHARACTER(n)</td>
+<td align="left">Character string. Fixed-length n</td>
+</tr>
+<tr class="even">
+<td align="left">VARCHAR(n)</td>
+<td align="left">Character string. Variable length. Maximum length n</td>
+</tr>
+<tr class="odd">
+<td align="left">BOOLEAN</td>
+<td align="left">Stores TRUE or FALSE values</td>
+</tr>
+<tr class="even">
+<td align="left">INTEGER(p)</td>
+<td align="left">Integer numerical (no decimal). Precision p</td>
+</tr>
+<tr class="odd">
+<td align="left">SMALLINT</td>
+<td align="left">Integer numerical (no decimal). Precision 5</td>
+</tr>
+<tr class="even">
+<td align="left">INTEGER</td>
+<td align="left">Integer numerical (no decimal). Precision 10</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sql-general-data-types-33">SQL General Data Types (3/3)</h2>
+<p>| Data type | Description |<br />| --- | --- |<br />| BIGINT | Integer numerical (no decimal). Precision 19 |<br />| DECIMAL(p,s) | Exact numerical, precision p, scale s. Example: decimal(5,2) is a number that has 3 digits before the decimal and 2 digits after the decimal |<br />| NUMERIC(p,s) Exact numerical, precision p, scale s. (Same as DECIMAL) |<br />| FLOAT(p) |Approximate numerical, mantissa precision p. A floating number in base 10 exponential notation. The size argument for this type consists of a single number specifying the minimum precision |<br />| REAL | Approximate numerical, mantissa precision 7 |<br />| DOUBLE PRECISION | Approximate numerical, mantissa precision 16 |<br />| DATE | Stores year, month, and day values |<br />| TIME | Stores hour, minute, and second values |<br />| TIMESTAMP | Stores year, month, day, hour, minute, and second values |</p>
 <h2 id="examples---character-string-character8">Examples - Character String: CHARACTER(8)</h2>
 <ul>
 <li>Valid examples<br /></li>
@@ -261,31 +302,34 @@
 <h2 id="select-statement">SELECT Statement</h2>
 <ul>
 <li>Is used to select data from a database<br /></li>
-<li><p>The result is stored in a result table, called the result-set<br />SQL SELECT Syntax</p>
+<li>The result is stored in a result table, called the result-set</li>
+</ul>
+<p>SQL SELECT Syntax</p>
 <pre><code>SELECT column_name,column_name
 FROM table_name;</code></pre>
-<p>and</p>
-<pre><code>SELECT * FROM table_name;</code></pre></li>
-</ul>
+<p>or</p>
+<pre><code>SELECT * FROM table_name;</code></pre>
 <p>Example</p>
 <pre><code>SELECT * FROM Customers;</code></pre>
 <h2 id="select-distinct-statement">SELECT DISTINCT Statement</h2>
 <ul>
 <li>Is used to return only distinct (different) values<br /></li>
-<li>In a table, a column may contain many duplicate values; and sometimes you only want to list the different (distinct) values<br /></li>
-<li><p>The DISTINCT keyword can be used to return only distinct (different) values<br />SQL SELECT Syntax</p>
-<pre><code>SELECT DISTINCT column_name,column_name
-FROM table_name;</code></pre></li>
+<li>In a table, a column may contain many duplicate values and sometimes you only want to list the different (distinct) values<br /></li>
+<li>The DISTINCT keyword can be used to return only distinct (different) values</li>
 </ul>
+<p>SQL SELECT Syntax</p>
+<pre><code>SELECT DISTINCT column_name,column_name
+FROM table_name;</code></pre>
 <p>Example</p>
 <pre><code>SELECT DISTINCT City FROM Customers;</code></pre>
 <h2 id="where-clause">WHERE Clause</h2>
 <ul>
-<li><p>Is used to filter records<br />SQL SELECT Syntax</p>
+<li>Is used to filter records</li>
+</ul>
+<p>SQL SELECT Syntax</p>
 <pre><code>SELECT column_name,column_name
 FROM table_name
-WHERE column_name operator value;</code></pre></li>
-</ul>
+WHERE column_name operator value;</code></pre>
 <p>Example</p>
 <pre><code>SELECT * FROM Customers WHERE Country=&#39;Mexico&#39;;</code></pre>
 <h2 id="and-or-operators">AND &amp; OR Operators</h2>
@@ -296,7 +340,7 @@ WHERE column_name operator value;</code></pre></li>
 <p>SQL AND Syntax</p>
 <pre><code>SELECT column_name,column_name
 FROM table_name
-WHERE condition1==true AND condition2==true;</code></pre>
+WHERE condition1=true AND condition2=true;</code></pre>
 <p>Examples</p>
 <pre><code>Example SELECT * FROM Customers
 WHERE City=&#39;Berlin&#39;
@@ -350,12 +394,12 @@ VALUES (value1,value2,value3,...);  </code></pre></li>
 <pre><code>INSERT INTO table_name (column1,column2,column3,...)
 VALUES (value1,value2,value3,...);</code></pre>
 <p>Example</p>
-<pre><code>INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
-VALUES (&#39;Cardinal&#39;,&#39;Tom B. Erichsen&#39;,&#39;Skagen 21&#39;,&#39;Stavanger&#39;,&#39;4006&#39;,&#39;Norway&#39;);</code></pre></li>
+<pre><code>INSERT INTO Customers (CustomerName, ContactName, Address, City, Country)
+VALUES (&#39;Cardinal&#39;,&#39;Tom Erichsen&#39;,&#39;Skagen 21&#39;,&#39;Stavanger&#39;,&#39;Norway&#39;);</code></pre></li>
 </ul>
 <h2 id="update-statement">UPDATE Statement</h2>
 <ul>
-<li>Is used to update records in a table<br />.</li>
+<li>Is used to update records in a table</li>
 </ul>
 <p>SQL UPDATE INTO Syntax</p>
 <pre><code>UPDATE table_name
@@ -382,7 +426,6 @@ WHERE CustomerName=&#39;Alfreds Futterkiste&#39; AND ContactName=&#39;Maria Ande
 </ul>
 <p>Useful aggregate functions:</p>
 <ul>
-<li>SQL Aggregate Functions<br /></li>
 <li>AVG() - Returns the average value<br /></li>
 <li>COUNT() - Returns the number of rows<br /></li>
 <li>FIRST() - Returns the first value<br /></li>
@@ -401,23 +444,25 @@ FROM table_name;</code></pre>
 <p>Example</p>
 <pre><code>SELECT AVG(Price) AS PriceAverage 
 FROM Products;</code></pre>
-<h2 id="count-function">COUNT() Function</h2>
+<h2 id="count-function-12">COUNT() Function (1/2)</h2>
 <ul>
-<li>The COUNT() function returns the number of rows that matches a specified criteria</li>
+<li>The COUNT() function returns the number of rows that matches a specified criteria<br /></li>
+<li>The COUNT(column_name) function returns the number of values (NULL values will not be counted) of the specified column</li>
 </ul>
-<p>SQL COUNT(column_name) Syntax<br />The COUNT(column_name) function returns the number of values (NULL values will not be counted) of the specified column</p>
+<p>SQL COUNT(column_name) Syntax</p>
 <pre><code>SELECT COUNT(column_name) 
 FROM table_name;</code></pre>
-<p>SQL COUNT(<em>) Syntax<br />The COUNT(</em>) function returns the number of records in a table</p>
-<pre><code>SELECT COUNT(*) 
-FROM table_name;</code></pre>
-<p>Examples</p>
-<pre><code>SELECT COUNT(*) AS NumberOfOrders 
-FROM Orders;</code></pre>
-<p>and</p>
+<p>Example</p>
 <pre><code>SELECT COUNT(CustomerID) AS OrdersFromCustomerID7 
 FROM Orders 
 WHERE CustomerID=7;</code></pre>
+<h2 id="count-function-12-1">COUNT() Function (1/2)</h2>
+<p>The COUNT(<em>) function returns the number of records in a table<br />SQL COUNT(</em>) Syntax</p>
+<pre><code>SELECT COUNT(*) 
+FROM table_name;</code></pre>
+<p>Example</p>
+<pre><code>SELECT COUNT(*) AS NumberOfOrders 
+FROM Orders;</code></pre>
 <h2 id="max-function">MAX() Function</h2>
 <ul>
 <li>Returns the largest value of the selected column</li>
@@ -567,7 +612,7 @@ HAVING COUNT(Orders.OrderID) &gt; 10;</code></pre>
 </ul>
 <h2 id="exercise-4">Exercise 4</h2>
 <ul>
-<li>Insert the following values into &quot;Courses&quot; table<br />| 1 | SQL | AG | BN | 2 | 2016-10-21 |<br />| 2 | JAVA | VS | BN | 3 | 2016-10-25 |<br />| 3 | R | KP | TT | 4 | 2016-11-09 |<br />| 4 | PYTHON | KK | DD | 5 | 2016-11-09 |</li>
+<li>Insert the following values into &quot;Courses&quot; table<br />| course_id | name | lecturer_name | assistant_name | duration | starting_date |<br />| --- | --- | --- | --- | --- | --- |<br />| 1 | SQL | AG | BN | 2 | 2016-10-21 |<br />| 2 | JAVA | VS | BN | 3 | 2016-10-25 |<br />| 3 | R | KP | TT | 4 | 2016-11-09 |<br />| 4 | PYTHON | KK | DD | 5 | 2016-11-09 |</li>
 </ul>
 <h2 id="exercise-5">Exercise 5</h2>
 <ul>

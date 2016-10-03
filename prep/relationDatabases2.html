@@ -43,60 +43,76 @@
 <ul>
 <li>The entity-relationship model (or ER model) is a way of graphically representing the logical relationships of entities (or objects) in order to create a database<br /><img src="media/ER1.png" /></li>
 </ul>
-<h2 id="er-diagram-components">ER Diagram Components</h2>
+<h2 id="er-diagram-components-13">ER Diagram Components (1/3)</h2>
 <ul>
 <li><p>Entity<br />Entities are represented by means of rectangles. Rectangles are named with the entity set they represent<br /><img src="media/ER2.png" /></p></li>
 <li><p>Attributes<br />Attributes are the properties of entities. Attributes are represented by means of ellipses. Every ellipse represents one attribute and is directly connected to its entity (rectangle).<br /><img src="media/ER2.png" /></p></li>
 </ul>
+<h2 id="er-diagram-components-23">ER Diagram Components (2/3)</h2>
 <p>If the attributes are composite, they are further divided in a tree like structure. Every node is then connected to its attribute. That is, composite attributes are represented by ellipses that are connected with an ellipse.<br /><img src="media/ER4.png" /></p>
+<h2 id="er-diagram-components-33">ER Diagram Components (3/3)</h2>
 <ul>
 <li><p>Multivalued attributes are depicted by double ellipse<br /><img src="media/ER5.png" /></p></li>
 <li><p>Derived attributes are depicted by dashed ellipse<br /><img src="media/ER6.png" /></p></li>
 </ul>
 <h2 id="er-relationships">ER Relationships</h2>
 <p><img src="media/ER7.png" /><br /><img src="media/ER9.png" /></p>
-<h2 id="er-relationships---cardinalities">ER Relationships - Cardinalities</h2>
+<h2 id="er-relationships---cardinalities-13">ER Relationships - Cardinalities (1/3)</h2>
 <ul>
 <li>Relationships are represented by diamond-shaped box. Name of the relationship is written inside the diamond-box. All the entities (rectangles) participating in a relationship, are connected to it by a line<br /></li>
-<li><p>A relationship where two entities are participating is called a binary relationship. Cardinality is the number of instance of an entity from a relation that can be associated with the relation</p></li>
+<li>A relationship where two entities are participating is called a binary relationship. Cardinality is the number of instance of an entity from a relation that can be associated with the relation</li>
+</ul>
+<h2 id="er-relationships---cardinalities-23">ER Relationships - Cardinalities (2/3)</h2>
+<ul>
 <li><p>One-to-one: When only one instance of an entity is associated with the relationship, it is marked as '1:1'. The following image reflects that only one instance of each entity should be associated with the relationship. It depicts one-to-one relationship.<br /><img src="media/ER10.png" /></p></li>
 <li><p>One-to-many: When more than one instance of an entity is associated with a relationship, it is marked as '1:N'. The following image reflects that only one instance of entity on the left and more than one instance of an entity on the right can be associated with the relationship. It depicts one-to-many relationship<br /><img src="media/ER11.png" /></p></li>
+</ul>
+<h2 id="er-relationships---cardinalities-33">ER Relationships - Cardinalities (3/3)</h2>
+<ul>
 <li><p>Many-to-one: When more than one instance of entity is associated with the relationship, it is marked as 'N:1'. The following image reflects that more than one instance of an entity on the left and only one instance of an entity on the right can be associated with the relationship. It depicts many-to-one relationship<br /><img src="media/ER12.png" /></p></li>
 <li><p>Many-to-many: The following image reflects that more than one instance of an entity on the left and more than one instance of an entity on the right can be associated with the relationship. It depicts many-to-many relationship.<br /><img src="media/ER13.png" /></p></li>
 </ul>
 <h2 id="er-relationships---relationship-loops">ER Relationships - Relationship Loops</h2>
 <ul>
-<li>RAdditionally, restrictions on the combinations of entities participating in an entity set are needed<br /></li>
+<li>Additionally, restrictions on the combinations of entities participating in an entity set are needed<br /></li>
 <li>Cardinality annotations are used for this<br /><img src="media/ER14.png" /></li>
 </ul>
-<h2 id="isa">ISA</h2>
-<p>When an entity type contains certain entities that have special properties not shared by all entities, this suggests two entity types should be created with an ISA relationship type between them. I Also known as generalisation/specialisation. I E.g. An Employee ISA Person and a Student ISA Person (see next slide) I If Employee ISA Person then Employee inherits all the attributes of Person<br /><img src="media/ER16.png" /></p>
-<h2 id="structuring-an-er">Structuring an ER</h2>
-<p>Problem</p>
+<h2 id="isa-12">ISA (1/2)</h2>
 <ul>
-<li>A company database needs to store information about employees (identified by ssn, with salary and phone as attributes), departments (identified by dno, with dname and budget as attributes), and children of employees (with name and age as attributes)</li>
+<li>When an entity type contains certain entities that have special properties not shared by all entities, this suggests two entity types should be created with an ISA relationship type between them<br /></li>
+<li>Is also known as generalisation/specialisation.<br /></li>
+<li>E.g. An Employee ISA Person and a Student ISA Person (see next slide)<br /></li>
+<li>If Employee ISA Person then Employee inherits all the attributes of Person</li>
 </ul>
+<h2 id="isa-22">ISA (2/2)</h2>
+<p><img src="media/ER16.png" /></p>
+<h2 id="structuring-an-er-13">Structuring an ER (1/3)</h2>
 <p>Problem</p>
 <ul>
+<li>A company database needs to store information about employees (identified by ssn, with salary and phone as attributes), departments (identified by dno, with dname and budget as attributes), and children of employees (with name and age as attributes)<br /></li>
 <li>Employees work in departments; each department is managed by only one employee; a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known. We are not interested in information about a child once the parent leaves the company<br /></li>
 <li>Draw an ER diagram that captures this information</li>
 </ul>
-<h2 id="structuring-an-er-1">Structuring an ER</h2>
+<h2 id="structuring-an-er-23">Structuring an ER (2/3)</h2>
 <p>Solution</p>
 <ul>
 <li>First, we shall design the entities and relationships<br /></li>
 <li>“Employees work in departments…”<br /></li>
 <li>“…each department is managed by only one employee…”<br /></li>
-<li>“…a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known.”<br /><img src="media/ER17.png" /></li>
+<li>“…a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known.”</li>
 </ul>
-<h2 id="structuring-an-er-cardinalities">Structuring an ER (cardinalities)</h2>
+<h2 id="structuring-an-er-33">Structuring an ER (3/3)</h2>
+<p><img src="media/ER17.png" /></p>
+<h2 id="structuring-an-er-cardinalities-12">Structuring an ER (cardinalities) (1/2)</h2>
 <p>Solution</p>
 <ul>
 <li>Now, we will design the constraints.<br /></li>
 <li>“…each department is managed by an employee…”<br /></li>
 <li>“…a child must be identified uniquely by name when the parent (who is an employee; assume that only one parent works for the company) is known. “<br /></li>
-<li>“We are not interested in information about a child once the parent leaves the company.”<br /><img src="media/ER18.png" /></li>
+<li>“We are not interested in information about a child once the parent leaves the company.”</li>
 </ul>
+<h2 id="structuring-an-er-cardinalities-22">Structuring an ER (cardinalities) (2/2)</h2>
+<p><img src="media/ER18.png" /></p>
 <h2 id="database-schema">Database Schema</h2>
 <ul>
 <li>A database schema is the skeleton structure that represents the logical view of the entire database. It defines how the data is organized and how the relations among them are associated. It formulates all the constraints that are to be applied on the data<br /></li>
@@ -105,26 +121,53 @@
 <h2 id="primaries-and-foreign-keys">Primaries and Foreign Keys</h2>
 <ul>
 <li>A foreign key is a column or group of columns in a relational database table that provides a link between data in two tables. It acts as a cross-reference between tables because it references the primary key of another table, thereby establishing a link between them<br /></li>
-<li>The majority of tables in a relational database system adhere to the foreign key concept. In complex databases and data warehouses, data in a domain must be added across multiple tables, thus maintaining a relationship between them<br /><img src="media/ER19.png" /></li>
+<li>The majority of tables in a relational database system adhere to the foreign key concept. In complex databases, data in a domain must be added across multiple tables, maintaining a relationship between them<br /><img src="media/ER19.png" /></li>
 </ul>
 <h2 id="from-er-to-data-base-schema">From ER to data base schema</h2>
 <p><img src="media/ER20.png" /></p>
-<h2 id="pws-ftiaxnw-diagramma-apo-to-ergaleio">PWS FTIAXNW DIAGRAMMA APO TO ERGALEIO</h2>
-<p><img src="media/.png" /></p>
 <h2 id="db-schema">DB Schema</h2>
 <p><img src="media/ER21.png" /></p>
 <h2 id="adding-an-attribute-at-a-relationship">Adding an attribute at a relationship</h2>
 <p><img src="media/ER22.png" /></p>
 <h2 id="new-db-schema">New DB Schema</h2>
 <p><img src="media/ER23.png" /></p>
-<h2 id="sql-joins">SQL JOINS</h2>
+<h2 id="sql-joins-13">SQL JOINS (1/3)</h2>
 <ul>
 <li>SQL joins are used to combine rows from two or more tables<br /></li>
 <li>An SQL JOIN clause is used to combine rows from two or more tables, based on a common field between them<br /></li>
 <li>The most common type of join is: SQL INNER JOIN (simple join).<br /></li>
 <li>An SQL INNER JOIN returns all rows from multiple tables where the join condition is met</li>
 </ul>
-<p>Let's look at a selection from the &quot;Orders&quot; table:<br />| OrderID | CustomerID | OrderData |<br />| --- | --- | --- |<br />| 10308 | 2 | 1996-09-18 |<br />| 10309 | 37 | 1996-09-19 |<br />| 10310 | 77 | 1996-09-20 |</p>
+<h2 id="sql-joins-23">SQL JOINS (2/3)</h2>
+<ul>
+<li>Let's look at a selection from the &quot;Orders&quot; table:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">OrderID</th>
+<th align="left">CustomerID</th>
+<th align="left">OrderData</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">10308</td>
+<td align="left">2</td>
+<td align="left">1996-09-18</td>
+</tr>
+<tr class="even">
+<td align="left">10309</td>
+<td align="left">37</td>
+<td align="left">1996-09-19</td>
+</tr>
+<tr class="odd">
+<td align="left">10310</td>
+<td align="left">77</td>
+<td align="left">1996-09-20</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr class="header">
@@ -155,6 +198,7 @@
 </tr>
 </tbody>
 </table>
+<h2 id="sql-joins-33">SQL JOINS (3/3)</h2>
 <p>SQL JOIN</p>
 <pre><code>SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
 FROM Orders
@@ -168,37 +212,49 @@ ON Orders.CustomerID=Customers.CustomerID;</code></pre>
 <li>RIGHT JOIN: Return all rows from the right table, and the matched rows from the left table<br /></li>
 <li>FULL JOIN: Return all rows when there is a match in ONE of the tables</li>
 </ul>
-<h2 id="inner-join">INNER JOIN</h2>
-<p>Returns all rows when there is at least one match in BOTH tables<br /><img src="media/innerjoin.png" /></p>
-<pre><code>SELECT * FROM TableA
+<h2 id="inner-join-12">INNER JOIN (1/2)</h2>
+<p>Returns all rows when there is at least one match in BOTH tables</p>
+<p><img src="media/innerjoin.png" /></p>
+<pre><code>
+
+## INNER JOIN (2/2)
+SELECT * FROM TableA
 INNER JOIN TableB
 ON TableA.name = TableB.name</code></pre>
-<p><img src="media/join1.jpg" /> <img src="media/innerjoin1.jpg" /></p>
-<h2 id="left-join">LEFT JOIN</h2>
-<p>Return all rows from the left table, and the matched rows from the right table<br /><img src="media/leftjoin.png" /></p>
+<p><img src="media/join1.png" /> <img src="media/innerjoin1.png" /></p>
+<h2 id="left-join-12">LEFT JOIN (1/2)</h2>
+<p>Return all rows from the left table, and the matched rows from the right table</p>
+<p><img src="media/leftjoin.png" /></p>
+<h2 id="left-join-22">LEFT JOIN (2/2)</h2>
 <pre><code>SELECT * FROM TableA
 LEFT OUTER JOIN TableB
 ON TableA.name = TableB.name</code></pre>
-<p><img src="media/join1.jpg" /> <img src="media/join2.jpg" /></p>
-<h2 id="right-join">RIGHT JOIN</h2>
-<p>Return all rows from the right table, and the matched rows from the left table<br /><img src="media/rightjoin.png" /></p>
+<p><img src="media/join1.png" /> <img src="media/join2.png" /></p>
+<h2 id="right-join-12">RIGHT JOIN (1/2)</h2>
+<p>Return all rows from the right table, and the matched rows from the left table</p>
+<p><img src="media/rightjoin.png" /></p>
+<h2 id="right-join-22">RIGHT JOIN (2/2)</h2>
 <pre><code>SELECT * FROM TableA
 RIGHT OUTER JOIN TableB
 ON TableA.name = TableB.name</code></pre>
-<p><img src="media/join1.jpg" /></p>
-<h2 id="full-join">FULL JOIN</h2>
-<p>Return all rows from the left table, and the matched rows from the right table<br /><img src="media/fulljoin.png" /></p>
+<p><img src="media/join1.png" /></p>
+<h2 id="full-join-12">FULL JOIN (1/2)</h2>
+<p>Return all rows from the left table, and the matched rows from the right table</p>
+<p><img src="media/fulljoin.png" /></p>
+<h2 id="full-join-22">FULL JOIN (2/2)</h2>
 <pre><code>SELECT * FROM TableA
 FULL OUTER JOIN TableB
 ON TableA.name = TableB.name</code></pre>
-<p><img src="media/join1.jpg" /> <img src="media/fulljoin.jpg" /></p>
-<h2 id="er-in-class-exercise">ER in class Exercise</h2>
+<p><img src="media/join1.png" /> <img src="media/fulljoin1.png" /></p>
+<h2 id="er-in-class-exercise-12">ER in class Exercise (1/2)</h2>
 <ul>
 <li>Consider a database of a car insurance company, used to record the accidents location and date<br /></li>
 <li>A driver is uniquely identified by his/her’s id and we also need to know his name and his address<br /></li>
 <li>A driver could own more than one cars. These cars have a unique id, and we also know the year and the model of the car<br /></li>
-<li>In an accident many drivers may be involved with their cars. Per accident we also need to record the amount of the damage per car<br /><img src="media/ERexercise.png" /></li>
+<li>In an accident many drivers may be involved with their cars. Per accident we also need to record the amount of the damage per car</li>
 </ul>
+<h2 id="er-in-class-exercise-22">ER in class Exercise (2/2)</h2>
+<p><img src="media/ERexercise.png" /></p>
 <h2 id="exercise">Exercise</h2>
 <ul>
 <li>Consider a database used to record the marks that students get in different exams of different course offerings<br /></li>
