@@ -18,10 +18,10 @@
 ## Data layer
 * The data layer is the behind-the-scenes structure
 * Sites, applications and mobile apps tap into data layer for timely and consistent visitor data
-![](media/dataLayer.jpg)
+![](media/dataLayer.png)
 
 
-## Files vs. Relational Databases
+## Files vs. Relational Databases (1/2)
 Issues when using file systems
 * Data redundancy and inconsistency
   * Multiple file formats
@@ -30,7 +30,9 @@ Issues when using file systems
   * Each new function requires coding from scratch
 * Data isolation
   * Cannot isolate information due to multiple files and formats
-  
+
+
+## Files vs. Relational Databases (2/2)
 File systems issues when dealing with data storage
 * Atomicity of updates
   * Data updates may be partially executed
@@ -39,8 +41,8 @@ File systems issues when dealing with data storage
   * Required for efficient systems
   * Multiple access may lead to inconsistencies
 * Security issues
-
 Relational Database Systems (RDBMS) deal with all the aforementioned
+
 
 ## What is an RDBMS
 * RDBMS stands for Relational Database Management System. RDBMS is the basis for SQL, and for all modern database systems like MS SQL Server, IBM DB2, Oracle, MySQL, and Microsoft Access
@@ -52,51 +54,57 @@ Relational Database Systems (RDBMS) deal with all the aforementioned
   * PostgreSQL
   * IBM DB2
 
-  
+
 ## What is a table
 * The data in RDBMS is stored in database objects called tables
 * A collection of related data entries and it consists of columns and rows
 * The most common and simplest form of data storage in a relational database
 * Following is the example of a CUSTOMERS table
-![](media/table.jpg)
+![](media/table.png)
 
 
 ## What is a field
 * Every table is broken up into smaller entities called fields
 * The fields in the CUSTOMERS table consist of ID, NAME, AGE, ADDRESS and SALARY
 * A field is a column in a table that is designed to maintain specific information about every record in the table
-![](media/table.jpg)
+![](media/table.png)
 
 
 ## What is a record or row
 * A record, is also called a row of data
 * Is each individual entry that exists in a table
-* There are 7 records in the above CUSTOMERS table
+* There are 7 records in the following CUSTOMERS table
 * A record is a horizontal entity in a table
-![](media/table.jpg)
+![](media/table.png)
 
 
 ## What is a column
 * A column is a vertical entity in a table that contains all information associated with a specific field in a table
 * A column in the CUSTOMERS table is ADDRESS, which represents location description and would consist of the following
-![](media/column.jpg)
+![](media/column.png)
 
 
-## What is a primary key
+## What is a primary key (1/2)
 * Each database table must contain one or more columns that can be used to uniquely identify each row in the table. This is known in database terminology as the Primary Key
   * e.g. a table may use social security number column as the primary key
 * Primary keys allow the database management system to uniquely identify a specific row in a table
 * Without a primary key it would not be possible to retrieve or delete a specific row in a table because there can be no certainty that the correct row has been selected
   * Without a primary key it would not be possible to retrieve or delete a specific row in a table because there can be no certainty that the correct row has been selected
+
+
+## What is a primary key (2/2)
 * Without some guaranteed way to uniquely identify a specific row it would be impossible to ensure the correct data was being accessed at any given time
 * Primary keys can comprise a single column or multiple columns in a table. To qualify as a single column primary key, no two rows can contain matching primary key values
 * When using multiple columns to construct a primary key, individual column values do not need to be unique, but all the columns combined must be unique
 
 
-## SQL General Data Types
+## SQL General Data Types (1/3)
 * Each column in a database table is required to have a name and a data type
 * Decide what types of data will be stored inside each and every table column when creating a SQL table
 * The data type is a label and a guideline for SQL to understand what type of data is expected inside of each column, and it also identifies how SQL will interact with the stored data
+
+
+## SQL General Data Types (2/3)
 * The following table lists the general data types in SQL
 
 | Data type | Description |
@@ -107,6 +115,11 @@ Relational Database Systems (RDBMS) deal with all the aforementioned
 | INTEGER(p) | Integer numerical (no decimal). Precision p |
 | SMALLINT | Integer numerical (no decimal). Precision 5 |
 | INTEGER | Integer numerical (no decimal). Precision 10 |
+
+
+## SQL General Data Types (3/3)
+| Data type | Description |
+| --- | --- |
 | BIGINT | Integer numerical (no decimal). Precision 19 |
 | DECIMAL(p,s) | Exact numerical, precision p, scale s. Example: decimal(5,2) is a number that has 3 digits before the decimal and 2 digits after the decimal |
 | NUMERIC(p,s) Exact numerical, precision p, scale s. (Same as DECIMAL) |
@@ -126,7 +139,7 @@ Relational Database Systems (RDBMS) deal with all the aforementioned
   * ‘04-10-16’
   * ‘bootcamp ’ (blank characters are truncated)
 
-  * Invalid examples
+* Invalid examples
   * 12345
   * Bootcamps
   * 04-10-2016
@@ -140,7 +153,7 @@ Relational Database Systems (RDBMS) deal with all the aforementioned
   * ‘04-10-2016’
   * ‘bootcamp’
 
-  * Invalid examples
+* Invalid examples
   * 12345
   * programming
   * 04-10-2016
@@ -239,7 +252,7 @@ Relational Database Systems (RDBMS) deal with all the aforementioned
   * Read (retrieve data from a database)
   * Update (update records in a database)
   * Delete (delete records from a database)
-  
+
 
 ## SQL Statements
 Most of the actions needed to be performed on a database are done with SQL statements
@@ -258,12 +271,13 @@ Most of the actions needed to be performed on a database are done with SQL state
 ## SELECT Statement
 * Is used to select data from a database
 * The result is stored in a result table, called the result-set
+
 SQL SELECT Syntax
 ```
 SELECT column_name,column_name
 FROM table_name;
 ```
-and
+or
 ```
 SELECT * FROM table_name;
 ```
@@ -276,8 +290,9 @@ SELECT * FROM Customers;
 
 ## SELECT DISTINCT Statement
 * Is used to return only distinct (different) values
-* In a table, a column may contain many duplicate values; and sometimes you only want to list the different (distinct) values
+* In a table, a column may contain many duplicate values and sometimes you only want to list the different (distinct) values
 * The DISTINCT keyword can be used to return only distinct (different) values
+
 SQL SELECT Syntax
 ```
 SELECT DISTINCT column_name,column_name
@@ -292,6 +307,7 @@ SELECT DISTINCT City FROM Customers;
 
 ## WHERE Clause
 * Is used to filter records
+
 SQL SELECT Syntax
 ```
 SELECT column_name,column_name
@@ -313,7 +329,7 @@ SQL AND Syntax
 ```
 SELECT column_name,column_name
 FROM table_name
-WHERE condition1==true AND condition2==true;
+WHERE condition1=true AND condition2=true;
 ```
 
 Examples
@@ -392,14 +408,13 @@ VALUES (value1,value2,value3,...);
 ```
 Example
 ```
-INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
-VALUES ('Cardinal','Tom B. Erichsen','Skagen 21','Stavanger','4006','Norway');
+INSERT INTO Customers (CustomerName, ContactName, Address, City, Country)
+VALUES ('Cardinal','Tom Erichsen','Skagen 21','Stavanger','Norway');
 ```
 
 
 ## UPDATE Statement
 * Is used to update records in a table
-.
 
 SQL UPDATE INTO Syntax
 ```
@@ -435,14 +450,13 @@ WHERE CustomerName='Alfreds Futterkiste' AND ContactName='Maria Anders';
 * SQL aggregate functions return a single value, calculated from values in a column
 
 Useful aggregate functions:
-* SQL Aggregate Functions
-  * AVG() - Returns the average value
-  * COUNT() - Returns the number of rows
-  * FIRST() - Returns the first value
-  * LAST() - Returns the last value
-  * MAX() - Returns the largest value
-  * MIN() - Returns the smallest value
-  * SUM() - Returns the sum
+* AVG() - Returns the average value
+* COUNT() - Returns the number of rows
+* FIRST() - Returns the first value
+* LAST() - Returns the last value
+* MAX() - Returns the largest value
+* MIN() - Returns the smallest value
+* SUM() - Returns the sum
 
 
 ## AVG() Function
@@ -461,32 +475,34 @@ FROM Products;
 ```
 
 
-## COUNT() Function
+## COUNT() Function (1/2)
 * The COUNT() function returns the number of rows that matches a specified criteria
+* The COUNT(column_name) function returns the number of values (NULL values will not be counted) of the specified column
 
 SQL COUNT(column_name) Syntax
-The COUNT(column_name) function returns the number of values (NULL values will not be counted) of the specified column
 ```
 SELECT COUNT(column_name) 
 FROM table_name;
 ```
-SQL COUNT(*) Syntax
-The COUNT(*) function returns the number of records in a table
-```
-SELECT COUNT(*) 
-FROM table_name;
-```
-
-Examples
-```
-SELECT COUNT(*) AS NumberOfOrders 
-FROM Orders;
-```
-and
+Example
 ```
 SELECT COUNT(CustomerID) AS OrdersFromCustomerID7 
 FROM Orders 
 WHERE CustomerID=7;
+```
+
+
+## COUNT() Function (1/2)
+The COUNT(*) function returns the number of records in a table
+SQL COUNT(*) Syntax
+```
+SELECT COUNT(*) 
+FROM table_name;
+```
+Example
+```
+SELECT COUNT(*) AS NumberOfOrders 
+FROM Orders;
 ```
 
 
@@ -738,6 +754,8 @@ HAVING COUNT(Orders.OrderID) > 10;
 
 ## Exercise 4
 * Insert the following values into "Courses" table
+| course_id | name | lecturer_name | assistant_name | duration | starting_date |
+| --- | --- | --- | --- | --- | --- |
 | 1 | SQL | AG | BN | 2 | 2016-10-21 |
 | 2 | JAVA | VS | BN | 3 | 2016-10-25 |
 | 3 | R | KP | TT | 4 | 2016-11-09 |
