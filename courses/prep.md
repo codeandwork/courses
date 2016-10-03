@@ -13,6 +13,8 @@
 
 
 ## Introduction to front-end development 
+* [Introduction to HTML](http://ism.dmst.aueb.gr/bootcamp/html_bootcamp.pdf)
+* [Introduction to CSS](http://ism.dmst.aueb.gr/bootcamp/css_bootcamp.pdf)
 * [HTML Exercises](prep/html_exercises.md)
 * [CSS Exercises](prep/css_exercises.md)
 
