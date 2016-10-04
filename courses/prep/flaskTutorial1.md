@@ -2,7 +2,7 @@
 
 * A Python framework for building web applications (sites, blogs, wiki, etc.)
 
-* Flask provides you tools, libraries, and technologies that allow you to build a web application
+* Flask provides you with tools, libraries, and technologies that allow you to build a web application
 
 
 ## Flask dependencies
@@ -25,7 +25,7 @@
 * On each project you can work with different versions of Python itself and Python libraries
 
 
-## How to install virtualenv on Mac OS X or Linux
+## How to install virtualenv on Machintosh or Linux
 
 ```sh
 $ sudo pip install virtualenv
@@ -58,7 +58,7 @@ $ pip install virtualenv
 
 ## How to create a new Flask project I
 
-* Fire up a shell an give the following commands
+* Fire up a shell and give the following commands
 
 * Create a project and change directory
 
@@ -124,13 +124,9 @@ if __name__ == '__main__':
 ```
 
 * Import the Flask class
-
 * Create an instance of this class
-
 * Use the route() decorator to tell Flask what URL should trigger
-
 * Set to the function the message that we want to display in the user's browser
-
 * Save the python file as hello.py in a folder named app
 
 
@@ -155,7 +151,7 @@ $ flask run
 
 ## Variable rules I
 
-* We can add variable parts to a URL by marking special sections as <variable_name> or <converter:variable_name>
+* We can add variable parts to a URL by marking special sections as ```<variable_name>``` or ```<converter:variable_name>```
 
 ```python
 @app.route('/hello/')
@@ -268,6 +264,7 @@ def login():
 
 ```python
 from flask import send_from_directory
+import os
 ```
 ```python
 @app.route('/static/css/stylesheet.css')
@@ -279,7 +276,7 @@ def serve_static_css(filename):
 
 ## Static files II
 
-* To generate URLs for static files, use the special 'static' endpoint name:
+* To generate URLs for static files, you can also use the special 'static' endpoint name:
 
 ```html
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -290,7 +287,7 @@ def serve_static_css(filename):
 
 * Templates are html pages
 
-* Add all the templates should be in a folder with the name templates in your project
+* Add all the templates should be to a folder with the name templates in your project
 
 * To render a template you import the render_template module and use the render_template() method
 
@@ -314,7 +311,7 @@ def hello(name):
 {% if name %}
   <h1>Hello {{ name }}!</h1>
 {% else %}
-  <h1>Hello, World!</h1>
+  <h1>Hello, Flask!</h1>
 {% endif %}
 ```
 * The variables and/or logic are placed between tags or delimiters 
@@ -363,36 +360,32 @@ $ pip install Flask-WTF
 
 * Add a new Python file for the form, i.e. forms.py
 
-* Add the appropriate imports for the validation of the form's fields
+* Add the appropriate imports
 
 ```python
 from flask import Flask
 from flask_wtf import Form
-from wtforms import TextField, SubmitField, PasswordField, validators, ValidationError
+from wtforms import TextField, SubmitField, PasswordField
 
 class ContactForm(Form):
-   name = TextField("Name",[validators.Required("Please enter your name.")])
-   surname = TextField("Surname",[validators.Required("Please enter your surname.")])
-   email = TextField("Email",[validators.Required("Please enter your email address."),
-      validators.Email("Please enter your email address.")])
-   password = PasswordField('Password', [validators.Required("Please enter your password.")])
+   name = TextField("Name")
+   surname = TextField("Surname")
+   email = TextField("Email")
+   password = PasswordField('Password')
    submit = SubmitField("Send")
 ```
 
 
 ## Create a form IV
 
-* Add the new() method to the python file with the routes/views file called routes.py
-
+* Add the new() method to the python file with the routes (e.g. routes.py)
+* Don't forget to set ```export FLASK_APP=routes.py``` to run the app
 * The new() method is called in the form's action in the html page
-
 * Add the appropriate imports
 
 ```python
 from flask import Flask, request, render_template
 from forms import ContactForm
-from flask_wtf import Form
-from wtforms import validators
 ```
 ```python
 @app.route('/new', methods = ['GET', 'POST'])
@@ -403,26 +396,33 @@ def new():
 ```
 
 
-## Message flashing
+## Message flashing I
 
 * Add error messages
 
 ```python
-from flask import Flask, flash, request, render_template
+from flask import Flask, url_for, flash, send_from_directory, request, redirect, render_template
 from forms import ContactForm
-from flask_wtf import Form
-from wtforms import validators
 ```
 ```python
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
 	if (request.method == 'POST'):
-		if (not request.form['name'] and not request.form['surname'] \
-                and not request.form['email'] or not request.form['password']):
+		if (not request.form['name'] or not request.form['surname'] \
+                or not request.form['email'] or not request.form['password']):
 			flash('Please fill all the fields.', 'error')
         else:
-            return redirect(url_for('hello'))
+            return redirect(url_for('index'))
 	return render_template('new.html')
+```
+
+
+## Message flashing II
+
+* We add a secret_key for the POST request to the routes.py
+
+```python
+app.secret_key = 'random string'
 ```
 
 
@@ -456,7 +456,7 @@ session.pop('email', None)
 
 ## Sessions III
 
-* To use a seesion you should set up a secret key in your routes file
+* To use a session you should set up a secret key in your routes file
 
 ```python
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
@@ -465,34 +465,29 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 ## Log-in
 
-* Add route for the login in the routes file
+* Add route for the login to the routes file
 
 ```python
 @app.route('/login', methods=['POST'])
-def index():
-    if 'email' in session:
-        email = session['email']
-        return 'You are logged in as ' + email + '<br>' + \
+def login():
+    if 'name' in session:
+        name = session['name']
+        return 'You are logged in as ' + name + '<br>' + \
          "<b><a href = '/logout'>click here to log out</a></b>"
-	return "You are not logged in <br><a href = '/login'></b>" + \
+    return "You are not logged in <br><a href = '/login'></b>" + \
       "click here to log in</b></a>"
 ```
 
 
 ## Log-out
 
-* Update the imports in your routes file
-
-```python
-from flask import Flask, url_for, redirect
-```
+* Add route for the logout to the routes file
 
 ```python
 @app.route('/logout')
 def logout():
-   # remove the username from the session
-   if 'email' in session:
-       session.pop('email', None)
+   # remove the name from the session if it is there
+   session.pop('name', None)
    return redirect(url_for('index'))
 ```
 
@@ -504,7 +499,7 @@ def logout():
 
 ## Exercise 1.2
 
-* Then, write a Python program (form.py) that validates the form that customers fill and a Python program (views.py) with a function new that opens the new.html page. 
+* Then, write a Python program (form.py) for the form that customers fill and a Python program (views.py) with a function new that opens the new.html page. 
 
 
 ## Exercise 1.3
@@ -512,7 +507,7 @@ def logout():
 In views.py add a function called login that:
 
 * Checks if a customer has filled all the fields of the form and opens the new.html page if there are errors.
-* If there are errors, accordingly informs customers using flashing messages.
+* Also, informs customers using flashing messages.
 
 
 ## Exercise 1.3 (continued)
