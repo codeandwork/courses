@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Introduction to Flask - Part I</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-introduction-to-flask---part-i">Coding Bootcamp: Introduction to Flask - Part I</h1>
+<h2 id="what-is-flask">What is Flask?</h2>
+<ul>
+<li><p>A Python framework for building web applications (sites, blogs, wiki, etc.)</p></li>
+<li><p>Flask provides you tools, libraries, and technologies that allow you to build a web application</p></li>
+</ul>
+<h2 id="flask-dependencies">Flask dependencies</h2>
+<ul>
+<li><p>Flask depends on some external libraries (Werkzeug and Jinja2)</p></li>
+<li><p>Werkzeug is a toolkit for the standard Python interface between web applications and a variety of servers for both development and deployment</p></li>
+<li><p>Jinja2 renders templates</p></li>
+</ul>
+<h2 id="how-to-handle-dependencies">How to handle dependencies</h2>
+<ul>
+<li><p>Using virtualenv</p></li>
+<li><p>Virtualenv enables multiple side-by-side installations of Python, one for each project</p></li>
+<li><p>It helps to keep different project environments isolated</p></li>
+<li><p>On each project you can work with different versions of Python itself and Python libraries</p></li>
+</ul>
+<h2 id="how-to-install-virtualenv-on-mac-os-x-or-linux">How to install virtualenv on Mac OS X or Linux</h2>
+<pre class="sh"><code>$ sudo pip install virtualenv</code></pre>
+<h2 id="how-to-install-virtualenv-on-ubuntu">How to install virtualenv on Ubuntu</h2>
+<pre class="sh"><code>$ sudo apt-get install python-virtualenv</code></pre>
+<h2 id="how-to-install-virtualenv-on-microsoft-windows">How to install virtualenv on Microsoft Windows</h2>
+<ul>
+<li><p>First install pip and setuptools</p></li>
+<li><p>See instructions <a href="http://flask.pocoo.org/docs/0.11/installation/#windows-easy-install">here</a></p></li>
+<li><p>Upgrade pip and install virtualenv</p></li>
+</ul>
+<pre class="sh"><code>$ pip install --upgrade pip setuptools</code></pre>
+<pre class="sh"><code>$ pip install virtualenv</code></pre>
+<h2 id="how-to-create-a-new-flask-project-i">How to create a new Flask project I</h2>
+<ul>
+<li><p>Fire up a shell an give the following commands</p></li>
+<li><p>Create a project and change directory</p></li>
+</ul>
+<pre class="sh"><code>$ mkdir app</code></pre>
+<pre class="sh"><code>$ cd app</code></pre>
+<h2 id="how-to-create-a-new-flask-project-ii">How to create a new Flask project II</h2>
+<ul>
+<li>Create a venv folder in your project</li>
+</ul>
+<pre class="sh"><code>$ virtualenv venv</code></pre>
+<ul>
+<li>Activate the environment of your project</li>
+</ul>
+<p>on Mac OS X or Linux</p>
+<pre class="sh"><code>$ . venv/bin/activate</code></pre>
+<p>on Microsoft Windows</p>
+<pre class="sh"><code>$ venv\scripts\activate</code></pre>
+<h2 id="how-to-create-a-new-flask-project-iii">How to create a new Flask project III</h2>
+<ul>
+<li>Get Flask in your virtualenv</li>
+</ul>
+<pre class="sh"><code>$ pip install Flask</code></pre>
+<ul>
+<li>Deactivate your virtualenv</li>
+</ul>
+<pre class="sh"><code>$ deactivate</code></pre>
+<h2 id="a-minimal-app-i">A minimal app I</h2>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> Flask
+app = Flask(<span class="ot">__name__</span>)
+
+<span class="ot">@app.route</span>(<span class="st">&#39;/&#39;</span>)
+<span class="kw">def</span> hello_world():
+    <span class="kw">return</span> <span class="st">&#39;Hello, World!&#39;</span>
+    
+<span class="kw">if</span> <span class="ot">__name__</span> == <span class="st">&#39;__main__&#39;</span>:
+   app.run(debug = <span class="ot">True</span>)</code></pre>
+<ul>
+<li><p>Import the Flask class</p></li>
+<li><p>Create an instance of this class</p></li>
+<li><p>Use the route() decorator to tell Flask what URL should trigger</p></li>
+<li><p>Set to the function the message that we want to display in the user's browser</p></li>
+<li><p>Save the python file as hello.py in a folder named app</p></li>
+</ul>
+<h2 id="a-minimal-app-ii">A minimal app II</h2>
+<ul>
+<li>To run the app write the following commands and open a browser</li>
+</ul>
+<pre class="sh"><code>$ cd ./app
+$ export FLASK_APP=hello.py
+$ flask run
+ * Running on http://127.0.0.1:5000/</code></pre>
+<ul>
+<li>On Microsoft Windows use set instead of export</li>
+</ul>
+<h2 id="a-minimal-app-iii">A minimal app III</h2>
+<p><img src="media/hello.png" /></p>
+<h2 id="variable-rules-i">Variable rules I</h2>
+<ul>
+<li>We can add variable parts to a URL by marking special sections as <variable_name> or <converter:variable_name></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/hello/&#39;</span>)
+<span class="ot">@app.route</span>(<span class="st">&#39;/hello/&lt;name&gt;&#39;</span>)
+<span class="kw">def</span> hello_name(name):
+   <span class="kw">return</span> <span class="st">&#39;Hello </span><span class="ot">%s</span><span class="st">!&#39;</span> % name</code></pre>
+<h2 id="variable-rules-ii">Variable rules II</h2>
+<p><img src="media/google.png" /></p>
+<h2 id="variable-rules-iii">Variable rules III</h2>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/post/&lt;int:post_id&gt;&#39;</span>)
+<span class="kw">def</span> show_post(post_id):
+    <span class="co"># show the post with the given id, the id is an integer</span>
+    <span class="kw">return</span> <span class="st">&#39;Post </span><span class="ot">%d</span><span class="st">&#39;</span> % post_id</code></pre>
+<h2 id="variable-rules-iv">Variable rules IV</h2>
+<p><img src="media/post.png" /></p>
+<h2 id="unique-urls-redirection-behaviour">Unique URLs / Redirection behaviour</h2>
+<ul>
+<li>Flask's URL rules ensure beautiful and unique URLs</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/projects/&#39;</span>)
+<span class="kw">def</span> projects():
+    <span class="kw">return</span> <span class="st">&#39;The project page&#39;</span>
+
+<span class="ot">@app.route</span>(<span class="st">&#39;/about&#39;</span>)
+<span class="kw">def</span> about():
+    <span class="kw">return</span> <span class="st">&#39;The about page&#39;</span></code></pre>
+<h2 id="url-building-i">URL building I</h2>
+<ul>
+<li><p>Flask can also generate URLs</p></li>
+<li><p>To build a URL to a specific function you can use the url_for() function</p></li>
+<li><p>url_for() accepts the name of the function as first argument and a number of keyword arguments, each corresponding to the variable part of the URL rule</p></li>
+</ul>
+<h2 id="url-building-ii">URL building II</h2>
+<pre class="sh"><code>&gt;&gt;&gt; from flask import Flask, url_for
+&gt;&gt;&gt; app = Flask(__name__)
+&gt;&gt;&gt; @app.route(&#39;/&#39;)
+... def index(): pass
+...
+&gt;&gt;&gt; @app.route(&#39;/login&#39;)
+... def login(): pass
+...
+&gt;&gt;&gt; @app.route(&#39;/user/&lt;username&gt;&#39;)
+... def profile(username): pass
+...
+&gt;&gt;&gt; with app.test_request_context():
+...  print (url_for(&#39;index&#39;))
+...  print (url_for(&#39;login&#39;))
+...  print (url_for(&#39;profile&#39;, username=&#39;mark&#39;))
+...</code></pre>
+<h2 id="http-methods">HTTP Methods</h2>
+<ul>
+<li><p>HTTP (the protocol web applications are speaking) knows different methods for accessing URLs</p></li>
+<li><p>By default, a route only answers to GET requests</p></li>
+<li><p>HTTP methods tell the server what the client wants to do with the requested page</p></li>
+<li><p>GET: requests data from a specified resource (e.g. a client submits an HTTP request to the server)</p></li>
+<li><p>POST: submits data to be processed to a specified resource (e.g. the server returns a response to the client)</p></li>
+</ul>
+<h2 id="request-example">Request example</h2>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> request
+
+<span class="ot">@app.route</span>(<span class="st">&#39;/login&#39;</span>, methods=[<span class="st">&#39;GET&#39;</span>, <span class="st">&#39;POST&#39;</span>])
+<span class="kw">def</span> login():
+    <span class="kw">if</span> request.method == <span class="st">&#39;POST&#39;</span>:
+        do_the_login()
+    <span class="kw">else</span>:
+        show_the_login_form()</code></pre>
+<h2 id="static-files-i">Static files I</h2>
+<ul>
+<li><p>Static files are usually the CSS and JavaScript files</p></li>
+<li><p>Add static files in a folder with the name static in your project</p></li>
+<li><p>Import the send_from_directory module and use the send_from_directory() method</p></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> send_from_directory</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/static/css/stylesheet.css&#39;</span>)
+<span class="kw">def</span> serve_static_css(filename):
+    root_dir = os.path.dirname(os.getcwd())
+    <span class="kw">return</span> send_from_directory(os.path.join(root_dir, <span class="st">&#39;static&#39;</span>, <span class="st">&#39;css&#39;</span>), filename)</code></pre>
+<h2 id="static-files-ii">Static files II</h2>
+<ul>
+<li>To generate URLs for static files, use the special 'static' endpoint name:</li>
+</ul>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;{{ url_for(&#39;static&#39;, filename=&#39;style.css&#39;) }}&quot;</span><span class="kw">&gt;</span></code></pre>
+<h2 id="rendering-templates">Rendering Templates</h2>
+<ul>
+<li><p>Templates are html pages</p></li>
+<li><p>Add all the templates should be in a folder with the name templates in your project</p></li>
+<li><p>To render a template you import the render_template module and use the render_template() method</p></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> render_template</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/hello/&lt;name&gt;&#39;</span>)
+<span class="kw">def</span> hello(name):
+    <span class="kw">return</span> render_template(<span class="st">&#39;hello.html&#39;</span>, name=name)</code></pre>
+<h2 id="template-example">Template Example</h2>
+<ul>
+<li>The hello.html file</li>
+</ul>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="er">&lt;</span>!doctype html&gt;
+<span class="kw">&lt;title&gt;</span>Hello from Flask<span class="kw">&lt;/title&gt;</span>
+{% if name %}
+  <span class="kw">&lt;h1&gt;</span>Hello {{ name }}!<span class="kw">&lt;/h1&gt;</span>
+{% else %}
+  <span class="kw">&lt;h1&gt;</span>Hello, World!<span class="kw">&lt;/h1&gt;</span>
+{% endif %}</code></pre>
+<ul>
+<li><p>The variables and/or logic are placed between tags or delimiters</p></li>
+<li><p>Templates use {% ... %} for expressions or logic (like for loops), while {{ ... }} are used for outputting the results of an expression or a variable to the end user</p></li>
+</ul>
+<h2 id="result">Result</h2>
+<p><img src="media/template.png" /></p>
+<h2 id="create-a-form-i">Create a form I</h2>
+<ul>
+<li>Install Flask-WTF</li>
+</ul>
+<pre class="sh"><code>$ pip install Flask-WTF</code></pre>
+<h2 id="create-a-form-ii">Create a form II</h2>
+<ul>
+<li>Create an html form called new.html</li>
+</ul>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;/new&quot;</span><span class="ot"> method</span> <span class="ot">=</span> <span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
+     <span class="kw">&lt;label</span><span class="ot"> for</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>Name<span class="kw">&lt;/label&gt;</span>
+     <span class="kw">&lt;input</span><span class="ot"> type</span> <span class="ot">=</span> <span class="st">&quot;text&quot;</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span><span class="ot"> placeholder</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span><span class="kw">/&gt;</span>
+     <span class="kw">&lt;br&gt;</span>
+     <span class="kw">&lt;label</span><span class="ot"> for</span> <span class="ot">=</span> <span class="st">&quot;surname&quot;</span><span class="kw">&gt;</span>Surname<span class="kw">&lt;/label&gt;</span>
+     <span class="kw">&lt;input</span><span class="ot"> type</span> <span class="ot">=</span> <span class="st">&quot;text&quot;</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;surname&quot;</span><span class="ot"> placeholder</span> <span class="ot">=</span> <span class="st">&quot;surname&quot;</span><span class="kw">/&gt;</span>
+     <span class="kw">&lt;br&gt;</span>
+     <span class="kw">&lt;label</span><span class="ot"> for</span> <span class="ot">=</span> <span class="st">&quot;email&quot;</span><span class="kw">&gt;</span>Email<span class="kw">&lt;/label&gt;</span>
+     <span class="kw">&lt;input</span><span class="ot"> type</span> <span class="ot">=</span> <span class="st">&quot;text&quot;</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;email&quot;</span><span class="ot"> placeholder</span> <span class="ot">=</span> <span class="st">&quot;email&quot;</span><span class="kw">/&gt;</span>
+     <span class="kw">&lt;br&gt;</span>
+     <span class="kw">&lt;label</span><span class="ot"> for</span> <span class="ot">=</span> <span class="st">&quot;password&quot;</span><span class="kw">&gt;</span>Password<span class="kw">&lt;/label&gt;</span>
+     <span class="kw">&lt;input</span><span class="ot"> type</span> <span class="ot">=</span> <span class="st">&quot;password&quot;</span><span class="ot"> name</span> <span class="ot">=</span> <span class="st">&quot;password&quot;</span><span class="ot"> placeholder</span> <span class="ot">=</span> <span class="st">&quot;password&quot;</span><span class="kw">/&gt;</span>
+     <span class="kw">&lt;br&gt;</span>
+     <span class="kw">&lt;input</span><span class="ot"> id=</span><span class="st">&quot;btnSignUp&quot;</span><span class="ot"> type</span> <span class="ot">=</span> <span class="st">&quot;submit&quot;</span><span class="ot"> value</span> <span class="ot">=</span> <span class="st">&quot;Sign up&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/form&gt;</span></code></pre>
+<h2 id="create-a-form-iii">Create a form III</h2>
+<ul>
+<li><p>Add a new Python file for the form, i.e. forms.py</p></li>
+<li><p>Add the appropriate imports for the validation of the form's fields</p></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> Flask
+<span class="ch">from</span> flask_wtf <span class="ch">import</span> Form
+<span class="ch">from</span> wtforms <span class="ch">import</span> TextField, SubmitField, PasswordField, validators, ValidationError
+
+<span class="kw">class</span> ContactForm(Form):
+   name = TextField(<span class="st">&quot;Name&quot;</span>,[validators.Required(<span class="st">&quot;Please enter your name.&quot;</span>)])
+   surname = TextField(<span class="st">&quot;Surname&quot;</span>,[validators.Required(<span class="st">&quot;Please enter your surname.&quot;</span>)])
+   email = TextField(<span class="st">&quot;Email&quot;</span>,[validators.Required(<span class="st">&quot;Please enter your email address.&quot;</span>),
+      validators.Email(<span class="st">&quot;Please enter your email address.&quot;</span>)])
+   password = PasswordField(<span class="st">&#39;Password&#39;</span>, [validators.Required(<span class="st">&quot;Please enter your password.&quot;</span>)])
+   submit = SubmitField(<span class="st">&quot;Send&quot;</span>)</code></pre>
+<h2 id="create-a-form-iv">Create a form IV</h2>
+<ul>
+<li><p>Add the new() method to the python file with the routes/views file called routes.py</p></li>
+<li><p>The new() method is called in the form's action in the html page</p></li>
+<li><p>Add the appropriate imports</p></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> Flask, request, render_template
+<span class="ch">from</span> forms <span class="ch">import</span> ContactForm
+<span class="ch">from</span> flask_wtf <span class="ch">import</span> Form
+<span class="ch">from</span> wtforms <span class="ch">import</span> validators</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/new&#39;</span>, methods = [<span class="st">&#39;GET&#39;</span>, <span class="st">&#39;POST&#39;</span>])
+<span class="kw">def</span> new():
+    <span class="kw">if</span> (request.method == <span class="st">&#39;POST&#39;</span>):
+        <span class="kw">pass</span>
+    <span class="kw">return</span> render_template(<span class="st">&#39;new.html&#39;</span>)</code></pre>
+<h2 id="message-flashing">Message flashing</h2>
+<ul>
+<li>Add error messages</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> Flask, flash, request, render_template
+<span class="ch">from</span> forms <span class="ch">import</span> ContactForm
+<span class="ch">from</span> flask_wtf <span class="ch">import</span> Form
+<span class="ch">from</span> wtforms <span class="ch">import</span> validators</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/new&#39;</span>, methods = [<span class="st">&#39;GET&#39;</span>, <span class="st">&#39;POST&#39;</span>])
+<span class="kw">def</span> new():
+    <span class="kw">if</span> (request.method == <span class="st">&#39;POST&#39;</span>):
+        <span class="kw">if</span> (not request.form[<span class="st">&#39;name&#39;</span>] and not request.form[<span class="st">&#39;surname&#39;</span>] \
+                and not request.form[<span class="st">&#39;email&#39;</span>] or not request.form[<span class="st">&#39;password&#39;</span>]):
+            flash(<span class="st">&#39;Please fill all the fields.&#39;</span>, <span class="st">&#39;error&#39;</span>)
+        <span class="kw">else</span>:
+            <span class="kw">return</span> redirect(url_for(<span class="st">&#39;hello&#39;</span>))
+    <span class="kw">return</span> render_template(<span class="st">&#39;new.html&#39;</span>)</code></pre>
+<h2 id="sessions-i">Sessions I</h2>
+<ul>
+<li><p>A session is the time interval when a client logs into a server and logs out of it</p></li>
+<li><p>The data, which is needed to be held across this session, is stored in a temporary directory on the server</p></li>
+<li><p>Import the session module from flask in your routes file</p></li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> session</code></pre>
+<h2 id="sessions-ii">Sessions II</h2>
+<ul>
+<li>To set a session variable use the statement</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">session[<span class="st">&#39;email&#39;</span>] = <span class="st">&#39;foo@bar.com&#39;</span></code></pre>
+<ul>
+<li>To release a session variable use the pop() method</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">session.pop(<span class="st">&#39;email&#39;</span>, <span class="ot">None</span>)</code></pre>
+<h2 id="sessions-iii">Sessions III</h2>
+<ul>
+<li>To use a seesion you should set up a secret key in your routes file</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python">app.secret_key = <span class="st">&#39;A0Zr98j/3yX R~XHH!jmN]LWX/,?RT&#39;</span></code></pre>
+<h2 id="log-in">Log-in</h2>
+<ul>
+<li>Add route for the login in the routes file</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/login&#39;</span>, methods=[<span class="st">&#39;POST&#39;</span>])
+<span class="kw">def</span> index():
+    <span class="kw">if</span> <span class="st">&#39;email&#39;</span> in session:
+        email = session[<span class="st">&#39;email&#39;</span>]
+        <span class="kw">return</span> <span class="st">&#39;You are logged in as &#39;</span> + email + <span class="st">&#39;&lt;br&gt;&#39;</span> + \
+         <span class="co">&quot;&lt;b&gt;&lt;a href = &#39;/logout&#39;&gt;click here to log out&lt;/a&gt;&lt;/b&gt;&quot;</span>
+    <span class="kw">return</span> <span class="st">&quot;You are not logged in &lt;br&gt;&lt;a href = &#39;/login&#39;&gt;&lt;/b&gt;&quot;</span> + \
+      <span class="co">&quot;click here to log in&lt;/b&gt;&lt;/a&gt;&quot;</span></code></pre>
+<h2 id="log-out">Log-out</h2>
+<ul>
+<li>Update the imports in your routes file</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> Flask, url_for, redirect</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/logout&#39;</span>)
+<span class="kw">def</span> logout():
+   <span class="co"># remove the username from the session</span>
+   <span class="kw">if</span> <span class="st">&#39;email&#39;</span> in session:
+       session.pop(<span class="st">&#39;email&#39;</span>, <span class="ot">None</span>)
+   <span class="kw">return</span> redirect(url_for(<span class="st">&#39;index&#39;</span>))</code></pre>
+<h2 id="exercise-1.1">Exercise 1.1</h2>
+<ul>
+<li>Imagine that you want to develop the web site for a local bookstore. Start by developing an html form (in new.html) that customers can use to add their personal details (name, surname, email, and password) in order to be able to access the online store. Set the action of the form correctly so that to open the login.html page when the customer presses submit.</li>
+</ul>
+<h2 id="exercise-1.2">Exercise 1.2</h2>
+<ul>
+<li>Then, write a Python program (form.py) that validates the form that customers fill and a Python program (views.py) with a function new that opens the new.html page.</li>
+</ul>
+<h2 id="exercise-1.3">Exercise 1.3</h2>
+<p>In views.py add a function called login that:</p>
+<ul>
+<li>Checks if a customer has filled all the fields of the form and opens the new.html page if there are errors.<br /></li>
+<li>If there are errors, accordingly informs customers using flashing messages.</li>
+</ul>
+<h2 id="exercise-1.3-continued">Exercise 1.3 (continued)</h2>
+<ul>
+<li>Otherwise, adds the customer's email to the session after setting that he/she is logged in (i.e. session['logged_in'] = True) and<br /></li>
+<li>opens another html page (hello.html) that says: &quot;Hi <email>! Welcome to our bookstore.&quot; Where <email> is the email that the customer has given to the form and it is in the session. Be careful to add any needed routes to views.py.</li>
+</ul>
+<h2 id="exercise-1.4">Exercise 1.4</h2>
+<ul>
+<li>Extend the site by allowing customers to log-out after they log-in.<br /></li>
+<li>Add a function logout (to the views.py) that opens a logout.html page after removing the customer from the session.<br /></li>
+<li>If the customer's email is not in the session, opens the new.html page.</li>
+</ul>
+<h2 id="exercise-1.5">Exercise 1.5</h2>
+<ul>
+<li>Finally, use the following static file to improve a bit the appearence of the form<br /></li>
+<li>Download the css file from <a href="http://www.w3schools.com/lib/w3.css">http://www.w3schools.com/lib/w3.css</a> and save it in a file called w3.css</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="http://flask.pocoo.org/docs/0.11/quickstart/">http://flask.pocoo.org/docs/0.11/quickstart/</a></li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
