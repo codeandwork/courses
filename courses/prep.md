@@ -32,4 +32,5 @@
 
 
 ## Develop a first dynamic web application
+* [Introduction to Flask - Part I](prep/flaskTutorial1.md)
 
