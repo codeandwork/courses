@@ -267,7 +267,7 @@ from flask import send_from_directory
 import os
 ```
 ```python
-@app.route('/static/css/stylesheet.css')
+@app.route('/static/css/style.css')
 def serve_static_css(filename):
 	root_dir = os.path.dirname(os.getcwd())
 	return send_from_directory(os.path.join(root_dir, 'static', 'css'), filename)
@@ -295,27 +295,31 @@ def serve_static_css(filename):
 from flask import render_template
 ```
 ```python
+@app.route('/hello/')
 @app.route('/hello/<name>')
-def hello(name):
+def hello(name=None):
     return render_template('hello.html', name=name)
 ```
 
 
 ## Template Example
 
-* The hello.html file
-
 ```html
-<!doctype html>
-<title>Hello from Flask</title>
-{% if name %}
-  <h1>Hello {{ name }}!</h1>
-{% else %}
-  <h1>Hello, Flask!</h1>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello from Flask</title>
+  </head>
+  <body>
+        {% if name %}
+          <h1>Hello {{ name }}!</h1>
+        {% else %}
+          <h1>Hello, Flask!</h1>
+        {% endif %}
+  </body>
+</html>
 ```
 * The variables and/or logic are placed between tags or delimiters 
-
 * Templates use {% ... %} for expressions or logic (like for loops), while {{ ... }} are used for outputting the results of an expression or a variable to the end user
 
 
@@ -335,7 +339,7 @@ $ pip install Flask-WTF
 
 ## Create a form II
 
-* Create an html form called new.html
+* Create an html form in an html file called new.html
 
 ```html
 <form action="/new" method = "post">
@@ -358,7 +362,7 @@ $ pip install Flask-WTF
 
 ## Create a form III
 
-* Add a new Python file for the form, i.e. forms.py
+* Create a new Python file for the form, i.e. forms.py
 
 * Add the appropriate imports
 
@@ -379,7 +383,7 @@ class ContactForm(Form):
 ## Create a form IV
 
 * Add the new() method to the python file with the routes (e.g. routes.py)
-* Don't forget to set ```export FLASK_APP=routes.py``` to run the app
+* Don't forget to set ```export (set) FLASK_APP=routes.py``` to run the app
 * The new() method is called in the form's action in the html page
 * Add the appropriate imports
 
@@ -398,7 +402,7 @@ def new():
 
 ## Message flashing I
 
-* Add error messages
+* Add error messages (to routes.py)
 
 ```python
 from flask import Flask, url_for, flash, send_from_directory, request, redirect, render_template
@@ -414,12 +418,29 @@ def new():
         else:
             return redirect(url_for('index'))
 	return render_template('new.html')
+    
+@app.route('/')
+def index():
+   return render_template('index.html') # returns a simple .html page
 ```
 
 
 ## Message flashing II
 
-* We add a secret_key for the POST request to the routes.py
+* Add to the new.html the message template
+
+```html
+{%- for category, message in get_flashed_messages(with_categories = true) %}
+    <div>
+    {{ message }}
+    </div>
+{%- endfor %}
+```
+
+
+## Message flashing III
+
+* We add a secret_key for the session to the routes.py
 
 ```python
 app.secret_key = 'random string'
@@ -429,13 +450,11 @@ app.secret_key = 'random string'
 ## Sessions I
 
 * A session is the time interval when a client logs into a server and logs out of it 
-
 * The data, which is needed to be held across this session, is stored in a temporary directory on the server
-
-* Import the session module from flask in your routes file
+* Import the session module from flask in your routes file (routes.py)
 
 ```python
-from flask import session
+from flask import ..., session
 ```
 
 
@@ -456,6 +475,24 @@ session.pop('email', None)
 
 ## Sessions III
 
+* Update the new method (routes.py)
+
+```python
+@app.route('/new', methods = ['GET', 'POST'])
+def new():
+    if (request.method == 'POST'):
+        if (not request.form['name'] or not request.form['surname'] \
+                or not request.form['email'] or not request.form['password']):
+            flash('Please fill all the fields.', 'error')
+        else:
+            session['name'] = request.form['name']
+            return login() 
+    return render_template('new.html')
+```
+
+
+## Sessions IV
+
 * To use a session you should set up a secret key in your routes file
 
 ```python
@@ -465,7 +502,7 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 ## Log-in
 
-* Add route for the login to the routes file
+* Add route for the login to the routes file (routes.py)
 
 ```python
 @app.route('/login', methods=['POST'])
@@ -481,7 +518,7 @@ def login():
 
 ## Log-out
 
-* Add route for the logout to the routes file
+* Add route for the logout to the routes file (routes.py)
 
 ```python
 @app.route('/logout')
@@ -513,7 +550,7 @@ In views.py add a function called login that:
 ## Exercise 1.3 (continued)
 
 * Otherwise, adds the customer's email to the session after setting that he/she is logged in (i.e. session['logged_in'] = True) and
-* opens another html page (hello.html) that says: "Hi <email>! Welcome to our bookstore." Where <email> is the email that the customer has given to the form and it is in the session. Be careful to add any needed routes to views.py.
+* opens another html page (hello.html) that says: "Hi ```<email>```! Welcome to our bookstore." Where ```<email>``` is the email that the customer has given to the form and it is in the session. Be careful to add any needed routes to views.py.
 
 
 ## Exercise 1.4
