@@ -194,7 +194,7 @@ $ flask run
 </ul>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> send_from_directory
 <span class="ch">import</span> os</code></pre>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/static/css/stylesheet.css&#39;</span>)
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/static/css/style.css&#39;</span>)
 <span class="kw">def</span> serve_static_css(filename):
     root_dir = os.path.dirname(os.getcwd())
     <span class="kw">return</span> send_from_directory(os.path.join(root_dir, <span class="st">&#39;static&#39;</span>, <span class="st">&#39;css&#39;</span>), filename)</code></pre>
@@ -210,23 +210,27 @@ $ flask run
 <li><p>To render a template you import the render_template module and use the render_template() method</p></li>
 </ul>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> render_template</code></pre>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/hello/&lt;name&gt;&#39;</span>)
-<span class="kw">def</span> hello(name):
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/hello/&#39;</span>)
+<span class="ot">@app.route</span>(<span class="st">&#39;/hello/&lt;name&gt;&#39;</span>)
+<span class="kw">def</span> hello(name=<span class="ot">None</span>):
     <span class="kw">return</span> render_template(<span class="st">&#39;hello.html&#39;</span>, name=name)</code></pre>
 <h2 id="template-example">Template Example</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;en&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;title&gt;</span>Hello from Flask<span class="kw">&lt;/title&gt;</span>
+  <span class="kw">&lt;/head&gt;</span>
+  <span class="kw">&lt;body&gt;</span>
+        {% if name %}
+          <span class="kw">&lt;h1&gt;</span>Hello {{ name }}!<span class="kw">&lt;/h1&gt;</span>
+        {% else %}
+          <span class="kw">&lt;h1&gt;</span>Hello, Flask!<span class="kw">&lt;/h1&gt;</span>
+        {% endif %}
+  <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
 <ul>
-<li>The hello.html file</li>
-</ul>
-<pre class="sourceCode html"><code class="sourceCode html"><span class="er">&lt;</span>!doctype html&gt;
-<span class="kw">&lt;title&gt;</span>Hello from Flask<span class="kw">&lt;/title&gt;</span>
-{% if name %}
-  <span class="kw">&lt;h1&gt;</span>Hello {{ name }}!<span class="kw">&lt;/h1&gt;</span>
-{% else %}
-  <span class="kw">&lt;h1&gt;</span>Hello, Flask!<span class="kw">&lt;/h1&gt;</span>
-{% endif %}</code></pre>
-<ul>
-<li><p>The variables and/or logic are placed between tags or delimiters</p></li>
-<li><p>Templates use {% ... %} for expressions or logic (like for loops), while {{ ... }} are used for outputting the results of an expression or a variable to the end user</p></li>
+<li>The variables and/or logic are placed between tags or delimiters<br /></li>
+<li>Templates use {% ... %} for expressions or logic (like for loops), while {{ ... }} are used for outputting the results of an expression or a variable to the end user</li>
 </ul>
 <h2 id="result">Result</h2>
 <p><img src="media/template.png" /></p>
@@ -237,7 +241,7 @@ $ flask run
 <pre class="sh"><code>$ pip install Flask-WTF</code></pre>
 <h2 id="create-a-form-ii">Create a form II</h2>
 <ul>
-<li>Create an html form called new.html</li>
+<li>Create an html form in an html file called new.html</li>
 </ul>
 <pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;/new&quot;</span><span class="ot"> method</span> <span class="ot">=</span> <span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
      <span class="kw">&lt;label</span><span class="ot"> for</span> <span class="ot">=</span> <span class="st">&quot;name&quot;</span><span class="kw">&gt;</span>Name<span class="kw">&lt;/label&gt;</span>
@@ -256,7 +260,7 @@ $ flask run
 <span class="kw">&lt;/form&gt;</span></code></pre>
 <h2 id="create-a-form-iii">Create a form III</h2>
 <ul>
-<li><p>Add a new Python file for the form, i.e. forms.py</p></li>
+<li><p>Create a new Python file for the form, i.e. forms.py</p></li>
 <li><p>Add the appropriate imports</p></li>
 </ul>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> Flask
@@ -272,7 +276,7 @@ $ flask run
 <h2 id="create-a-form-iv">Create a form IV</h2>
 <ul>
 <li>Add the new() method to the python file with the routes (e.g. routes.py)<br /></li>
-<li>Don't forget to set <code>export FLASK_APP=routes.py</code> to run the app<br /></li>
+<li>Don't forget to set <code>export (set) FLASK_APP=routes.py</code> to run the app<br /></li>
 <li>The new() method is called in the form's action in the html page<br /></li>
 <li>Add the appropriate imports</li>
 </ul>
@@ -285,7 +289,7 @@ $ flask run
     <span class="kw">return</span> render_template(<span class="st">&#39;new.html&#39;</span>)</code></pre>
 <h2 id="message-flashing-i">Message flashing I</h2>
 <ul>
-<li>Add error messages</li>
+<li>Add error messages (to routes.py)</li>
 </ul>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> Flask, url_for, flash, send_from_directory, request, redirect, render_template
 <span class="ch">from</span> forms <span class="ch">import</span> ContactForm</code></pre>
@@ -297,19 +301,32 @@ $ flask run
             flash(<span class="st">&#39;Please fill all the fields.&#39;</span>, <span class="st">&#39;error&#39;</span>)
         <span class="kw">else</span>:
             <span class="kw">return</span> redirect(url_for(<span class="st">&#39;index&#39;</span>))
-    <span class="kw">return</span> render_template(<span class="st">&#39;new.html&#39;</span>)</code></pre>
+    <span class="kw">return</span> render_template(<span class="st">&#39;new.html&#39;</span>)
+    
+<span class="ot">@app.route</span>(<span class="st">&#39;/&#39;</span>)
+<span class="kw">def</span> index():
+   <span class="kw">return</span> render_template(<span class="st">&#39;index.html&#39;</span>) <span class="co"># returns a simple .html page</span></code></pre>
 <h2 id="message-flashing-ii">Message flashing II</h2>
 <ul>
-<li>We add a secret_key for the POST request to the routes.py</li>
+<li>Add to the new.html the message template</li>
+</ul>
+<pre class="sourceCode html"><code class="sourceCode html">{%- for category, message in get_flashed_messages(with_categories = true) %}
+    <span class="kw">&lt;div&gt;</span>
+    {{ message }}
+    <span class="kw">&lt;/div&gt;</span>
+{%- endfor %}</code></pre>
+<h2 id="message-flashing-iii">Message flashing III</h2>
+<ul>
+<li>We add a secret_key for the session to the routes.py</li>
 </ul>
 <pre class="sourceCode python"><code class="sourceCode python">app.secret_key = <span class="st">&#39;random string&#39;</span></code></pre>
 <h2 id="sessions-i">Sessions I</h2>
 <ul>
-<li><p>A session is the time interval when a client logs into a server and logs out of it</p></li>
-<li><p>The data, which is needed to be held across this session, is stored in a temporary directory on the server</p></li>
-<li><p>Import the session module from flask in your routes file</p></li>
+<li>A session is the time interval when a client logs into a server and logs out of it<br /></li>
+<li>The data, which is needed to be held across this session, is stored in a temporary directory on the server<br /></li>
+<li>Import the session module from flask in your routes file (routes.py)</li>
 </ul>
-<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> session</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> flask <span class="ch">import</span> ..., session</code></pre>
 <h2 id="sessions-ii">Sessions II</h2>
 <ul>
 <li>To set a session variable use the statement</li>
@@ -321,12 +338,26 @@ $ flask run
 <pre class="sourceCode python"><code class="sourceCode python">session.pop(<span class="st">&#39;email&#39;</span>, <span class="ot">None</span>)</code></pre>
 <h2 id="sessions-iii">Sessions III</h2>
 <ul>
+<li>Update the new method (routes.py)</li>
+</ul>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/new&#39;</span>, methods = [<span class="st">&#39;GET&#39;</span>, <span class="st">&#39;POST&#39;</span>])
+<span class="kw">def</span> new():
+    <span class="kw">if</span> (request.method == <span class="st">&#39;POST&#39;</span>):
+        <span class="kw">if</span> (not request.form[<span class="st">&#39;name&#39;</span>] or not request.form[<span class="st">&#39;surname&#39;</span>] \
+                or not request.form[<span class="st">&#39;email&#39;</span>] or not request.form[<span class="st">&#39;password&#39;</span>]):
+            flash(<span class="st">&#39;Please fill all the fields.&#39;</span>, <span class="st">&#39;error&#39;</span>)
+        <span class="kw">else</span>:
+            session[<span class="st">&#39;name&#39;</span>] = request.form[<span class="st">&#39;name&#39;</span>]
+            <span class="kw">return</span> login() 
+    <span class="kw">return</span> render_template(<span class="st">&#39;new.html&#39;</span>)</code></pre>
+<h2 id="sessions-iv">Sessions IV</h2>
+<ul>
 <li>To use a session you should set up a secret key in your routes file</li>
 </ul>
 <pre class="sourceCode python"><code class="sourceCode python">app.secret_key = <span class="st">&#39;A0Zr98j/3yX R~XHH!jmN]LWX/,?RT&#39;</span></code></pre>
 <h2 id="log-in">Log-in</h2>
 <ul>
-<li>Add route for the login to the routes file</li>
+<li>Add route for the login to the routes file (routes.py)</li>
 </ul>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/login&#39;</span>, methods=[<span class="st">&#39;POST&#39;</span>])
 <span class="kw">def</span> login():
@@ -338,7 +369,7 @@ $ flask run
       <span class="co">&quot;click here to log in&lt;/b&gt;&lt;/a&gt;&quot;</span></code></pre>
 <h2 id="log-out">Log-out</h2>
 <ul>
-<li>Add route for the logout to the routes file</li>
+<li>Add route for the logout to the routes file (routes.py)</li>
 </ul>
 <pre class="sourceCode python"><code class="sourceCode python"><span class="ot">@app.route</span>(<span class="st">&#39;/logout&#39;</span>)
 <span class="kw">def</span> logout():
@@ -362,7 +393,7 @@ $ flask run
 <h2 id="exercise-1.3-continued">Exercise 1.3 (continued)</h2>
 <ul>
 <li>Otherwise, adds the customer's email to the session after setting that he/she is logged in (i.e. session['logged_in'] = True) and<br /></li>
-<li>opens another html page (hello.html) that says: &quot;Hi <email>! Welcome to our bookstore.&quot; Where <email> is the email that the customer has given to the form and it is in the session. Be careful to add any needed routes to views.py.</li>
+<li>opens another html page (hello.html) that says: &quot;Hi <code>&lt;email&gt;</code>! Welcome to our bookstore.&quot; Where <code>&lt;email&gt;</code> is the email that the customer has given to the form and it is in the session. Be careful to add any needed routes to views.py.</li>
 </ul>
 <h2 id="exercise-1.4">Exercise 1.4</h2>
 <ul>
