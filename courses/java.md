@@ -1,5 +1,6 @@
 # Coding Bootcamp: Java specialization
 ## Test driven development and object-oriented programming
+* [Being lazy](common/lazy.md)
 * [Hello world!](java/hello.md)
 * [Constructing and using objects](java/objects.md)
 * [Creating classes](java/classes.md)
