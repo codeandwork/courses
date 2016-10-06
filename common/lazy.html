@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Being lazy</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-being-lazy">Coding Bootcamp: Being lazy</h1>
+<h2 id="levels-of-reuse">Levels of reuse</h2>
+<ul>
+<li>Copy-paste (bad)<br /></li>
+<li>Elements you write<br /></li>
+<li>Adapted elements (polymorphism)<br /></li>
+<li>Third party-elements</li>
+</ul>
+<h2 id="the-problem-with-copy-paste">The problem with copy-paste</h2>
+<ul>
+<li>Code bloat<br /></li>
+<li>Bug clones<br /></li>
+<li>Increased maintenance cost</li>
+</ul>
+<h2 id="elements-you-can-write-or-reuse">Elements you can write or reuse</h2>
+<ul>
+<li>Function, procedure<br /></li>
+<li>Method<br /></li>
+<li>Class<br /></li>
+<li>Package<br /></li>
+<li>Component<br /></li>
+<li>Service<br /></li>
+<li>Process<br /></li>
+<li>System</li>
+</ul>
+<h2 id="the-role-of-a-class">The role of a class</h2>
+<ul>
+<li>Unit of encapsulation<br /></li>
+<li>Bring together code and data<br /></li>
+<li>Allow multiple instances<br /></li>
+<li>Base for specialization</li>
+</ul>
+<h2 id="class-example">Class example</h2>
+<pre class="py"><code>class Counter(object):
+    &quot;&quot;&quot;Return ascending integers
+    &quot;&quot;&quot;
+    def count(self):
+        &quot;&quot;&quot;Return next integer
+        &quot;&quot;&quot;
+        self.counter = self.counter + 1
+        return self.counter
+    def __init__(self):
+        self.counter = -1</code></pre>
+<h2 id="class-test">Class test</h2>
+<pre class="py"><code>class CounterTestCase(TestCase):
+    def test_starts_from_zero(self):
+        c = Counter()
+        self.assertEqual(c.count(), 0)
+
+    def test_increments(self):
+        c = Counter()
+        c.count()
+        self.assertEqual(c.count(), 1)
+
+    def test_separate_instances(self):
+        a = Counter()
+        b = Counter()
+        a.count()
+        self.assertEqual(a.count(), 1)
+        self.assertEqual(b.count(), 0)</code></pre>
+<h2 id="types-of-polymorphism">Types of polymorphism</h2>
+<ul>
+<li>Subtyping polymorphism<br /></li>
+<li>Implementation inheritance<br /></li>
+<li>Interface implementation<br /></li>
+<li>Parametric polymorphism<br /></li>
+<li>Generic classes<br /></li>
+<li>Ad-hoc polymorphism<br /></li>
+<li>Overloaded methods</li>
+</ul>
+<h2 id="the-role-of-package-managers">The role of package managers</h2>
+<ul>
+<li>Installation<br /></li>
+<li>Dependencies<br /></li>
+<li>Updates<br /></li>
+<li>Inventory management<br /></li>
+<li>Configuration management</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
