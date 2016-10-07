@@ -30,7 +30,7 @@
 
 
 ## Class example
-```py
+```python
 class Counter(object):
     """Return ascending integers
     """
@@ -45,7 +45,7 @@ class Counter(object):
 
 
 ## Class test
-```py
+```python
 class CounterTestCase(TestCase):
     def test_starts_from_zero(self):
         c = Counter()
