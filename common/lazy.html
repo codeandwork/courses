@@ -62,31 +62,31 @@
 <li>Base for specialization</li>
 </ul>
 <h2 id="class-example">Class example</h2>
-<pre class="py"><code>class Counter(object):
-    &quot;&quot;&quot;Return ascending integers
-    &quot;&quot;&quot;
-    def count(self):
-        &quot;&quot;&quot;Return next integer
-        &quot;&quot;&quot;
-        self.counter = self.counter + 1
-        return self.counter
-    def __init__(self):
-        self.counter = -1</code></pre>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Counter(<span class="dt">object</span>):
+    <span class="co">&quot;&quot;&quot;Return ascending integers</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    <span class="kw">def</span> count(<span class="ot">self</span>):
+        <span class="co">&quot;&quot;&quot;Return next integer</span>
+<span class="co">        &quot;&quot;&quot;</span>
+        <span class="ot">self</span>.counter = <span class="ot">self</span>.counter + <span class="dv">1</span>
+        <span class="kw">return</span> <span class="ot">self</span>.counter
+    <span class="kw">def</span> <span class="ot">__init__</span>(<span class="ot">self</span>):
+        <span class="ot">self</span>.counter = -<span class="dv">1</span></code></pre>
 <h2 id="class-test">Class test</h2>
-<pre class="py"><code>class CounterTestCase(TestCase):
-    def test_starts_from_zero(self):
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> CounterTestCase(TestCase):
+    <span class="kw">def</span> test_starts_from_zero(<span class="ot">self</span>):
         c = Counter()
-        self.assertEqual(c.count(), 0)
-    def test_increments(self):
+        <span class="ot">self</span>.assertEqual(c.count(), <span class="dv">0</span>)
+    <span class="kw">def</span> test_increments(<span class="ot">self</span>):
         c = Counter()
         c.count()
-        self.assertEqual(c.count(), 1)
-    def test_separate_instances(self):
+        <span class="ot">self</span>.assertEqual(c.count(), <span class="dv">1</span>)
+    <span class="kw">def</span> test_separate_instances(<span class="ot">self</span>):
         a = Counter()
         b = Counter()
         a.count()
-        self.assertEqual(a.count(), 1)
-        self.assertEqual(b.count(), 0)</code></pre>
+        <span class="ot">self</span>.assertEqual(a.count(), <span class="dv">1</span>)
+        <span class="ot">self</span>.assertEqual(b.count(), <span class="dv">0</span>)</code></pre>
 <h2 id="types-of-polymorphism">Types of polymorphism</h2>
 <ul>
 <li>Subtyping polymorphism<br /></li>
