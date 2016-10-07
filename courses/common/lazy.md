@@ -82,3 +82,11 @@ class CounterTestCase(TestCase):
 * Configuration management
 
 
+## Package manager examples
+* Linux: dpkg/APT RPM/yum
+* Windows: Windows Store, NuGet, Cygwin
+* OS X: App store, Homebrew, fink
+* Python: pip, Anaconda, EasyInstall
+* Java: Maven
+* .NET: NuGet
+* Node.js: npm
