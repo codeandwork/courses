@@ -97,6 +97,60 @@
 <li>Ad-hoc polymorphism<br /></li>
 <li>Overloaded methods</li>
 </ul>
+<h2 id="interface-implementation">Interface implementation</h2>
+<p>Subtyping polymorphism</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">static</span> <span class="dt">void</span> <span class="fu">printSeries</span>(Iterable&lt;BigInteger&gt; series) {
+    <span class="kw">for</span> (BigInteger i : series)
+        System.<span class="fu">out</span>.<span class="fu">println</span>(i);
+}
+
+<span class="kw">class</span>  FibonacciIterator <span class="kw">implements</span> Iterator&lt;BigInteger&gt; {
+    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">hasNext</span>() { <span class="kw">return</span> <span class="kw">true</span>; }
+
+    <span class="kw">public</span> BigInteger <span class="fu">next</span>() { <span class="co">/* ... */</span> }
+
+}</code></pre>
+<h2 id="implementation-inheritance">Implementation inheritance</h2>
+<p>Subtyping polymorphism</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">abstract</span> <span class="kw">class</span> Shape {
+    <span class="kw">public</span> <span class="kw">abstract</span> <span class="dt">double</span> <span class="fu">area</span>();
+    <span class="fu">@Override</span> <span class="kw">public</span> String <span class="fu">toString</span>() {
+        <span class="kw">return</span> <span class="st">&quot;Shape area=&quot;</span> + <span class="fu">area</span>();
+    }
+}
+<span class="kw">class</span> Circle <span class="kw">extends</span> Shape {
+    <span class="kw">private</span> <span class="dt">double</span> radius;
+    <span class="fu">@Override</span> <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
+        <span class="kw">return</span> <span class="dv">2</span> * Math.<span class="fu">PI</span> * radius * radius;
+    }
+}
+<span class="kw">class</span> Rectangle <span class="kw">extends</span> Shape {
+    <span class="kw">private</span> <span class="dt">double</span> height, width;
+    <span class="fu">@Override</span> <span class="kw">public</span> <span class="dt">double</span> <span class="fu">area</span>() {
+        <span class="kw">return</span> height * width;
+    }</code></pre>
+<h2 id="generic-classes">Generic classes</h2>
+<p>Parametric polymorphism</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> IterableDisplayer&lt;T&gt; {
+    Iterable&lt;T&gt; series;
+
+    <span class="fu">IterableDisplayer</span>(Iterable&lt;T&gt; s) { series = s; }
+
+    <span class="dt">void</span> <span class="fu">printSeries</span>() {
+        <span class="kw">for</span> (T i : series)
+            System.<span class="fu">out</span>.<span class="fu">println</span>(i);
+    }
+}</code></pre>
+<h2 id="overloaded-methods">Overloaded methods</h2>
+<p>Ad hoc polymorphism</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SimpleMath {
+    <span class="dt">static</span> <span class="dt">double</span> <span class="fu">atan</span>(<span class="dt">double</span> y, <span class="dt">double</span> x) {
+        <span class="kw">return</span> Math.<span class="fu">atan2</span>(y, x);
+    }
+    <span class="dt">static</span> <span class="dt">double</span> <span class="fu">atan</span>(<span class="dt">double</span> v) {
+        <span class="kw">return</span> Math.<span class="fu">atan</span>(v);
+    }
+}</code></pre>
 <h2 id="the-role-of-package-managers">The role of package managers</h2>
 <ul>
 <li>Installation<br /></li>
