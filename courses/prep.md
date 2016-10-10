@@ -29,7 +29,7 @@
 
 
 ## Application development tools
-
+* [Introduction to GitHub](prep/gitHub.md)
 
 ## Develop a first dynamic web application
 * [Introduction to Flask - Part I](prep/flaskTutorial1.md)
