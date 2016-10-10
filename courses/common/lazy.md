@@ -73,6 +73,76 @@ class CounterTestCase(TestCase):
   * Overloaded methods
 
 
+## Interface implementation
+Subtyping polymorphism
+```java
+static void printSeries(Iterable<BigInteger> series) {
+    for (BigInteger i : series)
+        System.out.println(i);
+}
+
+class  FibonacciIterator implements Iterator<BigInteger> {
+    public boolean hasNext() { return true; }
+
+    public BigInteger next() { /* ... */ }
+
+}
+```
+
+
+## Implementation inheritance
+Subtyping polymorphism
+```java
+abstract class Shape {
+    public abstract double area();
+    @Override public String toString() {
+        return "Shape area=" + area();
+    }
+}
+class Circle extends Shape {
+    private double radius;
+    @Override public double area() {
+        return 2 * Math.PI * radius * radius;
+    }
+}
+class Rectangle extends Shape {
+    private double height, width;
+    @Override public double area() {
+        return height * width;
+    }
+```
+
+
+## Generic classes
+Parametric polymorphism
+```java
+class IterableDisplayer<T> {
+    Iterable<T> series;
+
+    IterableDisplayer(Iterable<T> s) { series = s; }
+
+    void printSeries() {
+        for (T i : series)
+            System.out.println(i);
+    }
+}
+```
+
+
+## Overloaded methods
+Ad hoc polymorphism
+```java
+public class SimpleMath {
+    static double atan(double y, double x) {
+        return Math.atan2(y, x);
+    }
+    static double atan(double v) {
+        return Math.atan(v);
+    }
+}
+```
+
+
 ## The role of package managers
 * Installation
 * Dependencies
