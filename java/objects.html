@@ -30,6 +30,324 @@
   </head>
   <body>
 <h1 id="coding-bootcamp-constructing-and-using-objects">Coding Bootcamp: Constructing and using objects</h1>
+<h2 id="aim-of-the-course">Aim of the course</h2>
+<ul>
+<li>Introduction to Object-Oriented Programming<br /></li>
+<li>Thinking in OOP<br /></li>
+<li>Defining objects<br /></li>
+<li>Creating and handling objects<br /></li>
+<li>Using objects to solve problems</li>
+</ul>
+<h2 id="java-as-an-oop-language">Java as an OOP Language</h2>
+<ul>
+<li>Java offers the possibility to extend the programming language by adding new data types accodring to our needs<br /></li>
+<li>Programmer defines the class to fit a problem rather than being forced to use an existing data type<br /><div style="text-align:center" markdown="1"><br /><img src="media/OOP_Objects_Oracle_Java_Icon.jpg" /><br /></li>
+</ul>
+</div>
+
+
+
+<h2 id="alan-kays-principles-for-oop">Alan Kay's principles for OOP</h2>
+<ul>
+<li>Used five characteristics to create Smalltalk<br /></li>
+<li>Java is based on those five principles<br /><div style="text-align:center" markdown="1"><br /><img src="media/SmallTalk.jpg" /><br /></li>
+</ul>
+</div>
+
+
+
+<h2 id="principle-1---everything-is-an-object">Principle 1 - Everything is an object</h2>
+<ul>
+<li>Think of it as a variable<br /></li>
+<li>Stores data<br /></li>
+<li>You can make request to that object to perform an action</li>
+</ul>
+<h2 id="what-is-an-object">What is an object</h2>
+<ul>
+<li>It can have one from many fields (variables and properties)<br /></li>
+<li>Each of the fields contains data that declares the state of the object<br /></li>
+<li>It can have one from many methods (functions)<br /></li>
+<li>Each method performs an action that may modify the stat of the object<br /></li>
+<li>Methods and fields are both members of the object</li>
+</ul>
+<h2 id="example-of-an-object">Example of an object</h2>
+<p><img src="media/OOP_Objects_buld.png" /></p>
+<h2 id="classes">Classes</h2>
+<ul>
+<li>Objects of the same type are classified under the same class<br /></li>
+<li><p>Fields and methods are declared inside a class</p>
+<pre class="sourceCode java"><code class="sourceCode java">    impoty java.<span class="fu">util</span>.*;
+    <span class="kw">public</span> <span class="kw">class</span> CalendarTesting {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            GregorianCalendar <span class="kw">new</span>, yesterday;
+        }
+    }</code></pre></li>
+</ul>
+<h2 id="creating-new-objects">Creating new objects</h2>
+<ul>
+<li>Every newly created object has its own copy of field and methods<br /></li>
+<li>Variables declared as objects have a pointer (reference) on memory where the object data exist</li>
+</ul>
+<h2 id="object-memory-allocation-by-calling-new">Object memory allocation by calling new</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> BootCamp {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            BootCamp a, b;
+            a = <span class="kw">new</span> <span class="fu">BootCamp</span>();
+            b = <span class="kw">new</span> <span class="fu">BootCamp</span>();
+        }
+    }</code></pre>
+<p><img src="media/OOP_Objects_Constuctor_new.png" /></p>
+<h2 id="object-memory-allocation-by-copying">Object memory allocation by copying</h2>
+<pre class="sourceCode java"><code class="sourceCode java">        <span class="kw">public</span> <span class="kw">class</span> BootCamp {
+                <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+                        BootCamp a, b;
+                        a = <span class="kw">new</span> <span class="fu">BootCamp</span>();
+                        b = a;
+                }
+        }</code></pre>
+<p><img src="media/OOP_Objects_Constuctor_copy.png" /></p>
+<h2 id="principle-2---a-program-is-a-bunch-of-objects-communicating-with-each-other">Principle 2 - A program is a bunch of objects communicating with each other</h2>
+<ul>
+<li>To request an action from an object we &quot;send a message&quot;<br /></li>
+<li>The send message is a call to a method belonging to that object</li>
+</ul>
+<h2 id="call-method-function">Call method, function</h2>
+<pre class="sourceCode java"><code class="sourceCode java">        <span class="kw">public</span> <span class="kw">class</span> BootCamp {
+                <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+                        BootCamp a;
+                        a = <span class="kw">new</span> <span class="fu">BootCamp</span>();
+                        a.<span class="fu">printSomething</span>();
+                }
+
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">printSomething</span>() {
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Hello BootCamp 2016&quot;</span>);
+        }
+        }</code></pre>
+<h2 id="access-properties-instance-variables-fields">Access properties, instance variables, fields</h2>
+<ul>
+<li>We can always access the fields (variables) of an object with this syntax: object.variable<br /></li>
+<li>Is not a usual practice to access variables with the aforementioned way<br /></li>
+<li>Getting or modifiying variables is done with the use of Getters and Setters methods.</li>
+</ul>
+<h2 id="scope">Scope</h2>
+<ul>
+<li>When declaring variables or methods as public in a class, means they are accessible from outside objects.<br /></li>
+<li>Variables declared as private or protected are only accessibly from the methods of the class that declares them.</li>
+</ul>
+<h2 id="scope-example-point">Scope Example: Point</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> BootCamp {
+        <span class="co">//Public variables</span>
+        <span class="kw">public</span> <span class="dt">int</span> number1, number2;
+        <span class="kw">private</span> <span class="dt">boolean</span> visible;
+        <span class="kw">private</span> <span class="dt">int</span> javaProgramming;
+        <span class="co">//Private void setNumbers(int one, int two) {</span>
+            number1 = one;
+            number2 = two;
+        }
+        <span class="co">//Public method</span>
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">changeNumbers</span>() {
+            <span class="fu">setNumbers</span>(<span class="dv">1</span>,<span class="dv">9</span>);
+        }
+    }</code></pre>
+<h2 id="scope-example-testpoint">Scope Example: TestPoint</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> BootCamp {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            BootCamp a;
+            a = <span class="kw">new</span> <span class="fu">BootCamp</span>();
+            a.<span class="fu">changeNumbers</span>();
+            a.<span class="fu">number1</span> = <span class="dv">10</span>;
+            a.<span class="fu">javaProgramming</span> = <span class="dv">1</span>;
+        }   
+    }</code></pre>
+<h2 id="scope-example-variable-visibility">Scope Example: variable visibility</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> BootCamp {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="fu">main</span>(Stirng[] args) {
+            <span class="dt">int</span> x;
+            x = <span class="dv">0</span>;
+                <span class="kw">if</span> (x = <span class="dv">10</span>) {
+                <span class="dt">int</span> y = <span class="dv">10</span>;
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x and y:&quot;</span> + x + y);
+                x = y * <span class="dv">2</span>;
+            }
+            y=<span class="dv">100</span>;
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;x is: &quot;</span>+x);
+        }
+    }</code></pre>
+<h2 id="principle-3---each-object-has-its-own-memory-made-up-of-other-objects">Principle 3 - Each object has its own memory made up of other objects</h2>
+<ul>
+<li>Existing objects are composed to create new objects<br /></li>
+<li>Complexity of objects are build step by step</li>
+</ul>
+<h2 id="principle-4---every-object-has-a-type">Principle 4 - Every object has a type</h2>
+<ul>
+<li>Every instance of a Class is an object<br /></li>
+<li>Class is a synonym of Type</li>
+</ul>
+<h2 id="principle-5---all-objects-of-particular-type-can-receive-the-same-messages">Principle 5 - All objects of particular type can receive the same messages</h2>
+<ul>
+<li>Objects from the same family can receive the same function call</li>
+</ul>
+<h2 id="problem-space">Problem Space</h2>
+<ul>
+<li>A problem may consists of one or more elemets<br /></li>
+<li>Each element defines a problem to be solved<br /><br><div style="text-align:center" markdown="1"><br /><img src="media/OOP_Objects_Problem_Space.jpg" /><br /></li>
+</ul>
+</div>
+
+
+
+<h2 id="solution-space">Solution Space</h2>
+<ul>
+<li>The mapping between elements of Problem Space and objects<br /></li>
+<li>Each of the object(s) may represent a solution for the element(s)<br /><div style="text-align:center" markdown="1"><br /><img src="media/OOP_Objects_Clean_Laptop_Solution_Space.jpg" /><br /></li>
+</ul>
+</div>
+
+
+
+<h2 id="the-call-of-constructor-1">The call of Constructor (1)</h2>
+<ul>
+<li>For each Class we can assign constructor which must have the same name as the Class<br /></li>
+<li>Each time we like to create an object, Java calls a constructor, if none exist, it calls the default constructor<br /></li>
+<li>Destructor is a method that destroys an object when the program ends</li>
+</ul>
+<h2 id="the-call-of-constructor-2">The call of Constructor (2)</h2>
+<ul>
+<li>When program reach its memory bounds Garbage Collector is called to delete unused objects or it can be called on-demand.<br /></li>
+<li>A constructor can be called with arguments (variables) in order to initialize its state<br /></li>
+<li>One Class can have from one to many constructors with different number of arguments.</li>
+</ul>
+<h2 id="calling-constructor---example">Calling Constructor - Example</h2>
+<pre class="sourceCode java"><code class="sourceCode java">     <span class="kw">public</span> <span class="kw">class</span> BootCamp {
+                <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+                        BootCamp a = <span class="kw">new</span> <span class="fu">BootCamp</span>();
+                }
+        }</code></pre>
+<h2 id="class-methods-and-fields">Class methods and fields</h2>
+<ul>
+<li>Methods and fields declared as static can be called without creating an object<br /></li>
+<li>Class.Method and Class.Field for methods and fields, respectively<br /></li>
+<li>Fields declared as final are constant and their values cannot change</li>
+</ul>
+<h2 id="class-methods-fields---example">Class methods fields - Example</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">class</span> FindDay {
+        <span class="kw">public</span> <span class="dt">static</span> String <span class="fu">weekDayName</span>(<span class="dt">int</span> weekNumber) {
+                <span class="kw">switch</span> (weekNumber) {
+                    <span class="kw">case</span> Calendar.<span class="fu">MONDAY</span>: <span class="kw">return</span> <span class="st">&quot;Monday&quot;</span>;
+                    <span class="kw">case</span> Calendar.<span class="fu">TUESDAY</span>: <span class="kw">return</span> <span class="st">&quot;Tuesday&quot;</span>;
+                    <span class="kw">case</span> Calendar.<span class="fu">WEDNESDAY</span>: <span class="kw">return</span> <span class="st">&quot;Wednesday&quot;</span>;
+                    <span class="kw">case</span> Calendar.<span class="fu">THURSDAY</span>: <span class="kw">return</span> <span class="st">&quot;Thursday&quot;</span>;
+                    <span class="kw">case</span> Calendar.<span class="fu">FRIDAY</span>: <span class="kw">return</span> <span class="st">&quot;Friday&quot;</span>;
+                    <span class="kw">case</span> Calendar.<span class="fu">SATURDAY</span>: <span class="kw">return</span> <span class="st">&quot;Saturday&quot;</span>;
+                    <span class="kw">case</span> Calendar.<span class="fu">SUNDAY</span>: <span class="kw">return</span> <span class="st">&quot;Sunday&quot;</span>;
+    }
+  }
+
+  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) <span class="kw">throws</span> Exception {
+    FindDay today = <span class="kw">new</span> <span class="fu">FindDay</span>();
+    System.<span class="fu">out</span>.<span class="fu">println</span>(today.<span class="fu">weekDayName</span>(<span class="dv">4</span>));
+}</code></pre>
+<h2 id="methods-for-all-objects">Methods for all objects</h2>
+<ul>
+<li>Object clone() - Returns a copy of an object<br /></li>
+<li>String toString() - Returns a string that represents the object<br /></li>
+<li>boolean equals(Object obj) - Returns true if the object is equal with obj</li>
+</ul>
+<h2 id="tostring-example">toString example</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    String <span class="fu">toString</span>()
+    <span class="dt">static</span> String <span class="fu">toString</span>(<span class="dt">int</span> i)</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> TestingToString {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            Integer variable1 = <span class="dv">2016</span>;
+            <span class="dt">int</span> variable = <span class="dv">2016</span>;
+            System.<span class="fu">out</span>.<span class="fu">println</span>(variable1.<span class="fu">toString</span>());
+            System.<span class="fu">out</span>.<span class="fu">println</span>(Integer.<span class="fu">toString</span>(<span class="dv">2016</span>))
+        }
+    }   </code></pre>
+<h2 id="equals-example">Equals example</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">equals</span>(Object obj)</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> TestingEquals {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            String str1 = <span class="kw">new</span> String(<span class="st">&quot;BootCamp 2016&quot;</span>);
+            String str2 = <span class="kw">new</span> String(<span class="st">&quot;Learning OOP&quot;</span>);
+
+            <span class="kw">if</span> (! str1.<span class="fu">equals</span>(str2)) {
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;They are not&quot;</span>);
+            } <span class="kw">else</span> {
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;They are&quot;</span>);
+            }
+        }
+    }</code></pre>
+<h2 id="arrays-in-java">Arrays in Java</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="dt">int</span>[] array = <span class="kw">new</span> array[]{<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>};
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;The size of array is&quot;</span>+ array.<span class="fu">length</span>);</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java">    String[] array = <span class="kw">new</span> String[]{<span class="st">&quot;Hello BootCampers&quot;</span>,<span class="st">&quot; how are you&quot;</span>};
+        System.<span class="fu">out</span>.<span class="fu">println</span>(Arrays.<span class="fu">toString</span>(array));</code></pre>
+<h2 id="ype-casting-1">Τype casting (1)</h2>
+<p><img src="media/OOP_Objects_narrowing_casting.png" /><br /><img src="media/OOP_Objects_widening_casting.png" /></p>
+<h2 id="type-casting-2">Type casting (2)</h2>
+<ul>
+<li>It's allowed to convert from a small to a larger number of bits data type or the opposite<br /></li>
+<li>By converting from a large to a small data type we may lose information</li>
+</ul>
+<p><br>double avg = (double) 12/5<br /><br>int rnd = (int) (29.4/10.0)<br /><br>Integer xd = (Integer) rnd</p>
+<h2 id="incrementing-examples-1">Incrementing Examples (1)</h2>
+<ul>
+<li><p>Example 1:<br /> <br> x = 10;<br /> <br> y = ++x;</p></li>
+<li><p>Example 2:<br /> <br> x = 10;<br /> <br> y = x++;</p></li>
+</ul>
+<h2 id="incrementing-examples-2">Incrementing Examples (2)</h2>
+<ul>
+<li><p>Example 1:<br /> <br> x = 10;<br /> <br> y = ++x;<br /> <br> x = 11 and y = 11</p></li>
+<li><p>Example 2:<br /> <br> x = 10;<br /> <br> y = x++;<br /> <br> x = 11 and y = 10</p></li>
+</ul>
+<h1 id="exercise-1">Exercise 1</h1>
+<div style="text-align: justify;">
+Create a static function, with the name "bootCamp", that receives as an input two int arguments, i.e., number1 and number2, and returns an int result in the end. If "number1" is smaller that "number2" then returns the square root (use Math.sqrt method) of the absolute value (use Math.abs) of the difference among "number1" and "number2". Else return the sum of the two numbers.
+<br> Number1 = 25, Number2 = 91
+<br> Number1 = 91, Number2 = 25
+</div>
+
+
+
+<h2 id="exercise-1-result">Exercise 1 result</h2>
+<p>First: 8, Second: 116</p>
+<h2 id="exercise-2">Exercise 2</h2>
+<div style="text-align: justify;">
+Create a program that simulates the roll of two dices. The program must execute till both dices return 1 as a result (use Math.random). You can create a class name Dice which has a void roll method. Roll method is rolling the dices till the needed results is aquired and prints the number of rolls needed in order to have two 1s.
+</div>
+
+
+
+<h2 id="exercise-3">Exercise 3</h2>
+<div style="text-align: justify;">
+Create an array that can receive 10 elements, as a size, and add in each position an element starting from 1 to 10 statically and print the array. Afterwards, create a method (function) that can shift the array elements right by 10 times. The 10 is given by the user as an input. At the end print the shifted array.
+</div>
+
+
+
+<h2 id="exercise-3-result">Exercise 3 result</h2>
+<p><br>[10, 1, 2, 3, 4, 5, 6, 7, 8, 9]<br /><br>[9, 10, 1, 2, 3, 4, 5, 6, 7, 8]<br /><br>[8, 9, 10, 1, 2, 3, 4, 5, 6, 7]<br /><br>[7, 8, 9, 10, 1, 2, 3, 4, 5, 6]<br /><br>[6, 7, 8, 9, 10, 1, 2, 3, 4, 5]<br /><br>[5, 6, 7, 8, 9, 10, 1, 2, 3, 4]<br /><br>[4, 5, 6, 7, 8, 9, 10, 1, 2, 3]<br /><br>[3, 4, 5, 6, 7, 8, 9, 10, 1, 2]<br /><br>[2, 3, 4, 5, 6, 7, 8, 9, 10, 1]<br /><br>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</p>
+<h2 id="exercise-4">Exercise 4</h2>
+<div style="text-align: justify;">
+Convert exercise 1 array and it's elements, from int, to Double. P.S. not double but Double.
+</div>
+
+
+
+<h2 id="exercise-5">Exercise 5</h2>
+<div style="text-align: justify;">
+Implement a tic tac toe (triliza) game which is played by two players. You may use one or two dimention array to store the results (the 'X' and 'O'). You can use a while loop to give turns for the 'X' or the 'O' player. 
+<br>Create a drawFunction that can take as an argument the array and print the current tic tac toe's status before each players turn. 
+Create function that can check rows, columns, and diagonals, which is performed after a player played his symbol, 'X' or 'O', and prints win if there is a winner, otherwise the game still goes on if and if there is available position in the array. If a player placed his symbol in an occupied position print an error message and let him play again. </div>
+
+
+
+<h2 id="references">References</h2>
+<ul>
+<li>Link: <a href="http://www.dmst.aueb.gr/dds/isdi/idxprint.htm">http://www.dmst.aueb.gr/dds/isdi/idxprint.htm</a><br /></li>
+<li>Eckel, Bruce. Thinking in JAVA. 4th ed. Prentice Hall, 2006.</li>
+</ul>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
