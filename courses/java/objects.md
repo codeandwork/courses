@@ -32,7 +32,7 @@
 * It can have one from many fields (variables and properties)
 * Each of the fields contains data that declares the state of the object
 * It can have one from many methods (functions)
-* Each method performs an action that may modify the stat of the object
+* Each method performs an action that may modify the state of the object
 * Methods and fields are both members of the object
 
 
@@ -44,7 +44,7 @@
 * Objects of the same type are classified under the same class
 * Fields and methods are declared inside a class
 ```java
-	impoty java.util.*;
+	impot java.util.*;
 	public class CalendarTesting {
 		public static void main(String[] args) {
 			GregorianCalendar new, yesterday;
@@ -117,14 +117,15 @@
 * Variables declared as private or protected are only accessibly from the methods of the class that declares them. 
 
 
-## Scope Example: Point
+## Scope Examsle: BootCamp Class
 ```java
 	public class BootCamp {
-		//Public variables
+		//Public and private variables
 		public int number1, number2;
 		private boolean visible;
 		private int javaProgramming;
-		//Private void setNumbers(int one, int two) {
+		//Private method
+		void setNumbers(int one, int two) {
 			number1 = one;
 			number2 = two;
 		}
@@ -136,9 +137,9 @@
 ```
 
 
-## Scope Example: TestPoint
+## Scope Example: Main
 ```java
-	public class BootCamp {
+	public class BootCampTest {
 		public static void main(String[] args) {
 			BootCamp a;
 			a = new BootCamp();
@@ -269,6 +270,7 @@
 			int variable = 2016;
 			System.out.println(variable1.toString());
 			System.out.println(Integer.toString(2016))
+			System.out.println(variable.toString()); //Correct?
 		}
 	}	
 ```
