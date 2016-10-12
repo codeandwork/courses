@@ -492,7 +492,8 @@ class Laptop {
 
 
 ## *Deep* vs *shallow* copies
-* Complete (*deep*) copy
+* Complete (*deep*) copy:
+<br>
 When copying objects (with the copy constructors) ensure that the custom type field are also copied with their appropriate copy constructor.
 * Otherwise you create a copy only of the top level object and its custom type fields are reused (like in slide 17 "Memory allocation") 
 
@@ -502,25 +503,31 @@ When copying objects (with the copy constructors) ensure that the custom type fi
 
 
 ## Simple dependency
-//TODO pic
+<img src=media/dependency.png width=700 height=300 /></br>
 
 
 ## Association
-//TODO pic
+<img src=media/association.png width=700 height=300 /></br>
+* ClassA holds an instance of ClassB
+* This instance will be destroyed upon ClassA's instance destruction
 
 
 ## Aggregation
-//TODO pic
-* The aggregated object *b* can live even after the destruction of object *a* 
+<img src=media/aggregation.png width=700 height=300 /></br>
+* ClassA, like in *Association* holds an instance of ClassB
+* The aggregated object *b* can live even after the destruction of the ClassA's instance 
 
 
 ## Composition
-//TODO pic
+<img src=media/multiplicity.png width=700 height=300 /></br>
 * Any object *a* holds multiple objects of type *ClassB*
 
 
 ## References
-//TODO
+* Thinking in Java (4th Edition) - Bruce Eckel
+* Oracle Certified Professional Java SE 8 Programmer Exam 1Z0-809, A Comprehensive OCPJP 8 Certification Guide - S. G. Ganesh, Hari Kiran, Tushar Sharma
+* Java Programming - wikibooks ([link](https://en.wikibooks.org/wiki/Java_Programming))
+* Java™ Platform, Standard Edition 8 API Specification ([link](https://docs.oracle.com/javase/8/docs/api/))
 
 
 ## Exercise 1
@@ -546,7 +553,8 @@ Where *x*,*y* and *r* are the values of the current circle
 
 
 ## Exercise 1 (continued)
-* **Step 5**: Create a *main* method in your *Circle* class. In the *main* method:
+* **Step 5**: Create a new class named *TestCircles* in the same package (directory) as your *Circle* class.
+* Create a *main* method in your *TestCircles* class. In the *main* method:
  * create a circle object,
  * assigns values (of your preference) to the object using the setter methods from *Step 2* and
  * print the details of your circle using the *print* method from *Step 3*
@@ -594,8 +602,14 @@ Choose an appropriate type for your method!
  * the place/places that the value of the field should be incremented  
 
 
- ## Exercise 2
+## Exercise 2
  // to be added
+
+ <!-- TODO LIST
+Add references
+Add Exercise 2
+Send Exercise solutions to Stef and Trifonas
+  -->
 					</script>
 				</section>
 				<section>

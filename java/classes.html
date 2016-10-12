@@ -394,27 +394,37 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 </ul>
 <h2 id="deep-vs-shallow-copies"><em>Deep</em> vs <em>shallow</em> copies</h2>
 <ul>
-<li>Complete (<em>deep</em>) copy<br />When copying objects (with the copy constructors) ensure that the custom type field are also copied with their appropriate copy constructor.<br /></li>
+<li>Complete (<em>deep</em>) copy:<br /><br><br />When copying objects (with the copy constructors) ensure that the custom type field are also copied with their appropriate copy constructor.<br /></li>
 <li>Otherwise you create a copy only of the top level object and its custom type fields are reused (like in slide 17 &quot;Memory allocation&quot;)</li>
 </ul>
 <h2 id="relationship-among-classes">Relationship among classes</h2>
 <p><img src=media/laptop_cd.png width=660 height=510 /></br></p>
 <h2 id="simple-dependency">Simple dependency</h2>
-<p>//TODO pic</p>
+<p><img src=media/dependency.png width=700 height=300 /></br></p>
 <h2 id="association">Association</h2>
-<p>//TODO pic</p>
-<h2 id="aggregation">Aggregation</h2>
-<p>//TODO pic</p>
+<p><img src=media/association.png width=700 height=300 /></br></p>
 <ul>
-<li>The aggregated object <em>b</em> can live even after the destruction of object <em>a</em></li>
+<li>ClassA holds an instance of ClassB<br /></li>
+<li>This instance will be destroyed upon ClassA's instance destruction</li>
+</ul>
+<h2 id="aggregation">Aggregation</h2>
+<p><img src=media/aggregation.png width=700 height=300 /></br></p>
+<ul>
+<li>ClassA, like in <em>Association</em> holds an instance of ClassB<br /></li>
+<li>The aggregated object <em>b</em> can live even after the destruction of the ClassA's instance</li>
 </ul>
 <h2 id="composition">Composition</h2>
-<p>//TODO pic</p>
+<p><img src=media/multiplicity.png width=700 height=300 /></br></p>
 <ul>
 <li>Any object <em>a</em> holds multiple objects of type <em>ClassB</em></li>
 </ul>
 <h2 id="references">References</h2>
-<p>//TODO</p>
+<ul>
+<li>Thinking in Java (4th Edition) - Bruce Eckel<br /></li>
+<li>Oracle Certified Professional Java SE 8 Programmer Exam 1Z0-809, A Comprehensive OCPJP 8 Certification Guide - S. G. Ganesh, Hari Kiran, Tushar Sharma<br /></li>
+<li>Java Programming - wikibooks (<a href="https://en.wikibooks.org/wiki/Java_Programming">link</a>)<br /></li>
+<li>Java™ Platform, Standard Edition 8 API Specification (<a href="https://docs.oracle.com/javase/8/docs/api/">link</a>)</li>
+</ul>
 <h2 id="exercise-1">Exercise 1</h2>
 <ul>
 <li><strong>Step 1</strong>: Create a class that represents a circle shape. The class should be named as <em>Circle</em> and include the following three integer fields:<br /></li>
@@ -435,7 +445,8 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 </ul>
 <h2 id="exercise-1-continued-2">Exercise 1 (continued)</h2>
 <ul>
-<li><strong>Step 5</strong>: Create a <em>main</em> method in your <em>Circle</em> class. In the <em>main</em> method:<br /></li>
+<li><strong>Step 5</strong>: Create a new class named <em>TestCircles</em> in the same package (directory) as your <em>Circle</em> class.<br /></li>
+<li>Create a <em>main</em> method in your <em>TestCircles</em> class. In the <em>main</em> method:<br /></li>
 <li>create a circle object,<br /></li>
 <li>assigns values (of your preference) to the object using the setter methods from <em>Step 2</em> and<br /></li>
 <li>print the details of your circle using the <em>print</em> method from <em>Step 3</em><br /><br><br><br /></li>
@@ -479,7 +490,13 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 <li>any special modifiers that might need and,<br /></li>
 <li>the place/places that the value of the field should be incremented</li>
 </ul>
-<p>## Exercise 2<br /> // to be added</p>
+<h2 id="exercise-2">Exercise 2</h2>
+<p>// to be added</p>
+<p><!-- TODO LIST
+Add references
+Add Exercise 2
+Send Exercise solutions to Stef and Trifonas
+  --></p>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

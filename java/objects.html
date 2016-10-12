@@ -162,7 +162,7 @@
     }</code></pre>
 <h2 id="scope-example-variable-visibility">Scope Example: variable visibility</h2>
 <pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> BootCamp {
-        <span class="kw">public</span> <span class="dt">static</span> <span class="fu">main</span>(Stirng[] args) {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
             <span class="dt">int</span> x;
             x = <span class="dv">0</span>;
                 <span class="kw">if</span> (x = <span class="dv">10</span>) {
@@ -262,7 +262,7 @@
             Integer variable1 = <span class="dv">2016</span>;
             <span class="dt">int</span> variable = <span class="dv">2016</span>;
             System.<span class="fu">out</span>.<span class="fu">println</span>(variable1.<span class="fu">toString</span>());
-            System.<span class="fu">out</span>.<span class="fu">println</span>(Integer.<span class="fu">toString</span>(<span class="dv">2016</span>))
+            System.<span class="fu">out</span>.<span class="fu">println</span>(Integer.<span class="fu">toString</span>(<span class="dv">2016</span>));
             System.<span class="fu">out</span>.<span class="fu">println</span>(variable.<span class="fu">toString</span>()); <span class="co">//Correct?</span>
         }
     }   </code></pre>
@@ -281,7 +281,7 @@
         }
     }</code></pre>
 <h2 id="arrays-in-java">Arrays in Java</h2>
-<pre class="sourceCode java"><code class="sourceCode java">    <span class="dt">int</span>[] array = <span class="kw">new</span> array[]{<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>};
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="dt">int</span>[] array = <span class="kw">new</span> <span class="dt">int</span>[]{<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>};
     System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;The size of array is&quot;</span>+ array.<span class="fu">length</span>);</code></pre>
 <pre class="sourceCode java"><code class="sourceCode java">    String[] array = <span class="kw">new</span> String[]{<span class="st">&quot;Hello BootCampers&quot;</span>,<span class="st">&quot; how are you&quot;</span>};
         System.<span class="fu">out</span>.<span class="fu">println</span>(Arrays.<span class="fu">toString</span>(array));</code></pre>
