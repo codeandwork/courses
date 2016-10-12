@@ -570,7 +570,19 @@ Choose an appropriate type for your method!
 
 
 ## Exercise 2
- // to be added
+* Create a *class diagram* (on paper or any other tool) for the relation among the following entities:
+ * There is a *Car* that has a *CarLicense*. The *CarLicense* cannot exist without a *Car*.
+ * There is a *Driver* that owns a *DriversLicense*. The *DriversLicense* cannot exist without a *Driver*.
+ * The *Driver* owns a *Car*. The *Car* exists even without a *Driver*.
+
+
+ ## Exercise 2 (continued)
+* Use the correct *UML connectors* for the above relations among the entities
+* Create the source code for the above classes and compile it
+* All classes should have at least 
+	* have at least one constructor, 
+	* have at least one *String* field of your preference (like driver's name) and 
+	* implement the toString() method that will return the field of each class
 
  <!-- TODO LIST
 Add references
