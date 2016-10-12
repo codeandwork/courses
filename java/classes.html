@@ -166,7 +166,8 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="
 <li><p>Creating an object of type Circle:</p>
 <pre class="sourceCode java"><code class="sourceCode java">    Circle c = <span class="kw">new</span> <span class="fu">Circle</span>();</code></pre></li>
 <li>Constructors inherit the class's access modifier<br /></li>
-<li><p>Constructors should have the same name with the <em>class</em></p></li>
+<li>Constructors should have the same name with the <em>class</em><br /></li>
+<li><p>The keyword <strong>this</strong> is used for the fields of the calling object</p></li>
 </ul>
 <h2 id="overloaded-constructor">Overloaded constructor</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Overloaded constructor */</span>
@@ -213,8 +214,8 @@ Circle c2 = c1;</code></pre>
 Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>();
 c2 = c1;</code></pre>
 <h2 id="copying-objects-1">Copying objects</h2>
-<pre class="sourceCode java"><code class="sourceCode java">c1.<span class="fu">calculatePerimeter</span>(<span class="fl">3.14</span>);
-c2.<span class="fu">calculatePerimeter</span>(<span class="fl">3.14</span>);</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java">c1.<span class="fu">calculatePerimeter</span>();
+c2.<span class="fu">calculatePerimeter</span>();</code></pre>
 <ul>
 <li><p>Results to:</p>
 <pre class="sourceCode java"><code class="sourceCode java">Perimeter is <span class="fl">18.84</span>
@@ -224,8 +225,8 @@ Perimeter is <span class="fl">18.84</span></code></pre></li>
 <pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">5</span>,<span class="dv">5</span>);
 Circle c2 = c1;
 c2.<span class="fu">setRadius</span>(<span class="dv">10</span>);
-c1.<span class="fu">calculatePerimeter</span>(<span class="fl">3.14</span>);
-c2.<span class="fu">calculatePerimeter</span>(<span class="fl">3.14</span>);</code></pre>
+c1.<span class="fu">calculatePerimeter</span>();
+c2.<span class="fu">calculatePerimeter</span>();</code></pre>
 <ul>
 <li>Are the perimeters equal or not?</li>
 </ul>
@@ -233,8 +234,8 @@ c2.<span class="fu">calculatePerimeter</span>(<span class="fl">3.14</span>);</co
 <pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">5</span>,<span class="dv">5</span>);
 Circle c2 = c1;
 c2.<span class="fu">setRadius</span>(<span class="dv">10</span>);
-c1.<span class="fu">calculatePerimeter</span>(<span class="fl">3.14</span>);
-c2.<span class="fu">calculatePerimeter</span>(<span class="fl">3.14</span>);</code></pre>
+c1.<span class="fu">calculatePerimeter</span>();
+c2.<span class="fu">calculatePerimeter</span>();</code></pre>
 <ul>
 <li><p>Results to:</p>
 <pre class="sourceCode java"><code class="sourceCode java">Perimeter is <span class="fl">18.84</span>
@@ -270,25 +271,24 @@ Circle c2 = c.<span class="fu">copy</span>();</code></pre></li>
 <li><p><em>Static</em> fields are common for all instances of the class</p>
 <pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>();
 Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>();
-Circle c3 = <span class="kw">new</span> <span class="fu">Circle</span>();
 System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c1 count is &quot;</span> + c1.<span class="fu">count</span>); <span class="co">//c1.count gives a warning. Why?</span>
-System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c2 count is &quot;</span> + count);
-System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c3 count is &quot;</span> + count);</code></pre></li>
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c2 count is &quot;</span> + count);</code></pre></li>
 </ul>
 <h2 id="static-fields-and-methods-continued">Static fields and methods (continued)</h2>
 <pre class="sourceCode java"><code class="sourceCode java">c1 count is <span class="dv">3</span>
-c2 count is <span class="dv">3</span>
-c3 count is <span class="dv">3</span></code></pre>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getCount</span>() { <span class="kw">return</span> count; }</code></pre>
+c2 count is <span class="dv">3</span></code></pre>
 <ul>
-<li><em>Static</em> methods can access only static fields<br /></li>
+<li><p><em>Static</em> methods can access only static fields</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getCount</span>() { <span class="kw">return</span> count; }</code></pre></li>
 <li><p><em>Static</em> methods can be called by other classes only by the name of the class</p>
 <pre class="sourceCode java"><code class="sourceCode java">System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Number of existing circles : &quot;</span> 
                             + Circle.<span class="fu">getCount</span>());</code></pre>
 <pre class="sourceCode java"><code class="sourceCode java">Number of existing circles : <span class="dv">3</span></code></pre></li>
 </ul>
 <h2 id="memory-allocation-of-static-fields">Memory allocation of static fields</h2>
-<p><img src=media/memory_static.svg width=350 height=550 /></br></p>
+<p><img src=media/memory_static.svg width=300 height=500 /></br></p>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>();
+Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>();</code></pre>
 <h2 id="the-final-modifier">The <em>final</em> modifier</h2>
 <ul>
 <li><p>In our previous Circle class example we add the following field</p>
@@ -384,6 +384,9 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 <span class="co">       The license is bound to this Laptop object */</span>
     <span class="kw">private</span> OSLicense os_license;
 }</code></pre>
+<ul>
+<li>Custom types behave as normal primitive type fields</li>
+</ul>
 <h2 id="classes-as-custom-types-continued">Classes as custom types (continued)</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Laptop {
     <span class="co">/* Constructor */</span>
@@ -400,12 +403,15 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 <h2 id="deep-vs-shallow-copies"><em>Deep</em> vs <em>shallow</em> copies</h2>
 <ul>
 <li>Complete (<em>deep</em>) copy:<br /><br><br />When copying objects (with the copy constructors) ensure that the custom type field are also copied with their appropriate copy constructor.<br /></li>
-<li>Otherwise you create a copy only of the top level object and its custom type fields are reused (like in slide 17 &quot;Memory allocation&quot;)</li>
+<li>Otherwise you create a copy only of the top level object and its custom type fields are reused (like in slide &quot;Memory allocation&quot;)</li>
 </ul>
 <h2 id="relationship-among-classes">Relationship among classes</h2>
-<p><img src=media/laptop_cd.png width=660 height=510 /></br></p>
+<p><img src=media/laptop_cd_new.png width=660 height=510 /></br></p>
 <h2 id="simple-dependency">Simple dependency</h2>
 <p><img src=media/dependency.png width=700 height=300 /></br></p>
+<ul>
+<li>An instance <em>b</em> of type <em>ClassB</em> is used and exists only in the scope of a method of ClassA</li>
+</ul>
 <h2 id="association">Association</h2>
 <p><img src=media/association.png width=700 height=300 /></br></p>
 <ul>
@@ -461,8 +467,8 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 <ul>
 <li><strong>Step 6</strong>: Create two overloaded constructors where<br /></li>
 <li>the first will take two arguments that initialize the fields <em>x</em> and <em>y</em> and<br /></li>
-<li>the second will take arguments that initialize all three <em>x</em>, <em>y</em> and <em>r</em> fields<br />In the second overloaded constructor try to make use of the <em>super</em> keyword!<br /></li>
-<li>In your <em>main</em> method, create objects using each one of the three constructors and print (using the <em>print</em> method) your objects</li>
+<li>the second will take arguments that initialize all three <em>x</em>, <em>y</em> and <em>r</em> fields<br /></li>
+<li>In your <em>main</em> method, create objects using each one of the (now three) available constructors and print (using the <em>print</em> method) your objects</li>
 </ul>
 <h2 id="exercise-1-continued-4">Exercise 1 (continued)</h2>
 <ul>
@@ -508,12 +514,13 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 <li>Create the skeleton source code for the above classes (no need for fields, constructors or methods) and compile it</li>
 </ul>
 <h2 id="exercise-3">Exercise 3</h2>
-<p>You have the following relation ship of entities:</p>
+<p>You have the following relations between entities:</p>
 <ul>
 <li>There is a <em>Library</em> that has a collection of <em>Book</em>s<br /></li>
 <li>Each <em>Book</em> has an <em>Author</em><br /></li>
 <li>The <em>Library</em> is operated by a <em>Librarian</em><br /></li>
-<li>The user can make request regarding authors and book availability only by asking the Librarian. No direct contact to the other entities should be attempted!</li>
+<li>The user can make request regarding authors and book availability only by asking the Librarian. No direct contact to the other entities should be attempted!<br /></li>
+<li>For all of the following classes create the getter and setter methods for interacting with their fields</li>
 </ul>
 <h2 id="exercise-3-continued">Exercise 3 (continued)</h2>
 <ul>
