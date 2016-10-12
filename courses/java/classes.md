@@ -687,4 +687,11 @@ the_guy.findMeBooksFromAuthor("Ruth");
 
 
 ## Exercise 4 (BONUS!)
-* Create a command-line user interface for Exercise 3, providing the user with the following options:
+* Create a command-line user interface for Exercise 3, providing the user, at least, the following options:
+		Welcome to the Bootcamp library. 
+		How do you want to proceed?
+		1. Show all available books
+		2. Search for a book (by book title)
+		3. Display books from a specific author
+		q. Quit
+		> 
