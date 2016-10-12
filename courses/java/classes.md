@@ -166,6 +166,7 @@ Circle() {
 ```
 * Constructors inherit the class's access modifier
 * Constructors should have the same name with the *class*
+* The keyword **this** is used for the fields of the calling object
 
 
 ## Overloaded constructor
@@ -232,8 +233,8 @@ c2 = c1;
 
 ## Copying objects
 ```java
-c1.calculatePerimeter(3.14);
-c2.calculatePerimeter(3.14);
+c1.calculatePerimeter();
+c2.calculatePerimeter();
 ```
 * Results to:
 ```java
@@ -247,8 +248,8 @@ Perimeter is 18.84
 Circle c1 = new Circle(5,5);
 Circle c2 = c1;
 c2.setRadius(10);
-c1.calculatePerimeter(3.14);
-c2.calculatePerimeter(3.14);
+c1.calculatePerimeter();
+c2.calculatePerimeter();
 ```
 * Are the perimeters equal or not?
 
@@ -258,8 +259,8 @@ c2.calculatePerimeter(3.14);
 Circle c1 = new Circle(5,5);
 Circle c2 = c1;
 c2.setRadius(10);
-c1.calculatePerimeter(3.14);
-c2.calculatePerimeter(3.14);
+c1.calculatePerimeter();
+c2.calculatePerimeter();
 ```
 * Results to:
 ```java
@@ -304,10 +305,8 @@ class Circle {
 ```java
 Circle c1 = new Circle();
 Circle c2 = new Circle();
-Circle c3 = new Circle();
 System.out.println("c1 count is " + c1.count); //c1.count gives a warning. Why?
 System.out.println("c2 count is " + count);
-System.out.println("c3 count is " + count);
 ```
 
 
@@ -315,12 +314,11 @@ System.out.println("c3 count is " + count);
 ```java
 c1 count is 3
 c2 count is 3
-c3 count is 3
 ```
+* *Static* methods can access only static fields
 ```java
 public static int getCount() { return count; }
 ```
-* *Static* methods can access only static fields
 * *Static* methods can be called by other classes only by the name of the class
 ```java
 System.out.println("Number of existing circles : " 
@@ -332,8 +330,11 @@ Number of existing circles : 3
 
 
 ## Memory allocation of static fields
-<img src=media/memory_static.svg width=350 height=550 /></br>
-
+<img src=media/memory_static.svg width=300 height=500 /></br>
+```java
+Circle c1 = new Circle();
+Circle c2 = new Circle();
+```
 
 
 ## The *final* modifier
@@ -444,6 +445,7 @@ class Laptop {
 	private OSLicense os_license;
 }
 ```
+* Custom types behave as normal primitive type fields 
 
 
 ## Classes as custom types (continued)
@@ -465,15 +467,16 @@ class Laptop {
 * Complete (*deep*) copy:
 <br>
 When copying objects (with the copy constructors) ensure that the custom type field are also copied with their appropriate copy constructor.
-* Otherwise you create a copy only of the top level object and its custom type fields are reused (like in slide 17 "Memory allocation") 
+* Otherwise you create a copy only of the top level object and its custom type fields are reused (like in slide "Memory allocation") 
 
 
 ## Relationship among classes
-<img src=media/laptop_cd.png width=660 height=510 /></br>
+<img src=media/laptop_cd_new.png width=660 height=510 /></br>
 
 
 ## Simple dependency
 <img src=media/dependency.png width=700 height=300 /></br>
+* An instance *b* of type *ClassB* is used and exists only in the scope of a method of ClassA
 
 
 ## Association
@@ -536,8 +539,7 @@ Where *x*,*y* and *r* are the values of the current circle
 * **Step 6**: Create two overloaded constructors where
  * the first will take two arguments that initialize the fields *x* and *y* and 
  * the second will take arguments that initialize all three *x*, *y* and *r* fields
-In the second overloaded constructor try to make use of the *super* keyword!
-* In your *main* method, create objects using each one of the three constructors and print (using the *print* method) your objects
+* In your *main* method, create objects using each one of the (now three) available constructors and print (using the *print* method) your objects
 
 
 ## Exercise 1 (continued)
@@ -585,11 +587,12 @@ Choose an appropriate type for your method!
 
 
 ## Exercise 3
-You have the following relation ship of entities:
+You have the following relations between entities:
 * There is a *Library* that has a collection of *Book*s
 * Each *Book* has an *Author*
 * The *Library* is operated by a *Librarian*
 * The user can make request regarding authors and book availability only by asking the Librarian. No direct contact to the other entities should be attempted!
+* For all of the following classes create the getter and setter methods for interacting with their fields
 
 
 ## Exercise 3 (continued)
