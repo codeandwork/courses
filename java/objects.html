@@ -67,7 +67,7 @@
 <li>It can have one from many fields (variables and properties)<br /></li>
 <li>Each of the fields contains data that declares the state of the object<br /></li>
 <li>It can have one from many methods (functions)<br /></li>
-<li>Each method performs an action that may modify the stat of the object<br /></li>
+<li>Each method performs an action that may modify the state of the object<br /></li>
 <li>Methods and fields are both members of the object</li>
 </ul>
 <h2 id="example-of-an-object">Example of an object</h2>
@@ -76,7 +76,7 @@
 <ul>
 <li>Objects of the same type are classified under the same class<br /></li>
 <li><p>Fields and methods are declared inside a class</p>
-<pre class="sourceCode java"><code class="sourceCode java">    impoty java.<span class="fu">util</span>.*;
+<pre class="sourceCode java"><code class="sourceCode java">    impot java.<span class="fu">util</span>.*;
     <span class="kw">public</span> <span class="kw">class</span> CalendarTesting {
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
             GregorianCalendar <span class="kw">new</span>, yesterday;
@@ -134,13 +134,14 @@
 <li>When declaring variables or methods as public in a class, means they are accessible from outside objects.<br /></li>
 <li>Variables declared as private or protected are only accessibly from the methods of the class that declares them.</li>
 </ul>
-<h2 id="scope-example-point">Scope Example: Point</h2>
+<h2 id="scope-examsle-bootcamp-class">Scope Examsle: BootCamp Class</h2>
 <pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> BootCamp {
-        <span class="co">//Public variables</span>
+        <span class="co">//Public and private variables</span>
         <span class="kw">public</span> <span class="dt">int</span> number1, number2;
         <span class="kw">private</span> <span class="dt">boolean</span> visible;
         <span class="kw">private</span> <span class="dt">int</span> javaProgramming;
-        <span class="co">//Private void setNumbers(int one, int two) {</span>
+        <span class="co">//Private method</span>
+        <span class="dt">void</span> <span class="fu">setNumbers</span>(<span class="dt">int</span> one, <span class="dt">int</span> two) {
             number1 = one;
             number2 = two;
         }
@@ -149,8 +150,8 @@
             <span class="fu">setNumbers</span>(<span class="dv">1</span>,<span class="dv">9</span>);
         }
     }</code></pre>
-<h2 id="scope-example-testpoint">Scope Example: TestPoint</h2>
-<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> BootCamp {
+<h2 id="scope-example-main">Scope Example: Main</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> BootCampTest {
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
             BootCamp a;
             a = <span class="kw">new</span> <span class="fu">BootCamp</span>();
@@ -262,6 +263,7 @@
             <span class="dt">int</span> variable = <span class="dv">2016</span>;
             System.<span class="fu">out</span>.<span class="fu">println</span>(variable1.<span class="fu">toString</span>());
             System.<span class="fu">out</span>.<span class="fu">println</span>(Integer.<span class="fu">toString</span>(<span class="dv">2016</span>))
+            System.<span class="fu">out</span>.<span class="fu">println</span>(variable.<span class="fu">toString</span>()); <span class="co">//Correct?</span>
         }
     }   </code></pre>
 <h2 id="equals-example">Equals example</h2>
