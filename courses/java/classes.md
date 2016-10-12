@@ -354,6 +354,7 @@ Circle() {
 	id = count; 
 }
 ```
+* *final* fields cannot change their value/state after their initialization
 
 
 ## The *final* modifier (continued)
@@ -425,6 +426,8 @@ class DBConnector
 	}
 }
 ```
+* Only **one** instance of a Singleton class can exist at a time
+* The constructor is *private*
 
 
 ## Classes as custom types
@@ -578,14 +581,110 @@ Choose an appropriate type for your method!
 
  ## Exercise 2 (continued)
 * Use the correct *UML connectors* for the above relations among the entities
-* Create the source code for the above classes and compile it
-* All classes should have at least 
-	* have at least one constructor, 
-	* have at least one *String* field of your preference (like driver's name) and 
-	* implement the toString() method that will return the field of each class
+* Create the skeleton source code for the above classes (no need for fields, constructors or methods)  and compile it
 
- <!-- TODO LIST
-Add references
-Add Exercise 2
-Send Exercise solutions to Stef and Trifonas
-  -->
+
+## Exercise 3
+You have the following relation ship of entities:
+* There is a *Library* that has a collection of *Book*s
+* Each *Book* has an *Author*
+* The *Library* is operated by a *Librarian*
+* The user can make request regarding authors and book availability only by asking the Librarian. No direct contact to the other entities should be attempted!
+
+
+## Exercise 3 (continued)
+* **Class Author**
+* Fields: *name* (String)
+* Methods: 
+ * *toString* (returns the name of the author in a message) 
+
+
+## Exercise 3 (continued)
+* **Class Book**
+* Fields: *title* (String), *author* (custom type Author), *isbn* (String), *physical_copies* (int), *available_copies* (int) and *times_rented* (int)
+* *isbn* should not be changed after the initialization
+* Methods: 
+ * *toString* (returns the details of the book in printable way. the book author's details should be acquired with the *toString* method from the *Book* class)
+ * *rentPhysicalCopy* (checks if there is an available copy for renting. If yes, then it prints a message of success. What fields should be modified upon success??) 
+
+
+## Exercise 3 (continued)
+* **Class Book**
+* Methods:
+ * *isAvailable* (return true when there is at least one available copy of the book, otherwise false)
+ * *hasAuthor* (return true or false if a given name is the name of the book's author)
+
+
+## Exercise 3 (continued)
+* **Class Library**
+* Fields: books (array of *Books*)
+* Methods:
+ * *printAvailableBooks* (Checks the book collection and prints those that are available. Hint: Use the *isAvailable* and the *toString* methods from the *Book* class
+ * *printBookDetails* (Searches for a book based on a given title. If the book exists then its details should be printed, otherwise an error message should be displayed)
+
+
+## Exercise 3 (continued)
+* **Class Library**
+* Methods:
+ * *printBookFromAuthor* (prints only the books that have an author that matches a given name)
+
+
+## Exercise 3 (continued)
+* **Class Librarian**
+* Fields: library (The *Library* that he manages)
+* Methods:
+ * *findMeBooksFromAuthor* (Receives an author name and delegates the request to the library's *printBookFromAuthor* method)
+ * *findMeAvailableBooks* (Delegates the request to the library's *printAvailableBooks* method)
+ * *findMeBook* (Receives a book's title and delegates the request to the library's *printBookDetails* method)
+
+
+ ## Exercise 3 (end)
+* Create a *TestLibrary* class which will execute the following commands:
+* Test the functionality of your "System" by asking the Librarian to fetch you information!
+```java
+/** Create Random authors */
+Author ruth = new Author("Ruth");
+Author diane = new Author("Diane");
+Author jacqueline = new Author("Jacqueline");
+Author rachel = new Author("Rachel");
+Author joan = new Author("Joan");
+Author theresa = new Author("Theresa");
+Author angela = new Author("Angela");
+Author helen = new Author("Helen");
+Author lisa = new Author("Lisa");
+/** Create Random books from the above authors */
+Book book1 = new Book("Book1",ruth,"368777540-2",10,2,20);
+Book book2 = new Book("Book2",diane,"963099898-2",10,1,22);
+Book book3 = new Book("Book3",jacqueline,"005382097-2",10,0,23);
+Book book4 = new Book("Book4",rachel,"538310208-2",10,3,24);
+Book book5 = new Book("Book5",joan,"562448132-2",10,4,26);
+Book book6 = new Book("Book6",theresa,"670364563-2",10,2,21);
+Book book7 = new Book("Book7",angela,"466916869-2",10,5,17);
+Book book8 = new Book("Book8",helen,"764674973-2",10,0,15);
+Book book9 = new Book("Book9",lisa,"052469721-2",10,6,17);
+Book book10 = new Book("Book10",ruth,"609291817-2",10,3,13);
+Book book11 = new Book("Book11",diane,"451378028-2",10,8,12);
+Book book12 = new Book("Book12",jacqueline,"142352773-2",10,6,20);
+Book book13 = new Book("Book13",rachel,"115135166-2",10,0,20);
+Book book14 = new Book("Book14",joan,"631942468-2",10,3,20);
+Book book15 = new Book("Book15",theresa,"323662444-2",10,0,23);
+Book book16 = new Book("Book16",angela,"121360492-2",10,0,12);
+Book book17 = new Book("Book17",helen,"391199302-2",10,0,20);
+Book book18 = new Book("Book18",ruth,"549307784-2",10,1,20);
+Book book19 = new Book("Book19",ruth,"368777230-2",10,23,20);
+Book book20 = new Book("Book20",ruth,"793027213-2",10,0,20);
+/** Add the books to a Book array*/
+Book[] books = {book1,book2,book3,book4,book5,book6,book7,
+book8,book9,book10,book11,book12,book13,book14,book15,
+book16,book17,book18,book19,book20};/** Assign the book collection to the library */
+Library library = new Library(books);
+/** Librarian, the_guy_who _knows_a_lot, undertakes the operation of the library */
+Librarian the_guy = new Librarian(library);
+the_guy.findMeAvailableBooks();
+the_guy.findMeBook("Book3");
+the_guy.findMeBooksFromAuthor("Ruth");
+```
+
+
+## Exercise 4 (BONUS!)
+* Create a command-line user interface for Exercise 3, providing the user with the following options:
