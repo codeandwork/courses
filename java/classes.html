@@ -159,7 +159,7 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="
 <h2 id="constructor---a-special-method">Constructor - a special method!</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* default constructor */</span>
 <span class="fu">Circle</span>() {
-    <span class="kw">this</span>.<span class="fu">x</span> = <span class="kw">this</span>.<span class="fu">y</span> = <span class="dv">0</span>;
+    <span class="kw">this</span>.<span class="fu">x</span> = <span class="kw">this</span>.<span class="fu">y</span> = <span class="dv">0</span>; <span class="co">// you can omit this line. x and will be initialized to zero either way. </span>
     <span class="kw">this</span>.<span class="fu">radius</span> = <span class="dv">3</span>;
 }</code></pre>
 <ul>
@@ -183,7 +183,7 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Overloaded constructor calling the default </span>
 <span class="co">   constructor with the use of super */</span>
 <span class="fu">Circle</span>(<span class="dt">int</span> x, <span class="dt">int</span> y) {
-    <span class="kw">super</span>();
+    <span class="kw">this</span>();
     <span class="kw">this</span>.<span class="fu">x</span> = x;
     <span class="kw">this</span>.<span class="fu">y</span> = y;
 }</code></pre></li>
@@ -272,18 +272,18 @@ Circle c2 = c.<span class="fu">copy</span>();</code></pre></li>
 <pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>();
 Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>();
 System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c1 count is &quot;</span> + c1.<span class="fu">count</span>); <span class="co">//c1.count gives a warning. Why?</span>
-System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c2 count is &quot;</span> + count);</code></pre></li>
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c2 count is &quot;</span> + Circle.<span class="fu">count</span>);</code></pre></li>
 </ul>
 <h2 id="static-fields-and-methods-continued">Static fields and methods (continued)</h2>
-<pre class="sourceCode java"><code class="sourceCode java">c1 count is <span class="dv">3</span>
-c2 count is <span class="dv">3</span></code></pre>
+<pre class="sourceCode java"><code class="sourceCode java">c1 count is <span class="dv">2</span>
+c2 count is <span class="dv">2</span></code></pre>
 <ul>
 <li><p><em>Static</em> methods can access only static fields</p>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getCount</span>() { <span class="kw">return</span> count; }</code></pre></li>
 <li><p><em>Static</em> methods can be called by other classes only by the name of the class</p>
 <pre class="sourceCode java"><code class="sourceCode java">System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Number of existing circles : &quot;</span> 
                             + Circle.<span class="fu">getCount</span>());</code></pre>
-<pre class="sourceCode java"><code class="sourceCode java">Number of existing circles : <span class="dv">3</span></code></pre></li>
+<pre class="sourceCode java"><code class="sourceCode java">Number of existing circles : <span class="dv">2</span></code></pre></li>
 </ul>
 <h2 id="memory-allocation-of-static-fields">Memory allocation of static fields</h2>
 <p><img src=media/memory_static.svg width=300 height=500 /></br></p>
@@ -314,9 +314,9 @@ Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>();</code>
 Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>();
 Circle c3 = <span class="kw">new</span> <span class="fu">Circle</span>();
 
-System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c1 count is &quot;</span> + c1.<span class="fu">getCount</span>() +  <span class="st">&quot;, id is &quot;</span> + c1.<span class="fu">getId</span>());
-System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c2 count is &quot;</span> + c2.<span class="fu">getCount</span>() +  <span class="st">&quot;, id is &quot;</span> + c2.<span class="fu">getId</span>());
-System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c3 count is &quot;</span> + c3.<span class="fu">getCount</span>() +  <span class="st">&quot;, id is &quot;</span> + c3.<span class="fu">getId</span>());</code></pre>
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c1 count is &quot;</span> + Circle.<span class="fu">getCount</span>() +  <span class="st">&quot;, id is &quot;</span> + c1.<span class="fu">getId</span>());
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c2 count is &quot;</span> + Circle.<span class="fu">getCount</span>() +  <span class="st">&quot;, id is &quot;</span> + c2.<span class="fu">getId</span>());
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c3 count is &quot;</span> + Circle.<span class="fu">getCount</span>() +  <span class="st">&quot;, id is &quot;</span> + c3.<span class="fu">getId</span>());</code></pre>
 <ul>
 <li><p>Which result the following output</p>
 <pre class="sourceCode java"><code class="sourceCode java">c1 count is <span class="dv">3</span>, id is <span class="dv">1</span>
@@ -344,7 +344,7 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> DBConnector
 {
     <span class="co">/* unique instance of the class */</span>
-    <span class="kw">private</span> <span class="dt">static</span> DBConnector instance;
+    <span class="kw">private</span> <span class="dt">static</span> DBConnector unique_db_connection_instnce;
 
     <span class="co">/* Private constructor of the class */</span>
     <span class="kw">private</span> <span class="fu">DBConnector</span>()
@@ -353,13 +353,13 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
     }
 
     <span class="co">/* method that creates (if not initialized)</span>
-<span class="co">    and returns the unique instance of the class */</span>
+<span class="co">    and returns the unique_db_connection_instnce of the class */</span>
     <span class="kw">public</span> <span class="dt">static</span>  DBConnector <span class="fu">getInstance</span>()
     {
-        <span class="kw">if</span> (instance == <span class="kw">null</span>)
-            instance = <span class="kw">new</span> <span class="fu">DBConnector</span>();
+        <span class="kw">if</span> (unique_db_connection_instnce == <span class="kw">null</span>)
+            unique_db_connection_instnce = <span class="kw">new</span> <span class="fu">DBConnector</span>();
 
-        <span class="kw">return</span> instance;
+        <span class="kw">return</span> unique_db_connection_instnce;
     }
 
     <span class="co">/* sample method */</span>
@@ -424,7 +424,7 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 <li>ClassA, like in <em>Association</em> holds an instance of ClassB<br /></li>
 <li>The aggregated object <em>b</em> can live even after the destruction of the ClassA's instance</li>
 </ul>
-<h2 id="composition">Composition</h2>
+<h2 id="multiplicity">Multiplicity</h2>
 <p><img src=media/multiplicity.png width=700 height=300 /></br></p>
 <ul>
 <li>Any object <em>a</em> holds multiple objects of type <em>ClassB</em></li>
@@ -568,7 +568,7 @@ c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></p
 <li><em>findMeAvailableBooks</em> (Delegates the request to the library's <em>printAvailableBooks</em> method)<br /></li>
 <li><em>findMeBook</em> (Receives a book's title and delegates the request to the library's <em>printBookDetails</em> method)</li>
 </ul>
-<p>## Exercise 3 (end)</p>
+<h2 id="exercise-3-continued-6">Exercise 3 (continued)</h2>
 <ul>
 <li>Create a <em>TestLibrary</em> class which will execute the following commands:<br /></li>
 <li><p>Test the functionality of your &quot;System&quot; by asking the Librarian to fetch you information!</p>
@@ -614,6 +614,145 @@ the_guy.<span class="fu">findMeAvailableBooks</span>();
 the_guy.<span class="fu">findMeBook</span>(<span class="st">&quot;Book3&quot;</span>);
 the_guy.<span class="fu">findMeBooksFromAuthor</span>(<span class="st">&quot;Ruth&quot;</span>);</code></pre></li>
 </ul>
+<h2 id="exercise-3-end">Exercise 3 (end)</h2>
+<ul>
+<li>The expected output after the running the code from the previous slide is:</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">The following books are available at the library <span class="kw">for</span> renting
+<span class="dv">1</span>. Book <span class="st">&quot;Book1&quot;</span>
+    isbn: <span class="dv">368777540-2</span>
+    author name: Ruth
+    available copies: <span class="dv">2</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">20</span>
+
+<span class="dv">2</span>. Book <span class="st">&quot;Book2&quot;</span>
+    isbn: <span class="dv">963099898-2</span>
+    author name: Diane
+    available copies: <span class="dv">1</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">22</span>
+
+<span class="dv">3</span>. Book <span class="st">&quot;Book4&quot;</span>
+    isbn: <span class="dv">538310208-2</span>
+    author name: Rachel
+    available copies: <span class="dv">3</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">24</span>
+
+<span class="dv">4</span>. Book <span class="st">&quot;Book5&quot;</span>
+    isbn: <span class="dv">562448132-2</span>
+    author name: Joan
+    available copies: <span class="dv">4</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">26</span>
+
+<span class="dv">5</span>. Book <span class="st">&quot;Book6&quot;</span>
+    isbn: <span class="dv">670364563-2</span>
+    author name: Theresa
+    available copies: <span class="dv">2</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">21</span>
+
+<span class="dv">6</span>. Book <span class="st">&quot;Book7&quot;</span>
+    isbn: <span class="dv">466916869-2</span>
+    author name: Angela
+    available copies: <span class="dv">5</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">17</span>
+
+<span class="dv">7</span>. Book <span class="st">&quot;Book9&quot;</span>
+    isbn: <span class="dv">052469721-2</span>
+    author name: Lisa
+    available copies: <span class="dv">6</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">17</span>
+
+<span class="dv">8</span>. Book <span class="st">&quot;Book10&quot;</span>
+    isbn: <span class="dv">609291817-2</span>
+    author name: Ruth
+    available copies: <span class="dv">3</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">13</span>
+
+<span class="dv">9</span>. Book <span class="st">&quot;Book11&quot;</span>
+    isbn: <span class="dv">451378028-2</span>
+    author name: Diane
+    available copies: <span class="dv">8</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">12</span>
+
+<span class="dv">10</span>. Book <span class="st">&quot;Book12&quot;</span>
+    isbn: <span class="dv">142352773-2</span>
+    author name: Jacqueline
+    available copies: <span class="dv">6</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">20</span>
+
+<span class="dv">11</span>. Book <span class="st">&quot;Book14&quot;</span>
+    isbn: <span class="dv">631942468-2</span>
+    author name: Joan
+    available copies: <span class="dv">3</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">20</span>
+
+<span class="dv">12</span>. Book <span class="st">&quot;Book18&quot;</span>
+    isbn: <span class="dv">549307784-2</span>
+    author name: Ruth
+    available copies: <span class="dv">1</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">20</span>
+
+<span class="dv">13</span>. Book <span class="st">&quot;Book19&quot;</span>
+    isbn: <span class="dv">368777230-2</span>
+    author name: Ruth
+    available copies: <span class="dv">23</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">20</span>
+
+Book found in the library!
+Book <span class="st">&quot;Book3&quot;</span>
+    isbn: <span class="dv">005382097-2</span>
+    author name: Jacqueline
+    available copies: <span class="dv">0</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">23</span>
+
+Books by author <span class="st">&quot;Ruth&quot;</span>:
+<span class="dv">1</span>. Book <span class="st">&quot;Book1&quot;</span>
+    isbn: <span class="dv">368777540-2</span>
+    author name: Ruth
+    available copies: <span class="dv">2</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">20</span>
+
+<span class="dv">2</span>. Book <span class="st">&quot;Book10&quot;</span>
+    isbn: <span class="dv">609291817-2</span>
+    author name: Ruth
+    available copies: <span class="dv">3</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">13</span>
+
+<span class="dv">3</span>. Book <span class="st">&quot;Book18&quot;</span>
+    isbn: <span class="dv">549307784-2</span>
+    author name: Ruth
+    available copies: <span class="dv">1</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">20</span>
+
+<span class="dv">4</span>. Book <span class="st">&quot;Book19&quot;</span>
+    isbn: <span class="dv">368777230-2</span>
+    author name: Ruth
+    available copies: <span class="dv">23</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">20</span>
+
+<span class="dv">5</span>. Book <span class="st">&quot;Book20&quot;</span>
+    isbn: <span class="dv">793027213-2</span>
+    author name: Ruth
+    available copies: <span class="dv">0</span>
+    physical copies: <span class="dv">10</span>
+    times rented: <span class="dv">20</span></code></pre>
 <h2 id="exercise-4-bonus">Exercise 4 (BONUS!)</h2>
 <ul>
 <li>Create a command-line user interface for Exercise 3, providing the user, at least, the following options:<br /> Welcome to the Bootcamp library.<br /> How do you want to proceed?<br /> 1. Show all available books<br /> 2. Search for a book (by book title)<br /> 3. Display books from a specific author<br /> q. Quit<br /> &gt;</li>
