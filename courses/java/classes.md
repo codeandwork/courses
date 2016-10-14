@@ -156,7 +156,7 @@ public void calculatePerimeter(double pi) {
 ```java
 /* default constructor */
 Circle() {
-	this.x = this.y = 0;
+	this.x = this.y = 0; // you can omit this line. x and will be initialized to zero either way. 
 	this.radius = 3;
 }
 ```
@@ -187,7 +187,7 @@ Circle(int x, int y) {
 /* Overloaded constructor calling the default 
    constructor with the use of super */
 Circle(int x, int y) {
-	super();
+	this();
 	this.x = x;
 	this.y = y;
 }
@@ -306,14 +306,14 @@ class Circle {
 Circle c1 = new Circle();
 Circle c2 = new Circle();
 System.out.println("c1 count is " + c1.count); //c1.count gives a warning. Why?
-System.out.println("c2 count is " + count);
+System.out.println("c2 count is " + Circle.count);
 ```
 
 
 ## Static fields and methods (continued)
 ```java
-c1 count is 3
-c2 count is 3
+c1 count is 2
+c2 count is 2
 ```
 * *Static* methods can access only static fields
 ```java
@@ -325,7 +325,7 @@ System.out.println("Number of existing circles : "
 								+ Circle.getCount());
 ```
 ```java
-Number of existing circles : 3
+Number of existing circles : 2
 ```
 
 
@@ -366,9 +366,9 @@ Circle c1 = new Circle();
 Circle c2 = new Circle();
 Circle c3 = new Circle();
 
-System.out.println("c1 count is " + c1.getCount() +  ", id is " + c1.getId());
-System.out.println("c2 count is " + c2.getCount() +  ", id is " + c2.getId());
-System.out.println("c3 count is " + c3.getCount() +  ", id is " + c3.getId());
+System.out.println("c1 count is " + Circle.getCount() +  ", id is " + c1.getId());
+System.out.println("c2 count is " + Circle.getCount() +  ", id is " + c2.getId());
+System.out.println("c3 count is " + Circle.getCount() +  ", id is " + c3.getId());
 ```
 * Which result the following output
 ```java
@@ -402,7 +402,7 @@ public final class MyUtilities {
 class DBConnector
 {
 	/* unique instance of the class */
-	private static DBConnector instance;
+	private static DBConnector unique_db_connection_instnce;
 
 	/* Private constructor of the class */
 	private DBConnector()
@@ -411,13 +411,13 @@ class DBConnector
 	}
 
 	/* method that creates (if not initialized)
-	and returns the unique instance of the class */
+	and returns the unique_db_connection_instnce of the class */
 	public static  DBConnector getInstance()
 	{
-		if (instance == null)
-			instance = new DBConnector();
+		if (unique_db_connection_instnce == null)
+			unique_db_connection_instnce = new DBConnector();
 
-		return instance;
+		return unique_db_connection_instnce;
 	}
 
 	/* sample method */
@@ -491,7 +491,7 @@ When copying objects (with the copy constructors) ensure that the custom type fi
 * The aggregated object *b* can live even after the destruction of the ClassA's instance 
 
 
-## Composition
+## Multiplicity
 <img src=media/multiplicity.png width=700 height=300 /></br>
 * Any object *a* holds multiple objects of type *ClassB*
 
@@ -641,7 +641,7 @@ You have the following relations between entities:
  * *findMeBook* (Receives a book's title and delegates the request to the library's *printBookDetails* method)
 
 
- ## Exercise 3 (end)
+## Exercise 3 (continued)
 * Create a *TestLibrary* class which will execute the following commands:
 * Test the functionality of your "System" by asking the Librarian to fetch you information!
 ```java
@@ -686,6 +686,148 @@ Librarian the_guy = new Librarian(library);
 the_guy.findMeAvailableBooks();
 the_guy.findMeBook("Book3");
 the_guy.findMeBooksFromAuthor("Ruth");
+```
+
+
+## Exercise 3 (end)
+* The expected output after the running the code from the previous slide is:
+
+```java
+The following books are available at the library for renting
+1. Book "Book1"
+	isbn: 368777540-2
+	author name: Ruth
+	available copies: 2
+	physical copies: 10
+	times rented: 20
+
+2. Book "Book2"
+	isbn: 963099898-2
+	author name: Diane
+	available copies: 1
+	physical copies: 10
+	times rented: 22
+
+3. Book "Book4"
+	isbn: 538310208-2
+	author name: Rachel
+	available copies: 3
+	physical copies: 10
+	times rented: 24
+
+4. Book "Book5"
+	isbn: 562448132-2
+	author name: Joan
+	available copies: 4
+	physical copies: 10
+	times rented: 26
+
+5. Book "Book6"
+	isbn: 670364563-2
+	author name: Theresa
+	available copies: 2
+	physical copies: 10
+	times rented: 21
+
+6. Book "Book7"
+	isbn: 466916869-2
+	author name: Angela
+	available copies: 5
+	physical copies: 10
+	times rented: 17
+
+7. Book "Book9"
+	isbn: 052469721-2
+	author name: Lisa
+	available copies: 6
+	physical copies: 10
+	times rented: 17
+
+8. Book "Book10"
+	isbn: 609291817-2
+	author name: Ruth
+	available copies: 3
+	physical copies: 10
+	times rented: 13
+
+9. Book "Book11"
+	isbn: 451378028-2
+	author name: Diane
+	available copies: 8
+	physical copies: 10
+	times rented: 12
+
+10. Book "Book12"
+	isbn: 142352773-2
+	author name: Jacqueline
+	available copies: 6
+	physical copies: 10
+	times rented: 20
+
+11. Book "Book14"
+	isbn: 631942468-2
+	author name: Joan
+	available copies: 3
+	physical copies: 10
+	times rented: 20
+
+12. Book "Book18"
+	isbn: 549307784-2
+	author name: Ruth
+	available copies: 1
+	physical copies: 10
+	times rented: 20
+
+13. Book "Book19"
+	isbn: 368777230-2
+	author name: Ruth
+	available copies: 23
+	physical copies: 10
+	times rented: 20
+
+Book found in the library!
+Book "Book3"
+	isbn: 005382097-2
+	author name: Jacqueline
+	available copies: 0
+	physical copies: 10
+	times rented: 23
+
+Books by author "Ruth":
+1. Book "Book1"
+	isbn: 368777540-2
+	author name: Ruth
+	available copies: 2
+	physical copies: 10
+	times rented: 20
+
+2. Book "Book10"
+	isbn: 609291817-2
+	author name: Ruth
+	available copies: 3
+	physical copies: 10
+	times rented: 13
+
+3. Book "Book18"
+	isbn: 549307784-2
+	author name: Ruth
+	available copies: 1
+	physical copies: 10
+	times rented: 20
+
+4. Book "Book19"
+	isbn: 368777230-2
+	author name: Ruth
+	available copies: 23
+	physical copies: 10
+	times rented: 20
+
+5. Book "Book20"
+	isbn: 793027213-2
+	author name: Ruth
+	available copies: 0
+	physical copies: 10
+	times rented: 20
 ```
 
 
