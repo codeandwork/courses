@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Coding Bootcamp: Table of contents</title>
+    <title>Introduction to Design Patterns</title>
 
     <!-- Bootstrap -->
     <!-- JQuery is required -->
@@ -29,32 +29,36 @@
     <link rel="stylesheet" href="../css/pandoc-syntax.css">
   </head>
   <body>
-<h1 id="coding-bootcamp-java-specialization">Coding Bootcamp: Java specialization</h1>
-<h2 id="test-driven-development-and-object-oriented-programming">Test driven development and object-oriented programming</h2>
+<h1 id="coding-bootcamp-introduction-to-design-patterns">Coding Bootcamp: Introduction to Design Patterns</h1>
+<h2 id="quick-recap---principles-of-object-orientation">Quick Recap - Principles of Object-orientation</h2>
 <ul>
-<li><a href="common/lazy-p.html">Being lazy</a><br /></li>
-<li><a href="java/hello-p.html">Hello world!</a><br /></li>
-<li><a href="java/objects-p.html">Constructing and using objects</a><br /></li>
-<li><a href="java/classes-p.html">Creating classes</a><br /></li>
-<li><a href="java/generics_and_threads-p.html">Generics and Threads</a></li>
+<li>Abstraction<br /></li>
+<li>Encapsulation<br /></li>
+<li>Modularization<br /></li>
+<li>Hierarchy</li>
 </ul>
-<h2 id="further-test-driven-development-and-object-oriented-programming">Further test driven development and object oriented programming</h2>
+<h2 id="design-patterns---a-motivating-example">Design Patterns - A Motivating Example</h2>
+<h2 id="design-patterns---a-motivating-example-1">Design Patterns - A Motivating Example</h2>
 <ul>
-<li><a href="common/designPatterns-p.html">Introduction to Design Patterns</a></li>
+<li>Bootcamp course and a few stakeholders (Students and Instructors)<br /></li>
+<li>Any change in the course must be notified to all the stakeholders<br /></li>
+<li>Now, think about its implementation</li>
 </ul>
-<h2 id="introduction-to-web-development">Introduction to web development</h2>
-<h2 id="databases-and-user-management">Databases and user management</h2>
-<h2 id="front-end-technologies">Front-end technologies</h2>
-<ul>
-<li><a href="common/hello-p.html">Hello (front end) world!</a></li>
-</ul>
-<h2 id="project-week-1">Project week 1</h2>
-<h2 id="other-programming-languages-and-mvc-frameworks">Other programming languages and MVC frameworks</h2>
-<h2 id="further-javascript">Further JavaScript</h2>
-<h2 id="further-java">Further Java</h2>
-<h2 id="end-user-driven-design-development---ux-ui-principles">End-user driven design &amp; development - UX &amp; UI principles</h2>
-<h2 id="project-technical-management">Project &amp; technical management</h2>
-<h2 id="final-project-implementation">Final project implementation</h2>
+<h2 id="design-patterns---a-motivating-example-2">Design Patterns - A Motivating Example</h2>
+<p><img src="media/observerMotivation.png" /></p>
+<h2 id="implementation">Implementation</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Course {
+<span class="kw">private</span> Student student;
+<span class="kw">private</span> Instructor instructor;
+    <span class="kw">public</span> <span class="fu">Course</span>() {
+        student = <span class="kw">new</span> <span class="fu">Student</span>();
+        instructor = <span class="kw">new</span> <span class="fu">Instructor</span>();
+    }
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">update</span>() {
+        student.<span class="fu">update</span>();
+        instructor.<span class="fu">update</span>();    
+    }
+}</code></pre>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
