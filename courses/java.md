@@ -4,6 +4,7 @@
 * [Hello world!](java/hello.md)
 * [Constructing and using objects](java/objects.md)
 * [Creating classes](java/classes.md)
+* [Generics and Threads](java/generics_and_threads.md)
 
 ## Further test driven development and object oriented programming
 * [Introduction to Design Patterns](common/designPatterns.md)
