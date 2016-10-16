@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Generics and Threads</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-generics-and-threads">Coding Bootcamp: Generics and Threads</h1>
+<h2 id="aim-of-the-course">Aim of the course</h2>
+<ul>
+<li>Provide general knowledge and understanding for generics<br /></li>
+<li>Explain how processes and threads work</li>
+</ul>
+<h2 id="what-are-the-generics">What are the generics</h2>
+<ul>
+<li>Approach that provides stability in code by identifing bugs on compiler-time<br /></li>
+<li>Compiler-time and run-time bugs<br /></li>
+<li>Run-time bugs are much more hard to identify and may not crush at a specific part of code</li>
+</ul>
+<h2 id="why-to-use-generics">Why to use Generics</h2>
+<ul>
+<li>Generics allow classes, interfaces, and methods type parameterization<br /></li>
+<li>Type parameterization allows code re-usability with different inputs, i.e.,objects<br /></li>
+<li>Strong type checking on compile-time<br /></li>
+<li>Nullifying type casting<br /></li>
+<li>Allow programmers to create generic algorithms</li>
+</ul>
+<h2 id="generics-example">Generics example</h2>
+<ul>
+<li><p>Non-generic parameter</p>
+<pre class="sourceCode java"><code class="sourceCode java">    List list = <span class="kw">new</span> ArrayList();
+    list.<span class="fu">add</span>(<span class="st">&quot;BootCampers are the best&quot;</span>);
+    String str = (String) list.<span class="fu">get</span>(<span class="dv">0</span>);</code></pre></li>
+<li><p>Generic parameter</p>
+<pre class="sourceCode java"><code class="sourceCode java">    List&lt;String&gt; list = <span class="kw">new</span> ArrayList&lt;String&gt;();
+    list.<span class="fu">add</span>(<span class="st">&quot;BootCampers are the best&quot;</span>);
+    String str = list.<span class="fu">get</span>(<span class="dv">0</span>); <span class="co">// No casting requires</span></code></pre></li>
+</ul>
+<h2 id="generic-types-1">Generic Types (1)</h2>
+<p>Allows user to define type for a Class or an Interface</p>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> Box {
+        <span class="kw">private</span> Object object;
+            <span class="kw">public</span> <span class="dt">void</span> <span class="fu">set</span>(Object object) { <span class="kw">this</span>.<span class="fu">object</span> = object; }
+            <span class="kw">public</span> Object <span class="fu">get</span>() { <span class="kw">return</span> object; }
+}</code></pre>
+<p>class name<code>&lt;T1, T2, ..., Tn&gt;</code> { /* ... */ }</p>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> Box&lt;T&gt; {
+        <span class="co">// T stands for &quot;Type&quot;</span>
+        <span class="kw">private</span> T t;
+
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">set</span>(T t) { <span class="kw">this</span>.<span class="fu">t</span> = t; }
+        <span class="kw">public</span> T <span class="fu">get</span>() { <span class="kw">return</span> t; }
+}</code></pre>
+<h2 id="generic-types-2">Generic Types (2)</h2>
+<ul>
+<li>Any object in the aforementioned exmaple can be replaced by T<br /></li>
+<li>Type variable, parameters can be any non-primitive type, e.g., class, interface, array, or even another type variable</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> BoxInTheBox&lt;T,Box&lt;String&gt;&gt; {
+    <span class="co">/* Some code */</span>
+}</code></pre>
+<h2 id="diamond-generics">Diamond Generics</h2>
+<ul>
+<li>Available after SE 7 and later.<br /></li>
+<li>Allows programmer to add an empty type arguments (&lt;&gt;) while calling the constructor<br /></li>
+<li>Statement of the object although always require the type arguments</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">    Box&lt;<span class="dt">int</span>&gt; intBoxer = <span class="kw">new</span> Box&lt;&gt;();</code></pre>
+<h2 id="multiple-parameters-in-generics">Multiple parameters in generics</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">class</span> Pairing &lt;O1, O2&gt; {
+        <span class="kw">private</span> O1 obj1;
+        <span class="kw">private</span> O2 obj2;
+        <span class="kw">public</span> <span class="fu">Pairing</span>(O1 o1, O2 o2) {
+            obj1 = o1;
+            obj2 = o2;          
+        }   
+
+        <span class="kw">public</span> O1 <span class="fu">getFirst</span>() {
+            <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">obj1</span>;       
+        }
+
+        <span class="kw">public</span> O2 <span class="fu">getFirst</span>() {
+            <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">obj2</span>;       
+        }
+
+        <span class="kw">public</span> String <span class="fu">toString</span>() {
+            <span class="kw">return</span> <span class="st">&quot;(&quot;</span> + obj1.<span class="fu">toString</span>() + <span class="st">&quot;, &quot;</span>+obj2.<span class="fu">toString</span>() + <span class="st">&quot;)&quot;</span>;      
+        }
+    }
+
+    <span class="kw">class</span> Male {}
+    <span class="kw">class</span> Female {}
+    
+    <span class="kw">class</span> Test {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            Pairing&lt;Male, Female&gt; marryThem = <span class="kw">new</span> Pairing&lt;&gt;();
+            System.<span class="fu">out</span>.<span class="fu">println</span>(marryThem.<span class="fu">toString</span>());   
+        }       
+    }</code></pre>
+<h2 id="wildcards-generics">Wildcards generics</h2>
+<ul>
+<li>Represents an unknown type of object<br /></li>
+<li>Can be used as a type of parameter, field, or local variable, and as a return type<br /></li>
+<li>Never use it as argument type for generic method, class, or supertype.</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">    Collection &lt;?&gt;
+    Collection &lt;? extend E&gt;
+    Collection &lt;? <span class="kw">super</span> E&gt;</code></pre>
+<h2 id="introducation-to-threads">Introducation to Threads</h2>
+<ul>
+<li>Thread is a piece of code that lives inside a process<br /></li>
+<li>Process is a program under execution running in a sequential manner<br /></li>
+<li>Each process in the Operating System represents a unit of work or task<br /></li>
+<li>When creating a process we allocate space were the threads are created<br /></li>
+<li>A process can have from 1-to-Many threads</li>
+</ul>
+<h2 id="process-real-world-example">Process real-world example</h2>
+<p><img src="media/Processes_SnapShot.png" /></p>
+<h2 id="threads-real-world-example">Threads real-world example</h2>
+<p><img src="media/Threads_Snapshot.png" /></p>
+<h2 id="concurrency-and-parallelism">Concurrency and Parallelism</h2>
+<ul>
+<li>The progress of concurrency is one task at the time<br /></li>
+<li>May not finish one task before starting another<br /></li>
+<li>Parallelism can split a single task in many subtasks<br /></li>
+<li>Using multiple CPUs can execute tasks on the same time</li>
+</ul>
+<h2 id="problems-with-concurrency-1">Problems with Concurrency (1)</h2>
+<ul>
+<li>Consider the following example where a married couple decide to depose money in their common bank account<br /></li>
+<li>Initially the bank account has $50<br /></li>
+<li>Both are deposing money from two different ATMs<br /><img src="media/Concurrency_Bank_Accounts_Example.png" /></li>
+</ul>
+<h2 id="problem-with-concurrency-2">Problem with Concurrency (2)</h2>
+<p>Scenario when everything is normal</p>
+<pre class="sourceCode java"><code class="sourceCode java">    get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
+    add $<span class="dv">100</span>
+    write back <span class="fu">result</span> (balance = $<span class="dv">150</span>)
+                    get <span class="fu">balance</span> (balance = $<span class="dv">150</span>)
+                    add $<span class="dv">50</span>
+                    write back <span class="fu">result</span> (balance = $<span class="dv">200</span>)</code></pre>
+<p>Scenario with concurrency</p>
+<pre class="sourceCode java"><code class="sourceCode java">    get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
+                    get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)
+    add $<span class="dv">100</span>
+                        add $<span class="dv">50</span>
+    write back <span class="fu">result</span> (balance = $<span class="dv">150</span>)
+                    write back <span class="fu">result</span> (balance = $<span class="dv">100</span>)</code></pre>
+<h2 id="problem-with-concurrency-3">Problem with Concurrency (3)</h2>
+<p>Scenario with parallelism</p>
+<pre class="sourceCode java"><code class="sourceCode java">    get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)        get <span class="fu">balance</span> (balance = $<span class="dv">50</span>)              
+    add $<span class="dv">100</span>               add $<span class="dv">50</span>
+    write back <span class="fu">result</span> (balance = $<span class="dv">150</span>) write back <span class="fu">result</span> (balance = $<span class="dv">100</span>)</code></pre>
+<h2 id="ways-for-executing-threads-1">Ways for executing threads (1)</h2>
+<ul>
+<li>Java supports two different ways of executing threads<br /></li>
+<li>Declare a class to extend from Thread class<br /></li>
+<li><p>Override the run method of the Thread class</p>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">class</span> FindCountOfEvenNumbers extneds Thread {
+        <span class="kw">private</span> <span class="dt">int</span> maxNumber;
+        <span class="kw">private</span> <span class="dt">int</span> count;
+        <span class="fu">FindCountOfEvenNumbers</span>(<span class="dt">int</span> maxNumber) {
+            <span class="kw">this</span>.<span class="fu">maxNumber</span> = maxNumber;
+            <span class="kw">this</span>.<span class="fu">count</span> = <span class="dv">0</span>;     
+        }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+        <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="kw">this</span>.<span class="fu">maxNumber</span>; ++i)
+        {
+            <span class="kw">if</span> (i % <span class="dv">2</span> == <span class="dv">0</span>)
+                ++count;        
+        }   
+    }
+}</code></pre></li>
+</ul>
+<h2 id="executing-our-thread">Executing our thread</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    FindCountOfEvenNumbers newThread = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
+    newThread.<span class="fu">start</span>();</code></pre>
+<h2 id="ways-for-executing-threads-2">Ways for executing threads (2)</h2>
+<ul>
+<li>Declare class that implements the Runnable interface<br /></li>
+<li><p>That class impements the run methods too</p>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">class</span> FindCountOfEvenNumbers <span class="kw">implements</span> Runnable {
+        <span class="kw">private</span> <span class="dt">int</span> maxNumber;
+        <span class="kw">private</span> <span class="dt">int</span> count;
+        <span class="fu">FindCountOfEvenNumbers</span>(<span class="dt">int</span> maxNumber) {
+            <span class="kw">this</span>.<span class="fu">maxNumber</span> = maxNumber;
+            <span class="kw">this</span>.<span class="fu">count</span> = <span class="dv">0</span>;     
+        }
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+        <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="kw">this</span>.<span class="fu">maxNumber</span>; ++i)
+        {
+            <span class="kw">if</span> (i % <span class="dv">2</span> == <span class="dv">0</span>)
+                ++count;        
+        }   
+    }
+}</code></pre></li>
+</ul>
+<h2 id="executing-our-thread-1">Executing our thread</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    FindCountOfEvenNumbers newThread = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
+    <span class="kw">new</span> Thread(newThread).<span class="fu">start</span>();</code></pre>
+<h2 id="differences-from-using-thread-and-runnable">Differences from using Thread and Runnable</h2>
+<ul>
+<li>After extending Thread class you can't extend any other that you may require in the future<br /></li>
+<li>After implementing Runnable you may extend from other class on the spot or in the future<br /></li>
+<li>Extending create different objects of the Tread class, on the other hand, in Runnable many threads can share the instance of the same object</li>
+</ul>
+<h2 id="example-of-threadvsrunnable-1">Example of ThreadVsRunnable (1)</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="co">//Implementing Runnable Interface</span>
+    <span class="kw">class</span> ImplementsRunnable <span class="kw">implements</span> Runnable {
+        <span class="kw">private</span> <span class="dt">int</span> counter = <span class="dv">0</span>;
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+            counter++;
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;ImplementsRunnable : Counter : &quot;</span>+ counter);
+        }
+    }
+
+    <span class="co">//Extending Thread class</span>
+    <span class="kw">class</span> ExtendsThread <span class="kw">extends</span> Thread {
+        <span class="kw">private</span> <span class="dt">int</span> counter = <span class="dv">0</span>;
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span> () {
+            counter++;
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;ExtendsThread : Counter : &quot;</span>+ counter);
+        }
+    }</code></pre>
+<h2 id="example-of-threadvsrunnable-2">Example of ThreadVsRunnable (2)</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> ThreadVsRunnable {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) <span class="kw">throws</span> Exception {
+            <span class="co">// Multiple threads share the same object.</span>
+                ImplementsRunnable rc = <span class="kw">new</span> <span class="fu">ImplementsRunnable</span>();
+                Thread t1 = <span class="kw">new</span> Thread(rc);
+                t1.<span class="fu">start</span>();
+                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); <span class="co">// Waiting for 1 second before starting next thread</span>
+            Thread t2 = <span class="kw">new</span> Thread(rc);
+                t2.<span class="fu">start</span>();
+                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); <span class="co">// Waiting for 1 second before starting next thread</span>
+                Thread t3 = <span class="kw">new</span> Thread(rc);
+                t3.<span class="fu">start</span>();
+
+                <span class="co">// Creating new instance for every thread access.</span>
+                ExtendsThread tc1 = <span class="kw">new</span> <span class="fu">ExtendsThread</span>();
+                tc1.<span class="fu">start</span>();
+                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); <span class="co">// Waiting for 1 second before starting next thread</span>
+                ExtendsThread tc2 = <span class="kw">new</span> <span class="fu">ExtendsThread</span>();
+                tc2.<span class="fu">start</span>();
+                Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>); <span class="co">// Waiting for 1 second before starting next thread</span>
+                ExtendsThread tc3 = <span class="kw">new</span> <span class="fu">ExtendsThread</span>();
+                tc3.<span class="fu">start</span>();
+        }
+    }</code></pre>
+<h2 id="results-of-threadvsrunnable">Results of ThreadVsRunnable</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    ImplementsRunnable : Counter : <span class="dv">1</span>
+    ImplementsRunnable : Counter : <span class="dv">2</span>
+    ImplementsRunnable : Counter : <span class="dv">3</span>
+
+    ExtendsThread : Counter : <span class="dv">1</span>
+    ExtendsThread : Counter : <span class="dv">1</span>
+    ExtendsThread : Counter : <span class="dv">1</span></code></pre>
+<h2 id="stopping-a-threads-execution-1">Stopping a threads execution (1)</h2>
+<ul>
+<li>Thread.sleep sunspends thread execution for a specified amount of time</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">    Thread pThread = <span class="kw">new</span> Thread();
+    pthread.<span class="fu">start</span>();
+    <span class="co">//Make thread sleep for 5 seconds</span>
+    pthread.<span class="fu">sleep</span>(<span class="dv">5000</span>);</code></pre>
+<h2 id="stopping-a-threads-exexution-2">Stopping a threads exexution (2)</h2>
+<ul>
+<li>Sleep period of a thread can be termindated by interrupts<br /></li>
+<li>Programmer has to decide the threads behavior on interrupts, usually termination</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">class</span> TestInterruptingThread1 <span class="kw">extends</span> Thread{  
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>(){  
+        <span class="kw">try</span>{  
+            Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>);  
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;task&quot;</span>);  
+        }<span class="kw">catch</span>(InterruptedException e){  
+            <span class="kw">throw</span> <span class="kw">new</span> RuntimeException(<span class="st">&quot;Thread interrupted...&quot;</span>+e);  
+    }  
+}  
+  
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]){  
+        TestInterruptingThread1 t1=<span class="kw">new</span> <span class="fu">TestInterruptingThread1</span>();  
+        t1.<span class="fu">start</span>();  
+        <span class="kw">try</span>{  
+            t1.<span class="fu">interrupt</span>();  
+        }<span class="kw">catch</span>(Exception e){System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception handled &quot;</span>+e);}   
+    }  
+}   </code></pre>
+<h2 id="output-of-interrupt-thread">Output of interrupt thread</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    Exception in thread <span class="st">&quot;Thread-0&quot;</span> java.<span class="fu">lang</span>.<span class="fu">RuntimeException</span>: Thread interrupted...<span class="fu">java</span>.<span class="fu">lang</span>.<span class="fu">InterruptedException</span>: sleep interrupted
+    at TestInterruptingThread1.<span class="fu">run</span>(TestInterruptingThread1.<span class="fu">java</span>:<span class="dv">7</span>)</code></pre>
+<h2 id="thread-join">Thread Join</h2>
+<ul>
+<li><p>Method that allows a thread to wait for the completion of another thread.</p>
+<pre class="sourceCode java"><code class="sourceCode java">    t.<span class="fu">join</span>();</code></pre>
+<p>Consider a thread P running and find t.join() in its execution code, P thread must wait from t thread to finish in order o continue its execution.</p></li>
+</ul>
+<h2 id="simplethread-example-1">SimpleThread Example (1)</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> SimpleThreads {
+            <span class="dt">static</span> <span class="dt">void</span> <span class="fu">threadMessage</span>(String message) {
+                String threadName = Thread.<span class="fu">currentThread</span>().<span class="fu">getName</span>();
+                System.<span class="fu">out.format</span>(<span class="st">&quot;</span><span class="ch">%s</span><span class="st">: </span><span class="ch">%s%n</span><span class="st">&quot;</span>,threadName, message);
+        }
+
+            <span class="kw">private</span> <span class="dt">static</span> <span class="kw">class</span> MessageLoop <span class="kw">implements</span> Runnable {
+            <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+                String importantInfo[] = {<span class="st">&quot;Mares eat oats&quot;</span>,<span class="st">&quot;Does eat oats&quot;</span>,<span class="st">&quot;Little lambs eat ivy&quot;</span>,<span class="st">&quot;A kid will eat ivy too&quot;</span>};
+                <span class="kw">try</span> {
+                <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; importantInfo.<span class="fu">length</span>; i++) {
+                    Thread.<span class="fu">sleep</span>(<span class="dv">4000</span>);
+                    <span class="fu">threadMessage</span>(importantInfo[i]);
+                }
+                } <span class="kw">catch</span> (InterruptedException e) {<span class="fu">threadMessage</span>(<span class="st">&quot;I wasn&#39;t done!&quot;</span>);
+                }
+            }
+        }
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[])<span class="kw">throws</span> InterruptedException {</code></pre>
+<h2 id="simplethread-example-1-1">SimpleThread Example (1)</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[])<span class="kw">throws</span> InterruptedException {
+        <span class="dt">long</span> patience = <span class="dv">1000</span> * <span class="dv">60</span> * <span class="dv">60</span>;
+        <span class="co">// If command line argument</span>
+        <span class="co">// present, gives patience</span>
+        <span class="co">// in seconds.</span>
+        <span class="kw">if</span> (args.<span class="fu">length</span> &gt; <span class="dv">0</span>) {
+            <span class="kw">try</span> {
+                patience = Long.<span class="fu">parseLong</span>(args[<span class="dv">0</span>]) * <span class="dv">1000</span>;
+            } <span class="kw">catch</span> (NumberFormatException e) {
+                System.<span class="fu">err</span>.<span class="fu">println</span>(<span class="st">&quot;Argument must be an integer.&quot;</span>);
+                System.<span class="fu">exit</span>(<span class="dv">1</span>);
+            }
+        }
+
+        <span class="fu">threadMessage</span>(<span class="st">&quot;Starting MessageLoop thread&quot;</span>);
+        <span class="dt">long</span> startTime = System.<span class="fu">currentTimeMillis</span>();
+        Thread t = <span class="kw">new</span> Thread(<span class="kw">new</span> <span class="fu">MessageLoop</span>());
+        t.<span class="fu">start</span>();
+
+        <span class="fu">threadMessage</span>(<span class="st">&quot;Waiting for MessageLoop thread to finish&quot;</span>);
+        <span class="kw">while</span> (t.<span class="fu">isAlive</span>()) {
+            <span class="fu">threadMessage</span>(<span class="st">&quot;Still waiting...&quot;</span>);
+            t.<span class="fu">join</span>(<span class="dv">1000</span>);
+            <span class="kw">if</span> (((System.<span class="fu">currentTimeMillis</span>() - startTime) &gt; patience)&amp;&amp; t.<span class="fu">isAlive</span>()) {
+                <span class="fu">threadMessage</span>(<span class="st">&quot;Tired of waiting!&quot;</span>);
+                t.<span class="fu">interrupt</span>();
+                t.<span class="fu">join</span>();
+            }
+        }
+        <span class="fu">threadMessage</span>(<span class="st">&quot;Finally!&quot;</span>);
+    }
+}</code></pre>
+<h2 id="exercises">Exercises</h2>
+<p><img src="media/Yoda_Exercises_Meme.jpg" /></p>
+<h2 id="link-to-enchance-your-programming-skills">Link to enchance your programming skills</h2>
+<ul>
+<li><a href="https://www.hackerrank.com/">https://www.hackerrank.com/</a><br /></li>
+<li><a href="https://projecteuler.net/">https://projecteuler.net/</a></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread">http://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread</a><br /></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/api/">https://docs.oracle.com/javase/7/docs/api/</a></li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
