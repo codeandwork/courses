@@ -6,6 +6,7 @@
 * [Creating classes](java/classes.md)
 
 ## Further test driven development and object oriented programming
+* [Introduction to Design Patterns](common/designPatterns.md)
 
 ## Introduction to web development
 
