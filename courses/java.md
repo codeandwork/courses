@@ -4,6 +4,7 @@
 * [Hello world!](java/hello.md)
 * [Constructing and using objects](java/objects.md)
 * [Creating classes](java/classes.md)
+* [Linear data structures](java/linearDataStructures.md)
 
 ## Further test driven development and object oriented programming
 
