@@ -197,10 +197,10 @@ coming...
 
 
 ## *Java Collections Framework*
-//TODO diagram
+<img src=media/javaCollectionFramework.svg width=800 height=500 /></br>
 
 
-## *Vector* vs *List*
+## *Vector* vs other *List* implementations
 * Almost equivalent data structures
  * *Vector* is synchronized when
  * *List* is not synchronized
