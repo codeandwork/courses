@@ -116,6 +116,7 @@
     
     <span class="fu">BootCamp</span>() {}
     <span class="fu">BootCamp</span>(BootCamp[] anArrayListOfBootCamps) {
+        anArrayListOfBootCamps = <span class="kw">new</span> ArralList&lt;&gt;();
         <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;anArrayListOfBootCamps.<span class="fu">length</span>; ++i)
             <span class="kw">this</span>.<span class="fu">anArrayListOfBootCamps</span>.<span class="fu">add</span>(anArrayListOfBootCamps[i]);
     }
@@ -123,11 +124,15 @@
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">addBootCamp</span>(BootCamp B) {
             <span class="kw">this</span>.<span class="fu">anArrayListOfBootCamps</span>.<span class="fu">add</span>(B); 
     }
+
     
-    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">removeBootCamp</span>(BootCamp B){
-            <span class="kw">if</span> (<span class="kw">this</span>.<span class="fu">anArrayListOfBootCamps</span>.<span class="fu">remove</span>(B))
-                    <span class="kw">return</span> <span class="kw">true</span>;
-            <span class="kw">return</span> <span class="kw">false</span>;
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">removeBootCamp</span>(String name) {
+        <span class="kw">for</span> (<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;anArrayListOfBootCamps.<span class="fu">size</span>(); ++i) {
+            <span class="kw">if</span> (<span class="kw">this</span>.<span class="fu">anArrayListOfBootCamps</span>.<span class="fu">get</span>(i).<span class="fu">getName</span>().<span class="fu">equals</span>(name)) {
+                <span class="kw">this</span>.<span class="fu">anArrayListOfBootCamps</span>.<span class="fu">remove</span>(i);
+                <span class="kw">return</span>;
+            }
+        }           
     }
     
     <span class="kw">public</span> ArrayList&lt;BootCamp&gt; <span class="fu">getAnArrayListOfBootCamps</span>() {
