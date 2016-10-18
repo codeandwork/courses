@@ -460,9 +460,58 @@ Consider a thread P running and find t.join() in its execution code, P thread mu
 ```
 
 
+## Synchronized Methods
+* Help to keep data consistency in a shared variable.
+* When a single thread is executing a synchronized method all the other threads that invoke synchronized method are block until the first thread is finished
+
+```java
+	public synchronized dataype method() {}
+```
+
+
+## Examples with Synchronization (1)
+```java	
+public class Counter implements Runnable {
+    private int c = 0;
+
+    public synchronized void increment() { c++; }
+    public synchronized void decrement() { c--; }
+    public synchronized int value() { return c; }
+    public synchronized void run() {
+        increment();      
+        System.out.println("I am thread" + Thread.currentThread().getName()+"and the c value is " + this.c);
+        decrement();
+    }
+}
+```
+
+
+## Examples with Synchronization (2)
+```java
+public class SimpleThreadWithMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Counter variableA;
+		variableA = new Counter();
+		new Thread(variableA).start();
+		new Thread(variableA).start();
+		new Thread(variableA).start();
+		new Thread(variableA).start();
+		new Thread(variableA).start();
+		new Thread(variableA).start();
+	}
+
+}
+```
+
+
 ## Exercises
 ![](media/Yoda_Exercises_Meme.jpg)
 
+
+## Exercise 1
+Remove the synchronized parameter from all the methods of the Counter and run the program and observe its behavior.
 
 ## Link to enchance your programming skills
 * https://www.hackerrank.com/

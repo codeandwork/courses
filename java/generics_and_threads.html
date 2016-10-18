@@ -375,8 +375,45 @@
         <span class="fu">threadMessage</span>(<span class="st">&quot;Finally!&quot;</span>);
     }
 }</code></pre>
+<h2 id="synchronized-methods">Synchronized Methods</h2>
+<ul>
+<li>Help to keep data consistency in a shared variable.<br /></li>
+<li>When a single thread is executing a synchronized method all the other threads that invoke synchronized method are block until the first thread is finished</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">synchronized</span> dataype <span class="fu">method</span>() {}</code></pre>
+<h2 id="examples-with-synchronization-1">Examples with Synchronization (1)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Counter <span class="kw">implements</span> Runnable {
+    <span class="kw">private</span> <span class="dt">int</span> c = <span class="dv">0</span>;
+
+    <span class="kw">public</span> <span class="kw">synchronized</span> <span class="dt">void</span> <span class="fu">increment</span>() { c++; }
+    <span class="kw">public</span> <span class="kw">synchronized</span> <span class="dt">void</span> <span class="fu">decrement</span>() { c--; }
+    <span class="kw">public</span> <span class="kw">synchronized</span> <span class="dt">int</span> <span class="fu">value</span>() { <span class="kw">return</span> c; }
+    <span class="kw">public</span> <span class="kw">synchronized</span> <span class="dt">void</span> <span class="fu">run</span>() {
+        <span class="fu">increment</span>();      
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am thread&quot;</span> + Thread.<span class="fu">currentThread</span>().<span class="fu">getName</span>()+<span class="st">&quot;and the c value is &quot;</span> + <span class="kw">this</span>.<span class="fu">c</span>);
+        <span class="fu">decrement</span>();
+    }
+}</code></pre>
+<h2 id="examples-with-synchronization-2">Examples with Synchronization (2)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> SimpleThreadWithMain {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        <span class="co">// TODO Auto-generated method stub</span>
+        Counter variableA;
+        variableA = <span class="kw">new</span> <span class="fu">Counter</span>();
+        <span class="kw">new</span> Thread(variableA).<span class="fu">start</span>();
+        <span class="kw">new</span> Thread(variableA).<span class="fu">start</span>();
+        <span class="kw">new</span> Thread(variableA).<span class="fu">start</span>();
+        <span class="kw">new</span> Thread(variableA).<span class="fu">start</span>();
+        <span class="kw">new</span> Thread(variableA).<span class="fu">start</span>();
+        <span class="kw">new</span> Thread(variableA).<span class="fu">start</span>();
+    }
+
+}</code></pre>
 <h2 id="exercises">Exercises</h2>
 <p><img src="media/Yoda_Exercises_Meme.jpg" /></p>
+<h2 id="exercise-1">Exercise 1</h2>
+<p>Remove the synchronized parameter from all the methods of the Counter and run the program and observe its behavior.</p>
 <h2 id="link-to-enchance-your-programming-skills">Link to enchance your programming skills</h2>
 <ul>
 <li><a href="https://www.hackerrank.com/">https://www.hackerrank.com/</a><br /></li>
