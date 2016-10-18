@@ -291,6 +291,512 @@ coming...</code></pre>
 <span class="kw">extends</span> AbstractList&lt;E&gt;
 <span class="kw">implements</span> List&lt;E&gt;, RandomAccess, Cloneable, Serializable { <span class="kw">... </span>}</code></pre></li>
 </ul>
+<h2 id="code-examples-of-the-presented-linear-data-structures">Code Examples of the presented linear data structures</h2>
+<ul>
+<li>The following slides present implementations of the sipmlified example that follows.<br />We need a List that stores the transactions that are executed for a BankAccount.<br />Only two entities exist in our scenario:<br /></li>
+<li>the <em>BankAccountTransaction</em> that represents the entity of the Transaction, and<br /></li>
+<li>the <em>BankAccountTransactionList</em> that represents a List that stores Transactions.</li>
+</ul>
+<h2 id="code-examples-of-the-presented-linear-data-structures-1">Code Examples of the presented linear data structures</h2>
+<ul>
+<li>For better understanding the difference between the linear data structures presented earlier,<br />the aforementioned scenario (and specifically the class <em>BankAccountTransactionList</em>) is implemented in two different ways:<br /></li>
+<li>with an <em>ArrayList</em> (as provided by Java),<br /></li>
+<li>with a <em>Linked-list</em> (custom made and not the one provided by Java), and<br /></li>
+<li>(not implemented) as a <em>Queue</em> (again, custom made and not the one provided by Java). For the Queue check the slide <strong>The Queue solution</strong></li>
+</ul>
+<h2 id="the-arraylist-solution">The <em>ArrayList</em> solution</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/***</span>
+<span class="co"> * This class represent a transaction (transfer of money)</span>
+<span class="co"> * of a bank account. The 2 fields are just dummy fields since this </span>
+<span class="co"> * example serves only demonstrating reasons for adding and removing </span>
+<span class="co"> * objects in a list. </span>
+<span class="co"> * </span><span class="kw">@author </span><span class="co">angor</span>
+<span class="co"> */</span>
+<span class="kw">public</span> <span class="kw">class</span> BankAccountTransaction {
+    <span class="co">/* amount of money of the transaction */</span>
+    <span class="kw">private</span> <span class="dt">int</span> amount_of_money;
+    <span class="co">/* The type of transaction (&quot;incoming&quot; or &quot;outgoing&quot;) */</span>
+    <span class="kw">private</span> String transaction_type;
+    
+    <span class="co">/* Overloaded constructor with 2 arguments */</span>
+    <span class="fu">BankAccountTransaction</span>(<span class="dt">int</span> amount_of_money, String transaction_type) {
+        <span class="kw">this</span>.<span class="fu">amount_of_money</span> = amount_of_money;
+        <span class="kw">this</span>.<span class="fu">transaction_type</span> = transaction_type;
+    }
+
+    <span class="co">/* Getters and Setter methods */</span>
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getAmount_of_money</span>() {
+        <span class="kw">return</span> amount_of_money;
+    }
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setAmount_of_money</span>(<span class="dt">int</span> amount_of_money) {
+        <span class="kw">this</span>.<span class="fu">amount_of_money</span> = amount_of_money;
+    }
+    <span class="kw">public</span> String <span class="fu">getTransaction_type</span>() {
+        <span class="kw">return</span> transaction_type;
+    }
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setTransaction_type</span>(String transaction_type) {
+        <span class="kw">this</span>.<span class="fu">transaction_type</span> = transaction_type;
+    }
+
+    <span class="co">/* Returns a string with the field values of the class */</span>
+    <span class="fu">@Override</span>
+    <span class="kw">public</span> String <span class="fu">toString</span>() {
+        <span class="kw">return</span> <span class="st">&quot;BankAccountTransaction [amount_of_money=&quot;</span> + amount_of_money
+                + <span class="st">&quot;, transaction_type=&quot;</span> + transaction_type + <span class="st">&quot;]&quot;</span>;
+    }   
+
+}</code></pre>
+<ul>
+<li>The source code above implements the <em>BankAccountTransaction</em> class</li>
+</ul>
+<h2 id="the-arraylist-solution-continued">The <em>ArrayList</em> solution (continued)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.ArrayList;</span>
+
+<span class="co">/***</span>
+<span class="co"> * This class represents a list of a bank accounts&#39; transactions.</span>
+<span class="co"> * For storing the Transactions we use an ArrayList provided by the </span>
+<span class="co"> * Java Collections Framework </span>
+<span class="co"> * (http://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)</span>
+<span class="co"> */</span>
+<span class="kw">public</span> <span class="kw">class</span> BankAccountTransactionList {
+    <span class="co">/* An ArrayList that stores BankAccountTransaction objects.</span>
+<span class="co">     * You only declare it here as a class field. The initialization </span>
+<span class="co">     * is performed in the constructor. */</span>
+    <span class="kw">private</span> ArrayList&lt;BankAccountTransaction&gt; bankAccountTransactions;
+
+    <span class="co">/* The default constructor. or safety reasons (avoid NullPointerException) </span>
+<span class="co">     * we have to initialize the bankAccountTransactions object. */</span>
+    <span class="kw">public</span> <span class="fu">BankAccountTransactionList</span>() {
+        <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span> = <span class="kw">new</span> ArrayList&lt;&gt;();
+    }
+    
+    <span class="co">/* An overloaded constructor that initializes the BankAccountTransaction</span>
+<span class="co">     * field of your class with a transaction_arraylist that received as </span>
+<span class="co">     * an argument */</span>
+    <span class="fu">BankAccountTransactionList</span>(ArrayList&lt;BankAccountTransaction&gt; transaction_arraylist) {
+        <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span> = transaction_arraylist;
+    }
+    
+    <span class="co">/* Getter and Setter methods */</span>
+    <span class="kw">public</span> ArrayList&lt;BankAccountTransaction&gt; <span class="fu">getTransaction_arraylist</span>() {
+        <span class="kw">return</span> bankAccountTransactions;
+    }
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setTransaction_arraylist</span>(
+            ArrayList&lt;BankAccountTransaction&gt; transaction_arraylist) {
+        <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span> = transaction_arraylist;
+    }
+    
+    <span class="co">/* Adds a new transaction at the last position of the </span>
+<span class="co">     * bankAccountTransactions ArrayList object. The object </span>
+<span class="co">     * should be added in the ArrayList, and this happens by </span>
+<span class="co">     * calling the add(Element e) method of the ArrayList class */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(BankAccountTransaction new_transaction) {
+        <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">add</span>(new_transaction);
+    }
+    
+    <span class="co">/* Adds a new transaction at the position (of the index argument) of the </span>
+<span class="co">     * bankAccountTransactions ArrayList object. The object </span>
+<span class="co">     * should be added in the ArrayList, and this happens by </span>
+<span class="co">     * calling the add(Element e) method of the ArrayList class */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(<span class="dt">int</span> index, BankAccountTransaction new_transaction) {
+        <span class="co">// This check exists in order to avoid the case that you try to remove an</span>
+        <span class="co">// element in a position out_of_bounds of your list. out_of_bounds</span>
+        <span class="co">// can happen at the left and the right of your list.</span>
+        <span class="kw">if</span>(index &gt; -<span class="dv">1</span> &amp;&amp; index &lt; <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>()) {
+            <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">add</span>(index, new_transaction);
+        } <span class="kw">else</span>
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Index &quot;</span> + index + <span class="st">&quot; out of bounds &quot;</span> + <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>());
+    }
+    
+    <span class="co">/* Removes an element at position &quot;index&quot; of the bankAccountTransactions ArrayList. </span>
+<span class="co">     * This happens when your ArrayList object calls the remove(int index) </span>
+<span class="co">     * method of the ArrayList class */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">remove</span>(<span class="dt">int</span> index) {
+        <span class="co">// This check exists in order to avoid the case that you try to remove an</span>
+        <span class="co">// element in a position out_of_bounds of your list. out_of_bounds</span>
+        <span class="co">// can happen at the left and the right of your list.</span>
+        <span class="kw">if</span>(index &gt; -<span class="dv">1</span> &amp;&amp; index &lt; <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>()) {
+            <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">remove</span>(index);
+        }
+    }
+    
+    <span class="co">/* Returns the number of the stored Transactions </span>
+<span class="co">     * This number is the size of the bankAccountTransactions list.</span>
+<span class="co">     * you can get the size by calling the size() method of the ArrayList </span>
+<span class="co">     * class from your bankAccountTransactions object. */</span>
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getNumberOfStoredTransactions</span>() {
+        <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>();
+    }
+    
+    <span class="co">/* prints all stored BankAccountTransaction */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">print</span>() {
+        <span class="co">// Your ArrayList object bankAccountTransactions gets its size</span>
+        <span class="co">// by calling the size() method of the ArrayList class.</span>
+        <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>(); i++){
+            <span class="co">// The way (i+1) + &quot;. &quot; that your printing statement starts </span>
+            <span class="co">// exists only for aesthetic reasons!</span>
+            System.<span class="fu">out</span>.<span class="fu">println</span>((i<span class="dv">+1</span>) + <span class="st">&quot;. &quot;</span> + <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">get</span>(i));
+        }
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;==============================================&quot;</span>);
+    }
+    
+}</code></pre>
+<ul>
+<li>The source code above implements the BankAccountTransactionList class</li>
+</ul>
+<h2 id="the-arraylist-solution-continued-1">The <em>ArrayList</em> solution (continued)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* This class exists in order to test the </span>
+<span class="co"> * functionalities of the BankAccountTransactionList</span>
+<span class="co"> * as implemented with an ArrayList (provided by the </span>
+<span class="co"> * Java Collection Framework</span>
+<span class="co"> */</span>
+<span class="kw">public</span> <span class="kw">class</span> TestBankAccoutTransList_ArrayList {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+        <span class="co">/* Declare and initialize (by calling the default constructor </span>
+<span class="co">         * a BankAccountTransactionList object with name transactions_list </span>
+<span class="co">         * Your list is currently empty */</span>
+        BankAccountTransactionList transactions_list = <span class="kw">new</span> <span class="fu">BankAccountTransactionList</span>();
+        <span class="co">/* Create some dummy BankAccountTransaction to be added in the list above */</span>
+        BankAccountTransaction transaction1 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">300</span>, <span class="st">&quot;incoming&quot;</span>);
+        BankAccountTransaction transaction2 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">400</span>, <span class="st">&quot;outgoing&quot;</span>);
+        BankAccountTransaction transaction3 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">700</span>, <span class="st">&quot;incoming&quot;</span>);
+        BankAccountTransaction transaction4 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">1000</span>, <span class="st">&quot;outgoing&quot;</span>);
+        BankAccountTransaction transaction5 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">500</span>, <span class="st">&quot;incoming&quot;</span>);
+
+        <span class="co">/* Adding the transactions to the list. Note that most of the transactions are </span>
+<span class="co">         * not added at the end of the list. What is the expected order? */</span>
+        transactions_list.<span class="fu">add</span>(transaction1);
+        transactions_list.<span class="fu">add</span>(<span class="dv">0</span>,transaction2);
+        transactions_list.<span class="fu">add</span>(<span class="dv">1</span>,transaction3);
+        transactions_list.<span class="fu">add</span>(transaction4);
+        transactions_list.<span class="fu">add</span>(<span class="dv">1</span>,transaction5);
+        <span class="co">/* Print the stored transactions */</span>
+        transactions_list.<span class="fu">print</span>();
+        
+        <span class="co">/* Delete some (first and last) transactions */</span>
+        transactions_list.<span class="fu">remove</span>(<span class="dv">0</span>);
+        transactions_list.<span class="fu">remove</span>(transactions_list.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>);
+        <span class="co">/* Print the stored transactions */</span>
+        transactions_list.<span class="fu">print</span>();
+    }
+}</code></pre>
+<ul>
+<li>This, finally, is the <em>TestBankAccoutTransList_ArrayList</em> class that exists only to demonstrate the functionalities of the <em>BankAccountTransactionList</em></li>
+</ul>
+<h2 id="linked-list-solution"><em>Linked-List</em> solution</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/***</span>
+<span class="co"> * This class represent a transaction (transfer of money)</span>
+<span class="co"> * of a bank account. The 2 fields are just dummy fields since this </span>
+<span class="co"> * example serves only demonstrating reasons for adding and removing </span>
+<span class="co"> * objects in a list. The 3rd (next) field of type BankAccountTransaction</span>
+<span class="co"> * serves as a reference to the next element of a linked-list.</span>
+<span class="co"> * </span><span class="kw">@author </span><span class="co">angor</span>
+<span class="co"> */</span>
+<span class="kw">public</span> <span class="kw">class</span> BankAccountTransaction {
+    <span class="co">/* amount of money of the transaction */</span>
+    <span class="kw">private</span> <span class="dt">int</span> amount_of_money;
+    <span class="co">/* The type of transaction (&quot;incoming&quot; or &quot;outgoing&quot;) */</span>
+    <span class="kw">private</span> String transaction_type;
+    <span class="co">/* A field of type BankAccountTransaction that keeps a reference </span>
+<span class="co">     * to the next BankAccountTransaction. This field is created in order </span>
+<span class="co">     * to make the BankAccountTransaction class behave as a &quot;node&quot; in </span>
+<span class="co">     * a Linked-list */</span>
+    <span class="kw">private</span> BankAccountTransaction next;
+    
+    <span class="co">/* Overloaded constructor with 2 arguments */</span>
+    <span class="fu">BankAccountTransaction</span>(<span class="dt">int</span> amount_of_money, String transaction_type) {
+        <span class="kw">this</span>.<span class="fu">amount_of_money</span> = amount_of_money;
+        <span class="kw">this</span>.<span class="fu">transaction_type</span> = transaction_type;
+        <span class="co">/* You can ommit the following initialization since </span>
+<span class="co">         * this.next is, by default initialized as &quot;null&quot; */</span>
+        <span class="kw">this</span>.<span class="fu">next</span> = <span class="kw">null</span>;
+    }
+
+    <span class="co">/* Getters and Setter methods */</span>
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getAmount_of_money</span>() {
+        <span class="kw">return</span> amount_of_money;
+    }
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setAmount_of_money</span>(<span class="dt">int</span> amount_of_money) {
+        <span class="kw">this</span>.<span class="fu">amount_of_money</span> = amount_of_money;
+    }
+    <span class="kw">public</span> String <span class="fu">getTransaction_type</span>() {
+        <span class="kw">return</span> transaction_type;
+    }
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setTransaction_type</span>(String transaction_type) {
+        <span class="kw">this</span>.<span class="fu">transaction_type</span> = transaction_type;
+    }
+    
+    <span class="co">/* Getter and Setter for the newly introduce &quot;next&quot; field</span>
+<span class="co">     * These methods are going to be used by the Linked-list */</span>
+    <span class="kw">public</span> BankAccountTransaction <span class="fu">getNext</span>() {
+        <span class="kw">return</span> next;
+    }
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setNext</span>(BankAccountTransaction next) {
+        <span class="kw">this</span>.<span class="fu">next</span> = next;
+    }
+
+    <span class="co">/* Returns a string with the field values of the class */</span>
+    <span class="fu">@Override</span>
+    <span class="kw">public</span> String <span class="fu">toString</span>() {
+        <span class="kw">return</span> <span class="st">&quot;BankAccountTransaction [amount_of_money=&quot;</span> + amount_of_money
+                + <span class="st">&quot;, transaction_type=&quot;</span> + transaction_type + <span class="st">&quot;]&quot;</span>;
+    }   
+
+}</code></pre>
+<ul>
+<li>The source code above implements the BankAccountTransaction class. For the needs of the Linked-list the <em>next</em> field is also added that shows to the next element of the list.</li>
+</ul>
+<h2 id="linked-list-solution-continued"><em>Linked-List</em> solution (continued)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.ArrayList;</span>
+
+<span class="co">/***</span>
+<span class="co"> * This class represents a list of a bank accounts&#39; transactions.</span>
+<span class="co"> * For storing the Transactions we implement the BankAccountTransactionList</span>
+<span class="co"> * class a LinkedList. </span>
+<span class="co"> */</span>
+<span class="kw">public</span> <span class="kw">class</span> BankAccountTransactionList {
+    <span class="co">/* Represents the first element of the Linked-list. It&#39;s the only that needs</span>
+<span class="co">     * to be stored in the class. All the rest can be found by traversing the list </span>
+<span class="co">     * using first as your starting point. */</span>
+    <span class="kw">private</span> BankAccountTransaction first;
+
+    <span class="co">/* The default constructor. or safety reasons (avoid NullPointerException) </span>
+<span class="co">     * we have to initialize the bankAccountTransactions object. */</span>
+    <span class="kw">public</span> <span class="fu">BankAccountTransactionList</span>() {
+        <span class="co">/* You can ommit the following initialization since </span>
+<span class="co">         * this.next is, by default initialized as &quot;null&quot; */</span>
+        <span class="kw">this</span>.<span class="fu">first</span> = <span class="kw">null</span>;
+    }
+    
+
+    <span class="co">/* Adds a new transaction at the last position of the </span>
+<span class="co">     * bankAccountTransactions Linked-list. */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(BankAccountTransaction new_transaction) {
+        <span class="co">// if the first element is &quot;null&quot; then we only need to assign the </span>
+        <span class="co">// new_transaction to the first element. No actions need to be performed</span>
+        <span class="co">// and thus, we exit the method by using a return statement. </span>
+        <span class="co">// (yes, return in a void method!)</span>
+        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
+            <span class="kw">this</span>.<span class="fu">first</span> = new_transaction;
+        <span class="co">// if the check statement above is false, it means that at least one</span>
+        <span class="co">// element already exists in our list. in that case we need to traverse</span>
+        <span class="co">// the list until we find an element that has his &quot;next&quot; reference </span>
+        <span class="co">// showing to &quot;null&quot;, that means this element is the last in the list.</span>
+        } <span class="kw">else</span> {
+            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
+            <span class="kw">while</span> (current_transaction.<span class="fu">getNext</span>() != <span class="kw">null</span>) {
+                current_transaction = current_transaction.<span class="fu">getNext</span>();
+            }
+            <span class="co">// After finding the last element of the list we only need to assign </span>
+            <span class="co">// the new_transaction to the &quot;next&quot; of this element.</span>
+            current_transaction.<span class="fu">setNext</span>(new_transaction);
+        }
+        
+    }
+    
+    <span class="co">/* Adds a new element at a specific position (index) of the list */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(<span class="dt">int</span> index, BankAccountTransaction new_transaction) {
+        <span class="co">// This check exists in order to avoid the case that you try to remove an</span>
+        <span class="co">// element in a position out_of_bounds of your list. out_of_bounds</span>
+        <span class="co">// can happen at the left and the right of your list.</span>
+        <span class="kw">if</span>(index &lt; <span class="dv">0</span> || index &gt; <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>) {
+            <span class="kw">return</span>;
+        <span class="co">// If you try to add at the beginning   </span>
+        <span class="co">// keep the current first in a temp object</span>
+        <span class="co">// set the new_transaction as first</span>
+        <span class="co">// set the &quot;next&quot; of the new first as the old first!</span>
+        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="dv">0</span>) {
+            BankAccountTransaction temp = <span class="kw">this</span>.<span class="fu">first</span>;
+            <span class="kw">this</span>.<span class="fu">first</span> = new_transaction;
+            <span class="kw">this</span>.<span class="fu">first</span>.<span class="fu">setNext</span>(temp);
+        <span class="co">// if you try to add at the end of the list</span>
+        <span class="co">// it behaves as a normal add and thus, it calls the simple add() method </span>
+        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>) {
+            <span class="kw">this</span>.<span class="fu">add</span>(new_transaction);
+        <span class="co">// In any other case you need to traverse the list for as many times as</span>
+        <span class="co">// is requested (by index) and retrieve the element at that position.</span>
+        } <span class="kw">else</span> {
+            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
+            <span class="kw">for</span> (<span class="dt">int</span> counter = <span class="dv">1</span>; counter &lt; index - <span class="dv">1</span>; counter++) {
+                current_transaction = current_transaction.<span class="fu">getNext</span>();
+            }
+            <span class="co">// Store the &quot;next&quot; of the current element in a temp object</span>
+            BankAccountTransaction temp = current_transaction.<span class="fu">getNext</span>();
+            <span class="co">// assign the new_transaction as &quot;next&quot; to the current element</span>
+            current_transaction.<span class="fu">setNext</span>(new_transaction);
+            <span class="co">// assign the temp element as the next of the new_transaction</span>
+            new_transaction.<span class="fu">setNext</span>(temp);
+        }
+        
+    }
+    
+    <span class="co">/* Removes the last element of the bankAccountTransactions Linked-list. */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">remove</span>() {
+        <span class="co">// if the first element is &quot;null&quot; then no actions need to be performed</span>
+        <span class="co">// and thus, we exit the method by using a return statement. </span>
+        <span class="co">// (yes, return in a void method!)</span>
+        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
+            <span class="kw">return</span>;
+        <span class="co">// If the first element exists but has no next it means that we just need </span>
+        <span class="co">// to set the first as null. We then, exit the method.</span>
+        } <span class="kw">else</span> <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span>.<span class="fu">getNext</span>() == <span class="kw">null</span>) {
+            <span class="kw">this</span>.<span class="fu">first</span> = <span class="kw">null</span>;
+            <span class="kw">return</span>;
+        <span class="co">// if the check statements above are false, it means that at least two</span>
+        <span class="co">// elements already exists in our list. in that case we need to traverse</span>
+        <span class="co">// the list until we find an element that has his &quot;next&quot;.&quot;next&quot; reference </span>
+        <span class="co">// showing to &quot;null&quot;, that means this element is the previous to the last in the list.</span>
+        } <span class="kw">else</span> {
+            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
+            <span class="kw">while</span> (current_transaction.<span class="fu">getNext</span>().<span class="fu">getNext</span>() != <span class="kw">null</span>) {
+                current_transaction = current_transaction.<span class="fu">getNext</span>();
+            }
+            <span class="co">// After finding the previous to the last element of the list we only need to </span>
+            <span class="co">// set its &quot;next&quot; as &quot;null&quot;</span>
+            current_transaction.<span class="fu">setNext</span>(<span class="kw">null</span>);
+        }
+    }
+    
+    <span class="co">/* removes an element at a specific position (index) of the list */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">remove</span>(<span class="dt">int</span> index) {
+        <span class="co">// This check exists in order to avoid the case that you try to remove an</span>
+        <span class="co">// element in a position out_of_bounds of your list. out_of_bounds</span>
+        <span class="co">// can happen at the left and the right of your list.</span>
+        <span class="kw">if</span>(index &lt; <span class="dv">0</span> || index &gt; <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>) {
+            <span class="kw">return</span>;
+        <span class="co">// If you try to remove the element at the beginning    </span>
+        <span class="co">// you just need to set the &quot;next&quot; of the first element as </span>
+        <span class="co">// the first element</span>
+        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="dv">0</span>) {
+            <span class="kw">this</span>.<span class="fu">first</span> = <span class="kw">this</span>.<span class="fu">first</span>.<span class="fu">getNext</span>();
+        <span class="co">// if you try to remove the element at the end of the list</span>
+        <span class="co">// it behaves as a normal remove and thus, it calls the simple remove() method </span>
+        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>) {
+            <span class="kw">this</span>.<span class="fu">remove</span>();
+        <span class="co">// In any other case you need to traverse the list for as many times as</span>
+        <span class="co">// is requested (by index) and retrieve the element at that position.</span>
+        } <span class="kw">else</span> {
+            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
+            <span class="kw">for</span> (<span class="dt">int</span> counter = <span class="dv">1</span>; counter &lt; index; counter++) {
+                current_transaction = current_transaction.<span class="fu">getNext</span>();
+            }
+            <span class="co">// assign the &quot;next&quot;.&quot;next&quot; of your current_transaction as </span>
+            <span class="co">// &quot;next&quot;. That way. you simply bypass the next element</span>
+            current_transaction.<span class="fu">setNext</span>(current_transaction.<span class="fu">getNext</span>().<span class="fu">getNext</span>());
+        }
+        
+    }
+    
+    <span class="co">/* Returns the number of the stored Transactions </span>
+<span class="co">     * We need to traverse the list in order to count the elements */</span>
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getNumberOfStoredTransactions</span>() {
+        <span class="co">// if the first element is &quot;null&quot; then the size is 0. </span>
+        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
+            <span class="kw">return</span> <span class="dv">0</span>;
+        <span class="co">// if the check statement above is false, it means that at least one</span>
+        <span class="co">// element already exists in our list. in that case we need to traverse</span>
+        <span class="co">// the list until we find an element that has his &quot;next&quot; reference </span>
+        <span class="co">// showing to &quot;null&quot;, that means this element is the last in the list.</span>
+        } <span class="kw">else</span> {
+            <span class="co">// declare and initialize counter to 1 since the first element &quot;exists&quot; </span>
+            <span class="co">// (is not &quot;null&quot;)</span>
+            <span class="dt">int</span> counter = <span class="dv">1</span>;
+            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
+            <span class="kw">while</span> (current_transaction.<span class="fu">getNext</span>() != <span class="kw">null</span>) {
+                current_transaction = current_transaction.<span class="fu">getNext</span>();
+                <span class="co">// increase counter by one for each existing element</span>
+                counter += <span class="dv">1</span>;
+            }
+            <span class="kw">return</span> counter;
+        }
+    }
+    
+    <span class="co">/* prints all stored BankAccountTransaction */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">print</span>() {
+        <span class="co">// if the first element is &quot;null&quot; then the list is empty and there is nothing to print. </span>
+        <span class="co">// No further actions need to be performed and thus, we exit the method by using </span>
+        <span class="co">// a return statement. (yes, return in a void method!)</span>
+        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
+            <span class="kw">return</span>;
+        <span class="co">// if the check statement above is false, it means that at least one</span>
+        <span class="co">// element already exists in our list. in that case we need to traverse</span>
+        <span class="co">// the list until we find an element that has his &quot;next&quot; reference </span>
+        <span class="co">// showing to &quot;null&quot;, that means this element is the last in the list.</span>
+        } <span class="kw">else</span> {
+            <span class="dt">int</span> counter = <span class="dv">1</span>;
+            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
+            <span class="co">// Note that in this method, our while loop is executed for </span>
+            <span class="co">// as long as current_transaction is not &quot;null&quot; and not like in the previous cases</span>
+            <span class="co">// (where the .getNext() != null)</span>
+            <span class="kw">while</span> (current_transaction != <span class="kw">null</span>) {
+                System.<span class="fu">out</span>.<span class="fu">println</span>((counter++) + <span class="st">&quot;. &quot;</span> + current_transaction.<span class="fu">toString</span>());
+                current_transaction = current_transaction.<span class="fu">getNext</span>();
+                <span class="co">// increase counter by one for each existing element</span>
+            }
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;==============================================&quot;</span>);
+        }
+    }
+    
+}</code></pre>
+<ul>
+<li>The source code above implements the BankAccountTransactionList which is a linked-list!</li>
+</ul>
+<h2 id="linked-list-solution-continued-1"><em>Linked-List</em> solution (continued)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* This class exists in order to test the </span>
+<span class="co"> * functionalities of the BankAccountTransactionList</span>
+<span class="co"> * implemented as a Linked-list</span>
+<span class="co"> */</span>
+<span class="kw">public</span> <span class="kw">class</span> TestBankAccoutTransList_LinkedList {
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+        <span class="co">/* Declare and initialize (by calling the default constructor </span>
+<span class="co">         * a BankAccountTransactionList object with name transactions_list </span>
+<span class="co">         * Your list is currently empty */</span>
+        BankAccountTransactionList transactions_list = <span class="kw">new</span> <span class="fu">BankAccountTransactionList</span>();
+        <span class="co">/* Create some dummy BankAccountTransaction to be added in the list above */</span>
+        BankAccountTransaction transaction1 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">300</span>, <span class="st">&quot;incoming&quot;</span>);
+        BankAccountTransaction transaction2 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">400</span>, <span class="st">&quot;outgoing&quot;</span>);
+        BankAccountTransaction transaction3 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">700</span>, <span class="st">&quot;incoming&quot;</span>);
+        BankAccountTransaction transaction4 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">1000</span>, <span class="st">&quot;outgoing&quot;</span>);
+        BankAccountTransaction transaction5 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">500</span>, <span class="st">&quot;incoming&quot;</span>);
+
+        <span class="co">/* Adding the transactions to the list. Note that most of the transactions are </span>
+<span class="co">         * not added at the end of the list. What is the expected order? */</span>
+        transactions_list.<span class="fu">add</span>(transaction1);
+        transactions_list.<span class="fu">add</span>(<span class="dv">0</span>,transaction2);
+        transactions_list.<span class="fu">add</span>(transaction3);
+        transactions_list.<span class="fu">add</span>(<span class="dv">1</span>,transaction4);
+        transactions_list.<span class="fu">add</span>(<span class="dv">2</span>,transaction5);
+        <span class="co">/* Print the stored transactions */</span>
+        transactions_list.<span class="fu">print</span>();
+        
+        <span class="co">/* Delete some (first and last) transactions */</span>
+        transactions_list.<span class="fu">remove</span>(<span class="dv">0</span>); <span class="co">// remove the first</span>
+        transactions_list.<span class="fu">remove</span>(<span class="dv">1</span>); <span class="co">// remove at index 1</span>
+        transactions_list.<span class="fu">remove</span>(transactions_list.<span class="fu">getNumberOfStoredTransactions</span>()-<span class="dv">1</span>); <span class="co">//remove the last</span>
+        <span class="co">/* Print again the stored transactions */</span>
+        transactions_list.<span class="fu">print</span>();
+    }
+}</code></pre>
+<ul>
+<li>This, finally, is the <em>TestBankAccoutTransList_LinkedList</em> class that exists only to demonstrate the functionalities of the <em>BankAccountTransactionList</em> implemented as a linked-list</li>
+</ul>
+<h2 id="the-queue-solution">The <em>Queue</em> solution</h2>
+<ul>
+<li>A Queue solution is not provided in source for one simple reason: Its implementation is almost identical to the previously presented Linked-list!<br /></li>
+<li>Can you guess how, by slightly changing the Linked-list source code you can come up with a Queue?<br />(SPOILER ALERT:The answer comes to the next slide!)</li>
+</ul>
+<h2 id="the-queue-solution-continued">The <em>Queue</em> solution (continued)</h2>
+<ul>
+<li>Remove the methods:<br /></li>
+<li><em>add(int index, Element e)</em> and <em>remove()</em><br /></li>
+<li>and apply the following one change and one addition:<br /></li>
+<li><p><em>add(Element e)</em> - should be renamed to <em>enqueue(Element e)</em> and create a <em>dequeue()</em> as follows:</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Always removes the first element */</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">queue</span>() {
+    <span class="kw">this</span>.<span class="fu">remove</span>(<span class="dv">0</span>);
+}</code></pre>
+<p>You end up having Queue! Only the <em>element()</em> method that return the first element (without removing it) but the Getter of the &quot;first&quot; field does the same.</p></li>
+</ul>
 <h2 id="references">References</h2>
 <ul>
 <li>Algorithms in Java, Part 1-4 (3rd Edition), R. Sedgewick, Princeton University<br /></li>

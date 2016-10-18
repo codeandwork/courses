@@ -248,7 +248,7 @@ public class CircleList {
 
 }
 ```
-
+	
 
 ## *Java Collections Framework*
 * A collection framework supports the consistent and coherent representation and handling of *Collections* regardless of their implementation
@@ -340,6 +340,534 @@ public class ArrayList<E>
 extends AbstractList<E>
 implements List<E>, RandomAccess, Cloneable, Serializable { ... }
 ```
+
+
+## Code Examples of the presented linear data structures
+* The following slides present implementations of the sipmlified example that follows.
+We need a List that stores the transactions that are executed for a BankAccount. 
+Only two entities exist in our scenario: 
+ * the *BankAccountTransaction* that represents the entity of the Transaction, and
+ * the *BankAccountTransactionList* that represents a List that stores Transactions.
+
+
+## Code Examples of the presented linear data structures
+* For better understanding the difference between the linear data structures presented earlier,
+the aforementioned scenario (and specifically the class *BankAccountTransactionList*) is implemented in two different ways: 
+ * with an *ArrayList* (as provided by Java),
+ * with a *Linked-list* (custom made and not the one provided by Java), and
+ * (not implemented) as a *Queue* (again, custom made and not the one provided by Java). For the Queue check the slide **The Queue solution**
+
+
+## The *ArrayList* solution
+```java
+/***
+ * This class represent a transaction (transfer of money)
+ * of a bank account. The 2 fields are just dummy fields since this 
+ * example serves only demonstrating reasons for adding and removing 
+ * objects in a list. 
+ * @author angor
+ */
+public class BankAccountTransaction {
+	/* amount of money of the transaction */
+	private int amount_of_money;
+	/* The type of transaction ("incoming" or "outgoing") */
+	private String transaction_type;
+	
+	/* Overloaded constructor with 2 arguments */
+	BankAccountTransaction(int amount_of_money, String transaction_type) {
+		this.amount_of_money = amount_of_money;
+		this.transaction_type = transaction_type;
+	}
+
+	/* Getters and Setter methods */
+	public int getAmount_of_money() {
+		return amount_of_money;
+	}
+	public void setAmount_of_money(int amount_of_money) {
+		this.amount_of_money = amount_of_money;
+	}
+	public String getTransaction_type() {
+		return transaction_type;
+	}
+	public void setTransaction_type(String transaction_type) {
+		this.transaction_type = transaction_type;
+	}
+
+	/* Returns a string with the field values of the class */
+	@Override
+	public String toString() {
+		return "BankAccountTransaction [amount_of_money=" + amount_of_money
+				+ ", transaction_type=" + transaction_type + "]";
+	}	
+
+}
+
+```
+* The source code above implements the *BankAccountTransaction* class
+
+
+## The *ArrayList* solution (continued)
+```java
+import java.util.ArrayList;
+
+/***
+ * This class represents a list of a bank accounts' transactions.
+ * For storing the Transactions we use an ArrayList provided by the 
+ * Java Collections Framework 
+ * (http://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)
+ */
+public class BankAccountTransactionList {
+	/* An ArrayList that stores BankAccountTransaction objects.
+	 * You only declare it here as a class field. The initialization 
+	 * is performed in the constructor. */
+	private ArrayList<BankAccountTransaction> bankAccountTransactions;
+
+	/* The default constructor. or safety reasons (avoid NullPointerException) 
+	 * we have to initialize the bankAccountTransactions object. */
+	public BankAccountTransactionList() {
+		this.bankAccountTransactions = new ArrayList<>();
+	}
+	
+	/* An overloaded constructor that initializes the BankAccountTransaction
+	 * field of your class with a transaction_arraylist that received as 
+	 * an argument */
+	BankAccountTransactionList(ArrayList<BankAccountTransaction> transaction_arraylist) {
+		this.bankAccountTransactions = transaction_arraylist;
+	}
+	
+	/* Getter and Setter methods */
+	public ArrayList<BankAccountTransaction> getTransaction_arraylist() {
+		return bankAccountTransactions;
+	}
+	public void setTransaction_arraylist(
+			ArrayList<BankAccountTransaction> transaction_arraylist) {
+		this.bankAccountTransactions = transaction_arraylist;
+	}
+	
+	/* Adds a new transaction at the last position of the 
+	 * bankAccountTransactions ArrayList object. The object 
+	 * should be added in the ArrayList, and this happens by 
+	 * calling the add(Element e) method of the ArrayList class */
+	public void add(BankAccountTransaction new_transaction) {
+		this.bankAccountTransactions.add(new_transaction);
+	}
+	
+	/* Adds a new transaction at the position (of the index argument) of the 
+	 * bankAccountTransactions ArrayList object. The object 
+	 * should be added in the ArrayList, and this happens by 
+	 * calling the add(Element e) method of the ArrayList class */
+	public void add(int index, BankAccountTransaction new_transaction) {
+		// This check exists in order to avoid the case that you try to remove an
+		// element in a position out_of_bounds of your list. out_of_bounds
+		// can happen at the left and the right of your list.
+		if(index > -1 && index < this.bankAccountTransactions.size()) {
+			this.bankAccountTransactions.add(index, new_transaction);
+		} else
+			System.out.println("Index " + index + " out of bounds " + this.bankAccountTransactions.size());
+	}
+	
+	/* Removes an element at position "index" of the bankAccountTransactions ArrayList. 
+	 * This happens when your ArrayList object calls the remove(int index) 
+	 * method of the ArrayList class */
+	public void remove(int index) {
+		// This check exists in order to avoid the case that you try to remove an
+		// element in a position out_of_bounds of your list. out_of_bounds
+		// can happen at the left and the right of your list.
+		if(index > -1 && index < this.bankAccountTransactions.size()) {
+			this.bankAccountTransactions.remove(index);
+		}
+	}
+	
+	/* Returns the number of the stored Transactions 
+	 * This number is the size of the bankAccountTransactions list.
+	 * you can get the size by calling the size() method of the ArrayList 
+	 * class from your bankAccountTransactions object. */
+	public int getNumberOfStoredTransactions() {
+		return this.bankAccountTransactions.size();
+	}
+	
+	/* prints all stored BankAccountTransaction */
+	public void print() {
+		// Your ArrayList object bankAccountTransactions gets its size
+		// by calling the size() method of the ArrayList class.
+		for(int i=0; i<this.bankAccountTransactions.size(); i++){
+			// The way (i+1) + ". " that your printing statement starts 
+			// exists only for aesthetic reasons!
+			System.out.println((i+1) + ". " + this.bankAccountTransactions.get(i));
+		}
+		System.out.println("==============================================");
+	}
+	
+}
+
+```
+* The source code above implements the BankAccountTransactionList class
+
+
+## The *ArrayList* solution (continued)
+```java
+/* This class exists in order to test the 
+ * functionalities of the BankAccountTransactionList
+ * as implemented with an ArrayList (provided by the 
+ * Java Collection Framework
+ */
+public class TestBankAccoutTransList_ArrayList {
+	public static void main(String args[]) {
+		/* Declare and initialize (by calling the default constructor 
+		 * a BankAccountTransactionList object with name transactions_list 
+		 * Your list is currently empty */
+		BankAccountTransactionList transactions_list = new BankAccountTransactionList();
+		/* Create some dummy BankAccountTransaction to be added in the list above */
+		BankAccountTransaction transaction1 = new BankAccountTransaction(300, "incoming");
+		BankAccountTransaction transaction2 = new BankAccountTransaction(400, "outgoing");
+		BankAccountTransaction transaction3 = new BankAccountTransaction(700, "incoming");
+		BankAccountTransaction transaction4 = new BankAccountTransaction(1000, "outgoing");
+		BankAccountTransaction transaction5 = new BankAccountTransaction(500, "incoming");
+
+		/* Adding the transactions to the list. Note that most of the transactions are 
+		 * not added at the end of the list. What is the expected order? */
+		transactions_list.add(transaction1);
+		transactions_list.add(0,transaction2);
+		transactions_list.add(1,transaction3);
+		transactions_list.add(transaction4);
+		transactions_list.add(1,transaction5);
+		/* Print the stored transactions */
+		transactions_list.print();
+		
+		/* Delete some (first and last) transactions */
+		transactions_list.remove(0);
+		transactions_list.remove(transactions_list.getNumberOfStoredTransactions() - 1);
+		/* Print the stored transactions */
+		transactions_list.print();
+	}
+}
+
+```
+* This, finally, is the *TestBankAccoutTransList_ArrayList* class that exists only to demonstrate the functionalities of the *BankAccountTransactionList*
+
+
+## *Linked-List* solution
+```java
+/***
+ * This class represent a transaction (transfer of money)
+ * of a bank account. The 2 fields are just dummy fields since this 
+ * example serves only demonstrating reasons for adding and removing 
+ * objects in a list. The 3rd (next) field of type BankAccountTransaction
+ * serves as a reference to the next element of a linked-list.
+ * @author angor
+ */
+public class BankAccountTransaction {
+	/* amount of money of the transaction */
+	private int amount_of_money;
+	/* The type of transaction ("incoming" or "outgoing") */
+	private String transaction_type;
+	/* A field of type BankAccountTransaction that keeps a reference 
+	 * to the next BankAccountTransaction. This field is created in order 
+	 * to make the BankAccountTransaction class behave as a "node" in 
+	 * a Linked-list */
+	private BankAccountTransaction next;
+	
+	/* Overloaded constructor with 2 arguments */
+	BankAccountTransaction(int amount_of_money, String transaction_type) {
+		this.amount_of_money = amount_of_money;
+		this.transaction_type = transaction_type;
+		/* You can ommit the following initialization since 
+		 * this.next is, by default initialized as "null" */
+		this.next = null;
+	}
+
+	/* Getters and Setter methods */
+	public int getAmount_of_money() {
+		return amount_of_money;
+	}
+	public void setAmount_of_money(int amount_of_money) {
+		this.amount_of_money = amount_of_money;
+	}
+	public String getTransaction_type() {
+		return transaction_type;
+	}
+	public void setTransaction_type(String transaction_type) {
+		this.transaction_type = transaction_type;
+	}
+	
+	/* Getter and Setter for the newly introduce "next" field
+	 * These methods are going to be used by the Linked-list */
+	public BankAccountTransaction getNext() {
+		return next;
+	}
+	public void setNext(BankAccountTransaction next) {
+		this.next = next;
+	}
+
+	/* Returns a string with the field values of the class */
+	@Override
+	public String toString() {
+		return "BankAccountTransaction [amount_of_money=" + amount_of_money
+				+ ", transaction_type=" + transaction_type + "]";
+	}	
+
+}
+
+```
+* The source code above implements the BankAccountTransaction class. For the needs of the Linked-list the *next* field is also added that shows to the next element of the list. 
+
+
+## *Linked-List* solution (continued)
+```java
+import java.util.ArrayList;
+
+/***
+ * This class represents a list of a bank accounts' transactions.
+ * For storing the Transactions we implement the BankAccountTransactionList
+ * class a LinkedList. 
+ */
+public class BankAccountTransactionList {
+	/* Represents the first element of the Linked-list. It's the only that needs
+	 * to be stored in the class. All the rest can be found by traversing the list 
+	 * using first as your starting point. */
+	private BankAccountTransaction first;
+
+	/* The default constructor. or safety reasons (avoid NullPointerException) 
+	 * we have to initialize the bankAccountTransactions object. */
+	public BankAccountTransactionList() {
+		/* You can ommit the following initialization since 
+		 * this.next is, by default initialized as "null" */
+		this.first = null;
+	}
+	
+
+	/* Adds a new transaction at the last position of the 
+	 * bankAccountTransactions Linked-list. */
+	public void add(BankAccountTransaction new_transaction) {
+		// if the first element is "null" then we only need to assign the 
+		// new_transaction to the first element. No actions need to be performed
+		// and thus, we exit the method by using a return statement. 
+		// (yes, return in a void method!)
+		if(this.first == null) {
+			this.first = new_transaction;
+		// if the check statement above is false, it means that at least one
+		// element already exists in our list. in that case we need to traverse
+		// the list until we find an element that has his "next" reference 
+		// showing to "null", that means this element is the last in the list.
+		} else {
+			BankAccountTransaction current_transaction = this.first;
+			while (current_transaction.getNext() != null) {
+				current_transaction = current_transaction.getNext();
+			}
+			// After finding the last element of the list we only need to assign 
+			// the new_transaction to the "next" of this element.
+			current_transaction.setNext(new_transaction);
+		}
+		
+	}
+	
+	/* Adds a new element at a specific position (index) of the list */
+	public void add(int index, BankAccountTransaction new_transaction) {
+		// This check exists in order to avoid the case that you try to remove an
+		// element in a position out_of_bounds of your list. out_of_bounds
+		// can happen at the left and the right of your list.
+		if(index < 0 || index > this.getNumberOfStoredTransactions() - 1) {
+			return;
+		// If you try to add at the beginning 	
+		// keep the current first in a temp object
+		// set the new_transaction as first
+		// set the "next" of the new first as the old first!
+		} else if (index == 0) {
+			BankAccountTransaction temp = this.first;
+			this.first = new_transaction;
+			this.first.setNext(temp);
+		// if you try to add at the end of the list
+		// it behaves as a normal add and thus, it calls the simple add() method 
+		} else if (index == this.getNumberOfStoredTransactions() - 1) {
+			this.add(new_transaction);
+		// In any other case you need to traverse the list for as many times as
+		// is requested (by index) and retrieve the element at that position.
+		} else {
+			BankAccountTransaction current_transaction = this.first;
+			for (int counter = 1; counter < index - 1; counter++) {
+				current_transaction = current_transaction.getNext();
+			}
+			// Store the "next" of the current element in a temp object
+			BankAccountTransaction temp = current_transaction.getNext();
+			// assign the new_transaction as "next" to the current element
+			current_transaction.setNext(new_transaction);
+			// assign the temp element as the next of the new_transaction
+			new_transaction.setNext(temp);
+		}
+		
+	}
+	
+	/* Removes the last element of the bankAccountTransactions Linked-list. */
+	public void remove() {
+		// if the first element is "null" then no actions need to be performed
+		// and thus, we exit the method by using a return statement. 
+		// (yes, return in a void method!)
+		if(this.first == null) {
+			return;
+		// If the first element exists but has no next it means that we just need 
+		// to set the first as null. We then, exit the method.
+		} else if(this.first.getNext() == null) {
+			this.first = null;
+			return;
+		// if the check statements above are false, it means that at least two
+		// elements already exists in our list. in that case we need to traverse
+		// the list until we find an element that has his "next"."next" reference 
+		// showing to "null", that means this element is the previous to the last in the list.
+		} else {
+			BankAccountTransaction current_transaction = this.first;
+			while (current_transaction.getNext().getNext() != null) {
+				current_transaction = current_transaction.getNext();
+			}
+			// After finding the previous to the last element of the list we only need to 
+			// set its "next" as "null"
+			current_transaction.setNext(null);
+		}
+	}
+	
+	/* removes an element at a specific position (index) of the list */
+	public void remove(int index) {
+		// This check exists in order to avoid the case that you try to remove an
+		// element in a position out_of_bounds of your list. out_of_bounds
+		// can happen at the left and the right of your list.
+		if(index < 0 || index > this.getNumberOfStoredTransactions() - 1) {
+			return;
+		// If you try to remove the element at the beginning 	
+		// you just need to set the "next" of the first element as 
+		// the first element
+		} else if (index == 0) {
+			this.first = this.first.getNext();
+		// if you try to remove the element at the end of the list
+		// it behaves as a normal remove and thus, it calls the simple remove() method 
+		} else if (index == this.getNumberOfStoredTransactions() - 1) {
+			this.remove();
+		// In any other case you need to traverse the list for as many times as
+		// is requested (by index) and retrieve the element at that position.
+		} else {
+			BankAccountTransaction current_transaction = this.first;
+			for (int counter = 1; counter < index; counter++) {
+				current_transaction = current_transaction.getNext();
+			}
+			// assign the "next"."next" of your current_transaction as 
+			// "next". That way. you simply bypass the next element
+			current_transaction.setNext(current_transaction.getNext().getNext());
+		}
+		
+	}
+	
+	/* Returns the number of the stored Transactions 
+	 * We need to traverse the list in order to count the elements */
+	public int getNumberOfStoredTransactions() {
+		// if the first element is "null" then the size is 0. 
+		if(this.first == null) {
+			return 0;
+		// if the check statement above is false, it means that at least one
+		// element already exists in our list. in that case we need to traverse
+		// the list until we find an element that has his "next" reference 
+		// showing to "null", that means this element is the last in the list.
+		} else {
+			// declare and initialize counter to 1 since the first element "exists" 
+			// (is not "null")
+			int counter = 1;
+			BankAccountTransaction current_transaction = this.first;
+			while (current_transaction.getNext() != null) {
+				current_transaction = current_transaction.getNext();
+				// increase counter by one for each existing element
+				counter += 1;
+			}
+			return counter;
+		}
+	}
+	
+	/* prints all stored BankAccountTransaction */
+	public void print() {
+		// if the first element is "null" then the list is empty and there is nothing to print. 
+		// No further actions need to be performed and thus, we exit the method by using 
+		// a return statement. (yes, return in a void method!)
+		if(this.first == null) {
+			return;
+		// if the check statement above is false, it means that at least one
+		// element already exists in our list. in that case we need to traverse
+		// the list until we find an element that has his "next" reference 
+		// showing to "null", that means this element is the last in the list.
+		} else {
+			int counter = 1;
+			BankAccountTransaction current_transaction = this.first;
+			// Note that in this method, our while loop is executed for 
+			// as long as current_transaction is not "null" and not like in the previous cases
+			// (where the .getNext() != null)
+			while (current_transaction != null) {
+				System.out.println((counter++) + ". " + current_transaction.toString());
+				current_transaction = current_transaction.getNext();
+				// increase counter by one for each existing element
+			}
+			System.out.println("==============================================");
+		}
+	}
+	
+}
+```
+* The source code above implements the BankAccountTransactionList which is a linked-list!
+
+
+## *Linked-List* solution (continued)
+```java
+/* This class exists in order to test the 
+ * functionalities of the BankAccountTransactionList
+ * implemented as a Linked-list
+ */
+public class TestBankAccoutTransList_LinkedList {
+	public static void main(String args[]) {
+		/* Declare and initialize (by calling the default constructor 
+		 * a BankAccountTransactionList object with name transactions_list 
+		 * Your list is currently empty */
+		BankAccountTransactionList transactions_list = new BankAccountTransactionList();
+		/* Create some dummy BankAccountTransaction to be added in the list above */
+		BankAccountTransaction transaction1 = new BankAccountTransaction(300, "incoming");
+		BankAccountTransaction transaction2 = new BankAccountTransaction(400, "outgoing");
+		BankAccountTransaction transaction3 = new BankAccountTransaction(700, "incoming");
+		BankAccountTransaction transaction4 = new BankAccountTransaction(1000, "outgoing");
+		BankAccountTransaction transaction5 = new BankAccountTransaction(500, "incoming");
+
+		/* Adding the transactions to the list. Note that most of the transactions are 
+		 * not added at the end of the list. What is the expected order? */
+		transactions_list.add(transaction1);
+		transactions_list.add(0,transaction2);
+		transactions_list.add(transaction3);
+		transactions_list.add(1,transaction4);
+		transactions_list.add(2,transaction5);
+		/* Print the stored transactions */
+		transactions_list.print();
+		
+		/* Delete some (first and last) transactions */
+		transactions_list.remove(0); // remove the first
+		transactions_list.remove(1); // remove at index 1
+		transactions_list.remove(transactions_list.getNumberOfStoredTransactions()-1); //remove the last
+		/* Print again the stored transactions */
+		transactions_list.print();
+	}
+}
+```
+* This, finally, is the *TestBankAccoutTransList_LinkedList* class that exists only to demonstrate the functionalities of the *BankAccountTransactionList* implemented as a linked-list
+
+
+## The *Queue* solution
+* A Queue solution is not provided in source for one simple reason: Its implementation is almost identical to the previously presented Linked-list! 
+* Can you guess how, by slightly changing the Linked-list source code you can come up with a Queue?
+(SPOILER ALERT:The answer comes to the next slide!)
+
+
+## The *Queue* solution (continued)
+* Remove the methods: 
+ * *add(int index, Element e)* and *remove()*
+* and apply the following one change and one addition:
+ * *add(Element e)* - should be renamed to *enqueue(Element e)* and create a *dequeue()* as follows:
+```java
+/* Always removes the first element */
+public void queue() {
+	this.remove(0);
+}
+```
+You end up having Queue! Only the *element()* method that return the first element (without removing it) but the Getter of the "first" field does the same.
 
 
 ## References
