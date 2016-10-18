@@ -105,6 +105,7 @@ Hello bootcamp! Winter is coming...
 ```java
 /* Simple String example */
 String s = "";
+int N = 100000;
 for(int i=0; i<N; i++) {
     s += String.valueOf(i);
 }
@@ -214,6 +215,39 @@ coming...
 
 ## The *Linked-list* data structure
 <img src=media/Lists3.svg width=800 height=500 /></br>
+
+
+## CircleList, a linked-list example
+```java
+class Circle {
+	/* Linked-list nodes should have a field of their own
+	type showing the next element in the list */
+	private Circle next;
+
+	Circle(){ this.next = null; }
+	public void setNext (Circle c) { this.next = c; }
+	public Circle getNext () { return this.next; }
+}
+
+public class CircleList {
+	private Circle first_element;
+	
+	CircleList() { this.first_element = null; }
+	
+	public void addElement(Circle c) {
+		if(this.first_element == null) {
+			this.first_element = c; 
+		} else {
+			Circle current_circle = this.first_element;
+			while (current_circle.getNext() != null) {
+				current_circle = current_circle.getNext();
+			}
+			current_circle.setNext(c);
+		}
+	}
+
+}
+```
 
 
 ## *Java Collections Framework*

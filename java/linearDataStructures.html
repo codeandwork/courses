@@ -94,6 +94,7 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(word);</code>
 <h2 id="immutable-vs-mutable-operations---example">Immutable vs mutable operations - example</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Simple String example */</span>
 String s = <span class="st">&quot;&quot;</span>;
+<span class="dt">int</span> N = <span class="dv">100000</span>;
 <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; i++) {
     s += String.<span class="fu">valueOf</span>(i);
 }
@@ -181,6 +182,35 @@ coming...</code></pre>
 <p><img src=media/Lists2.svg width=800 height=500 /></br></p>
 <h2 id="the-linked-list-data-structure-2">The <em>Linked-list</em> data structure</h2>
 <p><img src=media/Lists3.svg width=800 height=500 /></br></p>
+<h2 id="circlelist-a-linked-list-example">CircleList, a linked-list example</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
+    <span class="co">/* Linked-list nodes should have a field of their own</span>
+<span class="co">    type showing the next element in the list */</span>
+    <span class="kw">private</span> Circle next;
+
+    <span class="fu">Circle</span>(){ <span class="kw">this</span>.<span class="fu">next</span> = <span class="kw">null</span>; }
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setNext</span> (Circle c) { <span class="kw">this</span>.<span class="fu">next</span> = c; }
+    <span class="kw">public</span> Circle <span class="fu">getNext</span> () { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">next</span>; }
+}
+
+<span class="kw">public</span> <span class="kw">class</span> CircleList {
+    <span class="kw">private</span> Circle first_element;
+    
+    <span class="fu">CircleList</span>() { <span class="kw">this</span>.<span class="fu">first_element</span> = <span class="kw">null</span>; }
+    
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">addElement</span>(Circle c) {
+        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first_element</span> == <span class="kw">null</span>) {
+            <span class="kw">this</span>.<span class="fu">first_element</span> = c; 
+        } <span class="kw">else</span> {
+            Circle current_circle = <span class="kw">this</span>.<span class="fu">first_element</span>;
+            <span class="kw">while</span> (current_circle.<span class="fu">getNext</span>() != <span class="kw">null</span>) {
+                current_circle = current_circle.<span class="fu">getNext</span>();
+            }
+            current_circle.<span class="fu">setNext</span>(c);
+        }
+    }
+
+}</code></pre>
 <h2 id="java-collections-framework"><em>Java Collections Framework</em></h2>
 <ul>
 <li>A collection framework supports the consistent and coherent representation and handling of <em>Collections</em> regardless of their implementation<br /></li>
