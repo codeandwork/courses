@@ -105,6 +105,7 @@ public class BootCamp {
 	
 	BootCamp() {}
 	BootCamp(BootCamp[] anArrayListOfBootCamps) {
+		anArrayListOfBootCamps = new ArralList<>();
 		for (int i=0; i<anArrayListOfBootCamps.length; ++i)
 			this.anArrayListOfBootCamps.add(anArrayListOfBootCamps[i]);
 	}
@@ -112,11 +113,15 @@ public class BootCamp {
 	public void addBootCamp(BootCamp B) {
 			this.anArrayListOfBootCamps.add(B);	
 	}
+
 	
-	public boolean removeBootCamp(BootCamp B){
-			if (this.anArrayListOfBootCamps.remove(B))
-					return true;
-			return false;
+	public void removeBootCamp(String name) {
+		for (int i=0; i<anArrayListOfBootCamps.size(); ++i) {
+			if (this.anArrayListOfBootCamps.get(i).getName().equals(name)) {
+				this.anArrayListOfBootCamps.remove(i);
+				return;
+			}
+		}			
 	}
 	
 	public ArrayList<BootCamp> getAnArrayListOfBootCamps() {
