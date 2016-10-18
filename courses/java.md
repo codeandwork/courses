@@ -5,9 +5,11 @@
 * [Constructing and using objects](java/objects.md)
 * [Creating classes](java/classes.md)
 * [Recapitulation](java/recapitulation.md)
+* [Linear data structures](java/linearDataStructures.md)
 * [Generics and Threads](java/generics_and_threads.md)
 
 ## Further test driven development and object oriented programming
+* [Introduction to Design Patterns](common/designPatterns.md)
 
 ## Introduction to web development
 
