@@ -575,7 +575,6 @@ coming...</code></pre>
         <span class="co">// if the first element is &quot;null&quot; then we only need to assign the </span>
         <span class="co">// new_transaction to the first element. No actions need to be performed</span>
         <span class="co">// and thus, we exit the method by using a return statement. </span>
-        <span class="co">// (yes, return in a void method!)</span>
         <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
             <span class="kw">this</span>.<span class="fu">first</span> = new_transaction;
         <span class="co">// if the check statement above is false, it means that at least one</span>
@@ -792,7 +791,7 @@ coming...</code></pre>
 <li>and apply the following one change and one addition:<br /></li>
 <li><p><em>add(Element e)</em> - should be renamed to <em>enqueue(Element e)</em> and create a <em>dequeue()</em> as follows:</p>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Always removes the first element */</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">queue</span>() {
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dequeue</span>() {
     <span class="kw">this</span>.<span class="fu">remove</span>(<span class="dv">0</span>);
 }</code></pre>
 <p>You end up having Queue! Only the <em>element()</em> method that return the first element (without removing it) but the Getter of the &quot;first&quot; field does the same.</p></li>
