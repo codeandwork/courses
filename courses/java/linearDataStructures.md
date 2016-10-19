@@ -215,7 +215,7 @@ public class CircleList {
 
 }
 ```
-	
+
 
 ## *Java Collections Framework*
 * A collection framework supports the consistent and coherent representation and handling of *Collections* regardless of their implementation
@@ -609,7 +609,6 @@ public class BankAccountTransactionList {
 		// if the first element is "null" then we only need to assign the 
 		// new_transaction to the first element. No actions need to be performed
 		// and thus, we exit the method by using a return statement. 
-		// (yes, return in a void method!)
 		if(this.first == null) {
 			this.first = new_transaction;
 		// if the check statement above is false, it means that at least one
@@ -830,7 +829,7 @@ public class TestBankAccoutTransList_LinkedList {
  * *add(Element e)* - should be renamed to *enqueue(Element e)* and create a *dequeue()* as follows:
 ```java
 /* Always removes the first element */
-public void queue() {
+public void dequeue() {
 	this.remove(0);
 }
 ```
