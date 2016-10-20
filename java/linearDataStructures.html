@@ -575,6 +575,7 @@ coming...</code></pre>
         <span class="co">// if the first element is &quot;null&quot; then we only need to assign the </span>
         <span class="co">// new_transaction to the first element. No actions need to be performed</span>
         <span class="co">// and thus, we exit the method by using a return statement. </span>
+        <span class="co">// (yes, return in a void method!)</span>
         <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
             <span class="kw">this</span>.<span class="fu">first</span> = new_transaction;
         <span class="co">// if the check statement above is false, it means that at least one</span>
@@ -598,7 +599,7 @@ coming...</code></pre>
         <span class="co">// This check exists in order to avoid the case that you try to remove an</span>
         <span class="co">// element in a position out_of_bounds of your list. out_of_bounds</span>
         <span class="co">// can happen at the left and the right of your list.</span>
-        <span class="kw">if</span>(index &lt; <span class="dv">0</span> || index &gt; <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>) {
+        <span class="kw">if</span>(index &lt; <span class="dv">0</span> || index &gt; <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>()) {
             <span class="kw">return</span>;
         <span class="co">// If you try to add at the beginning   </span>
         <span class="co">// keep the current first in a temp object</span>
@@ -610,7 +611,7 @@ coming...</code></pre>
             <span class="kw">this</span>.<span class="fu">first</span>.<span class="fu">setNext</span>(temp);
         <span class="co">// if you try to add at the end of the list</span>
         <span class="co">// it behaves as a normal add and thus, it calls the simple add() method </span>
-        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>) {
+        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>()) {
             <span class="kw">this</span>.<span class="fu">add</span>(new_transaction);
         <span class="co">// In any other case you need to traverse the list for as many times as</span>
         <span class="co">// is requested (by index) and retrieve the element at that position.</span>
