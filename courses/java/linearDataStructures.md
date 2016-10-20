@@ -609,6 +609,7 @@ public class BankAccountTransactionList {
 		// if the first element is "null" then we only need to assign the 
 		// new_transaction to the first element. No actions need to be performed
 		// and thus, we exit the method by using a return statement. 
+		// (yes, return in a void method!)
 		if(this.first == null) {
 			this.first = new_transaction;
 		// if the check statement above is false, it means that at least one
@@ -632,7 +633,7 @@ public class BankAccountTransactionList {
 		// This check exists in order to avoid the case that you try to remove an
 		// element in a position out_of_bounds of your list. out_of_bounds
 		// can happen at the left and the right of your list.
-		if(index < 0 || index > this.getNumberOfStoredTransactions() - 1) {
+		if(index < 0 || index > this.getNumberOfStoredTransactions()) {
 			return;
 		// If you try to add at the beginning 	
 		// keep the current first in a temp object
@@ -644,7 +645,7 @@ public class BankAccountTransactionList {
 			this.first.setNext(temp);
 		// if you try to add at the end of the list
 		// it behaves as a normal add and thus, it calls the simple add() method 
-		} else if (index == this.getNumberOfStoredTransactions() - 1) {
+		} else if (index == this.getNumberOfStoredTransactions()) {
 			this.add(new_transaction);
 		// In any other case you need to traverse the list for as many times as
 		// is requested (by index) and retrieve the element at that position.
@@ -771,6 +772,7 @@ public class BankAccountTransactionList {
 	}
 	
 }
+
 ```
 * The source code above implements the BankAccountTransactionList which is a linked-list!
 
