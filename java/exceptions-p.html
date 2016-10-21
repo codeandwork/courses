@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Exceptions</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Coding Bootcamp
+
+## Exceptions
+
+
+## What is an exception?
+
+* An exception is an event that occurs when a program runs interapting its normal flow.
+
+
+## The exception handler
+
+* We can use the ```try-catch``` construct.
+```java
+try {
+    some code here
+} catch and finally blocks …
+```
+
+
+## Throws
+
+* We can declare a might-thrown exception in method signatures.
+```java
+public void writeList() throws IOException, IndexOutOfBoundsException {...}
+```
+
+
+## Throw new
+
+* We can declare a might-throw exception using the ```throw new``` keyword.
+* Then, we need to also declare the exception in the method signature (using ```throws```).
+```java
+if (ammount < 0) {
+    throw new NegativeAmmountException();
+}
+```
+
+
+## Exception Types
+
+![](media/exceptions.png)
+
+
+## What is a stack trace?
+
+* A stack trace is the result of a crashes application
+and it can inform programs about the cause of the crash.
+* Use the method ```printStackTrace()``` to get a stack trace
+if a method failed.
+
+
+## Stack trace example
+
+```java
+HighLevelException: MidLevelException: LowLevelException
+         at Junk.a(Junk.java:13)
+         at Junk.main(Junk.java:4)
+ Caused by: MidLevelException: LowLevelException
+         at Junk.c(Junk.java:23)
+         at Junk.b(Junk.java:17)
+         at Junk.a(Junk.java:11)
+         ... 1 more
+ Caused by: LowLevelException
+         at Junk.e(Junk.java:30)
+         at Junk.d(Junk.java:27)
+         at Junk.c(Junk.java:21)
+         ... 3 more
+```
+
+
+## Create a new exception class
+
+* We can create our own exception class by extending an alreading existing exception class e.g. ```Exception```, ```RuntimeException```.
+
+
+# Best practices
+
+* Do not use generic or to specialized exceptions.
+* Give meaningful names to the new exception class you create.
+* Alway document your exceptions and explain when the might be thrown.
+* You should always catch checked exceptions, but also pay attention to unchecked exceptions, too.
+* Read carefully the documentation of the methods you call from an API and check if they throw exceptions.
+
+
+# Excercise 1a
+
+* Create a public class called Bootcamp that has a public static method with the name welcome,
+which doesn't return any result. Method welcome has one (double) argument.
+If method argument's value is greater than 25, the method produces an exception called DigitException.
+Otherwise, the method produces an exception called AnotherDigitException.
+
+
+# Excercise 1b
+
+* Class Bootcamp has also a public static method called bye
+that has no arguments and its type is int. Method bye calls method welcome
+with argument 299.7 and returns 605 when method welcome produces the exception DigitException
+and 230 when method welcome produces the exception AnotherDigitException.
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
