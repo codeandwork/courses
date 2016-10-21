@@ -6,6 +6,8 @@
 * [Creating classes](java/classes.md)
 * [Recapitulation](java/recapitulation.md)
 * [Linear data structures](java/linearDataStructures.md)
+* [Interfaces](java/interfaces.md)
+* [Exceptions](java/exceptions.md)
 * [Generics and Threads](java/generics_and_threads.md)
 
 ## Further test driven development and object oriented programming
