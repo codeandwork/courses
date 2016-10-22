@@ -3,7 +3,7 @@ SQL Join is used to combine rows from two or more tables.
 Join is based on a common field between the tables.
 
 
-#Example
+###Example
 Northwind Database has table Orders and table Customers. 
 Orders table can be joined to the Customers table with column CustomerID (Foreign key).
 So, if we would like to know the name of the company behind each order we could write:
@@ -61,8 +61,8 @@ PS! In some databases LEFT JOIN is called LEFT OUTER JOIN.
 
 
 ## LEFT JOIN Example
-Get all customers and their orders.
 ```sql
+-- Get all customers and their orders.
 SELECT Orders.OrderID, Customers.CompanyName, Orders.OrderDate
 FROM Customers
 	LEFT OUTER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
@@ -93,8 +93,8 @@ PS! In some databases RIGHT JOIN is called RIGHT OUTER JOIN.
 
 
 ## RIGHT JOIN Example
-Get all orders and the relevant customers.
 ```sql
+-- Get all orders and the relevant customers.
 SELECT Orders.OrderID, Customers.CompanyName, Orders.OrderDate
 FROM Orders
 	RIGHT OUTER JOIN Customers ON Customers.CustomerID = Orders.CustomerID
@@ -120,8 +120,8 @@ FROM table1
 
 
 ## FULL JOIN Examples
-Get all orders and all customers, combined.
 ```sql
+-- Get all orders and all customers, combined.
 SELECT Orders.OrderID, Customers.CompanyName, Orders.OrderDate
 FROM Orders
 	FULL OUTER JOIN Customers ON Customers.CustomerID = Orders.OrderID
@@ -153,8 +153,8 @@ GROUP BY column_name1, column_name2;
 
 
 ##GROUP BY Example
-How many orders has each customer from UK placed?
 ```sql
+-- How many orders has each customer from UK placed?
 SELECT Customers.CompanyName, COUNT(Orders.OrderID)
 FROM Customers	
 	LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
@@ -164,8 +164,8 @@ GROUP BY Customers.CompanyName;
 
 
 ## GROUP BY Example with more columns
-How many objects has each customer from UK ordered each year?
 ```sql
+-- How many objects has each customer from UK ordered each year?
 SELECT Customers.CompanyName, YEAR(Orders.OrderDate), SUM( [Order Details].Quantity )
 FROM Customers	
 	INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
@@ -178,12 +178,12 @@ ORDER BY Customers.CompanyName, YEAR(Orders.OrderDate);
 
 ## SQL Aliases
 Used to temporarily rename a table or column heading
-#SQL Alias Syntax for Columns
+### SQL Alias Syntax for Columns
 ```sql
 SELECT column_name AS alias_name
 FROM table_name;
 ```
-#SQL Alias Syntax for Tables
+### SQL Alias Syntax for Tables
 ```sql
 SELECT column_name(s)
 FROM table_name AS alias_name;
@@ -192,6 +192,7 @@ FROM table_name AS alias_name;
 
 ## SQL Aliases example
 ```sql
+-- How many objects has each customer from UK ordered each year and how much did the pay?
 SELECT C.CompanyName AS [Company Name], 
 		YEAR(O.OrderDate) AS [Year of Order], 
 		SUM( OD.Quantity ) AS [Total Quantity], 
@@ -243,9 +244,9 @@ Attention: If no WHERE clause is specified, ALL records will be deleted!
 
 
 ## DELETE Statement example
-Deletes from table Suppliers all records with CompanyName = 'Cardinal'
-
 ```sql
+-- Deletes from table Suppliers all records with CompanyName = 'Cardinal'
+
 DELETE FROM Suppliers
 WHERE CompanyName = 'Cardinal'; 
 ```
@@ -264,8 +265,8 @@ Attention: If no WHERE clause is specified, ALL records will be updated!
 
 
 ## UPDATE Statement example
-Updates the phone with new value for all companies named 'Cardinal'
 ```sql
+-- Updates the phone with new value for all companies named 'Cardinal'
 UPDATE Suppliers
 SET Phone = '(0)2-953010'
 WHERE CompanyName = 'Cardinal'

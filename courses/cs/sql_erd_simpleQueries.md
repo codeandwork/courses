@@ -15,11 +15,11 @@ Basic Concepts
 
 
 ## Entity - Attributes
-# Entity
+### Entity
 * Something that exists and is capable of being described
 * Entities are comprised of attributes
 
-# Attributes
+### Attributes
 An attribute is a characteristic of an entity. 
 Every attribute does one of three things:
 * Describe 
@@ -28,7 +28,7 @@ Every attribute does one of three things:
 
 
 
-## Relationships 
+### Relationships 
 * Define how the different entities are associated with each other
 * A relationship is defined by the keys of the participating entities 
     * Primary - foreign key
@@ -69,13 +69,13 @@ Indexes (Clustered - Non Clustered)
 
 
 ## Primary and foreign keys
-# SQL PRIMARY KEY Constraint
+### SQL PRIMARY KEY Constraint
 The PRIMARY KEY constraint uniquely identifies each record in a database table.
 Primary keys must contain UNIQUE values.
 A primary key column cannot contain NULL values.
 Most tables should have a primary key, and each table can have only ONE primary key.
 
-# SQL FOREIGN KEY Constraint
+### SQL FOREIGN KEY Constraint
 A FOREIGN KEY in one table points to a PRIMARY KEY in another table.
 
 
@@ -90,7 +90,7 @@ or after the table is created.
 
 
 
-# SQL CREATE TABLE + CONSTRAINT Syntax
+### SQL CREATE TABLE + CONSTRAINT Syntax
 ```sql
 CREATE TABLE table_name
 (
@@ -125,9 +125,9 @@ ORDER BY column_name1, ...;
 ```
 
 
-#Example
-Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.
+### Example
 ```sql
+--Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.
 SELECT EmployeeID, LastName, FirstName, Title 
 FROM Employees
 WHERE Country = 'USA'

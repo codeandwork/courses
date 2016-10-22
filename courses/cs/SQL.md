@@ -4,4 +4,4 @@
 * [Inner & Outer Joins and Aggregates](sql_joins.md)
 * [Advances queries](sql_advancesqueries.md)
 * [Consuming data in C#](sql_consumingdataincsharp.md)
-* [Object-relational mapping]
+* [Object-relational mapping](sql_orm.md)
