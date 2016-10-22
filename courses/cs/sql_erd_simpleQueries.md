@@ -159,3 +159,23 @@ from Customers
 where Region like '_A'
 
 ```
+
+
+## NULL values
+* NULL values represent missing unknown data
+* By default a column can hold NULL values
+* NULL is different from zero
+* To check for NULL we use IS or IS NOT NULL instead of = or <>.
+Syntax example:
+
+```sql
+-- Get all customers for whom we have fax numbers.
+SELECT * 
+FROM Customers 
+WHERE Fax IS NOT NULL;
+
+-- Get all customers for whom we do not have fax numbers.
+SELECT * 
+FROM Customers 
+WHERE Fax IS NULL;
+```

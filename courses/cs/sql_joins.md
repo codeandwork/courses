@@ -3,7 +3,7 @@ SQL Join is used to combine rows from two or more tables.
 Join is based on a common field between the tables.
 
 
-###Example
+### Example
 Northwind Database has table Orders and table Customers. 
 Orders table can be joined to the Customers table with column CustomerID (Foreign key).
 So, if we would like to know the name of the company behind each order we could write:
@@ -196,7 +196,7 @@ FROM table_name AS alias_name;
 SELECT C.CompanyName AS [Company Name], 
 		YEAR(O.OrderDate) AS [Year of Order], 
 		SUM( OD.Quantity ) AS [Total Quantity], 
-		SUM( OD.Quantity * OD.UnitPrice ) AS [Total Revenues]
+		SUM( OD.Quantity * OD.UnitPrice * (1-OD.Discount)) AS [Total Revenues]
 FROM Customers AS C
 	INNER JOIN Orders AS O ON C.CustomerID = O.CustomerID
 	INNER JOIN [Order Details] AS OD ON O.OrderID = OD.OrderID
@@ -204,9 +204,6 @@ WHERE C.Country = 'UK'
 GROUP BY C.CompanyName, YEAR(O.OrderDate)
 ORDER BY C.CompanyName, YEAR(O.OrderDate);
 ```
-
-
-
 
 
 ## INSERT INTO Statement
@@ -239,14 +236,12 @@ Syntax:
 DELETE FROM table_name
 WHERE some_column=some_value; 
 ```
-
 Attention: If no WHERE clause is specified, ALL records will be deleted!
 
 
 ## DELETE Statement example
 ```sql
 -- Deletes from table Suppliers all records with CompanyName = 'Cardinal'
-
 DELETE FROM Suppliers
 WHERE CompanyName = 'Cardinal'; 
 ```
@@ -260,7 +255,6 @@ UPDATE table_name
 SET column1=value1,column2=value2,...
 WHERE some_column=some_value;
 ```
-
 Attention: If no WHERE clause is specified, ALL records will be updated!
 
 
@@ -272,28 +266,26 @@ SET Phone = '(0)2-953010'
 WHERE CompanyName = 'Cardinal'
 ```
 
-## NULL values
-* NULL values represent missing unknown data
-* By default a column can hold NULL values
-* NULL is different from zero
-* To check for NULL we use IS or IS NOT NULL instead of = or <>.
-Syntax example:
 
+## TRANSACTIONS
+Sequence of operations performed as a single logical unit of work
+You can rollback a transaction and revert changes to the database or commit then. 
+Syntax Example:
 ```sql
--- Get all customers for whom we have fax numbers.
-SELECT * 
-FROM Customers 
-WHERE Fax IS NOT NULL;
+--Update all Customers' Country to Greece and then revert changes
+BEGIN TRANSACTION 
+update customers 
+set Country = 'Greece';
 
--- Get all customers for whom we do not have fax numbers.
-SELECT * 
-FROM Customers 
-WHERE Fax IS NULL;
+select Country, * 
+from Customers;
+
+ROLLBACK
+
+select Country, * 
+from Customers;
+
 ```
-
-
-
-
 
 
 ## Tips and Tricks for the excersises
