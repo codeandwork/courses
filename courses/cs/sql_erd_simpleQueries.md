@@ -37,17 +37,17 @@ Every attribute does one of three things:
 
 
 ## ER-Diagram basic symbols
-![](erd-symbols.gif)
+![](media\erd-symbols.gif)
 
 
 
 ## ER-Diagram examples (1/2)
-![](erdiagram2.gif)
+![](media\erdiagram2.gif)
 
 
 
 ## ER-Diagram examples (2/2)
-![](erd-employee.gif)
+![](media\erd-employee.gif)
 
 
 
@@ -113,3 +113,24 @@ In SQL, we have the following constraints:
 
 
 
+## SQL Select Queries
+Always remeber that sql queries resemble spoken language!
+
+```sql
+SELECT column_name1, column_name2, ...
+FROM table_name
+WHERE condition
+GROUP BY column_name1, column_name2, ...
+ORDER BY column_name1, ...;
+```
+
+
+#Example
+Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.
+```sql
+SELECT EmployeeID, LastName, FirstName, Title 
+FROM Employees
+WHERE Country = 'USA'
+	AND BirthDate < '1960-01-01'
+ORDER BY LastName, FirstName;
+```
