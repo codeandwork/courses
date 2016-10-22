@@ -134,3 +134,28 @@ WHERE Country = 'USA'
 	AND BirthDate < '1960-01-01'
 ORDER BY LastName, FirstName;
 ```
+
+
+## SQL LIKE Operator & Wildcards
+The LIKE operator is used to search for a specified pattern in a column.
+Wildcard characters are used with the SQL LIKE operator. 
+We will need the following:
+1. `%  A substitute for zero or more characters
+2. `_  A substitute for a single character
+
+
+
+## Examples
+```sql
+-- Returns Customers from Bern, Berlin and Bergamo
+SELECT * FROM Customers
+WHERE City LIKE 'ber%';
+-- Returns Customers from Bruxelles, Resende, Buenos Aires etc.
+SELECT * FROM Customers
+WHERE City LIKE '%es%';  
+-- Returns Customers with regions CA and WA
+select *
+from Customers
+where Region like '_A'
+
+```
