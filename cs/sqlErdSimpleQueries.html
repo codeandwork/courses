@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ER-Diagrams, Joins and simple SQL Queries</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-er-diagrams-joins-and-simple-sql-queries">Coding Bootcamp: ER-Diagrams, Joins and simple SQL Queries</h1>
+<h2 id="sql">SQL</h2>
+<p>What is SQL?</p>
+<ul>
+<li>SQL stands for Structured Query Language<br /></li>
+<li>SQL lets you access and manipulate databases<br /></li>
+<li>SQL is an ANSI (American National Standards Institute) standard</li>
+</ul>
+<h2 id="learn-to-design-er-diagrams">Learn to design ER-Diagrams</h2>
+<p>Basic Concepts</p>
+<ul>
+<li>Understand the requirements<br /></li>
+<li>Don't think physical; think conceptual<br /></li>
+<li>Don't think process; think structure<br /></li>
+<li>Don't think navigation; think relationship</li>
+</ul>
+<h2 id="entity---attributes">Entity - Attributes</h2>
+<h1 id="entity">Entity</h1>
+<ul>
+<li>Something that exists and is capable of being described<br /></li>
+<li>Entities are comprised of attributes</li>
+</ul>
+<h1 id="attributes">Attributes</h1>
+<p>An attribute is a characteristic of an entity.<br />Every attribute does one of three things:</p>
+<ul>
+<li>Describe<br /></li>
+<li>Identify<br /></li>
+<li>Relate</li>
+</ul>
+<h2 id="relationships">Relationships</h2>
+<ul>
+<li>Define how the different entities are associated with each other<br /></li>
+<li><p>A relationship is defined by the keys of the participating entities</p>
+<ul>
+<li>Primary - foreign key<br /></li>
+<li>Parent - child relationship</li>
+</ul></li>
+</ul>
+<h2 id="er-diagram-basic-symbols">ER-Diagram basic symbols</h2>
+<p><img src="media\erd-symbols.gif" /></p>
+<h2 id="er-diagram-examples-12">ER-Diagram examples (1/2)</h2>
+<p><img src="media\erdiagram2.gif" /></p>
+<h2 id="er-diagram-examples-22">ER-Diagram examples (2/2)</h2>
+<p><img src="media\erd-employee.gif" /></p>
+<h2 id="the-logical-to-physical-mapping">The logical-to-physical mapping</h2>
+<p>Entities into tables<br />Attributes into columns<br />Domains into data types &amp; constraints</p>
+<ul>
+<li>Domain - an area of interest or an area over which a person has control<br /> From <a href="http://dictionary.cambridge.org/dictionary/english/domain">http://dictionary.cambridge.org/dictionary/english/domain</a></li>
+</ul>
+<p>Data Types<br />Constraints<br />Primary Key<br />Nullability<br />Fixed- Variable length<br />Identity Columns<br />Indexes (Clustered - Non Clustered)</p>
+<h2 id="primary-and-foreign-keys">Primary and foreign keys</h2>
+<h1 id="sql-primary-key-constraint">SQL PRIMARY KEY Constraint</h1>
+<p>The PRIMARY KEY constraint uniquely identifies each record in a database table.<br />Primary keys must contain UNIQUE values.<br />A primary key column cannot contain NULL values.<br />Most tables should have a primary key, and each table can have only ONE primary key.</p>
+<h1 id="sql-foreign-key-constraint">SQL FOREIGN KEY Constraint</h1>
+<p>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</p>
+<h2 id="sql-constraints">SQL Constraints</h2>
+<p>SQL constraints are used to specify rules for the data in a table.<br />If there is any violation between the constraint and the data action,<br />the action is aborted by the constraint.</p>
+<p>Constraints can be specified when the table is created<br />or after the table is created.</p>
+<h1 id="sql-create-table-constraint-syntax">SQL CREATE TABLE + CONSTRAINT Syntax</h1>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">TABLE</span> table_name
+(
+column_name1 data_type(<span class="kw">size</span>) constraint_name,
+column_name2 data_type(<span class="kw">size</span>) constraint_name,
+column_name3 data_type(<span class="kw">size</span>) constraint_name,
+....
+);</code></pre>
+<p>In SQL, we have the following constraints:</p>
+<ul>
+<li>NOT NULL - Indicates that a column cannot store NULL value<br /></li>
+<li>UNIQUE - Ensures that each row for a column must have a unique value<br /></li>
+<li>PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Ensures that a column (or combination of two or more columns) have a unique identity which helps to find a particular record in a table more easily and quickly<br /></li>
+<li>FOREIGN KEY - Ensure the referential integrity of the data in one table to match values in another table<br /></li>
+<li>CHECK - Ensures that the value in a column meets a specific condition<br /></li>
+<li>DEFAULT - Specifies a default value for a column</li>
+</ul>
+<h2 id="sql-select-queries">SQL Select Queries</h2>
+<p>Always remeber that sql queries resemble spoken language!</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name1, column_name2, ...
+<span class="kw">FROM</span> table_name
+<span class="kw">WHERE</span> condition
+<span class="kw">GROUP</span> <span class="kw">BY</span> column_name1, column_name2, ...
+<span class="kw">ORDER</span> <span class="kw">BY</span> column_name1, ...;</code></pre>
+<h1 id="example">Example</h1>
+<p>Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> EmployeeID, LastName, FirstName, Title 
+<span class="kw">FROM</span> Employees
+<span class="kw">WHERE</span> Country = <span class="st">&#39;USA&#39;</span>
+    <span class="kw">AND</span> BirthDate &lt; <span class="st">&#39;1960-01-01&#39;</span>
+<span class="kw">ORDER</span> <span class="kw">BY</span> LastName, FirstName;</code></pre>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

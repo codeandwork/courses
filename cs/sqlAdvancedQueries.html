@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Advances queries</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-advances-queries">Coding Bootcamp: Advances queries</h1>
+<h2 id="sql-variables">SQL Variables</h2>
+<p>Object that holds a single data value of a specified type<br />Uses:</p>
+<ul>
+<li>Holds data for later use<br /></li>
+<li>Counters<br /></li>
+<li>As inputs or outputs to stored procedures, functions</li>
+</ul>
+<p>Syntax:</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> &lt;@var_nam&gt; &lt;data_type&gt;</code></pre>
+<h2 id="sql-variables-examples">SQL Variables examples</h2>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @i <span class="dt">int</span>;
+<span class="kw">DECLARE</span> @stringVar <span class="dt">VARCHAR</span>(<span class="dv">200</span>);
+<span class="kw">DECLARE</span> @myDate DATETIME;</code></pre>
+<h2 id="sql-variables-assigning-values">SQL Variables Assigning Values</h2>
+<h1 id="set">SET</h1>
+<p>Used to set a value to a scalar (not table) variable<br />Syntax:</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> &lt;@var_nam&gt; &lt;data_type&gt;;
+<span class="kw">SET</span> &lt;@var_nam&gt; = <span class="fu">value</span>;</code></pre>
+<p>Example:</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @i <span class="dt">INT</span>;
+<span class="kw">SET</span> @i = <span class="dv">10</span>;</code></pre>
+<h1 id="select">SELECT</h1>
+<ul>
+<li>Used to set a value to a scalar variable<br /></li>
+<li><p>Can be also used for setting values to multiple variables at once<br />Syntax:</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> @i = <span class="dv">1</span>, 
+       @stringVar = <span class="st">&#39;Coding Bootcamp&#39;</span>;
+       @myDate = <span class="st">&#39;2016-10-24&#39;</span></code></pre></li>
+</ul>
+<h2 id="set-vs-select-for-setting-values-to-variables">SET vs SELECT for setting values to variables</h2>
+<ul>
+<li>SET is the ANSI standard for variable assignment, SELECT is not<br /></li>
+<li>SET can only assign one variable at a time, SELECT can make multiple assignments at once<br /></li>
+<li>If assigning from a query, SET can only assign a scalar value. If the query returns multiple values/rows then SET will raise an error.<br /> SELECT will assign one of the values to the variable and hide the fact that multiple values were returned<br /></li>
+<li>When assigning from a query if there is no value returned then SET will assign NULL, where SELECT will not make the assignment at all (so the variable will not be changed from its previous value)<br /></li>
+<li>As far as speed differences - there are no direct differences between SET and SELECT. However SELECT's ability to make multiple assignments in one shot does give it a slight speed advantage over SET.</li>
+</ul>
+<h2 id="temporary-tables">Temporary tables</h2>
+<p>Can be used as a workspace for intermediate results<br />They can be</p>
+<ul>
+<li>Local temporary tables (starting with #)<br /></li>
+<li>Global temporary tables (starting with ##)<br /></li>
+<li>Table variables (starting with @)<br /></li>
+<li>Other (not in our lesson's scope)</li>
+</ul>
+<h2 id="table-variables">TABLE Variables</h2>
+<ul>
+<li>Used in the scope of the routine or batch within they are defined<br /></li>
+<li>Cause less recompiles<br /></li>
+<li>Not affected by rollbacks</li>
+</ul>
+<p>Syntax example:</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @myStudents <span class="kw">TABLE</span>
+        (<span class="kw">ID</span> <span class="dt">int</span>, 
+        LastName <span class="dt">VARCHAR</span>(<span class="dv">50</span>), 
+        FirstName <span class="dt">VARCHAR</span>(<span class="dv">50</span>)
+        );</code></pre>
+<h2 id="temporary-tables-1">Temporary tables</h2>
+<ul>
+<li>Support every single feature a database table can feature<br /></li>
+<li>Can be altered after creation<br /></li>
+<li>Can have multiple indexes<br /></li>
+<li>Can be used with Dynamic SQL<br /></li>
+<li>Can be local (#) or global (##)</li>
+</ul>
+<p>Syntax example:</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">TABLE</span> #myStudents 
+        (<span class="kw">ID</span> <span class="dt">int</span>, 
+        LastName <span class="dt">VARCHAR</span>(<span class="dv">50</span>), 
+        FirstName <span class="dt">VARCHAR</span>(<span class="dv">50</span>)
+        );</code></pre>
+<h2 id="sql-in-operator">SQL IN Operator</h2>
+<p>The IN operator allows you to specify multiple values in a WHERE clause.<br />Syntax:</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name(s)
+<span class="kw">FROM</span> table_name
+<span class="kw">WHERE</span> column_name <span class="kw">IN</span> (value1,value2,...);</code></pre>
+<h2 id="sql-in-operator-example">SQL IN Operator example</h2>
+<p>How many objects has each customer from Canada, UK and USA ordered each year?</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> C.CompanyName, C.Country, <span class="dt">YEAR</span>(O.OrderDate) <span class="kw">AS</span> [<span class="dt">Year</span>], <span class="fu">SUM</span>( OD.Quantity ) [Total Quantity]
+<span class="kw">FROM</span> Customers C
+    <span class="kw">INNER</span> <span class="kw">JOIN</span> Orders O <span class="kw">ON</span> C.CustomerID = O.CustomerID
+    <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="kw">Order</span> Details] OD <span class="kw">ON</span> O.OrderID = OD.OrderID
+<span class="kw">WHERE</span> C.Country <span class="kw">IN</span> (<span class="st">&#39;UK&#39;</span>, <span class="st">&#39;USA&#39;</span>, <span class="st">&#39;Canada&#39;</span>)
+<span class="kw">GROUP</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate), C.Country
+<span class="kw">ORDER</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate);</code></pre>
+<h2 id="sql-having-clause">SQL HAVING clause</h2>
+<p>A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions.<br />It was added to the SQL language because the WHERE keyword could not be used with aggregate functions<br />Remember, WHERE for conditions before grouping, HAVING for conditions after grouping.<br />Syntax:</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name, aggregate_function(column_name)
+<span class="kw">FROM</span> table_name
+<span class="kw">WHERE</span> column_name <span class="kw">operator</span> <span class="fu">value</span>
+<span class="kw">GROUP</span> <span class="kw">BY</span> column_name
+<span class="kw">HAVING</span> aggregate_function(column_name) <span class="kw">operator</span> <span class="fu">value</span>; </code></pre>
+<h2 id="sql-having-clause-example">SQL HAVING clause example</h2>
+<p>Which UK customers have payed more than 1000$ in a year for the years 1997 and 1998?</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> C.CompanyName <span class="kw">AS</span> [Company Name], 
+        <span class="dt">YEAR</span>(O.OrderDate) <span class="kw">AS</span> [<span class="dt">Year</span> <span class="kw">of</span> <span class="kw">Order</span>], 
+        <span class="fu">SUM</span>( OD.Quantity ) <span class="kw">AS</span> [Total Quantity], 
+        <span class="fu">SUM</span>( OD.Quantity * OD.UnitPrice ) <span class="kw">AS</span> [Total Revenues]
+<span class="kw">FROM</span> Customers <span class="kw">AS</span> C
+    <span class="kw">INNER</span> <span class="kw">JOIN</span> Orders <span class="kw">AS</span> O <span class="kw">ON</span> C.CustomerID = O.CustomerID
+    <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="kw">Order</span> Details] <span class="kw">AS</span> OD <span class="kw">ON</span> O.OrderID = OD.OrderID
+<span class="kw">WHERE</span> C.Country = <span class="st">&#39;UK&#39;</span>
+    <span class="kw">AND</span> <span class="dt">YEAR</span>(O.OrderDate) <span class="kw">IN</span> (<span class="dv">1997</span>, <span class="dv">1998</span>)
+<span class="kw">GROUP</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate)
+<span class="kw">HAVING</span> <span class="fu">SUM</span>( OD.Quantity * OD.UnitPrice ) &gt; <span class="dv">1000</span>
+<span class="kw">ORDER</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate);</code></pre>
+<h2 id="tips-and-tricks-for-the-excersises">Tips and Tricks for the excersises</h2>
+<ul>
+<li>Use aliases for table names (e.g. SELECT C.CompanyName FROM Customers AS C)<br /></li>
+<li>Use DISTINCT for distinct results (for checking purposes)<br /></li>
+<li>BEGIN TRANSACTION ... ROLLBACK from INSERT, UPDATE, DELETE commands<br /></li>
+<li>Use @@ROWCOUNT to check number of affected rows<br /></li>
+<li>Always use WHERE clause for DELETE and UPDATE commands<br /></li>
+<li>Try to never use CURSORS and WHILE loops<br /></li>
+<li>Prefer table variables to temporary tables</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
