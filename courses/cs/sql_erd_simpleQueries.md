@@ -50,22 +50,24 @@ Every attribute does one of three things:
 ![](media/erd-employee.jpg)
 
 
-
-
 ## The logical-to-physical mapping
-Entities into tables
-Attributes into columns
-Domains into data types & constraints
-* Domain - an area of interest or an area over which a person has control
+
+* Entities into tables
+* Attributes into columns
+* Domains into data types & constraints
+    * Domain - an area of interest or an area over which a person has control
+
 	From <http://dictionary.cambridge.org/dictionary/english/domain> 
 
-Data Types
-Constraints
-Primary Key
-Nullability
-Fixed- Variable length
-Identity Columns
-Indexes (Clustered - Non Clustered)
+
+## Key Concepts
+* Data Types
+* Constraints
+* Primary Key
+* Nullability
+* Fixed- Variable length
+* Identity Columns
+* Indexes (Clustered - Non Clustered)
 
 
 ## Primary and foreign keys
@@ -89,7 +91,6 @@ or after the table is created.
 
 
 
-
 ### SQL CREATE TABLE + CONSTRAINT Syntax
 ```sql
 CREATE TABLE table_name
@@ -100,7 +101,6 @@ column_name3 data_type(size) constraint_name,
 ....
 );
 ```
-
 
 
 In SQL, we have the following constraints:
