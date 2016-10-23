@@ -6,8 +6,7 @@
 
 
 ## Databases
-* [ER-Diagrams, Joins and simple SQL Queries](cs/sql_erd_simpleQueries.md)
-* [Inner & Outer Joins and Aggregates](cs/sql_joins.md)
-* [Advances queries](cs/sql_advancesqueries.md)
-* [Consuming data in C#](cs/sql_consumingdataincsharp.md)
-* [Object-relational mapping]
+* [ER-Diagrams, Joins and simple SQL Queries](cs/sqlErdSimpleQueries.md)
+* [Inner & Outer Joins and Aggregates](cs/sqlJoins.md)
+* [Advances queries](cs/sqlAdvancedQueries.md)
+* [Consuming data in C#](cs/sqlConsumingDataInCsharp.md)
