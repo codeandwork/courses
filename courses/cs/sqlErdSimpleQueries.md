@@ -15,11 +15,11 @@ Basic Concepts
 
 
 ## Entity - Attributes
-# Entity
+### Entity
 * Something that exists and is capable of being described
 * Entities are comprised of attributes
 
-# Attributes
+### Attributes
 An attribute is a characteristic of an entity. 
 Every attribute does one of three things:
 * Describe 
@@ -52,8 +52,7 @@ Every attribute does one of three things:
 
 
 
-## The logical-to-physical mapping
-Entities into tables
+## The logical-to-physical mappingEntities into tables
 Attributes into columns
 Domains into data types & constraints
 * Domain - an area of interest or an area over which a person has control
@@ -69,13 +68,13 @@ Indexes (Clustered - Non Clustered)
 
 
 ## Primary and foreign keys
-# SQL PRIMARY KEY Constraint
+### SQL PRIMARY KEY Constraint
 The PRIMARY KEY constraint uniquely identifies each record in a database table.
 Primary keys must contain UNIQUE values.
 A primary key column cannot contain NULL values.
 Most tables should have a primary key, and each table can have only ONE primary key.
 
-# SQL FOREIGN KEY Constraint
+### SQL FOREIGN KEY Constraint
 A FOREIGN KEY in one table points to a PRIMARY KEY in another table.
 
 
@@ -88,9 +87,7 @@ Constraints can be specified when the table is created
 or after the table is created. 
 
 
-
-
-# SQL CREATE TABLE + CONSTRAINT Syntax
+## SQL CREATE TABLE + CONSTRAINT Syntax
 ```sql
 CREATE TABLE table_name
 (
@@ -100,7 +97,6 @@ column_name3 data_type(size) constraint_name,
 ....
 );
 ```
-
 
 
 In SQL, we have the following constraints:
@@ -125,7 +121,7 @@ ORDER BY column_name1, ...;
 ```
 
 
-#Example
+## Example
 Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.
 ```sql
 SELECT EmployeeID, LastName, FirstName, Title 
