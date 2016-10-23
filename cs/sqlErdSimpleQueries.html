@@ -46,12 +46,12 @@
 <li>Don't think navigation; think relationship</li>
 </ul>
 <h2 id="entity---attributes">Entity - Attributes</h2>
-<h1 id="entity">Entity</h1>
+<h3 id="entity">Entity</h3>
 <ul>
 <li>Something that exists and is capable of being described<br /></li>
 <li>Entities are comprised of attributes</li>
 </ul>
-<h1 id="attributes">Attributes</h1>
+<h3 id="attributes">Attributes</h3>
 <p>An attribute is a characteristic of an entity.<br />Every attribute does one of three things:</p>
 <ul>
 <li>Describe<br /></li>
@@ -73,21 +73,21 @@
 <p><img src="media\erdiagram2.gif" /></p>
 <h2 id="er-diagram-examples-22">ER-Diagram examples (2/2)</h2>
 <p><img src="media\erd-employee.gif" /></p>
-<h2 id="the-logical-to-physical-mapping">The logical-to-physical mapping</h2>
-<p>Entities into tables<br />Attributes into columns<br />Domains into data types &amp; constraints</p>
+<h2 id="the-logical-to-physical-mappingentities-into-tables">The logical-to-physical mappingEntities into tables</h2>
+<p>Attributes into columns<br />Domains into data types &amp; constraints</p>
 <ul>
 <li>Domain - an area of interest or an area over which a person has control<br /> From <a href="http://dictionary.cambridge.org/dictionary/english/domain">http://dictionary.cambridge.org/dictionary/english/domain</a></li>
 </ul>
 <p>Data Types<br />Constraints<br />Primary Key<br />Nullability<br />Fixed- Variable length<br />Identity Columns<br />Indexes (Clustered - Non Clustered)</p>
 <h2 id="primary-and-foreign-keys">Primary and foreign keys</h2>
-<h1 id="sql-primary-key-constraint">SQL PRIMARY KEY Constraint</h1>
+<h3 id="sql-primary-key-constraint">SQL PRIMARY KEY Constraint</h3>
 <p>The PRIMARY KEY constraint uniquely identifies each record in a database table.<br />Primary keys must contain UNIQUE values.<br />A primary key column cannot contain NULL values.<br />Most tables should have a primary key, and each table can have only ONE primary key.</p>
-<h1 id="sql-foreign-key-constraint">SQL FOREIGN KEY Constraint</h1>
+<h3 id="sql-foreign-key-constraint">SQL FOREIGN KEY Constraint</h3>
 <p>A FOREIGN KEY in one table points to a PRIMARY KEY in another table.</p>
 <h2 id="sql-constraints">SQL Constraints</h2>
 <p>SQL constraints are used to specify rules for the data in a table.<br />If there is any violation between the constraint and the data action,<br />the action is aborted by the constraint.</p>
 <p>Constraints can be specified when the table is created<br />or after the table is created.</p>
-<h1 id="sql-create-table-constraint-syntax">SQL CREATE TABLE + CONSTRAINT Syntax</h1>
+<h2 id="sql-create-table-constraint-syntax">SQL CREATE TABLE + CONSTRAINT Syntax</h2>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">TABLE</span> table_name
 (
 column_name1 data_type(<span class="kw">size</span>) constraint_name,
@@ -111,7 +111,7 @@ column_name3 data_type(<span class="kw">size</span>) constraint_name,
 <span class="kw">WHERE</span> condition
 <span class="kw">GROUP</span> <span class="kw">BY</span> column_name1, column_name2, ...
 <span class="kw">ORDER</span> <span class="kw">BY</span> column_name1, ...;</code></pre>
-<h1 id="example">Example</h1>
+<h2 id="example">Example</h2>
 <p>Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.</p>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> EmployeeID, LastName, FirstName, Title 
 <span class="kw">FROM</span> Employees
