@@ -37,7 +37,7 @@ PS! INNER JOIN is the same as JOIN.
 
 
 ## INNER JOIN Venn Diagram
-![](media/sql_innerjoin.gif)
+![](media/sql_innerjoin.jpg)
 
 
 ## LEFT JOIN 
@@ -71,7 +71,7 @@ ORDER BY Customers.CompanyName;
 
 
 ## LEFT JOIN Venn Diagram
-![](media/sql_leftjoin.gif)
+![](media/sql_leftjoin.jpg)
 
 
 ## RIGHT JOIN 
@@ -103,7 +103,7 @@ ORDER BY Customers.CompanyName;
 
 
 ## RIGHT JOIN Venn Diagram
-![](media/sql_rightjoin.gif)
+![](media/sql_rightjoin.jpg)
 
 
 
@@ -130,7 +130,7 @@ ORDER BY Customers.CompanyName;
 
 
 ## FULL JOIN Venn Diagram
-![](media/sql_fulljoin.gif)
+![](media/sql_fulljoin.jpg)
 
 
 ## GROUP BY Statement

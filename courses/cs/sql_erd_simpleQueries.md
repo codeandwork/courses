@@ -37,17 +37,17 @@ Every attribute does one of three things:
 
 
 ## ER-Diagram basic symbols
-![](media\erd-symbols.gif)
+![](media/erd-symbols.jpg)
 
 
 
 ## ER-Diagram examples (1/2)
-![](media\erdiagram2.gif)
+![](media/erdiagram2.jpg)
 
 
 
 ## ER-Diagram examples (2/2)
-![](media\erd-employee.gif)
+![](media/erd-employee.jpg)
 
 
 
