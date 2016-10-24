@@ -178,12 +178,12 @@ ORDER BY Customers.CompanyName, YEAR(Orders.OrderDate);
 
 ## SQL Aliases
 Used to temporarily rename a table or column heading
-### SQL Alias Syntax for Columns
+## SQL Alias Syntax for Columns
 ```sql
 SELECT column_name AS alias_name
 FROM table_name;
 ```
-### SQL Alias Syntax for Tables
+## SQL Alias Syntax for Tables
 ```sql
 SELECT column_name(s)
 FROM table_name AS alias_name;
@@ -191,8 +191,8 @@ FROM table_name AS alias_name;
 
 
 ## SQL Aliases example
+How many objects has each customer from UK ordered each year and how much did the pay?
 ```sql
--- How many objects has each customer from UK ordered each year and how much did the pay?
 SELECT C.CompanyName AS [Company Name], 
 		YEAR(O.OrderDate) AS [Year of Order], 
 		SUM( OD.Quantity ) AS [Total Quantity], 
