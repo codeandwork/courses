@@ -28,7 +28,7 @@ Every attribute does one of three things:
 
 
 
-## Relationships 
+### Relationships 
 * Define how the different entities are associated with each other
 * A relationship is defined by the keys of the participating entities 
     * Primary - foreign key
@@ -37,34 +37,37 @@ Every attribute does one of three things:
 
 
 ## ER-Diagram basic symbols
-![](media\erd-symbols.gif)
+![](media/erd-symbols.jpg)
 
 
 
 ## ER-Diagram examples (1/2)
-![](media\erdiagram2.gif)
+![](media/erdiagram2.jpg)
 
 
 
 ## ER-Diagram examples (2/2)
-![](media\erd-employee.gif)
+![](media/erd-employee.jpg)
 
 
+## The logical-to-physical mapping
 
+* Entities into tables
+* Attributes into columns
+* Domains into data types & constraints
+    * Domain - an area of interest or an area over which a person has control
 
-## The logical-to-physical mappingEntities into tables
-Attributes into columns
-Domains into data types & constraints
-* Domain - an area of interest or an area over which a person has control
 	From <http://dictionary.cambridge.org/dictionary/english/domain> 
 
-Data Types
-Constraints
-Primary Key
-Nullability
-Fixed- Variable length
-Identity Columns
-Indexes (Clustered - Non Clustered)
+
+## Key Concepts
+* Data Types
+* Constraints
+* Primary Key
+* Nullability
+* Fixed- Variable length
+* Identity Columns
+* Indexes (Clustered - Non Clustered)
 
 
 ## Primary and foreign keys
@@ -87,7 +90,8 @@ Constraints can be specified when the table is created
 or after the table is created. 
 
 
-## SQL CREATE TABLE + CONSTRAINT Syntax
+
+### SQL CREATE TABLE + CONSTRAINT Syntax
 ```sql
 CREATE TABLE table_name
 (
@@ -121,12 +125,57 @@ ORDER BY column_name1, ...;
 ```
 
 
-## Example
-Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.
+### Example
 ```sql
+--Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.
 SELECT EmployeeID, LastName, FirstName, Title 
 FROM Employees
 WHERE Country = 'USA'
 	AND BirthDate < '1960-01-01'
 ORDER BY LastName, FirstName;
+```
+
+
+## SQL LIKE Operator & Wildcards
+The LIKE operator is used to search for a specified pattern in a column.
+Wildcard characters are used with the SQL LIKE operator. 
+We will need the following:
+1. `%  A substitute for zero or more characters
+2. `_  A substitute for a single character
+
+
+
+## Examples
+```sql
+-- Returns Customers from Bern, Berlin and Bergamo
+SELECT * FROM Customers
+WHERE City LIKE 'ber%';
+-- Returns Customers from Bruxelles, Resende, Buenos Aires etc.
+SELECT * FROM Customers
+WHERE City LIKE '%es%';  
+-- Returns Customers with regions CA and WA
+select *
+from Customers
+where Region like '_A'
+
+```
+
+
+## NULL values
+* NULL values represent missing unknown data
+* By default a column can hold NULL values
+* NULL is different from zero
+* To check for NULL we use IS or IS NOT NULL instead of = or <>.
+Syntax example:
+
+```sql
+-- Get all customers for whom we have fax numbers.
+SELECT * 
+FROM Customers 
+WHERE Fax IS NOT NULL;
+
+-- Get all customers for whom we do not have fax numbers.
+SELECT * 
+FROM Customers 
+WHERE Fax IS NULL;
 ```
