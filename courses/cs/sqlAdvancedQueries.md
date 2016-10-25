@@ -20,7 +20,7 @@ DECLARE @myDate DATETIME;
 
 
 ## SQL Variables Assigning Values
-# SET
+### SET
 Used to set a value to a scalar (not table) variable 
 Syntax:
 ```sql
@@ -31,8 +31,9 @@ Example:
 ```sql
 DECLARE @i INT;
 SET @i = 10;
+SET @stringVar = 'Coding Bootcamp';
 ```
-# SELECT 
+### SELECT 
 * Used to set a value to a scalar variable
 * Can be also used for setting values to multiple variables at once
 Syntax:
@@ -105,8 +106,9 @@ WHERE column_name IN (value1,value2,...);
 ```
 
 ## SQL IN Operator example
-How many objects has each customer from Canada, UK and USA ordered each year?
 ```sql
+-- How many objects has each customer from Canada, UK and USA ordered each year?
+
 SELECT C.CompanyName, C.Country, YEAR(O.OrderDate) AS [Year], SUM( OD.Quantity ) [Total Quantity]
 FROM Customers C
 	INNER JOIN Orders O ON C.CustomerID = O.CustomerID
@@ -132,8 +134,8 @@ HAVING aggregate_function(column_name) operator value;
 
 
 ## SQL HAVING clause example
-Which UK customers have payed more than 1000$ in a year for the years 1997 and 1998?
 ```sql
+-- Which UK customers have payed more than 1000$ in a year for the years 1997 and 1998?
 SELECT C.CompanyName AS [Company Name], 
 		YEAR(O.OrderDate) AS [Year of Order], 
 		SUM( OD.Quantity ) AS [Total Quantity], 
@@ -148,6 +150,28 @@ HAVING SUM( OD.Quantity * OD.UnitPrice ) > 1000
 ORDER BY C.CompanyName, YEAR(O.OrderDate);
 ```
 
+
+## Subqueries
+Queries embedded in queries.
+Example:
+```sql
+-- Find the name of the company that placed order 10290.
+SELECT CompanyName
+FROM Customers
+WHERE CustomerID = (SELECT CustomerID
+			FROM Orders
+			WHERE OrderID = 10290);
+```
+Better example why to use a subquery:
+Example:
+```sql
+-- Find the Companies that placed orders in 1997
+SELECT CompanyName
+FROM Customers
+WHERE CustomerID IN (SELECT CustomerID
+			FROM Orders
+			WHERE OrderDate BETWEEN '1997-01-01' AND '1997-12-31');
+```
 
 
 ## Tips and Tricks for the excersises
