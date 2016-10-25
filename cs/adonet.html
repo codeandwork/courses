@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ADO.NET</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-ado.net">Coding Bootcamp: ADO.NET</h1>
+<h2 id="ado.net">ADO.NET</h2>
+<p>or how to access data the <em>old</em> way</p>
+<h2 id="ado.net-1">ADO.NET</h2>
+<p>ADO.NET is an object-oriented set of libraries that allows you to interact with data sources. Commonly, the data source is a database, but it could also be a text file, an Excel spreadsheet, or an XML file.</p>
+<h2 id="data-providers">Data Providers</h2>
+<p>ADO.NET provides a relatively common way to interact with data sources, but comes in different sets of libraries for each way you can talk to a data source. These libraries are called Data Providers and are usually named for the protocol or data source type they allow you to interact with.</p>
+<h2 id="sql-data-provider">SQL Data Provider</h2>
+<p>Since, we are interested in the SQL Server, we will use the .NET Framework Data Provider for SQL Server which resides in the <code>System.Data.SqlCient</code> namespace.</p>
+<pre class="csharp"><code>using System.Data.SqlClient;</code></pre>
+<h2 id="overview">Overview</h2>
+<p>Before jumping into the code, we will have to understand some of the important objects of ADO.NET. In a typical scenario requiring data access, we need to perform four major tasks:</p>
+<ol>
+<li>Connecting to the database<br /></li>
+<li>Passing the request to the database, i.e., a command like select, insert, or update.<br /></li>
+<li>Getting back the results, i.e., rows and/or the number of rows effected.<br /></li>
+<li>Storing the result and displaying it to the user.</li>
+</ol>
+<h2 id="overview-1">Overview</h2>
+<p>This can be visualized as:</p>
+<p><img src="media/adonet-flow.jpg" width="1000"></p>
+<h2 id="sqlconnection">SqlConnection</h2>
+<p>The <code>SqlConnection</code> class is used to establish a connection to the database. The <code>SqlConnection</code> uses a <code>ConnectionString</code> to identify the database server location, authentication parameters, and other information to connect to the database.</p>
+<p><a href="http://www.connectionstrings.com/%C2%A0is">http://www.connectionstrings.com/ is</a> the website where you can easily find the connection string for your database. They provide the strings, for almost all of the database services and their types.</p>
+<h2 id="example-connectionstring---13">Example ConnectionString - 1/3</h2>
+<pre class="csharp"><code>&quot;Data Source=(LocalDB)\v11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True&quot;</code></pre>
+<ul>
+<li><code>DataSource</code>: For SQL Server Express, LocalDB, SQL Server, and SQL Database, this setting specifies the name of the server and the SQL Server instance on the server. For example, you can specify ServerName\Instancename. You can use &quot;.&quot;, &quot;(local)&quot;, or &quot;localhost&quot; in place of the server name to specify the local computer, and you can use an IP address instead of the server name.<br /></li>
+<li><code>AttachDbFileName</code> specifies the path and name of the database file for SQL Server Express or LocalDB databases that are not defined in the local SQL Server Express instance.</li>
+</ul>
+<h2 id="example-connectionstring---23">Example ConnectionString - 2/3</h2>
+<pre class="csharp"><code>&quot;Data Source=(LocalDB)\v11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True&quot;</code></pre>
+<ul>
+<li><code>InitialCatalog</code> specifies the name of the database in the SQL Server instance catalog. If omitted, ADO.NET connects to the default database for the SQL Server instance.<br /></li>
+<li><code>Integrated Security</code> specifies whether the connection should use the user ID and password in the connection string to log on to the SQL Server instance (=false), or the current Windows account credentials should be used for authentication (=true).</li>
+</ul>
+<h2 id="example-connectionstring---33">Example ConnectionString - 3/3</h2>
+<pre class="csharp"><code>&quot;Data Source=(LocalDB)\v11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True&quot;</code></pre>
+<ul>
+<li>The <code>MultipleActiveResultSets</code> (MARS) option makes it possible to execute multiple queries simultaneously. This is a common scenario when you use the Entity Framework.</li>
+</ul>
+<h2 id="sqlconnection-lifecycle">SqlConnection Lifecycle</h2>
+<p>The purpose of creating a <code>SqlConnection</code> object is so you can enable other ADO.NET code to work with a database. Other ADO.NET objects, such as a <code>SqlCommand</code> and a <code>SqlDataAdapter</code> take a connection object as a parameter. The sequence of operations occurring in the lifetime of a <code>SqlConnection</code> are as follows:</p>
+<ol>
+<li>Instantiate<br /></li>
+<li>Open the connection<br /></li>
+<li>Pass the connection to other ADO.NET objects<br /></li>
+<li>Perform database operations with the other ADO.NET objects<br /></li>
+<li>Close the connection</li>
+</ol>
+<h2 id="demo-code">Demo Code</h2>
+<pre class="csharp"><code>// 1. Instantiate the connection
+SqlConnection conn = new SqlConnection(
+  &quot;Data Source=(local);Initial Catalog=Northwind;Integrated Security=SSPI&quot;);
+SqlDataReader rdr = null;
+try {
+  // 2. Open the connection
+  conn.Open();
+  // 3. Pass the connection to a command object
+  SqlCommand cmd = new SqlCommand(&quot;select * from Customers&quot;, conn);
+  // 4. Use the connection to get query results
+  rdr = cmd.ExecuteReader();
+} finally {
+  // close the reader
+  if (rdr != null)
+    rdr.Close();
+  // 5. Close the connection
+  if (conn != null)
+    conn.Close();
+}</code></pre>
+<h2 id="sqlcommand">SqlCommand</h2>
+<p>A <code>SqlCommand</code> object allows you to specify what type of interaction you want to perform with a database. For example, you can do select, insert, modify, and delete commands on rows of data in a database table.</p>
+<h2 id="sqlcommand-1">SqlCommand</h2>
+<p>Similar to other C# objects, you instantiate a <code>SqlCommand</code> object via the new instance declaration, as follows:</p>
+<pre class="csharp"><code>SqlCommand cmd = new SqlCommand(&quot;select CategoryName from Categories&quot;, conn);</code></pre>
+<h2 id="quering-data">Quering data</h2>
+<p>When using a SQL <code>SELECT</code> command, you retrieve a data set for viewing. To accomplish this with a <code>SqlCommand</code> object, you would use the <code>ExecuteReader</code> method, which returns a <code>SqlDataReader</code> object. The example below shows how to use the <code>SqlCommand</code> object to obtain a <code>SqlDataReader</code> object:</p>
+<pre class="csharp"><code>// 1. Instantiate a new command with a query and connection
+ SqlCommand cmd = new SqlCommand(&quot;select CategoryName from Categories&quot;, conn);
+
+// 2. Call Execute reader to get query results
+ SqlDataReader rdr = cmd.ExecuteReader();</code></pre>
+<h2 id="getting-single-values">Getting single values</h2>
+<p>Sometimes all we need from a database is a single value, which could be a count, sum, average, or other aggregated value from a data set. Performing an <code>ExecuteReader</code> and calculating the result in the code is not the most efficient way to do this. The best choice is to let the database perform the work and return just the single value we need. The following example shows how to do this with the <code>ExecuteScalar</code> method:<br />```csharp<br />// 1. Instantiate a new command<br /> SqlCommand cmd = new SqlCommand(&quot;select count(*) from Categories&quot;, conn);</p>
+<p>// 2. Call ExecuteNonQuery to send command<br /> int count = (int)cmd.ExecuteScalar();<br /> ```</p>
+<h2 id="inserting-data">Inserting data</h2>
+<p>To insert data into a database, use the <code>ExecuteNonQuery</code> method of the <code>SqlCommand</code> object. The following code shows how to insert data into a database table:</p>
+<pre class="csharp"><code>// prepare command string
+string insertString = &quot;insert into Categories (CategoryName, Description) values (&#39;Miscellaneous&#39;, &#39;Whatever doesn&#39;&#39;t fit elsewhere&#39;)&quot;;
+
+// 1. Instantiate a new command with a query and connection
+SqlCommand cmd = new SqlCommand(insertString, conn);
+
+// 2. Call ExecuteNonQuery to send command
+cmd.ExecuteNonQuery();</code></pre>
+<h2 id="updating-data">Updating data</h2>
+<p>The ExecuteNonQuery method is also used for updating data. The following code shows how to update data:<br />```csharp<br />// prepare command string<br /> string updateString = @&quot;<br /> update Categories<br /> set CategoryName = 'Other'<br /> where CategoryName = 'Miscellaneous'&quot;;</p>
+<p>// 1. Instantiate a new command with command text only<br /> SqlCommand cmd = new SqlCommand(updateString);</p>
+<p>// 2. Set the Connection property<br /> cmd.Connection = conn;</p>
+<p>// 3. Call ExecuteNonQuery to send command<br /> cmd.ExecuteNonQuery();<br /> ```</p>
+<h2 id="deleting-data">Deleting data</h2>
+<p>You can also delete data using the <code>ExecuteNonQuery</code> method. The following example shows how to delete a record from a database:</p>
+<pre class="csharp"><code>// prepare command string
+ string deleteString = @&quot;
+ delete from Categories
+ where CategoryName = &#39;Other&#39;&quot;;
+
+ // 1. Instantiate a new command
+ SqlCommand cmd = new SqlCommand();
+
+ // 2. Set the CommandText property
+ cmd.CommandText = deleteString;
+
+ // 3. Set the Connection property
+ cmd.Connection = conn;
+
+ // 4. Call ExecuteNonQuery to send command
+ cmd.ExecuteNonQuery();</code></pre>
+<h2 id="parameterizing-the-query">Parameterizing the query</h2>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

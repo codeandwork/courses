@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>HTML</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-html">Coding Bootcamp: HTML</h1>
+<h2 id="static-website">Static website</h2>
+<p><strong>Content</strong><br /><strong>+ HTML</strong>: Structure<br /><strong>+ CSS</strong>: Presentation<br /><strong>= Website</strong></p>
+<p>A website is a way to present your content to the world, using HTML and CSS to present that content and make it look good.</p>
+<h2 id="html">HTML</h2>
+<ul>
+<li>HTML stands for Hyper Text Markup Language<br /></li>
+<li>An HTML file is a text file containing markup tags<br /></li>
+<li>These markup tags describe what is the structure of the website</li>
+</ul>
+<h2 id="anatomy-of-an-html-tag">Anatomy of an HTML tag</h2>
+<p>Each tag has a <em>start tag</em>, <em>end tag</em>, some content in between and optional <em>attributes</em>.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;tagname</span><span class="ot"> attribute=</span><span class="st">&quot;value&quot;</span><span class="kw">&gt;</span>
+  content
+<span class="kw">&lt;/tagname&gt;</span>
+
+<span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;fedonman.open-tech.gr&quot;</span><span class="kw">&gt;</span>
+  link to my website
+<span class="kw">&lt;/a&gt;</span></code></pre>
+<h2 id="html-tag"><code>&lt;html&gt;</code> tag</h2>
+<p>The <code>&lt;!doctype&gt;</code> isn't an actual tag, but it needs to be at start of every HTML page to inform the browser which version of HTML you're using. The standard version nowadays is HTML5.</p>
+<p>The <code>html</code> tag is always the first tag in the page.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<h2 id="head-tag"><code>&lt;head&gt;</code> tag</h2>
+<p>The <code>&lt;head&gt;</code> contains <em>meta</em> information about the page, such as title, description, author information, character encoding etc.</p>
+<p>It is also the place to load CSS files, fonts, and generally everything that needs to be loaded before the <em>rendering</em> of the page.</p>
+<h2 id="head-tag-1"><code>&lt;head&gt;</code> tag</h2>
+<p><code>&lt;head&gt;</code> goes directly after <code>&lt;html&gt;</code>.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>  
+ <span class="kw">&lt;head&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;title&gt;</span>My new website<span class="kw">&lt;/title&gt;</span>
+  <span class="kw">&lt;description&gt;</span>An awesome description goes here!<span class="kw">&lt;/description&gt;</span>
+ <span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<h2 id="body-tag"><code>&lt;body&gt;</code> tag</h2>
+<p>The body contains the actual content of the page.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>  
+ <span class="kw">&lt;head&gt;</span>
+  <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;title&gt;</span>My new website<span class="kw">&lt;/title&gt;</span>
+  <span class="kw">&lt;description&gt;</span>An awesome description goes here!<span class="kw">&lt;/description&gt;</span>
+ <span class="kw">&lt;/head&gt;</span>
+ <span class="kw">&lt;body&gt;</span>
+   Content goes here!
+ <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<h2 id="what-goes-in-the-body">What goes in the <code>&lt;body&gt;</code>?</h2>
+<ol>
+<li>Tags used for displaying content<br /></li>
+<li>Tags used for structuring content</li>
+</ol>
+<h2 id="tags-used-for-displaying-content">1. Tags used for displaying content</h2>
+<h2 id="headlines">Headlines</h2>
+<p>The <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> tags are used to define HTML headings. <code>&lt;h1&gt;</code> defines the most important heading. <code>&lt;h6&gt;</code> defines the least important heading.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;h1&gt;</span>Header 1<span class="kw">&lt;/h1&gt;</span>
+<span class="kw">&lt;h2&gt;</span>Header 2<span class="kw">&lt;/h2&gt;</span>
+...
+<span class="kw">&lt;h6&gt;</span>Header 6<span class="kw">&lt;/h6&gt;</span></code></pre>
+<h1 id="header-1">Header 1</h1>
+<h2 id="header-2">Header 2</h2>
+<p>...</p>
+<h6 id="header-6">Header 6</h6>
+<h2 id="paragraphs">Paragraphs</h2>
+<p>The <code>&lt;p&gt;</code> tag defines a paragraph.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;p&gt;</span>This is a paragraph.<span class="kw">&lt;/p&gt;</span>
+<span class="kw">&lt;p&gt;</span>This is another paragraph.<span class="kw">&lt;/p&gt;</span></code></pre>
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+<h2 id="emphasizing-text">Emphasizing Text</h2>
+<p>Use <code>&lt;em&gt;</code> tag to give emphasis to a certain part of a paragraph or heading. <code>&lt;strong&gt;</code> tag denotes important text and can be nested multiple times to increase the importance level.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;p&gt;</span>Can you tell me the <span class="kw">&lt;em&gt;</span>real reason<span class="kw">&lt;/em&gt;</span>?<span class="kw">&lt;/p&gt;</span>
+<span class="kw">&lt;p&gt;&lt;strong&gt;</span>Be responsible!<span class="kw">&lt;/strong&gt;</span> Don&#39;t drink and drive.<span class="kw">&lt;/p&gt;</span>
+<span class="kw">&lt;p&gt;&lt;strong&gt;&lt;strong&gt;&lt;strong&gt;</span>DANGER!<span class="kw">&lt;/strong&gt;</span>NUCLEAR WEAPONS INSIDE<span class="kw">&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;</span></code></pre>
+<p>Can you tell me the <em>real reason</em>?</p>
+
+<p><strong>Be responsible!</strong> Don't drink and drive.</p>
+
+<p><strong><strong><strong>DANGER!</strong> NUCLEAR WEAPONS INSIDE</strong></strong></p>
+
+
+
+<h2 id="line-breaks">Line breaks</h2>
+<p>The <code>&lt;br&gt;</code> tag inserts a single line break. The <code>&lt;br&gt;</code> tag is an empty tag which means that it has no end tag.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;p&gt;</span>They say the blacker the berry,<span class="kw">&lt;br&gt;</span>the sweeter the juice.<span class="kw">&lt;br&gt;</span>I say the darker the flesh,<span class="kw">&lt;br&gt;</span>then the deeper the roots.<span class="kw">&lt;/p&gt;</span></code></pre>
+<p>They say the blacker the berry,<br />the sweeter the juice.<br />I say the darker the flesh,<br />then the deeper the roots.</p>
+<h2 id="unordered-lists">Unordered lists</h2>
+<p>The <code>&lt;ul&gt;</code> tag defines an unordered (bulleted) list. Use the <code>&lt;ul&gt;</code> tag together with the <code>&lt;li&gt;</code> tag to create unordered lists.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;ul&gt;</span>
+  <span class="kw">&lt;li&gt;</span>Coffee<span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;</span>Tea<span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;</span>Milk<span class="kw">&lt;/li&gt;</span>
+<span class="kw">&lt;/ul&gt;</span></code></pre>
+<ul>
+<li>Coffee<br /></li>
+<li>Tea<br /></li>
+<li>Milk</li>
+</ul>
+<h2 id="ordered-lists">Ordered lists</h2>
+<p>The <code>&lt;ol&gt;</code> tag defines an ordered list. Use the <code>&lt;ol&gt;</code> tag together with the <code>&lt;li&gt;</code> tag to create ordered lists.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;ol&gt;</span>
+  <span class="kw">&lt;li&gt;</span>Coffee<span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;</span>Tea<span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;</span>Milk<span class="kw">&lt;/li&gt;</span>
+<span class="kw">&lt;/ol&gt;</span></code></pre>
+<ol>
+<li>Coffee<br /></li>
+<li>Tea<br /></li>
+<li>Milk</li>
+</ol>
+<h2 id="nested-lists">Nested lists</h2>
+<p>Lists can be nested and create a hierarchy.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;ol&gt;</span>
+  <span class="kw">&lt;li&gt;</span>Item 1<span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;</span>Item 2
+    <span class="kw">&lt;ul&gt;</span>
+      <span class="kw">&lt;li&gt;</span>Sub-item 1<span class="kw">&lt;/li&gt;</span>
+      <span class="kw">&lt;li&gt;</span>Sub-item 2<span class="kw">&lt;/li&gt;</span>
+    <span class="kw">&lt;/ul&gt;</span>
+  <span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;</span> Item 3<span class="kw">&lt;/li&gt;</span>
+<span class="kw">&lt;/ol&gt;</span></code></pre>
+<ol>
+  <li>Item 1</li>
+  <li>Item 2
+    <ul>
+      <li>Sub-item 1</li>
+      <li>Sub-item 2</li>
+    </ul>
+  </li>
+  <li> Item 3</li>
+</ol>
+
+
+
+<h2 id="links">Links</h2>
+<p>The <code>&lt;a&gt;</code> tag defines a hyperlink, which is used to link from one page to another. The most important attribute of the <code>&lt;a&gt;</code> tag is the <code>href</code> attribute, which indicates the link's destination.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;p&gt;</span>Οι αιτήσεις για το 1ο Coding Bootcamp ξεκίνησαν! <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;http://www.afdemp.org/&quot;</span><span class="kw">&gt;</span>Μάθε περισσότερα!<span class="kw">&lt;/a&gt;&lt;/p&gt;</span></code></pre>
+<p>Οι αιτήσεις για το 1ο Coding Bootcamp ξεκίνησαν! <a href="http://www.afdemp.org/">Μάθε περισσότερα!</a></p>
+
+
+
+<h2 id="images">Images</h2>
+<p>The <code>&lt;img&gt;</code> tag is used to show images. <code>&lt;img&gt;</code> tag has two <em>required</em> attributes: <code>src</code> and <code>alt</code>. <code>src</code> attribute contains the absolute or relative path of the image, while <code>alt</code> contains an alternate text shown if the image cannot be displayed.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;./media/html-andromeda.jpg&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Andromeda Galaxy&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;http://leseed.open-tech.gr/wp-content/uploads/2015/11/fedonman.png&quot;</span><span class="ot"> alt=</span><span class="st">&quot;Logo of fedonman&quot;</span><span class="kw">&gt;</span></code></pre>
+<p><img src="http://www.outerspaceuniverse.org/wp-content/uploads/andromeda-galaxy-image.jpg" alt="Andromeda Galaxy"><br /><img src="http://leseed.open-tech.gr/wp-content/uploads/2015/11/fedonman.png" alt="Logo of fedonman"></p>
+<h2 id="video">Video</h2>
+<p>The <code>&lt;video&gt;</code> tag specify a standard way to embed a video in a web page (in contrast to pre-HTML5 age when you had to use an external plug-in). We can set the width and height of the video with the <code>width</code> and <code>height</code> attributes. <code>controls</code> attribute adds controls, like play, pause and volume. <code>autoplay</code> attribute starts the video automatically.</p>
+<h2 id="video-1">Video</h2>
+<p>Inside <code>video</code> tag we can use two tags: <code>source</code> and <code>track</code>.</p>
+<p>The <code>source</code> element allows us to specify alternative video files. The browser will use the first compatible format. The <code>track</code> tag specifies text tracks like subtitles, that should be visible when the video is playing.</p>
+<h2 id="video-2">Video</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;video</span><span class="ot"> width=</span><span class="st">&quot;420&quot;</span><span class="ot"> height=</span><span class="st">&quot;280&quot;</span><span class="ot"> controls</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;source</span><span class="ot"> src=</span><span class="st">&quot;http://techslides.com/demos/sample-videos/small.webm&quot;</span><span class="ot"> type=</span><span class="st">&quot;video/webm&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;source</span><span class="ot"> src=</span><span class="st">&quot;http://techslides.com/demos/sample-videos/small.ogv&quot;</span><span class="ot"> type=</span><span class="st">&quot;video/ogg&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;source</span><span class="ot"> src=</span><span class="st">&quot;http://techslides.com/demos/sample-videos/small.mp4&quot;</span><span class="ot"> type=</span><span class="st">&quot;video/mp4&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;track</span><span class="ot"> src=</span><span class="st">&quot;subtitles_en.vtt&quot;</span><span class="ot"> kind=</span><span class="st">&quot;subtitles&quot;</span><span class="ot"> srclang=</span><span class="st">&quot;en&quot;</span><span class="ot"> label=</span><span class="st">&quot;English&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;track</span><span class="ot"> src=</span><span class="st">&quot;subtitles_el.vtt&quot;</span><span class="ot"> kind=</span><span class="st">&quot;subtitles&quot;</span><span class="ot"> srclang=</span><span class="st">&quot;el&quot;</span><span class="ot"> label=</span><span class="st">&quot;Greek&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/video&gt;</span></code></pre>
+<video width="420" height="280" controls>
+  <source src="http://techslides.com/demos/sample-videos/small.webm" type="video/webm">
+  <source src="http://techslides.com/demos/sample-videos/small.ogv" type="video/ogg">
+  <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+  <track src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">
+  <track src="subtitles_el.vtt" kind="subtitles" srclang="el" label="Greek">
+</video>
+
+
+
+<h2 id="audio">Audio</h2>
+<p>The <code>audio</code> tag specify a standard way to embed audio in a web page without using external plug-in. It has exactly the same functionality as <code>video</code> tag.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;audio</span><span class="ot"> controls</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;source</span><span class="ot"> src=</span><span class="st">&quot;http://lyricmp3skull.co/s363640c/file/Space%20Oddity%20(Lido&#39;s%20Salute)/241740450.mp3&quot;</span><span class="ot"> type=</span><span class="st">&quot;audio/mpeg&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;p&gt;</span> audio tag is not supported! <span class="kw">&lt;/p&gt;</span>
+<span class="kw">&lt;/audio&gt;</span></code></pre>
+<p><audio controls><br /> <source src="http://lyricmp3skull.co/s363640c/file/Space%20Oddity%20(Lido's%20Salute)/241740450.mp3" type="audio/mpeg"><br /> Audio tag is not supported!<br /></audio></p>
+<p>The text inside the <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code> tags will only be displayed in browsers that do not support them.</p>
+<h2 id="tags-used-for-structuring-content">2. Tags used for structuring content</h2>
+<h2 id="section"><code>&lt;section&gt;</code></h2>
+<h2 id="article"><code>&lt;article&gt;</code></h2>
+<h2 id="header"><code>&lt;header&gt;</code></h2>
+<h2 id="footer"><code>&lt;footer&gt;</code></h2>
+<h2 id="aside"><code>&lt;aside&gt;</code></h2>
+<h2 id="nav"><code>&lt;nav&gt;</code></h2>
+<h2 id="div"><code>&lt;div&gt;</code></h2>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
