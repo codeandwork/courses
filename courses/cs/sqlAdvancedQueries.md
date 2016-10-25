@@ -14,20 +14,100 @@ HAVING aggregate_function(column_name) operator value;
 
 ## SQL HAVING clause example
 ```sql
--- Which UK customers have payed more than 1000$ in a year for the years 1997 and 1998?
-SELECT C.CompanyName AS [Company Name], 
-		YEAR(O.OrderDate) AS [Year of Order], 
-		SUM( OD.Quantity ) AS [Total Quantity], 
-		SUM( OD.Quantity * OD.UnitPrice ) AS [Total Revenues]
-FROM Customers AS C
-	INNER JOIN Orders AS O ON C.CustomerID = O.CustomerID
-	INNER JOIN [Order Details] AS OD ON O.OrderID = OD.OrderID
-WHERE C.Country = 'UK'
-    AND YEAR(O.OrderDate) IN (1997, 1998)
-GROUP BY C.CompanyName, YEAR(O.OrderDate)
-HAVING SUM( OD.Quantity * OD.UnitPrice ) > 1000
-ORDER BY C.CompanyName, YEAR(O.OrderDate);
+-- Which customers have never made an order;
+SELECT  C.CustomerID, 
+		C.CompanyName, 
+		COUNT(O.OrderID) [Total Count of Orders]
+FROM Customers C
+	LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
+GROUP BY C.CustomerID, C.CompanyName
+HAVING COUNT(O.OrderID) = 0;
 ```
+
+
+## SQL LIKE Operator & Wildcards
+The LIKE operator is used to search for a specified pattern in a column.
+Wildcard characters are used with the SQL LIKE operator. 
+We will need the following:
+1. `%  A substitute for zero or more characters
+2. `_  A substitute for a single character
+
+
+## Examples
+```sql
+-- Returns Customers from Bern, Berlin and Bergamo
+SELECT * FROM Customers
+WHERE City LIKE 'ber%';
+-- Returns Customers from Bruxelles, Resende, Buenos Aires etc.
+SELECT * FROM Customers
+WHERE City LIKE '%es%';  
+-- Returns Customers with regions CA and WA
+select *
+from Customers
+where Region like '_A'
+```
+
+
+## SQL ROUND function
+The ROUND() function is used to round a numeric field to the number of decimals specified.
+Syntax
+```sql
+SELECT ROUND(column_name,decimals) FROM table_name; 
+```
+Example
+```sql
+-- Find the total price for order with orderid = 10266 and productID = 12
+SELECT ROUND((UnitPrice * Quantity * (1 - Discount)), 2), * 
+FROM [Order Details] 
+WHERE OrderID = 10266;
+```
+
+
+## SQL SELECT TOP Clause
+The SELECT TOP clause is used to specify the number of records to return.
+Syntax
+```sql
+SELECT TOP number|percent column_name(s)
+FROM table_name;
+```
+### SQL SELECT TOP Equivalent in MySQL
+MySQL Syntax
+```MySQL
+SELECT column_name(s)
+FROM table_name
+LIMIT number;
+```
+
+
+## SQL ISNULL Function
+Replaces NULL with the specified replacement value.
+Syntax
+```sql
+ISNULL ( check_expression , replacement_value )  
+```
+
+
+## SQL ISNULL Examples
+```sql
+SELECT ISNULL(NULL, 'TechOnTheNet.com');
+--Result: 'TechOnTheNet.com'
+
+SELECT ISNULL('CheckYourMath.com', 'TechOnTheNet.com');
+--Result: 'CheckYourMath.com'
+
+SELECT ISNULL(NULL, 45);
+--Result: 45
+
+SELECT ISNULL(12, 45);
+--Result: 12
+
+SELECT ISNULL(NULL, '2014-05-01');
+--Result: '2014-05-01'
+
+SELECT ISNULL('2014-04-30', '2014-05-01');
+--Result: '2014-04-30'
+```
+
 
 
 ## SQL Variables
@@ -117,7 +197,6 @@ DECLARE @myStudents TABLE
 * Can have multiple indexes
 * Can be used with Dynamic SQL
 * Can be local (#) or global (##)
-
 Syntax example:
 ```sql
 CREATE TABLE #myStudents 
@@ -125,6 +204,25 @@ CREATE TABLE #myStudents
 		LastName VARCHAR(50), 
 		FirstName VARCHAR(50)
 		);
+```
+Remember, we may have to drop it manually!
+
+
+### SELECT INTO
+We can take the results of a query and insert them into a NEW temporary table.
+The result set must have uniquely named columns that will be the new temporary table's columns.
+Syntax:
+```sql 
+-- Create a temporary table that contains the id of each order and the total revenues of that order
+SELECT O.OrderID, SUM(ROUND((UnitPrice * Quantity * (1 - Discount)), 2)) [Final Price]
+INTO #tempFinalPrices
+FROM Orders O	
+	INNER JOIN [Order Details] OD ON O.OrderID = OD.OrderID
+GROUP BY O.OrderID;
+
+SELECT * FROM #tempFinalPrices;
+
+DROP TABLE #tempFinalPrices;
 ```
 
 
@@ -171,6 +269,29 @@ FROM Customers
 WHERE CustomerID IN (SELECT CustomerID
 			FROM Orders
 			WHERE OrderDate BETWEEN '1997-01-01' AND '1997-12-31');
+```
+
+
+## VIEWS
+A view is a virtual table. A view is nothing more than a SQL statement that is stored in the database 
+with an associated name. A view is actually a composition of a table in the form of a predefined SQL query.
+Syntax
+```sql
+CREATE VIEW view_name AS
+SELECT column1, column2.....
+FROM table_name
+WHERE [condition];
+```
+
+
+## VIEWS Example
+```sql
+CREATE VIEW [Current Product List] AS
+SELECT ProductID,ProductName
+FROM Products
+WHERE Discontinued=0;
+
+SELECT * FROM [Current Product List];
 ```
 
 
