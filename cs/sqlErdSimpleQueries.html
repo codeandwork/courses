@@ -58,7 +58,7 @@
 <li>Identify<br /></li>
 <li>Relate</li>
 </ul>
-<h2 id="relationships">Relationships</h2>
+<h3 id="relationships">Relationships</h3>
 <ul>
 <li>Define how the different entities are associated with each other<br /></li>
 <li><p>A relationship is defined by the keys of the participating entities</p>
@@ -68,17 +68,31 @@
 </ul></li>
 </ul>
 <h2 id="er-diagram-basic-symbols">ER-Diagram basic symbols</h2>
-<p><img src="media\erd-symbols.gif" /></p>
+<p><img src="media/erd-symbols.jpg" /></p>
 <h2 id="er-diagram-examples-12">ER-Diagram examples (1/2)</h2>
-<p><img src="media\erdiagram2.gif" /></p>
+<p><img src="media/erdiagram2.jpg" /></p>
 <h2 id="er-diagram-examples-22">ER-Diagram examples (2/2)</h2>
-<p><img src="media\erd-employee.gif" /></p>
-<h2 id="the-logical-to-physical-mappingentities-into-tables">The logical-to-physical mappingEntities into tables</h2>
-<p>Attributes into columns<br />Domains into data types &amp; constraints</p>
+<p><img src="media/erd-employee.jpg" /></p>
+<h2 id="the-logical-to-physical-mapping">The logical-to-physical mapping</h2>
 <ul>
-<li>Domain - an area of interest or an area over which a person has control<br /> From <a href="http://dictionary.cambridge.org/dictionary/english/domain">http://dictionary.cambridge.org/dictionary/english/domain</a></li>
+<li>Entities into tables<br /></li>
+<li>Attributes into columns<br /></li>
+<li><p>Domains into data types &amp; constraints</p>
+<ul>
+<li>Domain - an area of interest or an area over which a person has control</li>
 </ul>
-<p>Data Types<br />Constraints<br />Primary Key<br />Nullability<br />Fixed- Variable length<br />Identity Columns<br />Indexes (Clustered - Non Clustered)</p>
+<p>From <a href="http://dictionary.cambridge.org/dictionary/english/domain">http://dictionary.cambridge.org/dictionary/english/domain</a></p></li>
+</ul>
+<h2 id="key-concepts">Key Concepts</h2>
+<ul>
+<li>Data Types<br /></li>
+<li>Constraints<br /></li>
+<li>Primary Key<br /></li>
+<li>Nullability<br /></li>
+<li>Fixed- Variable length<br /></li>
+<li>Identity Columns<br /></li>
+<li>Indexes (Clustered - Non Clustered)</li>
+</ul>
 <h2 id="primary-and-foreign-keys">Primary and foreign keys</h2>
 <h3 id="sql-primary-key-constraint">SQL PRIMARY KEY Constraint</h3>
 <p>The PRIMARY KEY constraint uniquely identifies each record in a database table.<br />Primary keys must contain UNIQUE values.<br />A primary key column cannot contain NULL values.<br />Most tables should have a primary key, and each table can have only ONE primary key.</p>
@@ -87,7 +101,7 @@
 <h2 id="sql-constraints">SQL Constraints</h2>
 <p>SQL constraints are used to specify rules for the data in a table.<br />If there is any violation between the constraint and the data action,<br />the action is aborted by the constraint.</p>
 <p>Constraints can be specified when the table is created<br />or after the table is created.</p>
-<h2 id="sql-create-table-constraint-syntax">SQL CREATE TABLE + CONSTRAINT Syntax</h2>
+<h3 id="sql-create-table-constraint-syntax">SQL CREATE TABLE + CONSTRAINT Syntax</h3>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">TABLE</span> table_name
 (
 column_name1 data_type(<span class="kw">size</span>) constraint_name,
@@ -111,13 +125,46 @@ column_name3 data_type(<span class="kw">size</span>) constraint_name,
 <span class="kw">WHERE</span> condition
 <span class="kw">GROUP</span> <span class="kw">BY</span> column_name1, column_name2, ...
 <span class="kw">ORDER</span> <span class="kw">BY</span> column_name1, ...;</code></pre>
-<h2 id="example">Example</h2>
-<p>Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> EmployeeID, LastName, FirstName, Title 
+<h3 id="example">Example</h3>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">--Display last and first name and the title of the employees that are situated in USA and are born before 1960, alphabetically by their names.</span>
+<span class="kw">SELECT</span> EmployeeID, LastName, FirstName, Title 
 <span class="kw">FROM</span> Employees
 <span class="kw">WHERE</span> Country = <span class="st">&#39;USA&#39;</span>
     <span class="kw">AND</span> BirthDate &lt; <span class="st">&#39;1960-01-01&#39;</span>
 <span class="kw">ORDER</span> <span class="kw">BY</span> LastName, FirstName;</code></pre>
+<h2 id="sql-like-operator-wildcards">SQL LIKE Operator &amp; Wildcards</h2>
+<p>The LIKE operator is used to search for a specified pattern in a column.<br />Wildcard characters are used with the SQL LIKE operator.<br />We will need the following:</p>
+<ol>
+<li>`% A substitute for zero or more characters<br /></li>
+<li>`_ A substitute for a single character</li>
+</ol>
+<h2 id="examples">Examples</h2>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Returns Customers from Bern, Berlin and Bergamo</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> Customers
+<span class="kw">WHERE</span> City <span class="kw">LIKE</span> <span class="st">&#39;ber%&#39;</span>;
+<span class="co">-- Returns Customers from Bruxelles, Resende, Buenos Aires etc.</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> Customers
+<span class="kw">WHERE</span> City <span class="kw">LIKE</span> <span class="st">&#39;%es%&#39;</span>;  
+<span class="co">-- Returns Customers with regions CA and WA</span>
+<span class="kw">select</span> *
+<span class="kw">from</span> Customers
+<span class="kw">where</span> Region <span class="kw">like</span> <span class="st">&#39;_A&#39;</span></code></pre>
+<h2 id="null-values">NULL values</h2>
+<ul>
+<li>NULL values represent missing unknown data<br /></li>
+<li>By default a column can hold NULL values<br /></li>
+<li>NULL is different from zero<br /></li>
+<li>To check for NULL we use IS or IS NOT NULL instead of = or &lt;&gt;.<br />Syntax example:</li>
+</ul>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Get all customers for whom we have fax numbers.</span>
+<span class="kw">SELECT</span> * 
+<span class="kw">FROM</span> Customers 
+<span class="kw">WHERE</span> Fax <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;
+
+<span class="co">-- Get all customers for whom we do not have fax numbers.</span>
+<span class="kw">SELECT</span> * 
+<span class="kw">FROM</span> Customers 
+<span class="kw">WHERE</span> Fax <span class="kw">IS</span> <span class="kw">NULL</span>;</code></pre>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
