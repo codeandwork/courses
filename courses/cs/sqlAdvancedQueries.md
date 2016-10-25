@@ -2,6 +2,7 @@
 A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions. 
 It was added to the SQL language because the WHERE keyword could not be used with aggregate functions
 Remember, WHERE for conditions before grouping, HAVING for conditions after grouping.
+
 Syntax:
 ```sql
 SELECT column_name, aggregate_function(column_name)
@@ -50,10 +51,12 @@ where Region like '_A'
 
 ## SQL ROUND function
 The ROUND() function is used to round a numeric field to the number of decimals specified.
+
 Syntax
 ```sql
 SELECT ROUND(column_name,decimals) FROM table_name; 
 ```
+
 Example
 ```sql
 -- Find the total price for order with orderid = 10266 and productID = 12
@@ -65,6 +68,7 @@ WHERE OrderID = 10266;
 
 ## SQL SELECT TOP Clause
 The SELECT TOP clause is used to specify the number of records to return.
+
 Syntax
 ```sql
 SELECT TOP number|percent column_name(s)
@@ -72,6 +76,7 @@ FROM table_name;
 ```
 ### SQL SELECT TOP Equivalent in MySQL
 MySQL Syntax
+
 ```MySQL
 SELECT column_name(s)
 FROM table_name
@@ -81,6 +86,7 @@ LIMIT number;
 
 ## SQL ISNULL Function
 Replaces NULL with the specified replacement value.
+
 Syntax
 ```sql
 ISNULL ( check_expression , replacement_value )  
@@ -91,19 +97,16 @@ ISNULL ( check_expression , replacement_value )
 ```sql
 SELECT ISNULL(NULL, 'TechOnTheNet.com');
 --Result: 'TechOnTheNet.com'
-
 SELECT ISNULL('CheckYourMath.com', 'TechOnTheNet.com');
 --Result: 'CheckYourMath.com'
 
 SELECT ISNULL(NULL, 45);
 --Result: 45
-
 SELECT ISNULL(12, 45);
 --Result: 12
 
 SELECT ISNULL(NULL, '2014-05-01');
 --Result: '2014-05-01'
-
 SELECT ISNULL('2014-04-30', '2014-05-01');
 --Result: '2014-04-30'
 ```
@@ -133,11 +136,13 @@ DECLARE @myDate DATETIME;
 ## SQL Variables Assigning Values
 ### SET
 Used to set a value to a scalar (not table) variable 
+
 Syntax:
 ```sql
 DECLARE <@var_nam> <data_type>;
 SET <@var_nam> = value;
 ```
+
 Example:
 ```sql
 DECLARE @i INT;
@@ -149,6 +154,7 @@ SET @stringVar = 'Coding Bootcamp';
 ### SELECT 
 * Used to set a value to a scalar variable
 * Can be also used for setting values to multiple variables at once
+
 Syntax:
 ```sql
 SELECT @i = 1, 
@@ -196,6 +202,7 @@ DECLARE @myStudents TABLE
 * Can have multiple indexes
 * Can be used with Dynamic SQL
 * Can be local (#) or global (##)
+
 Syntax example:
 ```sql
 CREATE TABLE #myStudents 
@@ -210,6 +217,7 @@ Remember, we may have to drop it manually!
 ### SELECT INTO
 We can take the results of a query and insert them into a NEW temporary table.
 The result set must have uniquely named columns that will be the new temporary table's columns.
+
 Syntax:
 ```sql 
 -- Create a temporary table that contains the id of each order and the total revenues of that order
@@ -227,6 +235,7 @@ DROP TABLE #tempFinalPrices;
 
 ## SQL IN Operator
 The IN operator allows you to specify multiple values in a WHERE clause.
+
 Syntax:
 ```sql
 SELECT column_name(s)
@@ -250,6 +259,7 @@ ORDER BY C.CompanyName, YEAR(O.OrderDate);
 
 ## Subqueries
 Queries embedded in queries.
+
 Example:
 ```sql
 -- Find the name of the company that placed order 10290.
@@ -260,6 +270,7 @@ WHERE CustomerID = (SELECT CustomerID
 			WHERE OrderID = 10290);
 ```
 Better example why to use a subquery:
+
 Example:
 ```sql
 -- Find the Companies that placed orders in 1997
@@ -274,6 +285,7 @@ WHERE CustomerID IN (SELECT CustomerID
 ## VIEWS
 A view is a virtual table. A view is nothing more than a SQL statement that is stored in the database 
 with an associated name. A view is actually a composition of a table in the form of a predefined SQL query.
+
 Syntax
 ```sql
 CREATE VIEW view_name AS
