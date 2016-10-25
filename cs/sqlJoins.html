@@ -31,178 +31,287 @@
   <body>
 <h1 id="coding-bootcamp-inner-outer-joins-and-aggregates">Coding Bootcamp: Inner &amp; Outer Joins and Aggregates</h1>
 <h2 id="sql-joins">SQL Joins</h2>
-<p>SQL Join is used to combine rows from two or more tables.<br />Join is based on a common field between the tables.</p>
-<h3 id="example">Example</h3>
-<p>Northwind Database has table Orders and table Customers.<br />Orders table can be joined to the Customers table with column CustomerID (Foreign key).<br />So, if we would like to know the name of the company behind each order we could write:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
-<span class="kw">FROM</span> Customers
-    <span class="kw">INNER</span> <span class="kw">JOIN</span> Orders <span class="kw">ON</span> Customers.CustomerID = Orders.OrderID
-<span class="kw">ORDER</span> <span class="kw">BY</span> Customers.CompanyName; </code></pre>
-<h2 id="inner-join">INNER JOIN</h2>
+<h2 id="seleect-statement">SELEECT Statement</h2>
 <ul>
-<li>Most common join<br /></li>
-<li>Selects ALL rows from BOTH tables WHERE a match between the columns in BOTH tables exists.<br />Syntax:</li>
+<li>A business needs to organize its information<br /></li>
+<li>Database solution<br /><img src="media/statement.png" /></li>
 </ul>
-<pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
-FROM table1
-    <span class="kw">INNER</span> JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
-<p>or:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
-FROM table1
-    JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
-<p>PS! INNER JOIN is the same as JOIN.</p>
-<h2 id="inner-join-venn-diagram">INNER JOIN Venn Diagram</h2>
-<p><img src="media/sql_innerjoin.jpg" /></p>
-<h2 id="left-join">LEFT JOIN</h2>
-<p>Returns ALL rows from left table with MATCHING rows in right table.<br />Returns NULL for the right side when there is no match.<br />Syntax:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
-FROM table1
-    <span class="kw">LEFT</span> JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
-<p>or:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
-FROM table1
-    <span class="kw">LEFT</span> <span class="kw">OUTER</span> JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
-<p>PS! In some databases LEFT JOIN is called LEFT OUTER JOIN.</p>
-<h2 id="left-join-example">LEFT JOIN Example</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Get all customers and their orders.</span>
-<span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
-<span class="kw">FROM</span> Customers
-    <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Orders <span class="kw">ON</span> Customers.CustomerID = Orders.CustomerID
-<span class="kw">ORDER</span> <span class="kw">BY</span> Customers.CompanyName;</code></pre>
-<h2 id="left-join-venn-diagram">LEFT JOIN Venn Diagram</h2>
-<p><img src="media/sql_leftjoin.jpg" /></p>
-<h2 id="right-join">RIGHT JOIN</h2>
-<p>Returns ALL rows from right table with MATCHING rows in left table.<br />Returns NULL for the left side when there is no match.<br />Syntax:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
-FROM table1
-    <span class="kw">RIGHT</span> JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
-<p>or:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
-FROM table1 
-    <span class="kw">RIGHT</span> <span class="kw">OUTER</span> JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
-<p>PS! In some databases RIGHT JOIN is called RIGHT OUTER JOIN.</p>
-<h2 id="right-join-example">RIGHT JOIN Example</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Get all orders and the relevant customers.</span>
-<span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
-<span class="kw">FROM</span> Orders
-    <span class="kw">RIGHT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Customers <span class="kw">ON</span> Customers.CustomerID = Orders.CustomerID
-<span class="kw">ORDER</span> <span class="kw">BY</span> Customers.CompanyName;</code></pre>
-<h2 id="right-join-venn-diagram">RIGHT JOIN Venn Diagram</h2>
-<p><img src="media/sql_rightjoin.jpg" /></p>
-<h2 id="full-outer-join">FULL OUTER JOIN</h2>
-<p>Returns ALL rows from left side and ALL from right side.<br />Combines the results of both LEFT and RIGHT joins.<br />Syntax:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
-FROM table1
-    <span class="kw">FULL</span> <span class="kw">OUTER</span> JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
-<h2 id="full-join-examples">FULL JOIN Examples</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Get all orders and all customers, combined.</span>
-<span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
-<span class="kw">FROM</span> Orders
-    <span class="kw">FULL</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Customers <span class="kw">ON</span> Customers.CustomerID = Orders.OrderID
-<span class="kw">ORDER</span> <span class="kw">BY</span> Customers.CompanyName;</code></pre>
-<h2 id="full-join-venn-diagram">FULL JOIN Venn Diagram</h2>
-<p><img src="media/sql_fulljoin.jpg" /></p>
+<h2 id="where-clause">WHERE Clause</h2>
+<ul>
+<li>The WHERE clause is used to filter records</li>
+</ul>
+<p>SQL WHERE Syntax</p>
+<pre><code>SELECT column_name,column_name
+FROM table_name
+WHERE column_name operator value;</code></pre>
+<h2 id="where-clause-1">WHERE Clause</h2>
+<p>Example</p>
+<pre><code>SELECT *
+FROM Customers
+WHERE Country=&#39;Mexico&#39;;</code></pre>
 <h2 id="group-by-statement">GROUP BY Statement</h2>
-<p>Used in conjuction with aggregate functions to group the result set by one or more columns<br />Syntax:<br />One grouped column</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name, aggregate_function(column_name2)
-<span class="kw">FROM</span> table_name
-<span class="kw">WHERE</span> column_name <span class="kw">operator</span> <span class="fu">value</span>
-<span class="kw">GROUP</span> <span class="kw">BY</span> column_name;</code></pre>
-<p>More than one grouped columns</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name1, column_name2, aggregate_function(column_name3)
-<span class="kw">FROM</span> table_name
-<span class="kw">WHERE</span> condition
-<span class="kw">GROUP</span> <span class="kw">BY</span> column_name1, column_name2;</code></pre>
-<h2 id="group-by-example">GROUP BY Example</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- How many orders has each customer from UK placed?</span>
-<span class="kw">SELECT</span> Customers.CompanyName, <span class="fu">COUNT</span>(Orders.OrderID)
-<span class="kw">FROM</span> Customers  
-    <span class="kw">LEFT</span> <span class="kw">JOIN</span> Orders <span class="kw">ON</span> Customers.CustomerID = Orders.CustomerID
-<span class="kw">WHERE</span> Customers.Country = <span class="st">&#39;UK&#39;</span>
-<span class="kw">GROUP</span> <span class="kw">BY</span> Customers.CompanyName;</code></pre>
-<h2 id="group-by-example-with-more-columns">GROUP BY Example with more columns</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- How many objects has each customer from UK ordered each year?</span>
-<span class="kw">SELECT</span> Customers.CompanyName, <span class="dt">YEAR</span>(Orders.OrderDate), <span class="fu">SUM</span>( [<span class="kw">Order</span> Details].Quantity )
-<span class="kw">FROM</span> Customers  
-    <span class="kw">INNER</span> <span class="kw">JOIN</span> Orders <span class="kw">ON</span> Customers.CustomerID = Orders.CustomerID
-    <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="kw">Order</span> Details] <span class="kw">ON</span> Orders.OrderID = [<span class="kw">Order</span> Details].OrderID
-<span class="kw">WHERE</span> Customers.Country = <span class="st">&#39;UK&#39;</span>
-<span class="kw">GROUP</span> <span class="kw">BY</span> Customers.CompanyName, <span class="dt">YEAR</span>(Orders.OrderDate)
-<span class="kw">ORDER</span> <span class="kw">BY</span> Customers.CompanyName, <span class="dt">YEAR</span>(Orders.OrderDate);</code></pre>
-<h2 id="sql-aliases">SQL Aliases</h2>
-<p>Used to temporarily rename a table or column heading</p>
-<h2 id="sql-alias-syntax-for-columns">SQL Alias Syntax for Columns</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name <span class="kw">AS</span> alias_name
-<span class="kw">FROM</span> table_name;</code></pre>
-<h2 id="sql-alias-syntax-for-tables">SQL Alias Syntax for Tables</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name(s)
-<span class="kw">FROM</span> table_name <span class="kw">AS</span> alias_name;</code></pre>
-<h2 id="sql-aliases-example">SQL Aliases example</h2>
-<p>How many objects has each customer from UK ordered each year and how much did the pay?</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> C.CompanyName <span class="kw">AS</span> [Company Name], 
-        <span class="dt">YEAR</span>(O.OrderDate) <span class="kw">AS</span> [<span class="dt">Year</span> <span class="kw">of</span> <span class="kw">Order</span>], 
-        <span class="fu">SUM</span>( OD.Quantity ) <span class="kw">AS</span> [Total Quantity], 
-        <span class="fu">SUM</span>( OD.Quantity * OD.UnitPrice * (<span class="dv">1</span>-OD.Discount)) <span class="kw">AS</span> [Total Revenues]
-<span class="kw">FROM</span> Customers <span class="kw">AS</span> C
-    <span class="kw">INNER</span> <span class="kw">JOIN</span> Orders <span class="kw">AS</span> O <span class="kw">ON</span> C.CustomerID = O.CustomerID
-    <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="kw">Order</span> Details] <span class="kw">AS</span> OD <span class="kw">ON</span> O.OrderID = OD.OrderID
-<span class="kw">WHERE</span> C.Country = <span class="st">&#39;UK&#39;</span>
-<span class="kw">GROUP</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate)
-<span class="kw">ORDER</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate);</code></pre>
-<h2 id="insert-into-statement">INSERT INTO Statement</h2>
-<p>Used to insert new records in a table<br />Syntax:<br />Insert with values for ALL columns</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">INSERT</span> <span class="kw">INTO</span> table_name
-<span class="kw">VALUES</span> (value1,value2,value3,...);</code></pre>
-<p>or<br />Insert with values only for specified columns</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">INSERT</span> <span class="kw">INTO</span> table_name (column1,column2,column3,...)
-<span class="kw">VALUES</span> (value1,value2,value3,...);</code></pre>
-<h2 id="insert-into-statement-example">INSERT INTO Statement example</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">INSERT</span> <span class="kw">INTO</span>  Suppliers(CompanyName, ContactName, Address, City, PostalCode, Country)
-<span class="kw">VALUES</span> (<span class="st">&#39;Cardinal&#39;</span>,<span class="st">&#39;Tom B. Erichsen&#39;</span>,<span class="st">&#39;Skagen 21&#39;</span>,<span class="st">&#39;Stavanger&#39;</span>,<span class="st">&#39;4006&#39;</span>,<span class="st">&#39;Norway&#39;</span>); </code></pre>
-<h2 id="delete-statement">DELETE Statement</h2>
-<p>Deletes one or more rows from a table<br />Syntax:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DELETE</span> <span class="kw">FROM</span> table_name
-<span class="kw">WHERE</span> some_column=some_value; </code></pre>
-<p>Attention: If no WHERE clause is specified, ALL records will be deleted!</p>
-<h2 id="delete-statement-example">DELETE Statement example</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Deletes from table Suppliers all records with CompanyName = &#39;Cardinal&#39;</span>
-<span class="kw">DELETE</span> <span class="kw">FROM</span> Suppliers
-<span class="kw">WHERE</span> CompanyName = <span class="st">&#39;Cardinal&#39;</span>; </code></pre>
-<h2 id="update-statement">UPDATE Statement</h2>
-<p>Updates existing records<br />Syntax:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">UPDATE</span> table_name
-<span class="kw">SET</span> column1=value1,column2=value2,...
-<span class="kw">WHERE</span> some_column=some_value;</code></pre>
-<p>Attention: If no WHERE clause is specified, ALL records will be updated!</p>
-<h2 id="update-statement-example">UPDATE Statement example</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Updates the phone with new value for all companies named &#39;Cardinal&#39;</span>
-<span class="kw">UPDATE</span> Suppliers
-<span class="kw">SET</span> Phone = <span class="st">&#39;(0)2-953010&#39;</span>
-<span class="kw">WHERE</span> CompanyName = <span class="st">&#39;Cardinal&#39;</span></code></pre>
-<h2 id="transactions">TRANSACTIONS</h2>
-<p>Sequence of operations performed as a single logical unit of work<br />You can rollback a transaction and revert changes to the database or commit then.<br />Syntax Example:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">--Update all Customers&#39; Country to Greece and then revert changes</span>
-<span class="kw">BEGIN</span> <span class="kw">TRANSACTION</span> 
-<span class="kw">update</span> customers 
-<span class="kw">set</span> Country = <span class="st">&#39;Greece&#39;</span>;
-
-<span class="kw">select</span> Country, * 
-<span class="kw">from</span> Customers;
-
-<span class="kw">ROLLBACK</span>
-
-<span class="kw">select</span> Country, * 
-<span class="kw">from</span> Customers;</code></pre>
-<h2 id="tips-and-tricks-for-the-excersises">Tips and Tricks for the excersises</h2>
 <ul>
-<li>Use aliases for table names (e.g. SELECT C.CompanyName FROM Customers AS C)<br /></li>
-<li>Use DISTINCT for distinct results (for checking purposes)<br /></li>
-<li>BEGIN TRANSACTION ... ROLLBACK from INSERT, UPDATE, DELETE commands<br /></li>
-<li>Use @@ROWCOUNT to check number of affected rows<br /></li>
-<li>Always use WHERE clause for DELETE and UPDATE commands<br /></li>
-<li>Try to never use CURSORS and WHILE loops<br /></li>
-<li>Prefer table variables to temporary tables</li>
+<li>Is used in conjunction with the aggregate functions (SUM, COUNT, etc.) to group the result-set by one or more columns</li>
 </ul>
+<p>SQL GROUP BY Syntax</p>
+<pre><code>SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name;</code></pre>
+<h2 id="group-by-statement-1">GROUP BY Statement</h2>
+<p>Example</p>
+<pre><code>SELECT customer_id, count(*) 
+FROM Customers 
+GROUP BY customer_id;</code></pre>
+<h2 id="sql-join">SQL Join</h2>
+<ul>
+<li>Joining data together is one of the most significant strengths of a relational database<br /></li>
+<li>An SQL join is a Structured Query Language (SQL) instruction to combine data from two sets of data (e.g. two tables) as long as they are relations<br /></li>
+<li>Tables are “joined” two at a time making a new relation (a table generated on the fly) containing all possible combinations of rows from the original two tables</li>
+</ul>
+<h2 id="example-1">Example 1</h2>
+<p><img src="media/example1.1.png" /></p>
+<h2 id="example-1-1">Example 1</h2>
+<p><img src="media/example1.2.png" /></p>
+<h2 id="example-1---query-1">Example 1 - Query 1</h2>
+<p><img src="media/example1.3.png" /></p>
+<h2 id="example-1---query-2">Example 1 - Query 2</h2>
+<p><img src="media/example1.4.png" /></p>
+<h2 id="inner-joining-3-tables">Inner Joining 3 tables</h2>
+<pre><code>SELECT *
+FROM Student
+INNER JOIN Grade
+    ON Student.ID = Grade.ID
+INNER JOIN Course
+    ON Grade.Code = Course.Code;</code></pre>
+<h2 id="inner-joining-3-tables-1">Inner Joining 3 tables</h2>
+<p><img src="media/example1.5.png" /></p>
+<h2 id="example-1---query-2-1">Example 1 - Query 2</h2>
+<p><img src="media/example1.6.png" /></p>
+<h2 id="example-2">Example 2</h2>
+<p><img src="media/example2.1.png" /></p>
+<h2 id="example-2---query-1">Example 2 - Query 1</h2>
+<p><img src="media/example2.2.png" /></p>
+<h2 id="example-2---query-2">Example 2 - Query 2</h2>
+<p><img src="media/example2.3.png" /></p>
+<h2 id="example-2---query-3">Example 2 - Query 3</h2>
+<p><img src="media/example2.4.png" /></p>
+<h2 id="example-2---query-4">Example 2 - Query 4</h2>
+<p><img src="media/example2.5.png" /></p>
+<h2 id="sakila-sample-database">Sakila Sample Database</h2>
+<ul>
+<li>The Sakila sample database is intended to provide a standard schema that can be used for examples in books, tutorials, articles, samples, and so forth<br /></li>
+<li>Available online: <a href="http://dev.mysql.com/doc/sakila/en/">http://dev.mysql.com/doc/sakila/en/</a><br /></li>
+<li>Download: <a href="http://dev.mysql.com/doc/index-other.html">http://dev.mysql.com/doc/index-other.html</a><br /></li>
+<li>Direct link: <a href="http://downloads.mysql.com/docs/sakila-db.zip">http://downloads.mysql.com/docs/sakila-db.zip</a></li>
+</ul>
+<h2 id="sakila-sample-database-1">Sakila Sample Database</h2>
+<p><img src="media/sakila1.png" /></p>
+<h2 id="sakila-sample-database-2">Sakila Sample Database</h2>
+<p><img src="media/sakila2.png" /></p>
+<h2 id="sakila-sample-database-3">Sakila Sample Database</h2>
+<p><img src="media/sakila3.png" /></p>
+<h2 id="sakila-sample-database-4">Sakila Sample Database</h2>
+<p><img src="media/sakila4.png" /></p>
+<h2 id="sakila-sample-database-5">Sakila Sample Database</h2>
+<p><img src="media/sakila5.png" /></p>
+<h2 id="sakila-sample-database-6">Sakila Sample Database</h2>
+<p><img src="media/sakila6.png" /></p>
+<h2 id="sakila-sample-database-7">Sakila Sample Database</h2>
+<p><img src="media/sakila7.png" /></p>
+<h2 id="sakila-sample-database-8">Sakila Sample Database</h2>
+<p><img src="media/sakila8.png" /></p>
+<h2 id="how-to-see-the-database-schema">How to see the database schema</h2>
+<h2 id="data-base-schema-reverse-engineering">Data Base Schema – Reverse Engineering</h2>
+<p><img src="media/dbschema1.png" /></p>
+<h2 id="data-base-schema-reverse-engineering-1">Data Base Schema – Reverse Engineering</h2>
+<p><img src="media/dbschema2.png" /></p>
+<h2 id="data-base-schema-reverse-engineering-2">Data Base Schema – Reverse Engineering</h2>
+<p><img src="media/dbschema3.png" /></p>
+<h2 id="sakila-db-schema">Sakila – DB Schema</h2>
+<p><img src="media/dbschema4.png" /></p>
+<h2 id="sakila-db-schema-1">Sakila – DB Schema</h2>
+<p><img src="media/dbschema5.png" /></p>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li><p>What are the names of all the languages in the database (sorted alphabetically)?</p>
+<pre><code>SELECT language.name
+FROM sakila.language
+ORDER BY language.name</code></pre></li>
+</ul>
+<h2 id="exercise-2">Exercise 2</h2>
+<ul>
+<li><p>Return the full names (first and last) of actors with “SON” in their last name, ordered by their first name.</p>
+<pre><code>select first_name, last_name
+from sakila.actor
+where  last_name LIKE &#39;%son%‘
+order by first_name</code></pre></li>
+</ul>
+<h2 id="exercise-3">Exercise 3</h2>
+<ul>
+<li><p>Find all the addresses where the district is empty, and return these addresses sorted by city_id in ascending order</p>
+<pre><code>select address
+from sakila.address
+where district=&#39;&#39; order by city_id asc;</code></pre></li>
+</ul>
+<h2 id="exercise-4-12">Exercise 4 (1/2)</h2>
+<ul>
+<li>Display the film title and the film category it belongs to. Return the names of these categories and the name of the film, sorted by the name of the film alphabetically<br /><img src="media/dbschema1a.png" /></li>
+</ul>
+<h2 id="exercise-4-22">Exercise 4 (2/2)</h2>
+<ul>
+<li><p>Display the film title and the film category it belongs to. Return the names of these categories and the name of the film, sorted by the name of the film alphabetically</p>
+<pre><code>select film_category.category_id, film.title from film_category
+inner join  film 
+on film_category.film_id=film.film_id
+order by film.title</code></pre></li>
+</ul>
+<h2 id="exercise-5-12">Exercise 5 (1/2)</h2>
+<ul>
+<li>Display the film category id and the number of films that belong to each category. Then return the results, sorted by the number of the films that belong to each category<br /><img src="media/dbschema1b.png" /></li>
+</ul>
+<h2 id="exercise-5-22">Exercise 5 (2/2)</h2>
+<ul>
+<li><p>Display the film category id and the number of films that belong to each category. Then return the results, sorted by the number of the films that belong to each category</p>
+<pre><code>Select a.category_id, count(a.film_id) as NumberOfFilms
+from film_category a
+group by a.category_id
+order by NumberOfFilms</code></pre></li>
+</ul>
+<h2 id="exercise-6-12">Exercise 6 (1/2)</h2>
+<ul>
+<li>Display the film category id that contain more than 50 films. Then return the results, sorted by the number of the films that belong to each category<br /><img src="media/dbschema1c.png" /></li>
+</ul>
+<h2 id="exercise-6-22">Exercise 6 (2/2)</h2>
+<ul>
+<li><p>Display the film category id that contain more than 50 films. Then return the results, sorted by the number of the films that belong to each category</p>
+<pre><code>select b.name, count(a.film_id) as NumberOfFilms
+from film_category a
+inner join category b
+on a.category_id=b.category_id
+group by a.category_id
+having NumberOfFilms&gt;49
+order by NumberOfFilms</code></pre></li>
+</ul>
+<h2 id="exercise-7-12">Exercise 7 (1/2)</h2>
+<ul>
+<li>Display the film categories (film_category_id) where the average difference between the film replacement cost and the rental rate larger than 17?<br /><img src="media/dbschema1d.png" /></li>
+</ul>
+<h2 id="exercise-7-22">Exercise 7 (2/2)</h2>
+<ul>
+<li><p>Display the film categories (film_category_id) where the average difference between the film replacement cost and the rental rate larger than 17?</p>
+<pre><code>select a.category_id, avg(b.replacement_cost - b.rental_rate) dif
+from sakila.film_category a
+inner join sakila.film b
+on a.film_id=b.film_id
+group by a.category_id 
+having dif&gt; 17</code></pre></li>
+</ul>
+<h2 id="exercise-8-12">Exercise 8 (1/2)</h2>
+<ul>
+<li>Create a list of films and their corresponding category names<br /><img src="media/dbschema1e.png" /></li>
+</ul>
+<h2 id="exercise-8-22">Exercise 8 (2/2)</h2>
+<ul>
+<li><p>Create a list of films and their corresponding category names</p>
+<pre><code>select  c.`name`, a.title
+from    sakila.film a
+inner join sakila.film_category b 
+on a.film_id=b.film_id
+inner join sakila.category c 
+on c.category_id=b.category_id</code></pre></li>
+</ul>
+<h2 id="exercise-9-12">Exercise 9 (1/2)</h2>
+<ul>
+<li>Display the film categories (names) where the average difference between the film replacement cost and the rental rate larger than 17?<br /><img src="media/dbschema1f.png" /></li>
+</ul>
+<h2 id="exercise-9-22">Exercise 9 (2/2)</h2>
+<ul>
+<li><p>Display the film categories (names) where the average difference between the film replacement cost and the rental rate larger than 17?</p>
+<pre><code>select c.name, avg(b.replacement_cost) cost, avg(b.rental_rate) rate
+from sakila.film_category a
+inner join sakila.film b 
+on a.film_id=b.film_id
+inner join sakila.category c 
+on c.category_id=a.category_id
+group by a.category_id 
+having cost-rate&gt; 17</code></pre></li>
+</ul>
+<h2 id="exercise-10-12">Exercise 10 (1/2)</h2>
+<ul>
+<li>Create a list of actors (id, first, last name) and the number of films by each actor, that have played. Display the results sorted by the number of films each actor has participated in.<br /><img src="media/dbschema1g.png" /></li>
+</ul>
+<h2 id="exercise-10-22">Exercise 10 (2/2)</h2>
+<ul>
+<li><p>Create a list of actors (id, first, last name) and the number of films by each actor, that have played. Display the results sorted by the number of films each actor has participated in.</p>
+<pre><code>select a.actor_id, a.first_name, a.last_name, count(b.film_id) as NumberOfFilms
+from sakila.actor a
+inner join sakila.film_actor b 
+on a.actor_id=b.actor_id
+group by a.actor_id, a.first_name, a.last_name
+order by NumberOfFilms </code></pre></li>
+</ul>
+<h2 id="exercise-11-12">Exercise 11 (1/2)</h2>
+<ul>
+<li>Create a list of actors (id, first, last name) and the number of movies by each actor, that have played in movies that had a duration more than 183 minutes. Display the results sorted by the number of films each actor have participated.<br /><img src="media/dbschema1h.png" /></li>
+</ul>
+<h2 id="exercise-11-22">Exercise 11 (2/2)</h2>
+<ul>
+<li><p>Create a list of actors (id, first, last name) and the number of movies by each actor, that have played in movies that had a duration more than 183 minutes. Display the results sorted by the number of films each actor have participated.</p>
+<pre><code>select  a.actor_id, a.first_name, a.last_name, count(b.film_id) NumberOfFilms, c.length
+from sakila.actor a
+inner join sakila.film_actor b 
+on a.actor_id=b.actor_id
+inner join sakila.film c 
+on  c.film_id=b.film_id
+where c.length&gt;183
+group by a.actor_id, a.first_name, a.last_name
+order by NumberOfFilms </code></pre></li>
+</ul>
+<h2 id="exercise-12-12">Exercise 12 (1/2)</h2>
+<ul>
+<li>Find the title of English films having category of ‘Documentary’.<br /><img src="media/dbschema1i.png" /></li>
+</ul>
+<h2 id="exercise-12-22">Exercise 12 (2/2)</h2>
+<ul>
+<li><p>Find the title of English films having category of ‘Documentary’.</p>
+<pre><code>select c.title
+from sakila.category a
+inner join sakila.film_category b 
+on a.category_id=b.category_id
+inner join sakila.film c 
+on b.film_id=c.film_id
+inner join sakila.language d 
+on c.language_id=d.language_id
+where a.name=&#39;Documentary&#39; and d.name=&#39;English&#39;</code></pre></li>
+</ul>
+<h2 id="exercise-13">Exercise 13</h2>
+<ul>
+<li><p>List the film id and titles of those films that are not in inventory.</p>
+<pre><code>select a.film_id, a.title
+from sakila.film a
+where a.film_id not in (
+select b.film_id from sakila.inventory b);</code></pre></li>
+</ul>
+<h2 id="exercise-14">Exercise 14</h2>
+<ul>
+<li>Give an interesting query of your own that is not already in the assignment. The query should involve an aggregation operation, and a nested SELECT.</li>
+</ul>
+<h2 id="from-class-diagram-to-er">From Class Diagram to ER</h2>
+<ul>
+<li>Construct a Class Diagram<br /></li>
+<li>The University of Toronto has several departments. Each department has professors. Professors must be assigned to one, but possibly more departments. At least one professor teaches each course, but a professor may be on sabbatical and not teach any course. Each course may be taught by one professor. We know of the department name, the professor name, the professor id, the course names, the course schedule, the term/year that the course is taught, the departments the professor is assigned to, the department that offers the course.</li>
+</ul>
+<h2 id="from-class-diagram-to-er-1">From Class Diagram to ER</h2>
+<p>Identify Classes &amp; Associations<br />These are the abstract or physical “things” in our system which we wish to describe. Find all the nouns and noun phrases in the domain descriptions you have obtained through your analysis. Consider these class candidates. The class candidates are departments, professor, course, and course section.<br /><img src="media/cder1.png" /></p>
+<h2 id="from-class-diagram-to-er-2">From Class Diagram to ER</h2>
+<p><img src="media/cder3.png" /></p>
+<h2 id="from-class-diagram-to-er-3">From Class Diagram to ER</h2>
+<p><img src="media/cder4.png" /></p>
+<h2 id="from-er-to-db-schema">From ER to DB Schema</h2>
+<p><img src="media/cder5.png" /></p>
+<h2 id="from-er-to-db-schema-1">From ER to DB Schema</h2>
+<p><img src="media/cder6.png" /></p>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
