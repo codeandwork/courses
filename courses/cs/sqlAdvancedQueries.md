@@ -1,5 +1,6 @@
 ## SQL Variables
 Object that holds a single data value of a specified type
+
 Uses:
 * Holds data for later use
 * Counters
@@ -21,7 +22,7 @@ DECLARE @myDate DATETIME;
 
 ## SQL Variables Assigning Values
 ### SET
-Used to set a value to a scalar (not table) variable 
+Used to set a value to a scalar (not table) variable
 Syntax:
 ```sql
 DECLARE <@var_nam> <data_type>;
@@ -33,12 +34,15 @@ DECLARE @i INT;
 SET @i = 10;
 SET @stringVar = 'Coding Bootcamp';
 ```
-### SELECT 
+
+
+## SQL Variables Assigning Values
+### SELECT
 * Used to set a value to a scalar variable
 * Can be also used for setting values to multiple variables at once
 Syntax:
 ```sql
-SELECT @i = 1, 
+SELECT @i = 1,
        @stringVar = 'Coding Bootcamp';
        @myDate = '2016-10-24'
 ```
@@ -47,21 +51,19 @@ SELECT @i = 1,
 ## SET vs SELECT for setting values to variables
 * SET is the ANSI standard for variable assignment, SELECT is not
 * SET can only assign one variable at a time, SELECT can make multiple assignments at once
-* If assigning from a query, SET can only assign a scalar value. If the query returns multiple values/rows then SET will raise an error. 
-    SELECT will assign one of the values to the variable and hide the fact that multiple values were returned 
+* If assigning from a query, SET can only assign a scalar value. If the query returns multiple values/rows then SET will raise an error. SELECT will assign one of the values to the variable and hide the fact that multiple values were returned
 * When assigning from a query if there is no value returned then SET will assign NULL, where SELECT will not make the assignment at all (so the variable will not be changed from its previous value)
 * As far as speed differences - there are no direct differences between SET and SELECT. However SELECT's ability to make multiple assignments in one shot does give it a slight speed advantage over SET.
 
 
-
 ## Temporary tables
-Can be used as a workspace for intermediate results
+Can be used as a workspace for intermediate results.
+
 They can be
 * Local temporary tables (starting with #)
 * Global temporary tables (starting with ##)
 * Table variables (starting with @)
 * Other (not in our lesson's scope)
-
 
 
 ## TABLE Variables
@@ -72,8 +74,8 @@ They can be
 Syntax example:
 ```sql
 DECLARE @myStudents TABLE
-		(ID int, 
-		LastName VARCHAR(50), 
+		(ID int,
+		LastName VARCHAR(50),
 		FirstName VARCHAR(50)
 		);
 ```
@@ -88,9 +90,9 @@ DECLARE @myStudents TABLE
 
 Syntax example:
 ```sql
-CREATE TABLE #myStudents 
-		(ID int, 
-		LastName VARCHAR(50), 
+CREATE TABLE #myStudents
+		(ID int,
+		LastName VARCHAR(50),
 		FirstName VARCHAR(50)
 		);
 ```
@@ -105,7 +107,7 @@ FROM table_name
 WHERE column_name IN (value1,value2,...);
 ```
 
-## SQL IN Operator example
+### SQL IN Operator example
 ```sql
 -- How many objects has each customer from Canada, UK and USA ordered each year?
 
@@ -120,7 +122,7 @@ ORDER BY C.CompanyName, YEAR(O.OrderDate);
 
 
 ## SQL HAVING clause
-A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions. 
+A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions.
 It was added to the SQL language because the WHERE keyword could not be used with aggregate functions
 Remember, WHERE for conditions before grouping, HAVING for conditions after grouping.
 Syntax:
@@ -129,16 +131,16 @@ SELECT column_name, aggregate_function(column_name)
 FROM table_name
 WHERE column_name operator value
 GROUP BY column_name
-HAVING aggregate_function(column_name) operator value; 
+HAVING aggregate_function(column_name) operator value;
 ```
 
 
 ## SQL HAVING clause example
 ```sql
 -- Which UK customers have payed more than 1000$ in a year for the years 1997 and 1998?
-SELECT C.CompanyName AS [Company Name], 
-		YEAR(O.OrderDate) AS [Year of Order], 
-		SUM( OD.Quantity ) AS [Total Quantity], 
+SELECT C.CompanyName AS [Company Name],
+		YEAR(O.OrderDate) AS [Year of Order],
+		SUM( OD.Quantity ) AS [Total Quantity],
 		SUM( OD.Quantity * OD.UnitPrice ) AS [Total Revenues]
 FROM Customers AS C
 	INNER JOIN Orders AS O ON C.CustomerID = O.CustomerID
@@ -162,7 +164,7 @@ WHERE CustomerID = (SELECT CustomerID
 			FROM Orders
 			WHERE OrderID = 10290);
 ```
-Better example why to use a subquery:
+Better example why to use a subquery.
 Example:
 ```sql
 -- Find the Companies that placed orders in 1997
@@ -178,7 +180,7 @@ WHERE CustomerID IN (SELECT CustomerID
 * Use aliases for table names (e.g. SELECT C.CompanyName FROM Customers AS C)
 * Use DISTINCT for distinct results (for checking purposes)
 * BEGIN TRANSACTION ... ROLLBACK from INSERT, UPDATE, DELETE commands
-* Use @@ROWCOUNT to check number of affected rows 
+* Use @@ROWCOUNT to check number of affected rows
 * Always use WHERE clause for DELETE and UPDATE commands
-* Try to never use CURSORS and WHILE loops 
-* Prefer table variables to temporary tables 
+* Try to never use CURSORS and WHILE loops
+* Prefer table variables to temporary tables
