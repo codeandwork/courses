@@ -32,7 +32,7 @@
 <h1 id="coding-bootcamp-inner-outer-joins-and-aggregates">Coding Bootcamp: Inner &amp; Outer Joins and Aggregates</h1>
 <h2 id="sql-joins">SQL Joins</h2>
 <p>SQL Join is used to combine rows from two or more tables.<br />Join is based on a common field between the tables.</p>
-<h1 id="example">Example</h1>
+<h3 id="example">Example</h3>
 <p>Northwind Database has table Orders and table Customers.<br />Orders table can be joined to the Customers table with column CustomerID (Foreign key).<br />So, if we would like to know the name of the company behind each order we could write:</p>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
 <span class="kw">FROM</span> Customers
@@ -52,7 +52,7 @@ FROM table1
     JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
 <p>PS! INNER JOIN is the same as JOIN.</p>
 <h2 id="inner-join-venn-diagram">INNER JOIN Venn Diagram</h2>
-<p><img src="media/sql_innerjoin.gif" /></p>
+<p><img src="media/sql_innerjoin.jpg" /></p>
 <h2 id="left-join">LEFT JOIN</h2>
 <p>Returns ALL rows from left table with MATCHING rows in right table.<br />Returns NULL for the right side when there is no match.<br />Syntax:</p>
 <pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
@@ -64,13 +64,13 @@ FROM table1
     <span class="kw">LEFT</span> <span class="kw">OUTER</span> JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
 <p>PS! In some databases LEFT JOIN is called LEFT OUTER JOIN.</p>
 <h2 id="left-join-example">LEFT JOIN Example</h2>
-<p>Get all customers and their orders.</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Get all customers and their orders.</span>
+<span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
 <span class="kw">FROM</span> Customers
     <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Orders <span class="kw">ON</span> Customers.CustomerID = Orders.CustomerID
 <span class="kw">ORDER</span> <span class="kw">BY</span> Customers.CompanyName;</code></pre>
 <h2 id="left-join-venn-diagram">LEFT JOIN Venn Diagram</h2>
-<p><img src="media/sql_leftjoin.gif" /></p>
+<p><img src="media/sql_leftjoin.jpg" /></p>
 <h2 id="right-join">RIGHT JOIN</h2>
 <p>Returns ALL rows from right table with MATCHING rows in left table.<br />Returns NULL for the left side when there is no match.<br />Syntax:</p>
 <pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
@@ -82,26 +82,26 @@ FROM table1
     <span class="kw">RIGHT</span> <span class="kw">OUTER</span> JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
 <p>PS! In some databases RIGHT JOIN is called RIGHT OUTER JOIN.</p>
 <h2 id="right-join-example">RIGHT JOIN Example</h2>
-<p>Get all orders and the relevant customers.</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Get all orders and the relevant customers.</span>
+<span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
 <span class="kw">FROM</span> Orders
     <span class="kw">RIGHT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Customers <span class="kw">ON</span> Customers.CustomerID = Orders.CustomerID
 <span class="kw">ORDER</span> <span class="kw">BY</span> Customers.CompanyName;</code></pre>
 <h2 id="right-join-venn-diagram">RIGHT JOIN Venn Diagram</h2>
-<p><img src="media/sql_rightjoin.gif" /></p>
+<p><img src="media/sql_rightjoin.jpg" /></p>
 <h2 id="full-outer-join">FULL OUTER JOIN</h2>
 <p>Returns ALL rows from left side and ALL from right side.<br />Combines the results of both LEFT and RIGHT joins.<br />Syntax:</p>
 <pre class="sourceCode sql"><code class="sourceCode sql">SELECT column_name(s)
 FROM table1
     <span class="kw">FULL</span> <span class="kw">OUTER</span> JOIN table2 ON table1.column_name=table2.column_name;</code></pre>
 <h2 id="full-join-examples">FULL JOIN Examples</h2>
-<p>Get all orders and all customers, combined.</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Get all orders and all customers, combined.</span>
+<span class="kw">SELECT</span> Orders.OrderID, Customers.CompanyName, Orders.OrderDate
 <span class="kw">FROM</span> Orders
     <span class="kw">FULL</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> Customers <span class="kw">ON</span> Customers.CustomerID = Orders.OrderID
 <span class="kw">ORDER</span> <span class="kw">BY</span> Customers.CompanyName;</code></pre>
 <h2 id="full-join-venn-diagram">FULL JOIN Venn Diagram</h2>
-<p><img src="media/sql_fulljoin.gif" /></p>
+<p><img src="media/sql_fulljoin.jpg" /></p>
 <h2 id="group-by-statement">GROUP BY Statement</h2>
 <p>Used in conjuction with aggregate functions to group the result set by one or more columns<br />Syntax:<br />One grouped column</p>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name, aggregate_function(column_name2)
@@ -114,15 +114,15 @@ FROM table1
 <span class="kw">WHERE</span> condition
 <span class="kw">GROUP</span> <span class="kw">BY</span> column_name1, column_name2;</code></pre>
 <h2 id="group-by-example">GROUP BY Example</h2>
-<p>How many orders has each customer from UK placed?</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> Customers.CompanyName, <span class="fu">COUNT</span>(Orders.OrderID)
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- How many orders has each customer from UK placed?</span>
+<span class="kw">SELECT</span> Customers.CompanyName, <span class="fu">COUNT</span>(Orders.OrderID)
 <span class="kw">FROM</span> Customers  
     <span class="kw">LEFT</span> <span class="kw">JOIN</span> Orders <span class="kw">ON</span> Customers.CustomerID = Orders.CustomerID
 <span class="kw">WHERE</span> Customers.Country = <span class="st">&#39;UK&#39;</span>
 <span class="kw">GROUP</span> <span class="kw">BY</span> Customers.CompanyName;</code></pre>
 <h2 id="group-by-example-with-more-columns">GROUP BY Example with more columns</h2>
-<p>How many objects has each customer from UK ordered each year?</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> Customers.CompanyName, <span class="dt">YEAR</span>(Orders.OrderDate), <span class="fu">SUM</span>( [<span class="kw">Order</span> Details].Quantity )
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- How many objects has each customer from UK ordered each year?</span>
+<span class="kw">SELECT</span> Customers.CompanyName, <span class="dt">YEAR</span>(Orders.OrderDate), <span class="fu">SUM</span>( [<span class="kw">Order</span> Details].Quantity )
 <span class="kw">FROM</span> Customers  
     <span class="kw">INNER</span> <span class="kw">JOIN</span> Orders <span class="kw">ON</span> Customers.CustomerID = Orders.CustomerID
     <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="kw">Order</span> Details] <span class="kw">ON</span> Orders.OrderID = [<span class="kw">Order</span> Details].OrderID
@@ -131,17 +131,18 @@ FROM table1
 <span class="kw">ORDER</span> <span class="kw">BY</span> Customers.CompanyName, <span class="dt">YEAR</span>(Orders.OrderDate);</code></pre>
 <h2 id="sql-aliases">SQL Aliases</h2>
 <p>Used to temporarily rename a table or column heading</p>
-<h1 id="sql-alias-syntax-for-columns">SQL Alias Syntax for Columns</h1>
+<h2 id="sql-alias-syntax-for-columns">SQL Alias Syntax for Columns</h2>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name <span class="kw">AS</span> alias_name
 <span class="kw">FROM</span> table_name;</code></pre>
-<h1 id="sql-alias-syntax-for-tables">SQL Alias Syntax for Tables</h1>
+<h2 id="sql-alias-syntax-for-tables">SQL Alias Syntax for Tables</h2>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name(s)
 <span class="kw">FROM</span> table_name <span class="kw">AS</span> alias_name;</code></pre>
 <h2 id="sql-aliases-example">SQL Aliases example</h2>
+<p>How many objects has each customer from UK ordered each year and how much did the pay?</p>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> C.CompanyName <span class="kw">AS</span> [Company Name], 
         <span class="dt">YEAR</span>(O.OrderDate) <span class="kw">AS</span> [<span class="dt">Year</span> <span class="kw">of</span> <span class="kw">Order</span>], 
         <span class="fu">SUM</span>( OD.Quantity ) <span class="kw">AS</span> [Total Quantity], 
-        <span class="fu">SUM</span>( OD.Quantity * OD.UnitPrice ) <span class="kw">AS</span> [Total Revenues]
+        <span class="fu">SUM</span>( OD.Quantity * OD.UnitPrice * (<span class="dv">1</span>-OD.Discount)) <span class="kw">AS</span> [Total Revenues]
 <span class="kw">FROM</span> Customers <span class="kw">AS</span> C
     <span class="kw">INNER</span> <span class="kw">JOIN</span> Orders <span class="kw">AS</span> O <span class="kw">ON</span> C.CustomerID = O.CustomerID
     <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="kw">Order</span> Details] <span class="kw">AS</span> OD <span class="kw">ON</span> O.OrderID = OD.OrderID
@@ -164,8 +165,8 @@ FROM table1
 <span class="kw">WHERE</span> some_column=some_value; </code></pre>
 <p>Attention: If no WHERE clause is specified, ALL records will be deleted!</p>
 <h2 id="delete-statement-example">DELETE Statement example</h2>
-<p>Deletes from table Suppliers all records with CompanyName = 'Cardinal'</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DELETE</span> <span class="kw">FROM</span> Suppliers
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Deletes from table Suppliers all records with CompanyName = &#39;Cardinal&#39;</span>
+<span class="kw">DELETE</span> <span class="kw">FROM</span> Suppliers
 <span class="kw">WHERE</span> CompanyName = <span class="st">&#39;Cardinal&#39;</span>; </code></pre>
 <h2 id="update-statement">UPDATE Statement</h2>
 <p>Updates existing records<br />Syntax:</p>
@@ -174,16 +175,24 @@ FROM table1
 <span class="kw">WHERE</span> some_column=some_value;</code></pre>
 <p>Attention: If no WHERE clause is specified, ALL records will be updated!</p>
 <h2 id="update-statement-example">UPDATE Statement example</h2>
-<p>Updates the phone with new value for all companies named 'Cardinal'</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">UPDATE</span> Suppliers
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Updates the phone with new value for all companies named &#39;Cardinal&#39;</span>
+<span class="kw">UPDATE</span> Suppliers
 <span class="kw">SET</span> Phone = <span class="st">&#39;(0)2-953010&#39;</span>
 <span class="kw">WHERE</span> CompanyName = <span class="st">&#39;Cardinal&#39;</span></code></pre>
-<h2 id="null-values">NULL values</h2>
-<ul>
-<li>NULL values represent missing unknown data<br /></li>
-<li>By default a column can hold NULL values<br /></li>
-<li>NULL is different from zero</li>
-</ul>
+<h2 id="transactions">TRANSACTIONS</h2>
+<p>Sequence of operations performed as a single logical unit of work<br />You can rollback a transaction and revert changes to the database or commit then.<br />Syntax Example:</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">--Update all Customers&#39; Country to Greece and then revert changes</span>
+<span class="kw">BEGIN</span> <span class="kw">TRANSACTION</span> 
+<span class="kw">update</span> customers 
+<span class="kw">set</span> Country = <span class="st">&#39;Greece&#39;</span>;
+
+<span class="kw">select</span> Country, * 
+<span class="kw">from</span> Customers;
+
+<span class="kw">ROLLBACK</span>
+
+<span class="kw">select</span> Country, * 
+<span class="kw">from</span> Customers;</code></pre>
 <h2 id="tips-and-tricks-for-the-excersises">Tips and Tricks for the excersises</h2>
 <ul>
 <li>Use aliases for table names (e.g. SELECT C.CompanyName FROM Customers AS C)<br /></li>
