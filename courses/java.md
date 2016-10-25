@@ -16,6 +16,9 @@
 ## Introduction to web development
 
 ## Databases and user management
+* [Inner & Outer Joins and Aggregates](java/sqlJoins.md)
+* [Connecting SQL with Java](java/sqlJavaConnection.md)
+
 
 ## Front-end technologies
 * [Hello (front end) world!](common/hello.md)
