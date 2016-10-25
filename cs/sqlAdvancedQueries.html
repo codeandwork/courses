@@ -37,11 +37,11 @@
 <span class="kw">FROM</span> table_name
 <span class="kw">WHERE</span> column_name <span class="kw">operator</span> <span class="fu">value</span>
 <span class="kw">GROUP</span> <span class="kw">BY</span> column_name
-<span class="kw">HAVING</span> aggregate_function(column_name) <span class="kw">operator</span> <span class="fu">value</span>; </code></pre>
+<span class="kw">HAVING</span> aggregate_function(column_name) <span class="kw">operator</span> <span class="fu">value</span>;</code></pre>
 <h2 id="sql-having-clause-example">SQL HAVING clause example</h2>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Which customers have never made an order;</span>
-<span class="kw">SELECT</span>  C.CustomerID, 
-        C.CompanyName, 
+<span class="kw">SELECT</span>  C.CustomerID,
+        C.CompanyName,
         <span class="fu">COUNT</span>(O.OrderID) [Total <span class="fu">Count</span> <span class="kw">of</span> Orders]
 <span class="kw">FROM</span> Customers C
     <span class="kw">LEFT</span> <span class="kw">JOIN</span> Orders O <span class="kw">ON</span> C.CustomerID = O.CustomerID
@@ -67,11 +67,11 @@
 <h2 id="sql-round-function">SQL ROUND function</h2>
 <p>The ROUND() function is used to round a numeric field to the number of decimals specified.</p>
 <p>Syntax</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> <span class="fu">ROUND</span>(column_name,decimals) <span class="kw">FROM</span> table_name; </code></pre>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> <span class="fu">ROUND</span>(column_name,decimals) <span class="kw">FROM</span> table_name;</code></pre>
 <p>Example</p>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Find the total price for order with orderid = 10266 and productID = 12</span>
-<span class="kw">SELECT</span> <span class="fu">ROUND</span>((UnitPrice * Quantity * (<span class="dv">1</span> - Discount)), <span class="dv">2</span>), * 
-<span class="kw">FROM</span> [<span class="kw">Order</span> Details] 
+<span class="kw">SELECT</span> <span class="fu">ROUND</span>((UnitPrice * Quantity * (<span class="dv">1</span> - Discount)), <span class="dv">2</span>), *
+<span class="kw">FROM</span> [<span class="kw">Order</span> Details]
 <span class="kw">WHERE</span> OrderID = <span class="dv">10266</span>;</code></pre>
 <h2 id="sql-select-top-clause">SQL SELECT TOP Clause</h2>
 <p>The SELECT TOP clause is used to specify the number of records to return.</p>
@@ -118,47 +118,15 @@ LIMIT number;</code></pre>
 <span class="kw">DECLARE</span> @myDate DATETIME;</code></pre>
 <h2 id="sql-variables-assigning-values">SQL Variables Assigning Values</h2>
 <h3 id="set">SET</h3>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br />Used to set a value to a scalar (not table) variable<br />=======<br />Used to set a value to a scalar (not table) variable</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>origin/master<br />Syntax:</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>Used to set a value to a scalar (not table) variable.<br />Syntax:</p>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> &lt;@var_nam&gt; &lt;data_type&gt;;
 <span class="kw">SET</span> &lt;@var_nam&gt; = <span class="fu">value</span>;</code></pre>
 <p>Example:</p>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @i <span class="dt">INT</span>;
 <span class="kw">SET</span> @i = <span class="dv">10</span>;
 <span class="kw">SET</span> @stringVar = <span class="st">&#39;Coding Bootcamp&#39;</span>;</code></pre>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <h2 id="sql-variables-assigning-values-1">SQL Variables Assigning Values</h2>
-<h1 id="select">### SELECT</h1>
-<h3 id="select-1">SELECT</h3>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>origin/master</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<h3 id="select">SELECT</h3>
 <ul>
 <li>Used to set a value to a scalar variable<br /></li>
 <li>Can be also used for setting values to multiple variables at once</li>
@@ -217,7 +185,7 @@ LIMIT number;</code></pre>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Create a temporary table that contains the id of each order and the total revenues of that order</span>
 <span class="kw">SELECT</span> O.OrderID, <span class="fu">SUM</span>(<span class="fu">ROUND</span>((UnitPrice * Quantity * (<span class="dv">1</span> - Discount)), <span class="dv">2</span>)) [Final Price]
 <span class="kw">INTO</span> #tempFinalPrices
-<span class="kw">FROM</span> Orders O   
+<span class="kw">FROM</span> Orders O
     <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="kw">Order</span> Details] OD <span class="kw">ON</span> O.OrderID = OD.OrderID
 <span class="kw">GROUP</span> <span class="kw">BY</span> O.OrderID;
 
@@ -230,24 +198,7 @@ LIMIT number;</code></pre>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name(s)
 <span class="kw">FROM</span> table_name
 <span class="kw">WHERE</span> column_name <span class="kw">IN</span> (value1,value2,...);</code></pre>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<h1 id="sql-in-operator-example">### SQL IN Operator example</h1>
-<h2 id="sql-in-operator-example-1">SQL IN Operator example</h2>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>origin/master</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<h2 id="sql-in-operator-example">SQL IN Operator example</h2>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- How many objects has each customer from Canada, UK and USA ordered each year?</span>
 <span class="kw">SELECT</span> C.CompanyName, C.Country, <span class="dt">YEAR</span>(O.OrderDate) <span class="kw">AS</span> [<span class="dt">Year</span>], <span class="fu">SUM</span>( OD.Quantity ) [Total Quantity]
 <span class="kw">FROM</span> Customers C
@@ -256,44 +207,6 @@ LIMIT number;</code></pre>
 <span class="kw">WHERE</span> C.Country <span class="kw">IN</span> (<span class="st">&#39;UK&#39;</span>, <span class="st">&#39;USA&#39;</span>, <span class="st">&#39;Canada&#39;</span>)
 <span class="kw">GROUP</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate), C.Country
 <span class="kw">ORDER</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate);</code></pre>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<h2 id="sql-having-clause-1">SQL HAVING clause</h2>
-<p>A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions.<br />It was added to the SQL language because the WHERE keyword could not be used with aggregate functions<br />Remember, WHERE for conditions before grouping, HAVING for conditions after grouping.<br />Syntax:</p>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> column_name, aggregate_function(column_name)
-<span class="kw">FROM</span> table_name
-<span class="kw">WHERE</span> column_name <span class="kw">operator</span> <span class="fu">value</span>
-<span class="kw">GROUP</span> <span class="kw">BY</span> column_name
-<span class="kw">HAVING</span> aggregate_function(column_name) <span class="kw">operator</span> <span class="fu">value</span>;</code></pre>
-<h2 id="sql-having-clause-example-1">SQL HAVING clause example</h2>
-<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Which UK customers have payed more than 1000$ in a year for the years 1997 and 1998?</span>
-<span class="kw">SELECT</span> C.CompanyName <span class="kw">AS</span> [Company Name],
-        <span class="dt">YEAR</span>(O.OrderDate) <span class="kw">AS</span> [<span class="dt">Year</span> <span class="kw">of</span> <span class="kw">Order</span>],
-        <span class="fu">SUM</span>( OD.Quantity ) <span class="kw">AS</span> [Total Quantity],
-        <span class="fu">SUM</span>( OD.Quantity * OD.UnitPrice ) <span class="kw">AS</span> [Total Revenues]
-<span class="kw">FROM</span> Customers <span class="kw">AS</span> C
-    <span class="kw">INNER</span> <span class="kw">JOIN</span> Orders <span class="kw">AS</span> O <span class="kw">ON</span> C.CustomerID = O.CustomerID
-    <span class="kw">INNER</span> <span class="kw">JOIN</span> [<span class="kw">Order</span> Details] <span class="kw">AS</span> OD <span class="kw">ON</span> O.OrderID = OD.OrderID
-<span class="kw">WHERE</span> C.Country = <span class="st">&#39;UK&#39;</span>
-    <span class="kw">AND</span> <span class="dt">YEAR</span>(O.OrderDate) <span class="kw">IN</span> (<span class="dv">1997</span>, <span class="dv">1998</span>)
-<span class="kw">GROUP</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate)
-<span class="kw">HAVING</span> <span class="fu">SUM</span>( OD.Quantity * OD.UnitPrice ) &gt; <span class="dv">1000</span>
-<span class="kw">ORDER</span> <span class="kw">BY</span> C.CompanyName, <span class="dt">YEAR</span>(O.OrderDate);</code></pre>
-<p>=======</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>origin/master</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h2 id="subqueries">Subqueries</h2>
 <p>Queries embedded in queries.</p>
 <p>Example:</p>
@@ -303,22 +216,8 @@ LIMIT number;</code></pre>
 <span class="kw">WHERE</span> CustomerID = (<span class="kw">SELECT</span> CustomerID
             <span class="kw">FROM</span> Orders
             <span class="kw">WHERE</span> OrderID = <span class="dv">10290</span>);</code></pre>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br />Better example why to use a subquery.<br />=======<br />Better example why to use a subquery:</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>origin/master<br />Example:</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>Better example why to use a subquery:</p>
+<p>Example:</p>
 <pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">-- Find the Companies that placed orders in 1997</span>
 <span class="kw">SELECT</span> CompanyName
 <span class="kw">FROM</span> Customers

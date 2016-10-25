@@ -32,7 +32,7 @@
 
 
 ## SQL HAVING clause
-A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions. 
+A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions.
 It was added to the SQL language because the WHERE keyword could not be used with aggregate functions
 Remember, WHERE for conditions before grouping, HAVING for conditions after grouping.
 
@@ -42,15 +42,15 @@ SELECT column_name, aggregate_function(column_name)
 FROM table_name
 WHERE column_name operator value
 GROUP BY column_name
-HAVING aggregate_function(column_name) operator value; 
+HAVING aggregate_function(column_name) operator value;
 ```
 
 
 ## SQL HAVING clause example
 ```sql
 -- Which customers have never made an order;
-SELECT  C.CustomerID, 
-		C.CompanyName, 
+SELECT  C.CustomerID,
+		C.CompanyName,
 		COUNT(O.OrderID) [Total Count of Orders]
 FROM Customers C
 	LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
@@ -61,7 +61,7 @@ HAVING COUNT(O.OrderID) = 0;
 
 ## SQL LIKE Operator & Wildcards
 The LIKE operator is used to search for a specified pattern in a column.
-Wildcard characters are used with the SQL LIKE operator. 
+Wildcard characters are used with the SQL LIKE operator.
 We will need the following:
 1. %  A substitute for zero or more characters
 2. _  A substitute for a single character
@@ -87,14 +87,14 @@ The ROUND() function is used to round a numeric field to the number of decimals 
 
 Syntax
 ```sql
-SELECT ROUND(column_name,decimals) FROM table_name; 
+SELECT ROUND(column_name,decimals) FROM table_name;
 ```
 
 Example
 ```sql
 -- Find the total price for order with orderid = 10266 and productID = 12
-SELECT ROUND((UnitPrice * Quantity * (1 - Discount)), 2), * 
-FROM [Order Details] 
+SELECT ROUND((UnitPrice * Quantity * (1 - Discount)), 2), *
+FROM [Order Details]
 WHERE OrderID = 10266;
 ```
 
@@ -169,12 +169,7 @@ DECLARE @myDate DATETIME;
 
 ## SQL Variables Assigning Values
 ### SET
-<<<<<<< HEAD
-Used to set a value to a scalar (not table) variable
-=======
-Used to set a value to a scalar (not table) variable 
-
->>>>>>> origin/master
+Used to set a value to a scalar (not table) variable.
 Syntax:
 ```sql
 DECLARE <@var_nam> <data_type>;
@@ -189,12 +184,8 @@ SET @stringVar = 'Coding Bootcamp';
 ```
 
 
-<<<<<<< HEAD
 ## SQL Variables Assigning Values
 ### SELECT
-=======
-### SELECT 
->>>>>>> origin/master
 * Used to set a value to a scalar variable
 * Can be also used for setting values to multiple variables at once
 
@@ -262,11 +253,11 @@ We can take the results of a query and insert them into a NEW temporary table.
 The result set must have uniquely named columns that will be the new temporary table's columns.
 
 Syntax:
-```sql 
+```sql
 -- Create a temporary table that contains the id of each order and the total revenues of that order
 SELECT O.OrderID, SUM(ROUND((UnitPrice * Quantity * (1 - Discount)), 2)) [Final Price]
 INTO #tempFinalPrices
-FROM Orders O	
+FROM Orders O
 	INNER JOIN [Order Details] OD ON O.OrderID = OD.OrderID
 GROUP BY O.OrderID;
 
@@ -286,12 +277,8 @@ FROM table_name
 WHERE column_name IN (value1,value2,...);
 ```
 
-<<<<<<< HEAD
-### SQL IN Operator example
-=======
 
 ## SQL IN Operator example
->>>>>>> origin/master
 ```sql
 -- How many objects has each customer from Canada, UK and USA ordered each year?
 SELECT C.CompanyName, C.Country, YEAR(O.OrderDate) AS [Year], SUM( OD.Quantity ) [Total Quantity]
@@ -304,41 +291,6 @@ ORDER BY C.CompanyName, YEAR(O.OrderDate);
 ```
 
 
-<<<<<<< HEAD
-## SQL HAVING clause
-A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions.
-It was added to the SQL language because the WHERE keyword could not be used with aggregate functions
-Remember, WHERE for conditions before grouping, HAVING for conditions after grouping.
-Syntax:
-```sql
-SELECT column_name, aggregate_function(column_name)
-FROM table_name
-WHERE column_name operator value
-GROUP BY column_name
-HAVING aggregate_function(column_name) operator value;
-```
-
-
-## SQL HAVING clause example
-```sql
--- Which UK customers have payed more than 1000$ in a year for the years 1997 and 1998?
-SELECT C.CompanyName AS [Company Name],
-		YEAR(O.OrderDate) AS [Year of Order],
-		SUM( OD.Quantity ) AS [Total Quantity],
-		SUM( OD.Quantity * OD.UnitPrice ) AS [Total Revenues]
-FROM Customers AS C
-	INNER JOIN Orders AS O ON C.CustomerID = O.CustomerID
-	INNER JOIN [Order Details] AS OD ON O.OrderID = OD.OrderID
-WHERE C.Country = 'UK'
-    AND YEAR(O.OrderDate) IN (1997, 1998)
-GROUP BY C.CompanyName, YEAR(O.OrderDate)
-HAVING SUM( OD.Quantity * OD.UnitPrice ) > 1000
-ORDER BY C.CompanyName, YEAR(O.OrderDate);
-```
-
-
-=======
->>>>>>> origin/master
 ## Subqueries
 Queries embedded in queries.
 
@@ -351,12 +303,8 @@ WHERE CustomerID = (SELECT CustomerID
 			FROM Orders
 			WHERE OrderID = 10290);
 ```
-<<<<<<< HEAD
-Better example why to use a subquery.
-=======
 Better example why to use a subquery:
 
->>>>>>> origin/master
 Example:
 ```sql
 -- Find the Companies that placed orders in 1997
@@ -369,7 +317,7 @@ WHERE CustomerID IN (SELECT CustomerID
 
 
 ## VIEWS
-A view is a virtual table. A view is nothing more than a SQL statement that is stored in the database 
+A view is a virtual table. A view is nothing more than a SQL statement that is stored in the database
 with an associated name. A view is actually a composition of a table in the form of a predefined SQL query.
 
 Syntax
