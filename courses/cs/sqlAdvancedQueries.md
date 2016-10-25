@@ -1,3 +1,35 @@
+## SQL HAVING clause
+A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions. 
+It was added to the SQL language because the WHERE keyword could not be used with aggregate functions
+Remember, WHERE for conditions before grouping, HAVING for conditions after grouping.
+Syntax:
+```sql
+SELECT column_name, aggregate_function(column_name)
+FROM table_name
+WHERE column_name operator value
+GROUP BY column_name
+HAVING aggregate_function(column_name) operator value; 
+```
+
+
+## SQL HAVING clause example
+```sql
+-- Which UK customers have payed more than 1000$ in a year for the years 1997 and 1998?
+SELECT C.CompanyName AS [Company Name], 
+		YEAR(O.OrderDate) AS [Year of Order], 
+		SUM( OD.Quantity ) AS [Total Quantity], 
+		SUM( OD.Quantity * OD.UnitPrice ) AS [Total Revenues]
+FROM Customers AS C
+	INNER JOIN Orders AS O ON C.CustomerID = O.CustomerID
+	INNER JOIN [Order Details] AS OD ON O.OrderID = OD.OrderID
+WHERE C.Country = 'UK'
+    AND YEAR(O.OrderDate) IN (1997, 1998)
+GROUP BY C.CompanyName, YEAR(O.OrderDate)
+HAVING SUM( OD.Quantity * OD.UnitPrice ) > 1000
+ORDER BY C.CompanyName, YEAR(O.OrderDate);
+```
+
+
 ## SQL Variables
 Object that holds a single data value of a specified type
 Uses:
@@ -33,6 +65,8 @@ DECLARE @i INT;
 SET @i = 10;
 SET @stringVar = 'Coding Bootcamp';
 ```
+
+
 ### SELECT 
 * Used to set a value to a scalar variable
 * Can be also used for setting values to multiple variables at once
@@ -53,7 +87,6 @@ SELECT @i = 1,
 * As far as speed differences - there are no direct differences between SET and SELECT. However SELECT's ability to make multiple assignments in one shot does give it a slight speed advantage over SET.
 
 
-
 ## Temporary tables
 Can be used as a workspace for intermediate results
 They can be
@@ -61,7 +94,6 @@ They can be
 * Global temporary tables (starting with ##)
 * Table variables (starting with @)
 * Other (not in our lesson's scope)
-
 
 
 ## TABLE Variables
@@ -105,48 +137,16 @@ FROM table_name
 WHERE column_name IN (value1,value2,...);
 ```
 
+
 ## SQL IN Operator example
 ```sql
 -- How many objects has each customer from Canada, UK and USA ordered each year?
-
 SELECT C.CompanyName, C.Country, YEAR(O.OrderDate) AS [Year], SUM( OD.Quantity ) [Total Quantity]
 FROM Customers C
 	INNER JOIN Orders O ON C.CustomerID = O.CustomerID
 	INNER JOIN [Order Details] OD ON O.OrderID = OD.OrderID
 WHERE C.Country IN ('UK', 'USA', 'Canada')
 GROUP BY C.CompanyName, YEAR(O.OrderDate), C.Country
-ORDER BY C.CompanyName, YEAR(O.OrderDate);
-```
-
-
-## SQL HAVING clause
-A HAVING clause specifies that an SQL SELECT statement should only return rows where aggregate values meet the specified conditions. 
-It was added to the SQL language because the WHERE keyword could not be used with aggregate functions
-Remember, WHERE for conditions before grouping, HAVING for conditions after grouping.
-Syntax:
-```sql
-SELECT column_name, aggregate_function(column_name)
-FROM table_name
-WHERE column_name operator value
-GROUP BY column_name
-HAVING aggregate_function(column_name) operator value; 
-```
-
-
-## SQL HAVING clause example
-```sql
--- Which UK customers have payed more than 1000$ in a year for the years 1997 and 1998?
-SELECT C.CompanyName AS [Company Name], 
-		YEAR(O.OrderDate) AS [Year of Order], 
-		SUM( OD.Quantity ) AS [Total Quantity], 
-		SUM( OD.Quantity * OD.UnitPrice ) AS [Total Revenues]
-FROM Customers AS C
-	INNER JOIN Orders AS O ON C.CustomerID = O.CustomerID
-	INNER JOIN [Order Details] AS OD ON O.OrderID = OD.OrderID
-WHERE C.Country = 'UK'
-    AND YEAR(O.OrderDate) IN (1997, 1998)
-GROUP BY C.CompanyName, YEAR(O.OrderDate)
-HAVING SUM( OD.Quantity * OD.UnitPrice ) > 1000
 ORDER BY C.CompanyName, YEAR(O.OrderDate);
 ```
 
