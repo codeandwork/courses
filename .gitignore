@@ -1,1 +1,3 @@
 web
+tools/build.sh
+tools/travis-deploy.sh
