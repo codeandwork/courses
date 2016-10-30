@@ -14,4 +14,4 @@
 * [Consuming data in C# with ADO.NET](cs/adonet.md)
 
 ## ORMs - Entity Framework
-* [ORMs - Entity Framework an orm written in C# from asp.net team](cs/5_ormEf.md)
+* [ORMs - Entity Framework an orm written in C# from asp.net team](cs/ormEntity.md)
