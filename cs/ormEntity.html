@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>ORMs - Entity Framework an orm written in C# from asp.net team</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-orms---entity-framework-an-orm-written-in-c-from-asp.net-team">Coding Bootcamp: ORMs - Entity Framework an orm written in C# from asp.net team</h1>
+<h2 id="orm">ORM</h2>
+<p>Object-relational mapping is a programming technique for converting data between incompatible type systems in object-oriented programming languages.</p>
+<h2 id="orm-in-simple-words">ORM in simple words</h2>
+<p>It's good for abstracting the datastore</p>
+<p>(SQL / XML / Json / flat file / whatever)</p>
+<p>out in order to provide an interface that can be used in your code.</p>
+<p>It tries to abstract the database access, so if you change from <strong>mssql</strong> to <strong>mysql</strong> you don't have to write your code again (<em>rudely speaking</em>).</p>
+<h2 id="orms-pros">ORMs pros</h2>
+<ul>
+<li>Huge reduction in code.<br /></li>
+<li>ORM usually helps you create a developer friendly work flow<br /></li>
+<li>ORM helps you focus on object oriented world and then takes you towards relational world.<br /></li>
+<li>ORM works well when you have simple CRUD cases.<br /></li>
+<li>Facilitates implementing the Domain Model pattern</li>
+</ul>
+<h2 id="orms-cons">ORMs cons</h2>
+<ul>
+<li>Slow: if you compare the performance between writing raw SQL &amp; ORM, raw is much faster as there is no translation layer. (can be beaten)<br /></li>
+<li>Complex Queries: when executing <strong>real complex queries</strong> you will find yourself writing raw SQL.<br /></li>
+<li><p>Tuning: When you know SQL language and your default DBMS well, then you can make queries faster but this is not the same when using ORM.</p></li>
+<li>Slow: if you compare the performance between writing raw SQL &amp; ORM, raw is much faster as there is no translation layer. (can be beaten)<br /></li>
+<li>Complex Queries: when executing <strong>real complex queries</strong> you will find yourself writing raw SQL.<br /></li>
+<li><p>Tuning: When you know SQL language and your default DBMS well, then you can make queries faster but this is not the same when using ORM.</p></li>
+</ul>
+<h3 id="in-general">In general</h3>
+<p>ORM are not so well in addressing relational database specific features.</p>
+<h2 id="the-orm-myth">The ORM Myth</h2>
+<blockquote>
+<p>“With ORM, the database becomes an implementation detail, and can be ignored”</p>
+</blockquote>
+<p>-Idiots Ever...</p>
+<h2 id="the-orm-myth-2">The ORM Myth 2</h2>
+<blockquote>
+<p>“The database is a bucket”</p>
+</blockquote>
+<p>-Me being totally wrong...</p>
+<h2 id="net-orms">.net orms</h2>
+<p>Performance of SELECT mapping over 500 iterations - POCO serialization (by StackExchange team)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Method</th>
+<th align="center">Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Hand coded (using a SqlDataReader)</td>
+<td align="center">47ms</td>
+</tr>
+<tr class="even">
+<td align="left">Dapper ExecuteMapperQuery<Post></td>
+<td align="center">49ms</td>
+</tr>
+<tr class="odd">
+<td align="left">ServiceStack.OrmLite</td>
+<td align="center">50ms</td>
+</tr>
+<tr class="even">
+<td align="left">NHibernate SQL</td>
+<td align="center">104ms</td>
+</tr>
+<tr class="odd">
+<td align="left">Linq 2 SQL</td>
+<td align="center">181ms</td>
+</tr>
+<tr class="even">
+<td align="left">Entity framework 6</td>
+<td align="center">631ms</td>
+</tr>
+<tr class="odd">
+<td align="left">Entity framework Core 1</td>
+<td align="center">? ms</td>
+</tr>
+</tbody>
+</table>
+<h2 id="famous-orms">2 famous orms</h2>
+<p>NHibernate</p>
+<ul>
+<li>Based on Hibernate - Java Project<br /></li>
+<li>LGPL Open Source<br /></li>
+<li>Been around since 2007 (Hibernate since 2001)<br /></li>
+<li>Large community</li>
+</ul>
+<p>Dapper</p>
+<ul>
+<li>stack overflow's orm<br /></li>
+<li>High Performance (close to SqlDataReader)<br /></li>
+<li>low features</li>
+</ul>
+<h2 id="entity-framework">Entity Framework</h2>
+<p>Entity Framework is an open source orm framework from asp.net team. There are 2 versions actively developing</p>
+<ul>
+<li>Entity Framework 6.x (since 2008)</li>
+</ul>
+<p>EF 6 is a tried and tested data access technology with many years of features and stabilization</p>
+<ul>
+<li>Entity Framework Core 1.x (since June 2016)</li>
+</ul>
+<p>EF Core is a lightweight, extensible, and cross-platform version of Entity Framework.<br />EF Core introduces many improvements and new features when compared with EF6.x but some features from EF6 are not yet implemented.</p>
+<h2 id="pros-of-entity-framework">Pros of Entity Framework</h2>
+<ul>
+<li>Highly featured (not EF Core 1)<br /></li>
+<li>Open source<br /></li>
+<li>Allow complex sql queries with Linq (not very complex sql queries)<br /></li>
+<li>Works well with microsoft technologies (e.g. asp.net mvc, asp.net identity)</li>
+</ul>
+<h2 id="cons-of-entity-framework">Cons of Entity Framework</h2>
+<h3 id="cons-of-ef-6">Cons of EF 6</h3>
+<ul>
+<li>Speed issues (solved in EF Core 1)<br /></li>
+<li>Hard to read generated sql queries</li>
+</ul>
+<h3 id="cons-of-ef-core-1">Cons of EF Core 1</h3>
+<ul>
+<li>Not yet Highly featured as EF 6 (we expect to be solved in the next year)</li>
+</ul>
+<h2 id="domain-modeling-approaches">Domain modeling approaches</h2>
+<ul>
+<li>Code First<br /></li>
+<li>Model First<br /></li>
+<li>Database First</li>
+</ul>
+<h2 id="database-first">Database First</h2>
+<p>It enables you to create model from an existing database (like SQL Server, Oracle, DB2 etc.).</p>
+<p>This approach reduces the amount of code that we need to write since it automatically generates code. But it also limits us to work with the structure of the generated code.</p>
+<p>Very popular if you have Database designed by DBAs, developed separately or if you have existing Database.</p>
+<h2 id="model-first">Model First</h2>
+<p>It enables you to create model’s Entities, relationships, and inheritance hierarchies on the design surface of empty model (.edmx file) by using entity designer and then create database from it.</p>
+<p>It is good if you like to visualize the structure of the data in the application or you don't like writing code or SQL since it will generate for you.</p>
+<p>In this approach you have no much control over your entities (auto generated code which is hard to modify) and database. In this way it is rarely used but for small easy projects this approach will be very productive.</p>
+<h2 id="code-first">Code First</h2>
+<p>It enables you to describe a model by using C# classes and then create database from these classes. These classes are called POCO classes.</p>
+<p>It provides full control over the code since there is no auto generated code which is hard to modify.</p>
+<p>In this approach, your code defines only the database mappings and EF will handle creation of database with its relations.</p>
+<h2 id="code-first-approach-step-by-step">Code First Approach step by step</h2>
+<ol>
+<li>Design our Domain Model<br /></li>
+<li>Create our DbContext<br /></li>
+<li>Configure the Connection String<br /></li>
+<li>Do the Migrations<br /></li>
+<li>Have Fun</li>
+</ol>
+<h2 id="design-our-domain-model-12">1. Design our Domain Model 1/2</h2>
+<pre class="csharp"><code>public class Blog
+{
+    //Primary Key
+    public int Id { get; set; }
+    public string Title { get; set; }
+
+    //Navigation Property
+    public virtual ICollection&lt;Post&gt; Posts { get; set; }
+}
+
+public class Post
+{
+    //Primary Key
+    public int Id { get; set; }
+    public string Title { get; set; }
+
+    //Foreing Key
+    public int BlogId { get; set; }
+    //Navigation Property
+    [ForeignKey(&quot;BlogId&quot;)]
+    public virtual Blog Blog { get; set; }
+}</code></pre>
+<h2 id="design-our-domain-model-22">1. Design our Domain Model 2/2</h2>
+<p>When we are designing our model we have in mind some conventions.<br />Conventions are sets of rules that are used to automatically configure a conceptual model based on class definitions when working with Code First.</p>
+<pre class="csharp"><code>public class Blog
+{
+    //Primary Key
+    public int Id { get; set; }
+    //....
+}</code></pre>
+<pre class="csharp"><code>    //Foreing Key
+    public int BlogId { get; set; }
+    //Navigation Property
+    public virtual Blog Blog { get; set; }</code></pre>
+<h2 id="create-our-dbcontext-13">2. Create our DbContext 1/3</h2>
+<p>DbContext is an important part of Entity Framework. It is a bridge between your domain or entity classes and the database. DbContext is responsible for the following activities:</p>
+<ul>
+<li><strong>EntitySet</strong>: DbContext contains entity set (DbSet<TEntity>) for all the entities which is mapped to DB tables.<br /></li>
+<li><strong>Querying</strong>: DbContext converts LINQ-to-Entities queries to SQL query and send it to the database.<br /></li>
+<li><strong>Change Tracking</strong>: It keeps track of changes that occurred in the entities after it has been querying from the database.</li>
+</ul>
+<h2 id="create-our-dbcontext-23">2. Create our DbContext 2/3</h2>
+<ul>
+<li><strong>Persisting Data</strong>: It also performs the Insert, Update and Delete operations to the database, based on what the entity states.<br /></li>
+<li><strong>Caching</strong>: DbContext does first level caching by default. It stores the entities which have been retrieved during the life time of a context class.<br /></li>
+<li><strong>Manage Relationship</strong>: DbContext also manages relationship using CSDL, MSL and SSDL in DB-First or Model-First approach or using fluent API in Code-First approach.<br /></li>
+<li><strong>Object Materialization</strong>: DbContext converts raw table data into entity objects.</li>
+</ul>
+<h2 id="create-our-dbcontext-33">2. Create our DbContext 3/3</h2>
+<pre class="csharp"><code>public class BlogContext : DbContext
+{
+    public BlogContext() : base (&quot;BlogContextConStringName&quot;)
+    {
+    }
+
+    public DbSet&lt;Blog&gt; Blogs { get; set; }
+    public DbSet&lt;Post&gt; Posts { get; set; }
+    
+    //To access the fluent API you override the OnModelCreating method in DbContext
+    protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
+    {
+
+    }
+}</code></pre>
+<h2 id="configure-the-connection-string">3. Configure the Connection String</h2>
+<p>Depending on your configuration file</p>
+<p>(app.config || web.config || appsettings.json)</p>
+<pre class="sourceCode XML"><code class="sourceCode xml">  <span class="kw">&lt;connectionStrings&gt;</span>
+    <span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">&quot;BlogContextConStringName&quot;</span><span class="ot"> connectionString=</span><span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;/connectionStrings&gt;</span></code></pre>
+<pre class="sourceCode Json"><code class="sourceCode json">  { 
+      <span class="dt">&quot;ConnectionStrings&quot;</span>: {
+        <span class="dt">&quot;BlogContextConStringName&quot;</span>: <span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span>
+      }
+  }</code></pre>
+<h2 id="do-the-migrations-12">4. Do the Migrations 1/2</h2>
+<p>To begin with Migrations:</p>
+<ol>
+<li>Enable Migrations<br /></li>
+<li>Create initial migration and auto-generate database.<br /></li>
+<li>Update your database for your new migration</li>
+</ol>
+<p>To make changes in your model:</p>
+<ol>
+<li>Make model changes in your code<br /></li>
+<li>Add a new migration for model changes<br /></li>
+<li>Update your database for your new migration</li>
+</ol>
+<h2 id="do-the-migrations-22">4. Do the Migrations 2/2</h2>
+<p>In the package manager console run the following command.</p>
+<pre class="cmd"><code>&gt; Enable-Migrations</code></pre>
+<pre class="cmd"><code>&gt; Add-Migration &quot;MyInitialCreate&quot;</code></pre>
+<pre class="cmd"><code>&gt; Update-Database</code></pre>
+<p>To make changes</p>
+<pre class="cmd"><code>&gt; Add-Migration &quot;ThisIsNewChange&quot;</code></pre>
+<pre class="cmd"><code>&gt; Update-Database</code></pre>
+<h2 id="have-fun-15">5. Have Fun 1/5</h2>
+<p>Pull data from the Database</p>
+<pre class="csharp"><code>class Program
+    {
+        static void Main(string[] args)
+        {
+            var lstPosts = new List&lt;Post&gt;();
+            using (var db = new BlogContext())
+            {
+                lstPosts = db.Posts.ToList();
+            }
+
+            foreach (var p in lstPosts)
+            {
+                Console.WriteLine($&quot;Post with id {p.Id} has the title {p.Title}.&quot;);
+            }
+        }
+    }</code></pre>
+<h2 id="training">Training</h2>
+<ul>
+<li>Pluralsight<br /></li>
+<li>Microsoft Virtual Academy (MVA)<br /></li>
+<li>asp.net website</li>
+</ul>
+<h2 id="inheritancemapping-strategies">InheritanceMapping Strategies</h2>
+<p>InheritanceMapping Strategies<br />● Table Per Type<br />● Table Per Hierarchy<br />● Table Per Concrete Type</p>
+<p>● Table Per Type<br /> ● One table for each type, including abstract base types.<br /> ● Most normalized<br /> ● Least performant (generally)</p>
+<p>● Table Per Hierarchy<br /> ● All types crammed into 1 table<br /> ● Least normalized, cannot enforce NOT NULL at the DB level<br /> ● NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.</p>
+<p>● Table Per Concrete Type<br /> ● A table per instantiatable class (base class properties folded into each class)<br /> ● Balance of the former two options</p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
