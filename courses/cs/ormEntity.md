@@ -433,3 +433,28 @@ public static void CounAllPosts()
     best course -> [entity framework enterprise](https://www.pluralsight.com/courses/entity-framework-enterprise-update)
 * Microsoft Virtual Academy (MVA)
 * asp.net website
+<<<<<<< HEAD:courses/cs/5_ormEf.md
+=======
+
+
+## InheritanceMapping Strategies
+
+InheritanceMapping Strategies    
+●   Table Per Type    
+●   Table Per Hierarchy    
+●   Table Per Concrete Type 
+
+● Table Per Type
+    ● One table for each type, including abstract base types.
+    ● Most normalized
+    ● Least performant (generally)
+    
+●   Table Per Hierarchy  
+    ● All types crammed into 1 table
+    ● Least normalized, cannot enforce NOT NULL at the DB level
+    ● NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.
+  
+●   Table Per Concrete Type 
+    ● A table per instantiatable class (base class properties folded into each class)
+    ● Balance of the former two options
+>>>>>>> origin/master:courses/cs/ormEntity.md
