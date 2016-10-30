@@ -433,8 +433,7 @@ public static void CounAllPosts()
     best course -> [entity framework enterprise](https://www.pluralsight.com/courses/entity-framework-enterprise-update)
 * Microsoft Virtual Academy (MVA)
 * asp.net website
-<<<<<<< HEAD:courses/cs/5_ormEf.md
-=======
+
 
 
 ## InheritanceMapping Strategies
