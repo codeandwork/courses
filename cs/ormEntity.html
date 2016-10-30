@@ -49,10 +49,7 @@
 <ul>
 <li>Slow: if you compare the performance between writing raw SQL &amp; ORM, raw is much faster as there is no translation layer. (can be beaten)<br /></li>
 <li>Complex Queries: when executing <strong>real complex queries</strong> you will find yourself writing raw SQL.<br /></li>
-<li><p>Tuning: When you know SQL language and your default DBMS well, then you can make queries faster but this is not the same when using ORM.</p></li>
-<li>Slow: if you compare the performance between writing raw SQL &amp; ORM, raw is much faster as there is no translation layer. (can be beaten)<br /></li>
-<li>Complex Queries: when executing <strong>real complex queries</strong> you will find yourself writing raw SQL.<br /></li>
-<li><p>Tuning: When you know SQL language and your default DBMS well, then you can make queries faster but this is not the same when using ORM.</p></li>
+<li>Tuning: When you know SQL language and your default DBMS well, then you can make queries faster but this is not the same when using ORM.</li>
 </ul>
 <h3 id="in-general">In general</h3>
 <p>ORM are not so well in addressing relational database specific features.</p>
@@ -112,7 +109,8 @@
 <li>Based on Hibernate - Java Project<br /></li>
 <li>LGPL Open Source<br /></li>
 <li>Been around since 2007 (Hibernate since 2001)<br /></li>
-<li>Large community</li>
+<li>Large community<br /></li>
+<li>Full featured</li>
 </ul>
 <p>Dapper</p>
 <ul>
@@ -242,7 +240,7 @@ public class Post
 <p>Depending on your configuration file</p>
 <p>(app.config || web.config || appsettings.json)</p>
 <pre class="sourceCode XML"><code class="sourceCode xml">  <span class="kw">&lt;connectionStrings&gt;</span>
-    <span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">&quot;BlogContextConStringName&quot;</span><span class="ot"> connectionString=</span><span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span><span class="kw">/&gt;</span>
+    <span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">&quot;BlogContextConStringName&quot;</span><span class="ot"> connectionString=</span><span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span><span class="ot">  providerName=</span><span class="st">&quot;System.Data.SqlClient&quot;</span><span class="kw">/&gt;</span>
   <span class="kw">&lt;/connectionStrings&gt;</span></code></pre>
 <pre class="sourceCode Json"><code class="sourceCode json">  { 
       <span class="dt">&quot;ConnectionStrings&quot;</span>: {
@@ -270,35 +268,122 @@ public class Post
 <p>To make changes</p>
 <pre class="cmd"><code>&gt; Add-Migration &quot;ThisIsNewChange&quot;</code></pre>
 <pre class="cmd"><code>&gt; Update-Database</code></pre>
-<h2 id="have-fun-15">5. Have Fun 1/5</h2>
+<h2 id="have-fun-16">5. Have Fun 1/6</h2>
 <p>Pull data from the Database</p>
-<pre class="csharp"><code>class Program
-    {
-        static void Main(string[] args)
-        {
-            var lstPosts = new List&lt;Post&gt;();
-            using (var db = new BlogContext())
-            {
-                lstPosts = db.Posts.ToList();
-            }
+<pre class="csharp"><code>public static void PullDataFromTheDatabase()
+{
+    var lstPosts = new List&lt;Post&gt;();
+    using (var db = new BlogContext()) {
+        lstPosts = db.Posts.ToList();
+    }
 
-            foreach (var p in lstPosts)
-            {
-                Console.WriteLine($&quot;Post with id {p.Id} has the title {p.Title}.&quot;);
-            }
+    foreach (var p in lstPosts) {
+        Console.WriteLine($&quot;Post with id {p.Id} has the title {p.Title}.&quot;);
+    }
+}</code></pre>
+<h2 id="have-fun-26">5. Have Fun 2/6</h2>
+<p>Insert in the database a new object</p>
+<pre class="csharp"><code>public static void InsertDataToTheDatabase()
+{
+    var blog = new Blog()
+    {
+        Title = &quot;My Ef Blog&quot;,
+        Posts = new List&lt;Post&gt;()
+        {
+            new Post() { Title = &quot;Post One&quot; },
+            new Post() { Title = &quot;Post Two&quot; },
         }
-    }</code></pre>
+    };
+    using (var db = new BlogContext())
+    {
+        db.Blogs.Add(blog);
+        db.SaveChanges();
+    }
+}</code></pre>
+<h2 id="have-fun-36">5. Have Fun 3/6</h2>
+<p>Find Data And Update</p>
+<pre class="csharp"><code>public static void FindDataAndUpdate()
+{
+    using (var db = new BlogContext())
+    {
+        var blog = db.Blogs.Where(b =&gt; b.Title == &quot;Post Two&quot;).FirstOrDefault();
+        blog.Title = &quot;My Awesome Ef Blog&quot;;
+        db.SaveChanges();
+    }
+}</code></pre>
+<h2 id="have-fun-46">5. Have Fun 4/6</h2>
+<p>Find Data And Delete it</p>
+<pre class="csharp"><code>public static void FindDataAndDelete()
+{
+    using (var db = new BlogContext()) {
+        var post = db.Posts.FirstOrDefault(p =&gt; p.Title == &quot;Post Two&quot;);
+        db.Posts.Remove(post);
+        db.SaveChanges();
+    }
+}</code></pre>
+<h2 id="have-fun-56">5. Have Fun 5/6</h2>
+<p>Join</p>
+<pre class="csharp"><code>public static void ASimpleJoin()
+{
+    //don&#39;t forget using System.Data.Entity;
+    var lstBlogs = new List&lt;Blog&gt;();
+    using (var db = new BlogContext()) {
+        lstBlogs = db.Blogs.Include(b =&gt; b.Posts).ToList();
+    }
+
+    foreach (var b in lstBlogs) {
+        Console.WriteLine($&quot;This blog {b.Title} has this posts : &quot;);
+        foreach (var p in b.Posts) {
+            Console.WriteLine($&quot;This is a post title : {p.Title}&quot;);
+        }
+    }
+}</code></pre>
+<h2 id="have-fun-66">5. Have Fun 6/6</h2>
+<p>Other stuff Linq can perform</p>
+<pre class="csharp"><code>public static void CounAllPosts()
+{
+    using (var db = new BlogContext()) {
+        var totalPost = db.Posts.Count();
+        Console.WriteLine($&quot;Total posts {totalPost}&quot;);
+
+        var sumTotalLikesInPosts = db.Posts.Sum(x=&gt;x.Likes);
+        Console.WriteLine($&quot;Total posts likes {sumTotalLikesInPosts}&quot;);
+
+        //...
+    }
+}</code></pre>
+<h2 id="seeding">Seeding</h2>
+<p>.</p>
+<h2 id="data-annotation----fluent-api">Data Annotation -- Fluent API</h2>
+<p>.</p>
+<h2 id="sql-server-profiler">Sql Server Profiler</h2>
+<p>.</p>
 <h2 id="training">Training</h2>
 <ul>
-<li>Pluralsight<br /></li>
+<li>Pluralsight<br /> best course -&gt; <a href="https://www.pluralsight.com/courses/entity-framework-enterprise-update">entity framework enterprise</a><br /></li>
 <li>Microsoft Virtual Academy (MVA)<br /></li>
-<li>asp.net website</li>
+<li>asp.net website<br />&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:courses/cs/5_ormEf.md<br />=======</li>
 </ul>
 <h2 id="inheritancemapping-strategies">InheritanceMapping Strategies</h2>
 <p>InheritanceMapping Strategies<br />● Table Per Type<br />● Table Per Hierarchy<br />● Table Per Concrete Type</p>
 <p>● Table Per Type<br /> ● One table for each type, including abstract base types.<br /> ● Most normalized<br /> ● Least performant (generally)</p>
 <p>● Table Per Hierarchy<br /> ● All types crammed into 1 table<br /> ● Least normalized, cannot enforce NOT NULL at the DB level<br /> ● NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.</p>
 <p>● Table Per Concrete Type<br /> ● A table per instantiatable class (base class properties folded into each class)<br /> ● Balance of the former two options</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>origin/master:courses/cs/ormEntity.md</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

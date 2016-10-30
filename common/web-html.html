@@ -213,12 +213,301 @@
 <p>The text inside the <code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code> tags will only be displayed in browsers that do not support them.</p>
 <h2 id="tags-used-for-structuring-content">2. Tags used for structuring content</h2>
 <h2 id="section"><code>&lt;section&gt;</code></h2>
+<p>The HTML <code>&lt;section&gt;</code> element represents a generic section of a document, i.e., a thematic grouping of content, typically with a heading.</p>
+<p>Each <code>&lt;section&gt;</code> should be identified by including a heading (<code>&lt;h1&gt;</code> - <code>&lt;h6&gt;</code> element) as a child of the <code>&lt;section&gt;</code> element.</p>
+<h2 id="section-example"><code>section</code> example</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;article&gt;</span>
+  <span class="kw">&lt;h1&gt;</span>How to use HTML5 Sectioning Elements<span class="kw">&lt;/h1&gt;</span>
+  <span class="kw">&lt;p&gt;</span>...<span class="kw">&lt;/p&gt;</span>
+
+  <span class="kw">&lt;section&gt;</span>
+    <span class="kw">&lt;h2&gt;</span>The <span class="kw">&lt;main&gt;</span> Element<span class="kw">&lt;/h2&gt;</span>
+    <span class="kw">&lt;p&gt;</span>...<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/section&gt;</span>
+  <span class="kw">&lt;section&gt;</span>
+    <span class="kw">&lt;h2&gt;</span>The <span class="kw">&lt;article&gt;</span> Element<span class="kw">&lt;/h2&gt;</span>
+    <span class="kw">&lt;p&gt;</span>...<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/section&gt;</span>
+  <span class="kw">&lt;section&gt;</span>
+    <span class="kw">&lt;h2&gt;</span>The <span class="kw">&lt;section&gt;</span> Element<span class="kw">&lt;/h2&gt;</span>
+    <span class="kw">&lt;p&gt;</span>...<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/section&gt;</span>
+  ...
+<span class="kw">&lt;/article&gt;</span></code></pre>
 <h2 id="article"><code>&lt;article&gt;</code></h2>
+<p>The <code>&lt;article&gt;</code> element represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable.</p>
+<p>This could be a forum post, a magazine or newspaper article, a blog entry, an object, or any other independent item of content.</p>
+<h2 id="article-1"><code>&lt;article&gt;</code></h2>
+<p>Each <code>&lt;article&gt;</code> should be identified, typically by including a heading (<code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code> element) as a child of the <code>&lt;article&gt;</code> element.</p>
+<p>You can nest <code>&lt;article&gt;</code> elements within one another. In this case it’s implied that the nested elements are related to the outer <code>&lt;article&gt;</code> element.</p>
+<h2 id="article-example"><code>&lt;article&gt;</code> example</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;article&gt;</span>
+  <span class="kw">&lt;header&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>Blog Post Title<span class="kw">&lt;/h1&gt;</span>
+    <span class="kw">&lt;p&gt;</span>Posted 13th February 2014<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/header&gt;</span>
+  <span class="kw">&lt;p&gt;</span>...<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;p&gt;</span>...<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;p&gt;</span>...<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;section&gt;</span>
+    <span class="kw">&lt;h2&gt;</span>Comments<span class="kw">&lt;/h2&gt;</span>
+    <span class="kw">&lt;article&gt;</span>
+      <span class="kw">&lt;footer&gt;</span>
+        <span class="kw">&lt;p&gt;</span>Posted by: Joe Balochio<span class="kw">&lt;/p&gt;</span>
+      <span class="kw">&lt;/footer&gt;</span>
+      <span class="kw">&lt;p&gt;</span>This was a great article<span class="kw">&lt;/p&gt;</span>
+    <span class="kw">&lt;/article&gt;</span>
+    <span class="kw">&lt;article&gt;</span>
+      ...
+    <span class="kw">&lt;/article&gt;</span>
+  <span class="kw">&lt;/section&gt;</span>
+<span class="kw">&lt;/article&gt;</span></code></pre>
 <h2 id="header"><code>&lt;header&gt;</code></h2>
+<p>The <code>&lt;header&gt;</code> element represents a group of introductory or navigational aids for its nearest sectioning content or sectioning root element.</p>
+<p>It may contain some heading elements but also other elements like a logo, wrapped section's header, a search form, and so on.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;header&gt;</span>
+  <span class="kw">&lt;h1&gt;</span>Main Page Title<span class="kw">&lt;/h1&gt;</span>
+  <span class="kw">&lt;img</span><span class="ot"> src=</span><span class="st">&quot;mdn-logo-sm.png&quot;</span><span class="ot"> alt=</span><span class="st">&quot;MDN logo&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/header&gt;</span></code></pre>
 <h2 id="footer"><code>&lt;footer&gt;</code></h2>
+<p>The HTML <code>&lt;footer&gt;</code> element represents a footer for its nearest sectioning content or sectioning root element. A footer typically contains information about the author of the section, copyright data or links to related documents.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;footer&gt;</span>
+  Some copyright info or perhaps some author info for an <span class="dv">&amp;lt;</span>article<span class="dv">&amp;gt;</span>?
+<span class="kw">&lt;/footer&gt;</span></code></pre>
 <h2 id="aside"><code>&lt;aside&gt;</code></h2>
+<p>The <code>&lt;aside&gt;</code> element represents a section of the page with content connected tangentially to the rest, which could be considered separate from that content.</p>
+<p>These sections are often represented as sidebars or inserts. They often contain the definitions on the sidebars.</p>
+<p>There may also be other types of information, such as related advertisements, the biography of the author, web applications, profile information or related links on the blog.</p>
+<h2 id="aside-example"><code>&lt;aside&gt;</code> example</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;article&gt;</span>
+  <span class="kw">&lt;header&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>Google Buys Nest<span class="kw">&lt;/h1&gt;</span>
+    <span class="kw">&lt;p&gt;</span>Posted at 11:34am 13th January 2014<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/header&gt;</span>
+  <span class="kw">&lt;p&gt;</span>...<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;p&gt;</span>...<span class="kw">&lt;/p&gt;</span>
+
+  <span class="kw">&lt;aside&gt;</span>
+    <span class="kw">&lt;h1&gt;</span>Google (GOOG)<span class="kw">&lt;/h1&gt;</span>
+    <span class="kw">&lt;p&gt;</span>Google was founded in 1998 by Larry Page and Sergey Brin. The company...<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/aside&gt;</span>
+<span class="kw">&lt;/article&gt;</span></code></pre>
 <h2 id="nav"><code>&lt;nav&gt;</code></h2>
+<p>The HTML <code>&lt;nav&gt;</code> element (HTML Navigation Element) represents a section of a page that links to other pages or to parts within the page: a section with navigation links.</p>
+<p>A document may have several <code>&lt;nav&gt;</code> elements, for example, one for site navigation and one for intra-page navigation.</p>
+<p>Not all links of a document must be in a <code>&lt;nav&gt;</code> element, which is intended only for major block of navigation links; typically the <code>&lt;footer&gt;</code> element often has a list of links that don't need to be in a <code>&lt;nav&gt;</code> element.</p>
+<h2 id="nav-example"><code>&lt;nav&gt;</code> example</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;nav&gt;</span>
+  <span class="kw">&lt;ul&gt;</span>
+    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;#&quot;</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;#&quot;</span><span class="kw">&gt;</span>About<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;#&quot;</span><span class="kw">&gt;</span>Contact<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="kw">&lt;/ul&gt;</span>
+<span class="kw">&lt;/nav&gt;</span></code></pre>
+<h2 id="main"><code>&lt;main&gt;</code></h2>
+<p>The HTML <code>&lt;main&gt;</code> element represents the main content of  the <code>&lt;body&gt;</code> of a document or application. The main content area consists of content that is directly related to, or expands upon the central topic of a document or the central functionality of an application. This content should be unique to the document, excluding any content that is repeated across a set of documents such as sidebars, navigation links, copyright information, site logos, and search forms (unless the document's main function is as a search form).</p>
+<h2 id="address"><code>&lt;address&gt;</code></h2>
+<p>The <code>&lt;address&gt;</code> element is one of the most commonly misunderstood HTML elements. This element is not for marking up postal address, but rather for representing the contact information for an article or web page. This could be a link to the author’s website or their email address.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;address&gt;</span>
+  Contact <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;mailto:matt@example.com&quot;</span><span class="kw">&gt;</span>Matt West<span class="kw">&lt;/a&gt;</span>
+<span class="kw">&lt;/address&gt;</span></code></pre>
 <h2 id="div"><code>&lt;div&gt;</code></h2>
+<p>You should use <code>&lt;div&gt;</code> when there is no other more semantically appropriate element that suits your purpose. Its most common use will likely be for stylistic purposes — i.e., wrapping some semantically marked-up content in a CSS-styled container.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;div</span><span class="ot"> id=</span><span class="st">&quot;wrapper&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;header&gt;</span>
+      <span class="kw">&lt;h1&gt;</span>My Happy Blog<span class="kw">&lt;/h1&gt;</span>
+      <span class="kw">&lt;nav&gt;</span>
+        <span class="co">&lt;!-- ... --&gt;</span>
+      <span class="kw">&lt;/nav&gt;</span>
+    <span class="kw">&lt;/header&gt;</span>
+    <span class="co">&lt;!-- ... rest of site content ... --&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/body&gt;</span></code></pre>
+<h2 id="forms">Forms</h2>
+<h2 id="forms-1">Forms</h2>
+<p>HTML Forms are one of the main points of interaction between a user and a web site or application. They allow users to send data to the web site. Most of the time that data is sent to the web server, but the web page can also intercept it to use it on its own.</p>
+<p>An HTML Form is made of one or more widgets. Those widgets can be text fields (single line or multiline), select boxes, buttons, checkboxes, or radio buttons. Most of the time those widgets are paired with a label that describes their purpose.</p>
+<h2 id="form"><code>&lt;form&gt;</code></h2>
+<p>All HTML forms start with a <code>&lt;form&gt;</code> element like this:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;/my-handling-form-page&quot;</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
+
+<span class="kw">&lt;/form&gt;</span></code></pre>
+<ul>
+<li>The <em>action</em> attribute defines the location (URL) where the form's collected data should be sent.<br /></li>
+<li>The <em>method</em> attribute defines which HTTP method to send the data with (it can be &quot;get&quot; or &quot;post&quot;).</li>
+</ul>
+<h2 id="text-input-fields">Text input fields</h2>
+<p>Text input fields are the most basic form widgets. They are a very convenient way to let the user enter any kind of data. However, some text fields can be specialized to achieve particular needs.</p>
+<p>It's worth noting that HTML form text fields are simple plain text input controls. This means that you cannot use them to perform rich editing</p>
+<h2 id="text-input-fields-1">Text input fields</h2>
+<p>All text fields share some common behaviors through attributes:</p>
+<ul>
+<li>They can be marked as <code>readonly</code> (the user cannot modify the input value) or even <code>disabled</code> (the input value is never sent with the rest of the form data)<br /></li>
+<li>They can have a <code>placeholder</code>; this is text that appears inside the text input box that describes the purpose of the box briefly<br /></li>
+<li>They can be constrained in <code>size</code> (the physical size of the box) and length (the maximum number of characters that can be entered into the box) with <code>maxlength</code><br /></li>
+<li>They can benefit from spell checking with <code>spellcheck</code></li>
+</ul>
+<h2 id="single-line-text-fields">Single line text fields</h2>
+<p>A single line text field is created using an <code>&lt;input&gt;</code> element whose type attribute value is set to <code>text</code> (also, if you don't provide the type attribute, text is the default value). The value text for this attribute is also the fallback value if the value you specify for the type attribute is unknown by the browser.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="kw">&gt;</span></code></pre>
+<h2 id="e-mail-address-field">E-mail address field</h2>
+<p>This type of field is set with the value <strong>email</strong> for the <code>type</code> attribute:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;email&quot;</span><span class="ot"> multiple</span><span class="kw">&gt;</span></code></pre>
+<p>It adds this special validation constraint on the field: the user is required to type a valid e-mail address; any other content causes the field to be declared in error. It's also possible to let the user type several e-mail addresses by using the <code>multiple</code> attribute.</p>
+<h2 id="password-field">Password field</h2>
+<p>This type of field is set using the value <strong>password</strong> for the <code>type</code> attribute:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;password&quot;</span><span class="kw">&gt;</span></code></pre>
+<p>It doesn't add any special constraints to the entered text, but it obscures the value of the field so it can't be read.</p>
+<h2 id="search-field">Search field</h2>
+<p>This type of field is set by using the value <strong>search</strong> for the <code>type</code> attribute:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;search&quot;</span><span class="kw">&gt;</span></code></pre>
+<p>The main difference between a text field and a search field is one of look-and-feel (often, search fields are rendered with rounded corners). However, there is also one added feature to search fields: their values can be automatically saved to be auto completed across multiple pages on the same site.</p>
+<h2 id="phone-number-field">Phone number field</h2>
+<p>This type of field is set using <strong>tel</strong> as the value of the <code>type</code> attribute:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;tel&quot;</span><span class="kw">&gt;</span></code></pre>
+<p>Due to the wide variety of phone number formats around the world, this type of field does not enforce any constraints on the value entered by a user. This is primarily a semantic difference, although on some devices (especially on mobile), a different virtual keypad might be presented.</p>
+<h2 id="url-field">URL field</h2>
+<p>This type of field is set using the value <strong>url</strong> for the <code>type</code> attribute:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;url&quot;</span><span class="kw">&gt;</span></code></pre>
+<p>It adds special validation constraints on the field, ensuring that only valid URLs are entered; if a value is entered that isn't a well-formed URL, the form is considered to be in an error state.</p>
+<h2 id="multi-line-text-fields">Multi-line text fields</h2>
+<p>A multi-line text field is specified using a <code>&lt;textarea&gt;</code> element, rather than using the <code>&lt;input&gt;</code> element.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;textarea</span><span class="ot"> cols=</span><span class="st">&quot;20&quot;</span><span class="ot"> rows=</span><span class="st">&quot;10&quot;</span><span class="kw">&gt;&lt;/textarea&gt;</span></code></pre>
+<p>The main difference between a textarea and a regular single line text field is that users are allowed to type text that includes hard line break (meaning it allows the characters carriage return [CR] and line feed [LF]).</p>
+<h2 id="drop-down-content">Drop-down content</h2>
+<p>Drop-down widgets are a simple way to let the user select one of many options. HTML has two forms of drop down content: the select box and autocomplete content. In both cases the interaction is the same. Once the control is activated, the browser displays a list of values the user can select among. This list of values is displayed on top of the page content.</p>
+<h2 id="select-box">Select box</h2>
+<p>A select box is created with a <code>&lt;select&gt;</code> element with one or more <code>&lt;option&gt;</code> elements as its children, each of which specifies one of its possible values.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;select&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Banana<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Cherry<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Lemon<span class="kw">&lt;/option&gt;</span>
+<span class="kw">&lt;/select&gt;</span></code></pre>
+<h2 id="select-box-1">Select box</h2>
+<p>If needed, the default value for the select box can be set using the selected attribute on the desired <code>&lt;option&gt;</code> element. The <code>&lt;option&gt;</code> elements can also be nested inside some <code>&lt;optgroup&gt;</code> elements to create visual groups of values:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;select&gt;</span>
+  <span class="kw">&lt;optgroup</span><span class="ot"> label=</span><span class="st">&quot;fruits&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;option&gt;</span>Banana<span class="kw">&lt;/option&gt;</span>
+    <span class="kw">&lt;option</span><span class="ot"> selected</span><span class="kw">&gt;</span>Cherry<span class="kw">&lt;/option&gt;</span>
+    <span class="kw">&lt;option&gt;</span>Lemon<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;/optgroup&gt;</span>
+  <span class="kw">&lt;optgroup</span><span class="ot"> label=</span><span class="st">&quot;vegetables&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;option&gt;</span>Carrot<span class="kw">&lt;/option&gt;</span>
+    <span class="kw">&lt;option&gt;</span>Eggplant<span class="kw">&lt;/option&gt;</span>
+    <span class="kw">&lt;option&gt;</span>Potatoe<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;/optgroup&gt;</span>
+<span class="kw">&lt;/select&gt;</span></code></pre>
+<h2 id="multi-choice-select-box">Multi-choice select box</h2>
+<p>By default, a select box only lets the user select a single value. By adding the <code>multiple</code> attribute to the <code>&lt;select&gt;</code> element, the user becomes able to select several values. In that case, however, the select box no longer displays the values as dropdown content; instead, it's displayed as a regular list box.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;select</span><span class="ot"> multiple</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Banana<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Cherry<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Lemon<span class="kw">&lt;/option&gt;</span>
+<span class="kw">&lt;/select&gt;</span></code></pre>
+<h2 id="auto-complete-content">Auto-complete content</h2>
+<p>You can provide suggested, automatically-completed values for form widgets using the <code>&lt;datalist&gt;</code> element with some child <code>&lt;option&gt;</code> elements to specify the values to display. Once set, the data list is bound to another widget using the <code>list</code> attribute.</p>
+<p>Once a data list is affiliated with a form widget, its options are used to auto-complete text entered by the user; typically, this is done by presenting a drop-down box listing possible matches.</p>
+<h2 id="auto-complete-content-1">Auto-complete content</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;myFruit&quot;</span><span class="kw">&gt;</span>What&#39;s your favorite fruit?<span class="kw">&lt;/label&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> id=</span><span class="st">&quot;myFruit&quot;</span><span class="ot"> list=</span><span class="st">&quot;mySuggestion&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;datalist</span><span class="ot"> id=</span><span class="st">&quot;mySuggestion&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Apple<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Banana<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Blackberry<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Blueberry<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Lemon<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Lychee<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Peach<span class="kw">&lt;/option&gt;</span>
+  <span class="kw">&lt;option&gt;</span>Pear<span class="kw">&lt;/option&gt;</span>
+<span class="kw">&lt;/datalist&gt;</span></code></pre>
+<h2 id="checkable-items">Checkable items</h2>
+<p>Checkable items are widgets whose state you can change by clicking on them. There are two kinds of checkable item: the check box and the radio button. Both use the checked attribute to indicate whether the widget is checked by default or not.</p>
+<p>It's worth noting that these widgets do not behave exactly like other form widgets. For most form widgets, once the form is sent, all widgets that have a <code>name</code> attribute are sent, even if there is no value. In the case of checkable items, their values are sent only if they are checked. If they are not checked, nothing is sent, not even their name.</p>
+<h2 id="check-box">Check box</h2>
+<p>A check box is created by using the <code>&lt;input&gt;</code> element with its <code>type</code> attribute set to the value <strong>checkbox</strong>.</p>
+<pre class="sourceCode HTML"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;checkbox&quot;</span><span class="ot"> checked</span><span class="kw">&gt;</span></code></pre>
+<p>The checkbox created by the preceding HTML is checked by default.</p>
+<h2 id="radio-button">Radio button</h2>
+<p>A radio button is created by using the <code>&lt;input&gt;</code> element with its <code>type</code> attribute set to the value <strong>radio</strong>.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> checked</span><span class="kw">&gt;</span></code></pre>
+<p>Several radio buttons can be tied together. If they share the same value for their name attribute, they will be considered to be in the same group of buttons. Only one button in a given group may be checked at the same time; this means that when one of them is checked all the others automatically get unchecked.</p>
+<h2 id="radio-button-1">Radio button</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;fieldset&gt;</span>
+  <span class="kw">&lt;legend&gt;</span>What gender are you?<span class="kw">&lt;/legend&gt;</span>
+  <span class="kw">&lt;p&gt;&lt;label</span><span class="ot"> for=</span><span class="st">&quot;g1&quot;</span><span class="kw">&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;g&quot;</span><span class="ot"> id=</span><span class="st">&quot;g1&quot;</span><span class="ot"> value=</span><span class="st">&quot;M&quot;</span><span class="kw">&gt;</span> Male<span class="kw">&lt;/label&gt;&lt;/p&gt;</span>
+  <span class="kw">&lt;p&gt;&lt;label</span><span class="ot"> for=</span><span class="st">&quot;g2&quot;</span><span class="kw">&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;g&quot;</span><span class="ot"> id=</span><span class="st">&quot;g2&quot;</span><span class="ot"> value=</span><span class="st">&quot;F&quot;</span><span class="kw">&gt;</span> Female<span class="kw">&lt;/label&gt;&lt;/p&gt;</span>
+  <span class="kw">&lt;p&gt;&lt;label</span><span class="ot"> for=</span><span class="st">&quot;g3&quot;</span><span class="kw">&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;g&quot;</span><span class="ot"> id=</span><span class="st">&quot;g3&quot;</span><span class="ot"> value=</span><span class="st">&quot;B&quot;</span><span class="kw">&gt;</span> Both<span class="kw">&lt;/label&gt;&lt;/p&gt;</span>
+  <span class="kw">&lt;p&gt;&lt;label</span><span class="ot"> for=</span><span class="st">&quot;g4&quot;</span><span class="kw">&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;g&quot;</span><span class="ot"> id=</span><span class="st">&quot;g4&quot;</span><span class="ot"> value=</span><span class="st">&quot;N&quot;</span><span class="kw">&gt;</span> None<span class="kw">&lt;/label&gt;&lt;/p&gt;</span>
+  <span class="kw">&lt;p&gt;&lt;label</span><span class="ot"> for=</span><span class="st">&quot;g5&quot;</span><span class="kw">&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;g&quot;</span><span class="ot"> id=</span><span class="st">&quot;g5&quot;</span><span class="ot"> value=</span><span class="st">&quot;!&quot;</span><span class="kw">&gt;</span> This is not your concern!<span class="kw">&lt;/label&gt;&lt;/p&gt;</span>
+  <span class="kw">&lt;p&gt;&lt;label</span><span class="ot"> for=</span><span class="st">&quot;g6&quot;</span><span class="kw">&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;g&quot;</span><span class="ot"> id=</span><span class="st">&quot;g6&quot;</span><span class="ot"> value=</span><span class="st">&quot;?&quot;</span><span class="kw">&gt;</span> Who cares?<span class="kw">&lt;/label&gt;&lt;/p&gt;</span>
+  <span class="kw">&lt;p&gt;&lt;label</span><span class="ot"> for=</span><span class="st">&quot;g7&quot;</span><span class="kw">&gt;&lt;input</span><span class="ot"> type=</span><span class="st">&quot;radio&quot;</span><span class="ot"> name=</span><span class="st">&quot;g&quot;</span><span class="ot"> id=</span><span class="st">&quot;g7&quot;</span><span class="ot"> value=</span><span class="st">&quot;\o/&quot;</span><span class="kw">&gt;</span> Obi-Wan Kenobi<span class="kw">&lt;/label&gt;&lt;/p&gt;</span>
+<span class="kw">&lt;/fieldset&gt;</span></code></pre>
+<h2 id="buttons">Buttons</h2>
+<p>Within HTML forms, there are three kinds of button:</p>
+<ul>
+<li><strong>Submit</strong></li>
+</ul>
+<p>Sends the form data to the server.</p>
+<ul>
+<li><strong>Reset</strong></li>
+</ul>
+<p>Resets all form widgets to their default values.</p>
+<ul>
+<li><strong>Anonymous</strong></li>
+</ul>
+<p>Buttons that have no automatic effect but can be customized using JavaScript code.</p>
+<h2 id="buttons-1">Buttons</h2>
+<p>A button is created using a <code>&lt;button&gt;</code> element or an <code>&lt;input&gt;</code> element. It's the value of the type attribute that specifies what kind of button is displayed:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="co">&lt;!-- Submit --&gt;</span>
+<span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="kw">&gt;</span>
+    This a <span class="kw">&lt;br&gt;&lt;strong&gt;</span>submit button<span class="kw">&lt;/strong&gt;</span>
+<span class="kw">&lt;/button&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;This is a submit button&quot;</span><span class="kw">&gt;</span></code></pre>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="co">&lt;!-- Reset --&gt;</span>
+<span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;reset&quot;</span><span class="kw">&gt;</span>
+    This a <span class="kw">&lt;br&gt;&lt;strong&gt;</span>reset button<span class="kw">&lt;/strong&gt;</span>
+<span class="kw">&lt;/button&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;reset&quot;</span><span class="ot"> value=</span><span class="st">&quot;This is a reset button&quot;</span><span class="kw">&gt;</span></code></pre>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="co">&lt;!-- Anonymous --&gt;</span>
+<span class="kw">&lt;button</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span><span class="kw">&gt;</span>
+    This an <span class="kw">&lt;br&gt;&lt;strong&gt;</span>anonymous button<span class="kw">&lt;/strong&gt;</span>
+<span class="kw">&lt;/button&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;button&quot;</span><span class="ot"> value=</span><span class="st">&quot;This is an anonymous button&quot;</span><span class="kw">&gt;</span></code></pre>
+<h2 id="numbers">Numbers</h2>
+<p>Widgets for numbers are created with the <code>&lt;input&gt;</code> element with its type attribute set to the value <strong>number</strong>. This control looks like a text field but allows only floating-point numbers, and usually provides some buttons to increase or decrease the value of the widget.</p>
+<p>It's also possible to constrain the value by setting the <code>min</code> and <code>max</code> attributes. You can also specify the amount by which the increase and decrease buttons change the widget's value by setting the <code>step</code> attribute.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;number&quot;</span><span class="ot"> min=</span><span class="st">&quot;1&quot;</span><span class="ot"> max=</span><span class="st">&quot;10&quot;</span><span class="ot"> step=</span><span class="st">&quot;2&quot;</span><span class="kw">&gt;</span></code></pre>
+<h2 id="sliders">Sliders</h2>
+<p>Another way to pick a number is to use a slider. Because, visually speaking, these are less accurate than text fields, sliders are used to pick a number whose exact value is not necessarily important.</p>
+<p>A slider is created by using the <code>&lt;input&gt;</code> with its type attribute set to the value <strong>range</strong>. It's also highly recommended that you set the <code>min</code>, <code>max</code>, and <code>step</code> attributes.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;range&quot;</span><span class="ot"> min=</span><span class="st">&quot;1&quot;</span><span class="ot"> max=</span><span class="st">&quot;5&quot;</span><span class="ot"> step=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span></code></pre>
+<h2 id="date-and-time-picker">Date and time picker</h2>
+<p>Gathering date and time values has traditionally been a nightmare for web developers. HTML5 brings some enhancements here by providing a special control to handle this specific kind of data.</p>
+<p>A date and time control is created using the <code>&lt;input&gt;</code> element and the proper value for the type attribute. Because you may wish to collect a date, a time, or both, there are several different available values for the <code>type</code> attribute.</p>
+<h2 id="date-and-time-picker-1">Date and time picker</h2>
+<p>This creates a widget to display and pick a date but without any time.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;date&quot;</span><span class="kw">&gt;</span></code></pre>
+<p>This creates a widget to display and pick a date with time in the UTC time zone.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;datetime&quot;</span><span class="kw">&gt;</span></code></pre>
+<p>This creates a widget to display and pick a date with time in any specific time zone.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;datetime-local&quot;</span><span class="kw">&gt;</span></code></pre>
+<h2 id="date-and-time-picker-2">Date and time picker</h2>
+<p>This creates a widget to display and pick a month with a year.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;month&quot;</span><span class="kw">&gt;</span></code></pre>
+<p>This creates a widget to display and pick a time value.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;time&quot;</span><span class="kw">&gt;</span></code></pre>
+<p>This creates a widget to display and pick a week number and its year.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;week&quot;</span><span class="kw">&gt;</span></code></pre>
+<h2 id="date-and-time-picker-3">Date and time picker</h2>
+<p>All date and time control can be constrained using the min and max attributes.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;label</span><span class="ot"> for=</span><span class="st">&quot;myDate&quot;</span><span class="kw">&gt;</span>When are you available this summer?<span class="kw">&lt;/label&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;date&quot;</span><span class="ot"> min=</span><span class="st">&quot;2013-06-01&quot;</span><span class="ot"> max=</span><span class="st">&quot;2013-08-31&quot;</span><span class="ot"> id=</span><span class="st">&quot;myDate&quot;</span><span class="kw">&gt;</span></code></pre>
+<h2 id="file-picker">File picker</h2>
+<p>HTML forms are able to send files to a server. The file picker widget is how the user can choose one or more files to send.</p>
+<p>To create a file picker widget, you use the <code>&lt;input&gt;</code> element with its type attribute set to file. The types of files that are accepted can be constrained using the <code>accept</code> attribute. In addition, if you want to let the user pick more than one file, you can do so by adding the <code>multiple</code> attribute.</p>
+<p>In this example, a file picker is created requesting graphic image files. The user is allowed to select multiple files.</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;file&quot;</span><span class="ot"> accept=</span><span class="st">&quot;image/*&quot;</span><span class="ot"> multiple</span><span class="kw">&gt;</span></code></pre>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
