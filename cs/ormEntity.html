@@ -229,7 +229,7 @@ public class Post
 
     public DbSet&lt;Blog&gt; Blogs { get; set; }
     public DbSet&lt;Post&gt; Posts { get; set; }
-    
+
     //To access the fluent API you override the OnModelCreating method in DbContext
     protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
     {
@@ -242,7 +242,7 @@ public class Post
 <pre class="sourceCode XML"><code class="sourceCode xml">  <span class="kw">&lt;connectionStrings&gt;</span>
     <span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">&quot;BlogContextConStringName&quot;</span><span class="ot"> connectionString=</span><span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span><span class="ot">  providerName=</span><span class="st">&quot;System.Data.SqlClient&quot;</span><span class="kw">/&gt;</span>
   <span class="kw">&lt;/connectionStrings&gt;</span></code></pre>
-<pre class="sourceCode Json"><code class="sourceCode json">  { 
+<pre class="sourceCode Json"><code class="sourceCode json">  {
       <span class="dt">&quot;ConnectionStrings&quot;</span>: {
         <span class="dt">&quot;BlogContextConStringName&quot;</span>: <span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span>
       }
@@ -342,15 +342,15 @@ public class Post
 <p>Other stuff Linq can perform</p>
 <pre class="csharp"><code>public static void CounAllPosts()
 {
-    using (var db = new BlogContext()) {
-        var totalPost = db.Posts.Count();
-        Console.WriteLine($&quot;Total posts {totalPost}&quot;);
+  using (var db = new BlogContext()) {
+    var totalPost = db.Posts.Count();
+    Console.WriteLine($&quot;Total posts {totalPost}&quot;);
 
-        var sumTotalLikesInPosts = db.Posts.Sum(x=&gt;x.Likes);
-        Console.WriteLine($&quot;Total posts likes {sumTotalLikesInPosts}&quot;);
+    var sumTotalLikesInPosts = db.Posts.Sum(x=&gt;x.Likes);
+    Console.WriteLine($&quot;Total posts likes {sumTotalLikesInPosts}&quot;);
 
-        //...
-    }
+    //...
+  }
 }</code></pre>
 <h2 id="seeding">Seeding</h2>
 <p>.</p>
@@ -365,25 +365,29 @@ public class Post
 <li>asp.net website</li>
 </ul>
 <h2 id="inheritancemapping-strategies">InheritanceMapping Strategies</h2>
-<p>InheritanceMapping Strategies<br />● Table Per Type<br />● Table Per Hierarchy<br />● Table Per Concrete Type</p>
-<p>● Table Per Type<br /> ● One table for each type, including abstract base types.<br /> ● Most normalized<br /> ● Least performant (generally)</p>
-<p>● Table Per Hierarchy<br /> ● All types crammed into 1 table<br /> ● Least normalized, cannot enforce NOT NULL at the DB level<br /> ● NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.</p>
-<p>● Table Per Concrete Type<br /> ● A table per instantiatable class (base class properties folded into each class)<br /> ● Balance of the former two options</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>origin/master:courses/cs/ormEntity.md</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>InheritanceMapping Strategies</p>
+<ul>
+<li>Table Per Type<br /></li>
+<li>Table Per Hierarchy<br /></li>
+<li>Table Per Concrete Type</li>
+</ul>
+<h2 id="table-per-type">Table Per Type</h2>
+<ul>
+<li>One table for each type, including abstract base types.<br /></li>
+<li>Most normalized<br /></li>
+<li>Least performant (generally)</li>
+</ul>
+<h2 id="table-per-hierarchy">Table Per Hierarchy</h2>
+<ul>
+<li>All types crammed into 1 table<br /></li>
+<li>Least normalized, cannot enforce NOT NULL at the DB level<br /></li>
+<li>NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.</li>
+</ul>
+<h2 id="table-per-concrete-type">Table Per Concrete Type</h2>
+<ul>
+<li>A table per instantiatable class (base class properties folded into each class)<br /></li>
+<li>Balance of the former two options</li>
+</ul>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
