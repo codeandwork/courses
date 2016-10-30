@@ -13,3 +13,6 @@
 * [Inner & Outer Joins and Aggregates](cs/sqlJoins.md)
 * [Advanced queries](cs/sqlAdvancedQueries.md)
 * [Consuming data in C# with ADO.NET](cs/adonet.md)
+
+## ORMs - Entity Framework
+* [ORMs - Entity Framework an orm written in C# from asp.net team](cs/5_ormEf.md)
