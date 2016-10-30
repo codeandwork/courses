@@ -415,16 +415,167 @@ public static void CounAllPosts()
 ```
 
 
-##Seeding
-.
+##Data Annotation -- Fluent API 1/4
+
+* Code First allows you to use your own domain classes to represent the model but it **is not enough to use conventions**.
+* We need configurations to tell EF how to map the object model to the database model.
+* Code first gives you two ways to add these configurations to your classes. One is using simple attributes called DataAnnotations and the other is using code first’s Fluent API
 
 
-##Data Annotation -- Fluent API
-.
+##Data Annotation -- Fluent API 2/4
+
+Note! DataAnnotations only give you subset of configuration options. Fluent API provides full set of configuration options available in Code First. 
+
+```csharp
+[Table("Product_Order")]
+public class Order
+{
+    [Key]
+    [Column("Order_ID")]
+    public int Id { get; set; }
+    public DateTime? Date { get; set; }
+    public OrderState State { get; set; }
+    public string Item { get; set; }
+    [Range(1,25)]
+    public int Quantity { get; set; }
+    [MinLength(3, ErrorMessage="What are you thinking??")]
+    [MaxLength(50, ErrorMessage="ERROR!! FAILZ!!!")]
+    public string Name { get; set; }
+    [NotMapped]
+    public string Note { get; set; }
+
+    [InverseProperty("Order")]
+    public virtual ICollection<Product> Products { get; set; }
+}
+```
+
+
+##Data Annotation -- Fluent API 3/4
+
+The code first fluent API is most commonly accessed by overriding the OnModelCreating method on your derived DbContext. 
+
+```csharp
+public class BlogContext : DbContext
+{
+	public BlogContext() : base ("BlogContextConStringName")
+	{
+	}
+	
+	//To access the fluent API you override the OnModelCreating method in DbContext
+	protected override void OnModelCreating(DbModelBuilder modelBuilder)
+	{
+        modelBuilder.Entity<User>()
+            .Property(u => u.DisplayName)
+            .HasColumnName("display_name");
+        
+        //Configuring a Primary Key
+        modelBuilder.Entity<OfficeAssignment>()
+            .HasKey(t => t.InstructorID);
+        //Configuring the Property to be Required
+        modelBuilder.Entity<Department>()
+            .Property(d => d.Name).IsRequired();
+        //Specifying the Maximum Length on a Property
+        modelBuilder.Entity<Department>()
+            .Property(d => d.Name).HasMaxLength(50);
+	}
+}
+```
+
+
+##Data Annotation -- Fluent API 4/4
+###A Comparison
+
+```csharp
+
+//Data Annotation
+[Column("Order_ID")]
+public int Id { get; set; }
+
+//Fluent API
+modelBuilder.Entity<Order>()
+            .Property(d => d.Id).HasColumnName("Order_ID");
+
+```
+
+> yeah, Attributes are very cool...
+
+
+##Data Annotation Attributes 1/4
+
+| Attribute         | Desription                                                    |
+| ----------------- |:-------------------------------------------------------------:|
+| Required 			| The Required annotation will force EF (and MVC) to ensure that property has data in it. |
+| MinLength 		| MinLength annotation validates property whether it has minimum length of string.|
+| MaxLength 		| MaxLength annotation maximum length of property which in turn sets the maximum length of column in the database |
+| StringLength 		| Specifies the minimum and maximum length of characters that are allowed in a data field. |
+
+
+##Data Annotation Attributes 2/4
+
+| Attribute         | Desription                                                    |
+| ----------------- |:-------------------------------------------------------------:|
+| Table 		    | Specify name of the DB table which will be mapped with the class |
+| Column 		    | Specify column name and datatype which will be mapped with the property |
+| Index 		    | Create an Index for specified column. (EF 6.1 onwards only) |
+| ForeignKey 		| Specify Foreign key property for Navigation property |
+| NotMapped 		| Create an Index for specified column. (EF 6.1 onwards only) |
+
+
+##Data Annotation Attributes 3/4
+
+| Attribute         | Desription                                                    |
+| ----------------- |:-------------------------------------------------------------:|
+| DatabaseGenerated	| DatabaseGenerated attribute specifies that property will be mapped to Computed column of the database table. So the property will be read-only property. It can also be used to map the property to identity column |
+| InverseProperty	| InverseProperty is useful when you have multiple relationships between two classes. |
+
+
+##Data Annotation Attributes 4/4
+
+| Attribute         | Desription                                                    |
+| ----------------- |:-------------------------------------------------------------:|
+| Key 				| Mark property as EntityKey which will be mapped to PK of related table. |
+| Timestamp 		| Mark the property as a non-nullable timestamp column in the database.|
+| Concurrency Check 	| ConcurrencyCheck annotation allows you to flag one or more properties to be used for concurrency checking in the database when a user edits or deletes an entity. |
+
+
+##Seeding 1/3
+
+* The Entity Framework can automatically create (or drop and re-create) a database for you when the application runs. 
+* You can specify that this should be done every time your application runs or only when the model is out of sync with the existing database. 
+* You can also write a Seed method that the Entity Framework automatically calls after creating the database in order to populate it with test data. 
+
+
+##Seeding 2/3
+
+* In the Migrations Folder you will find a Configuration.cs with a Seed Method
+* This method will be called after migrating to the latest version. (after calling >Update-Database)
+* You can use the DbSet<T>.AddOrUpdate() helper extension method to avoid creating duplicate seed data
+
+
+##Seeding 3/3
+
+```csharp
+
+protected override void Seed(BlogContext context)
+{
+    context.Blogs.AddOrUpdate(
+        b => b.Title,
+        new Blog() { Title = "My Ef Blog" },
+        new Blog() { Title = "My .Net Blog" }
+    );
+    
+    context.SaveChanges();
+}
+
+```
 
 
 ##Sql Server Profiler
-.
+Microsoft SQL Server Profiler is a graphical user interface to SQL Trace for monitoring an instance of the Database Engine or Analysis Services. You can capture and save data about each event to a file or table to analyze later.
+
+###Dont forget
+
+>Inspecting your Entity Framework SQL
 
 
 ## Training
@@ -433,27 +584,3 @@ public static void CounAllPosts()
     best course -> [entity framework enterprise](https://www.pluralsight.com/courses/entity-framework-enterprise-update)
 * Microsoft Virtual Academy (MVA)
 * asp.net website
-
-
-
-## InheritanceMapping Strategies
-
-InheritanceMapping Strategies    
-●   Table Per Type    
-●   Table Per Hierarchy    
-●   Table Per Concrete Type 
-
-● Table Per Type
-    ● One table for each type, including abstract base types.
-    ● Most normalized
-    ● Least performant (generally)
-    
-●   Table Per Hierarchy  
-    ● All types crammed into 1 table
-    ● Least normalized, cannot enforce NOT NULL at the DB level
-    ● NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.
-  
-●   Table Per Concrete Type 
-    ● A table per instantiatable class (base class properties folded into each class)
-    ● Balance of the former two options
->>>>>>> origin/master:courses/cs/ormEntity.md
