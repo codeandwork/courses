@@ -229,7 +229,7 @@ public class Post
 
     public DbSet&lt;Blog&gt; Blogs { get; set; }
     public DbSet&lt;Post&gt; Posts { get; set; }
-
+    
     //To access the fluent API you override the OnModelCreating method in DbContext
     protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
     {
@@ -242,7 +242,7 @@ public class Post
 <pre class="sourceCode XML"><code class="sourceCode xml">  <span class="kw">&lt;connectionStrings&gt;</span>
     <span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">&quot;BlogContextConStringName&quot;</span><span class="ot"> connectionString=</span><span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span><span class="ot">  providerName=</span><span class="st">&quot;System.Data.SqlClient&quot;</span><span class="kw">/&gt;</span>
   <span class="kw">&lt;/connectionStrings&gt;</span></code></pre>
-<pre class="sourceCode Json"><code class="sourceCode json">  {
+<pre class="sourceCode Json"><code class="sourceCode json">  { 
       <span class="dt">&quot;ConnectionStrings&quot;</span>: {
         <span class="dt">&quot;BlogContextConStringName&quot;</span>: <span class="st">&quot;Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true&quot;</span>
       }
@@ -342,51 +342,220 @@ public class Post
 <p>Other stuff Linq can perform</p>
 <pre class="csharp"><code>public static void CounAllPosts()
 {
-  using (var db = new BlogContext()) {
-    var totalPost = db.Posts.Count();
-    Console.WriteLine($&quot;Total posts {totalPost}&quot;);
+    using (var db = new BlogContext()) {
+        var totalPost = db.Posts.Count();
+        Console.WriteLine($&quot;Total posts {totalPost}&quot;);
 
-    var sumTotalLikesInPosts = db.Posts.Sum(x=&gt;x.Likes);
-    Console.WriteLine($&quot;Total posts likes {sumTotalLikesInPosts}&quot;);
+        var sumTotalLikesInPosts = db.Posts.Sum(x=&gt;x.Likes);
+        Console.WriteLine($&quot;Total posts likes {sumTotalLikesInPosts}&quot;);
 
-    //...
-  }
+        //...
+    }
 }</code></pre>
-<h2 id="seeding">Seeding</h2>
-<p>.</p>
-<h2 id="data-annotation----fluent-api">Data Annotation -- Fluent API</h2>
-<p>.</p>
+<h2 id="data-annotation----fluent-api-14">Data Annotation -- Fluent API 1/4</h2>
+<ul>
+<li>Code First allows you to use your own domain classes to represent the model but it <strong>is not enough to use conventions</strong>.<br /></li>
+<li>We need configurations to tell EF how to map the object model to the database model.<br /></li>
+<li>Code first gives you two ways to add these configurations to your classes. One is using simple attributes called DataAnnotations and the other is using code first’s Fluent API</li>
+</ul>
+<h2 id="data-annotation----fluent-api-24">Data Annotation -- Fluent API 2/4</h2>
+<p>Note! DataAnnotations only give you subset of configuration options. Fluent API provides full set of configuration options available in Code First.</p>
+<pre class="csharp"><code>[Table(&quot;Product_Order&quot;)]
+public class Order
+{
+    [Key]
+    [Column(&quot;Order_ID&quot;)]
+    public int Id { get; set; }
+    public DateTime? Date { get; set; }
+    public OrderState State { get; set; }
+    public string Item { get; set; }
+    [Range(1,25)]
+    public int Quantity { get; set; }
+    [MinLength(3, ErrorMessage=&quot;What are you thinking??&quot;)]
+    [MaxLength(50, ErrorMessage=&quot;ERROR!! FAILZ!!!&quot;)]
+    public string Name { get; set; }
+    [NotMapped]
+    public string Note { get; set; }
+
+    [InverseProperty(&quot;Order&quot;)]
+    public virtual ICollection&lt;Product&gt; Products { get; set; }
+}</code></pre>
+<h2 id="data-annotation----fluent-api-34">Data Annotation -- Fluent API 3/4</h2>
+<p>The code first fluent API is most commonly accessed by overriding the OnModelCreating method on your derived DbContext. </p>
+<pre class="csharp"><code>public class BlogContext : DbContext
+{
+    public BlogContext() : base (&quot;BlogContextConStringName&quot;)
+    {
+    }
+    
+    //To access the fluent API you override the OnModelCreating method in DbContext
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity&lt;User&gt;()
+            .Property(u =&gt; u.DisplayName)
+            .HasColumnName(&quot;display_name&quot;);
+        
+        //Configuring a Primary Key
+        modelBuilder.Entity&lt;OfficeAssignment&gt;()
+            .HasKey(t =&gt; t.InstructorID);
+        //Configuring the Property to be Required
+        modelBuilder.Entity&lt;Department&gt;()
+            .Property(d =&gt; d.Name).IsRequired();
+        //Specifying the Maximum Length on a Property
+        modelBuilder.Entity&lt;Department&gt;()
+            .Property(d =&gt; d.Name).HasMaxLength(50);
+    }
+}</code></pre>
+<h2 id="data-annotation----fluent-api-44">Data Annotation -- Fluent API 4/4</h2>
+<h3 id="a-comparison">A Comparison</h3>
+<pre class="csharp"><code>
+//Data Annotation
+[Column(&quot;Order_ID&quot;)]
+public int Id { get; set; }
+
+//Fluent API
+modelBuilder.Entity&lt;Order&gt;()
+            .Property(d =&gt; d.Id).HasColumnName(&quot;Order_ID&quot;);
+</code></pre>
+<blockquote>
+<p>yeah, Attributes are very cool...</p>
+</blockquote>
+<h2 id="data-annotation-attributes-14">Data Annotation Attributes 1/4</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Attribute</th>
+<th align="center">Desription</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Required</td>
+<td align="center">The Required annotation will force EF (and MVC) to ensure that property has data in it.</td>
+</tr>
+<tr class="even">
+<td align="left">MinLength</td>
+<td align="center">MinLength annotation validates property whether it has minimum length of string.</td>
+</tr>
+<tr class="odd">
+<td align="left">MaxLength</td>
+<td align="center">MaxLength annotation maximum length of property which in turn sets the maximum length of column in the database</td>
+</tr>
+<tr class="even">
+<td align="left">StringLength</td>
+<td align="center">Specifies the minimum and maximum length of characters that are allowed in a data field.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-annotation-attributes-24">Data Annotation Attributes 2/4</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Attribute</th>
+<th align="center">Desription</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Table</td>
+<td align="center">Specify name of the DB table which will be mapped with the class</td>
+</tr>
+<tr class="even">
+<td align="left">Column</td>
+<td align="center">Specify column name and datatype which will be mapped with the property</td>
+</tr>
+<tr class="odd">
+<td align="left">Index</td>
+<td align="center">Create an Index for specified column. (EF 6.1 onwards only)</td>
+</tr>
+<tr class="even">
+<td align="left">ForeignKey</td>
+<td align="center">Specify Foreign key property for Navigation property</td>
+</tr>
+<tr class="odd">
+<td align="left">NotMapped</td>
+<td align="center">Create an Index for specified column. (EF 6.1 onwards only)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-annotation-attributes-34">Data Annotation Attributes 3/4</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Attribute</th>
+<th align="center">Desription</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">DatabaseGenerated</td>
+<td align="center">DatabaseGenerated attribute specifies that property will be mapped to Computed column of the database table. So the property will be read-only property. It can also be used to map the property to identity column</td>
+</tr>
+<tr class="even">
+<td align="left">InverseProperty</td>
+<td align="center">InverseProperty is useful when you have multiple relationships between two classes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-annotation-attributes-44">Data Annotation Attributes 4/4</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Attribute</th>
+<th align="center">Desription</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Key</td>
+<td align="center">Mark property as EntityKey which will be mapped to PK of related table.</td>
+</tr>
+<tr class="even">
+<td align="left">Timestamp</td>
+<td align="center">Mark the property as a non-nullable timestamp column in the database.</td>
+</tr>
+<tr class="odd">
+<td align="left">Concurrency Check</td>
+<td align="center">ConcurrencyCheck annotation allows you to flag one or more properties to be used for concurrency checking in the database when a user edits or deletes an entity.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="seeding-13">Seeding 1/3</h2>
+<ul>
+<li>The Entity Framework can automatically create (or drop and re-create) a database for you when the application runs.<br /></li>
+<li>You can specify that this should be done every time your application runs or only when the model is out of sync with the existing database.<br /></li>
+<li>You can also write a Seed method that the Entity Framework automatically calls after creating the database in order to populate it with test data.</li>
+</ul>
+<h2 id="seeding-23">Seeding 2/3</h2>
+<ul>
+<li>In the Migrations Folder you will find a Configuration.cs with a Seed Method<br /></li>
+<li>This method will be called after migrating to the latest version. (after calling &gt;Update-Database)<br /></li>
+<li>You can use the DbSet<T>.AddOrUpdate() helper extension method to avoid creating duplicate seed data</li>
+</ul>
+<h2 id="seeding-33">Seeding 3/3</h2>
+<pre class="csharp"><code>
+protected override void Seed(BlogContext context)
+{
+    context.Blogs.AddOrUpdate(
+        b =&gt; b.Title,
+        new Blog() { Title = &quot;My Ef Blog&quot; },
+        new Blog() { Title = &quot;My .Net Blog&quot; }
+    );
+    
+    context.SaveChanges();
+}
+</code></pre>
 <h2 id="sql-server-profiler">Sql Server Profiler</h2>
-<p>.</p>
+<p>Microsoft SQL Server Profiler is a graphical user interface to SQL Trace for monitoring an instance of the Database Engine or Analysis Services. You can capture and save data about each event to a file or table to analyze later.</p>
+<h3 id="dont-forget">Dont forget</h3>
+<blockquote>
+<p>Inspecting your Entity Framework SQL</p>
+</blockquote>
 <h2 id="training">Training</h2>
 <ul>
 <li>Pluralsight<br /> best course -&gt; <a href="https://www.pluralsight.com/courses/entity-framework-enterprise-update">entity framework enterprise</a><br /></li>
 <li>Microsoft Virtual Academy (MVA)<br /></li>
 <li>asp.net website</li>
-</ul>
-<h2 id="inheritancemapping-strategies">InheritanceMapping Strategies</h2>
-<p>InheritanceMapping Strategies</p>
-<ul>
-<li>Table Per Type<br /></li>
-<li>Table Per Hierarchy<br /></li>
-<li>Table Per Concrete Type</li>
-</ul>
-<h2 id="table-per-type">Table Per Type</h2>
-<ul>
-<li>One table for each type, including abstract base types.<br /></li>
-<li>Most normalized<br /></li>
-<li>Least performant (generally)</li>
-</ul>
-<h2 id="table-per-hierarchy">Table Per Hierarchy</h2>
-<ul>
-<li>All types crammed into 1 table<br /></li>
-<li>Least normalized, cannot enforce NOT NULL at the DB level<br /></li>
-<li>NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.</li>
-</ul>
-<h2 id="table-per-concrete-type">Table Per Concrete Type</h2>
-<ul>
-<li>A table per instantiatable class (base class properties folded into each class)<br /></li>
-<li>Balance of the former two options</li>
 </ul>
 
 <hr />
