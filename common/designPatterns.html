@@ -38,13 +38,16 @@
 <li>Hierarchy</li>
 </ul>
 <h2 id="design-patterns---a-motivating-example">Design Patterns - A Motivating Example</h2>
+<ul class="fragment">
+<li>Bootcamp course and a few stakeholders (Students and Instructors)</li>
+<li>Any change in the course must be notified to all the stakeholders</li>
+<li class="fragment">Now, think about its implementation
+</li></ul>
+
+
+
+
 <h2 id="design-patterns---a-motivating-example-1">Design Patterns - A Motivating Example</h2>
-<ul>
-<li>Bootcamp course and a few stakeholders (Students and Instructors)<br /></li>
-<li>Any change in the course must be notified to all the stakeholders<br /></li>
-<li>Now, think about its implementation</li>
-</ul>
-<h2 id="design-patterns---a-motivating-example-2">Design Patterns - A Motivating Example</h2>
 <p><img src="media/observerMotivation.png" /></p>
 <h2 id="implementation">Implementation</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Course {
@@ -59,6 +62,16 @@
         instructor.<span class="fu">update</span>();    
     }
 }</code></pre>
+<h2 id="implementation---cont.">Implementation - Cont.</h2>
+<ul>
+<li>Course class is "tightly-coupled" to Student and Instructor classes.</li>
+<li class="fragment">Is it easy to add a new observer (a new Student or a new Instructor)?
+<ul><li>You need to make multiple changes</li>
+<li class="fragment">What about adding a new category of observers; for example "Organizers"!</li>
+</ul></ul>
+
+
+
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
