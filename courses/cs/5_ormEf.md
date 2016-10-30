@@ -29,11 +29,6 @@ It tries to abstract the database access, so if you change from **mssql** to **m
 * Complex Queries: when executing **real complex queries** you will find yourself writing raw SQL.
 * Tuning: When you know SQL language and your default DBMS well, then you can make queries faster but this is not the same when using ORM.
 
-
-* Slow: if you compare the performance between writing raw SQL & ORM, raw is much faster as there is no translation layer. (can be beaten)
-* Complex Queries: when executing **real complex queries** you will find yourself writing raw SQL.
-* Tuning: When you know SQL language and your default DBMS well, then you can make queries faster but this is not the same when using ORM.
-
 ### In general
 ORM are not so well in addressing relational database specific features.
 
@@ -73,6 +68,7 @@ NHibernate
 *   LGPL Open Source    
 *   Been around since 2007 (Hibernate since 2001)
 *   Large community
+*   Full featured
 
 Dapper
 *   stack overflow's orm
@@ -182,6 +178,7 @@ public class Post
 }
 ```
 
+
 ## 1. Design our Domain Model 2/2
 
 When we are designing our model we have in mind some conventions.
@@ -248,7 +245,7 @@ Depending on your configuration file
 
 ```XML
   <connectionStrings>
-    <add name="BlogContextConStringName" connectionString="Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true"/>
+    <add name="BlogContextConStringName" connectionString="Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true"  providerName="System.Data.SqlClient"/>
   </connectionStrings>
 ```
 ```Json
@@ -405,38 +402,34 @@ Other stuff Linq can perform
 ```csharp
 public static void CounAllPosts()
 {
-	using (var db = new BlogContext()) {
-		var totalPost = db.Posts.Count();
-		Console.WriteLine($"Total posts {totalPost}");
-	}
+    using (var db = new BlogContext()) {
+        var totalPost = db.Posts.Count();
+        Console.WriteLine($"Total posts {totalPost}");
+
+        var sumTotalLikesInPosts = db.Posts.Sum(x=>x.Likes);
+        Console.WriteLine($"Total posts likes {sumTotalLikesInPosts}");
+
+    	//...
+    }
 }
 ```
+
+
+##Seeding
+.
+
+
+##Data Annotation -- Fluent API
+.
+
+
+##Sql Server Profiler
+.
 
 
 ## Training
 
 * Pluralsight 
+    best course -> [entity framework enterprise](https://www.pluralsight.com/courses/entity-framework-enterprise-update)
 * Microsoft Virtual Academy (MVA)
 * asp.net website
-
-
-## InheritanceMapping Strategies
-
-InheritanceMapping Strategies    
-●   Table Per Type    
-●   Table Per Hierarchy    
-●   Table Per Concrete Type 
-
-● Table Per Type
-    ● One table for each type, including abstract base types.
-    ● Most normalized
-    ● Least performant (generally)
-    
-●   Table Per Hierarchy  
-    ● All types crammed into 1 table
-    ● Least normalized, cannot enforce NOT NULL at the DB level
-    ● NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.
-  
-●   Table Per Concrete Type 
-    ● A table per instantiatable class (base class properties folded into each class)
-    ● Balance of the former two options
