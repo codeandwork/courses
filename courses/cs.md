@@ -6,6 +6,7 @@
 
 ## Web development
 * [HTML](common/web-html.md)
+* [CSS](common/web-css.md)
 
 ## Databases
 * [ER-Diagrams, Joins and simple SQL Queries](cs/sqlErdSimpleQueries.md)
