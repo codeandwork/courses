@@ -1,13 +1,13 @@
 ## ORM
 
-Object-relational mapping is a programming technique for converting data between incompatible type systems in object-oriented programming languages. 
+Object-relational mapping is a programming technique for converting data between incompatible type systems in object-oriented programming languages.
 
 
 ## ORM in simple words
 
-It's good for abstracting the datastore 
+It's good for abstracting the datastore
 
-(SQL / XML / Json / flat file / whatever) 
+(SQL / XML / Json / flat file / whatever)
 
 out in order to provide an interface that can be used in your code.
 
@@ -16,7 +16,7 @@ It tries to abstract the database access, so if you change from **mssql** to **m
 
 ## ORMs pros
 
-* Huge reduction in code. 
+* Huge reduction in code.
 * ORM usually helps you create a developer friendly work flow
 * ORM helps you focus on object oriented world and then takes you towards relational world.
 * ORM works well when you have simple CRUD cases.
@@ -43,7 +43,7 @@ ORM are not so well in addressing relational database specific features.
 ## The ORM Myth 2
 
 > “The database is a bucket”
-                
+
 -Me being totally wrong...
 
 
@@ -85,7 +85,7 @@ Entity Framework is an open source orm framework from asp.net team. There are 2 
 EF 6 is a tried and tested data access technology with many years of features and stabilization
 * Entity Framework Core 1.x (since June 2016)
 
-EF Core is a lightweight, extensible, and cross-platform version of Entity Framework. 
+EF Core is a lightweight, extensible, and cross-platform version of Entity Framework.
 EF Core introduces many improvements and new features when compared with EF6.x but some features from EF6 are not yet implemented.
 
 
@@ -118,7 +118,7 @@ EF Core introduces many improvements and new features when compared with EF6.x b
 
 ## Database First
 
-It enables you to create model from an existing database (like SQL Server, Oracle, DB2 etc.). 
+It enables you to create model from an existing database (like SQL Server, Oracle, DB2 etc.).
 
 This approach reduces the amount of code that we need to write since it automatically generates code. But it also limits us to work with the structure of the generated code.
 
@@ -228,7 +228,7 @@ public class BlogContext : DbContext
 
 	public DbSet<Blog> Blogs { get; set; }
 	public DbSet<Post> Posts { get; set; }
-	
+
 	//To access the fluent API you override the OnModelCreating method in DbContext
 	protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
 	{
@@ -238,8 +238,8 @@ public class BlogContext : DbContext
 ```
 
 
-## 3. Configure the Connection String 
-Depending on your configuration file 
+## 3. Configure the Connection String
+Depending on your configuration file
 
 (app.config || web.config || appsettings.json)
 
@@ -249,7 +249,7 @@ Depending on your configuration file
   </connectionStrings>
 ```
 ```Json
-  { 
+  {
       "ConnectionStrings": {
         "BlogContextConStringName": "Server=.;Database=DemoEf6;User Id=sa;password=1234;MultipleActiveResultSets=true"
       }
@@ -265,7 +265,7 @@ To begin with Migrations:
 2. Create initial migration and auto-generate database.
 3. Update your database for your new migration
 
-To make changes in your model: 
+To make changes in your model:
 
 1. Make model changes in your code
 2. Add a new migration for model changes
@@ -374,7 +374,7 @@ public static void FindDataAndDelete()
 
 ## 5. Have Fun 5/6
 
-Join 
+Join
 
 ```csharp
 public static void ASimpleJoin()
@@ -402,15 +402,15 @@ Other stuff Linq can perform
 ```csharp
 public static void CounAllPosts()
 {
-    using (var db = new BlogContext()) {
-        var totalPost = db.Posts.Count();
-        Console.WriteLine($"Total posts {totalPost}");
+  using (var db = new BlogContext()) {
+    var totalPost = db.Posts.Count();
+    Console.WriteLine($"Total posts {totalPost}");
 
-        var sumTotalLikesInPosts = db.Posts.Sum(x=>x.Likes);
-        Console.WriteLine($"Total posts likes {sumTotalLikesInPosts}");
+    var sumTotalLikesInPosts = db.Posts.Sum(x=>x.Likes);
+    Console.WriteLine($"Total posts likes {sumTotalLikesInPosts}");
 
-    	//...
-    }
+    //...
+  }
 }
 ```
 
@@ -429,31 +429,32 @@ public static void CounAllPosts()
 
 ## Training
 
-* Pluralsight 
+* Pluralsight
     best course -> [entity framework enterprise](https://www.pluralsight.com/courses/entity-framework-enterprise-update)
 * Microsoft Virtual Academy (MVA)
 * asp.net website
 
 
-
 ## InheritanceMapping Strategies
 
 InheritanceMapping Strategies    
-●   Table Per Type    
-●   Table Per Hierarchy    
-●   Table Per Concrete Type 
+* Table Per Type    
+* Table Per Hierarchy    
+* Table Per Concrete Type
 
-● Table Per Type
-    ● One table for each type, including abstract base types.
-    ● Most normalized
-    ● Least performant (generally)
-    
-●   Table Per Hierarchy  
-    ● All types crammed into 1 table
-    ● Least normalized, cannot enforce NOT NULL at the DB level
-    ● NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.
-  
-●   Table Per Concrete Type 
-    ● A table per instantiatable class (base class properties folded into each class)
-    ● Balance of the former two options
->>>>>>> origin/master:courses/cs/ormEntity.md
+
+## Table Per Type
+* One table for each type, including abstract base types.
+* Most normalized
+* Least performant (generally)
+
+
+## Table Per Hierarchy  
+* All types crammed into 1 table
+* Least normalized, cannot enforce NOT NULL at the DB level
+* NHibernate will let you set NOT NULL, and will try to enforce it, causing issues.
+
+
+## Table Per Concrete Type
+* A table per instantiatable class (base class properties folded into each class)
+* Balance of the former two options
