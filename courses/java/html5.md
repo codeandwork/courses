@@ -291,6 +291,15 @@ Correct, but should be avoided
 * New multimedia elements: `<audio>` and `<video>`
 
 
+## Some interesting HTML5 elements
+
+* `<header>` and `<footer>` - define the header and footer
+* `<nav>` - defines the navigation area
+* `<main>` - defines the main content
+* `<section>` - defines different sections
+* `<article>` - declaring that the content is an article
+
+
 ## New APIs in HTML5
 
 * HTML Geolocation
@@ -299,15 +308,6 @@ Correct, but should be avoided
 * HTML Application Cache
 * HTML Web Workers
 * HTML Server-side events (SSE)
-
-
-## Some interesting HTML5 elements
-
-* `<header>` and `<footer>` - define the header and footer
-* `<nav>` - defines the navigation area
-* `<main>` - defines the main content
-* `<section>` - defines different sections
-* `<article>` - declaring that the content is an article
 
 
 ## HTML Forms
@@ -381,10 +381,10 @@ Defines a dropdown list
 
 ```html
 <select name="cities">
-    <option value="volvo">Athens</option>
-    <option value="saab">Barcelona</option>
-    <option value="audi">Rome</option>
-    <option value="fiat">Belgrade</option>
+    <option value="athens">Athens</option>
+    <option value="barcelona">Barcelona</option>
+    <option value="rome">Rome</option>
+    <option value="belgrade">Belgrade</option>
 </select>
 ```
 
@@ -450,10 +450,10 @@ Is displayed as
     Date of birth:<br>
     <input type="date" name="date-of-birth"><br>
     <select name="cities">
-        <option value="volvo">Athens</option>
-        <option value="saab">Barcelona</option>
-        <option value="audi">Rome</option>
-        <option value="fiat">Belgrade</option>
+        <option value="athens">Athens</option>
+        <option value="barcelona">Barcelona</option>
+        <option value="rome">Rome</option>
+        <option value="belgrade">Belgrade</option>
     </select><br>
     <input type="submit" value="Submit">
 </form>
@@ -467,10 +467,10 @@ Is displayed as
     Date of birth:<br>
     <input type="date" name="date-of-birth"><br>
     <select name="cities">
-        <option value="volvo">Athens</option>
-        <option value="saab">Barcelona</option>
-        <option value="audi">Rome</option>
-        <option value="fiat">Belgrade</option>
+        <option value="athens">Athens</option>
+        <option value="barcelona">Barcelona</option>
+        <option value="rome">Rome</option>
+        <option value="belgrade">Belgrade</option>
     </select><br>
     <input type="submit" value="Submit">
 </form>
@@ -512,9 +512,17 @@ Last, but **definitely** not least, code style is important!
 XHTML is a version of HTML that is valid XML - could be a good guideline though it's not a requirement.
 
 
+## References
+
+* [http://www.w3schools.com/](http://www.w3schools.com/)
+* [https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms)
+* [https://developer.mozilla.org/en-US/docs/Web/HTML/Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+* [http://stackoverflow.com/](http://stackoverflow.com/)
+
+
 ## Time to train
 
-![](media/jedi-training.jpg)
+<img src="media/jedi-training.jpg" alt="Time to train" height="336" width="500"/>
 
 
 ## Exercise 1
@@ -526,7 +534,7 @@ Make the image 128x128
 <html>
 <body>
 
-<img src="media/html5.png" width="512" height="512">
+<img src="media/html5.png">
 
 </body>
 </html>
@@ -553,7 +561,7 @@ Coding Bootcamp Link
 
 Add the correct heading hierarchy to the text below.
 
-Bonus: add your content there using paragraphs, or fill in [lorem ipsum text](http://www.lipsum.com/).
+**Bonus**: add your content there using paragraphs, or fill in [lorem ipsum text](http://www.lipsum.com/).
 
 * My Awesome Blog
   * Articles
@@ -666,6 +674,9 @@ Create a form that:
 * Has the following fields
   * `username`
   * `password`
+
+
+## Exercise 8
 
 ```html
 <!DOCTYPE html>
