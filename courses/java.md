@@ -22,6 +22,7 @@
 
 ## Front-end technologies
 * [Hello (front end) world!](common/hello.md)
+* [HTML5 and HTML forms](java/html5.md)
 
 ## Project week 1
 
