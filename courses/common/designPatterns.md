@@ -98,13 +98,22 @@ public class Student implements Observer{
 ```
 
 
-##Motivating example
+##A Motivating Example
 * Now, think again about adding new observers.
 * Is it easier?
 
 
-##Motivating example
+##A Motivating Example
 <ul>
 <li>Yes? WHY?</li>
 <li class="fragment">In the first implementation, Course class is "tightly-coupled" to Student and Instructor classes. While in the second case, Course class is "loosely-coupled" to it's observers.</li>
 </ul>
+
+
+##A Motivating Example
+![](media/observerExample.png)
+
+
+
+##Observer Design Pattern
+![](media/observer.png)
