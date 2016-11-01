@@ -62,9 +62,9 @@ Add one or more `row`s
 
 ```html
 <div class="container">
-    <row>
+    <div class="row">
         ...
-    </row>
+    </div>
 </div>
 ```
 
@@ -75,11 +75,11 @@ Add `col-*`s
 
 ```html
 <div class="container">
-    <row>
+    <div class="row">
         <div class="col-xs-4">I take 1/3 of the grid</div>
         <div class="col-xs-6">I take half the grid</div>
         <div class="col-xs-2">I take 1/6 of the grid</div>
-    </row>
+    </div>
 </div>
 ```
 
@@ -90,11 +90,11 @@ You can even mix `col-*`s to create custom behaviours
 
 ```html
 <div class="container">
-    <row>
-        <div class="col-xs-12 col-md6">I take all the mobile screen and half the tablet/desktop</div>
-        <div class="col-xs-6 col-md3">I take half mobile</div>
-        <div class="col-xs-6 col-md3">1/4 table/desktop</div>
-    </row>
+    <div class="row">
+        <div class="col-xs-12 col-md-6">I take all the mobile screen and half the tablet/desktop</div>
+        <div class="col-xs-6 col-md-3">I take half mobile</div>
+        <div class="col-xs-6 col-md-3">1/4 table/desktop</div>
+    </div>
 </div>
 ```
 
