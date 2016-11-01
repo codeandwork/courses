@@ -22,6 +22,9 @@
 
 ## Front-end technologies
 * [Hello (front end) world!](common/hello.md)
+* [HTML5 and HTML forms](java/html5.md)
+* [Introduction to CSS](java/css.md)
+* [Grids and columns with Bootstrap](java/bootstrap.md)
 
 ## Project week 1
 

@@ -5,8 +5,9 @@
 * [Introduction to Design Patterns](common/designPatterns.md)
 
 ## Web development
-* [HTML](common/web-html.md)
-* [CSS](common/web-css.md)
+* [HTML](cs/web-html.md)
+* [CSS](cs/web-css.md)
+* [ASP.NET && Razor](cs/web-razor.md)
 
 ## Databases
 * [ER-Diagrams, Joins and simple SQL Queries](cs/sqlErdSimpleQueries.md)
