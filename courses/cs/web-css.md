@@ -80,8 +80,12 @@ A CSS rule-set consists of a selector and a declaration block:
 <img src="media/css-selectors.jpg" width="100%"/>
 
 
-## CSS Selectors - 2/2
+## CSS Selectors - 2/3
 <img src="media/css-selectors-2.jpg" width="100%"/>
+
+
+## CSS Selectiors - 3/3
+<img src="media/css-selectors-3.png" width="100%"/>
 
 
 ## Lengths and Percentages
