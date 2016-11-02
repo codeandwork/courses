@@ -128,7 +128,7 @@ Anchros create a hyperlink that points to another place in the web.
 
 Is displayed as
 
-<a href="https://github.com/codeandwork" target="_blank">
+<a href="https://github.com/codeandwork">
     Code and Work
 </a>
 
