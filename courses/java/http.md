@@ -106,7 +106,6 @@ name%3DMy%20Project&project_type%3Djava
 
 Which actually is...
 
-
 ```
 name=My Project&project_type=java
 ```
@@ -172,23 +171,28 @@ Notes:
 * `500` - Oops, I am the server and I messed up
 
 
-## Let's examine an HTTP request/response
+## HTTPS - Securing our web application
 
-Back to our lovely forms!
+* HTTP protocol is insecure
+* HTTPS uses Transport Layer Security to secure a connection
 
+Notes:
 
-## Cookies
-
-
-## HTTP sessions
+* If you don't have a way to secure your application, malicious attackers can "listen" to the traffic and steal a user's data
+* There are [Certificate Authorities](https://en.wikipedia.org/wiki/Certificate_authority) that help you trust only the right certificates
+  * Otherwise, Man-In-The-Middle attacks can happen with a fake certificate
 
 
 ## HTTP/2 - the future has come
 
+* HTTP/2 is major revision of the HTTP protocol
+* Based on Google's SPDY
+* Greatly minimizes payload, multiplexes connections and optimizes for speed
+
 Notes:
 
-* Don't give too much attention
-* Just worth mentioning
+* Don't give too much attention, just worth mentioning
+* [More information](https://en.wikipedia.org/wiki/HTTP/2)
 
 
 ## Thanks!

@@ -28,6 +28,8 @@
 * [Hello (front end) world!](common/hello.md)
 * [Introduction to CSS](java/css.md)
 * [Grids and columns with Bootstrap](java/bootstrap.md)
+* [The HTTP protocol](java/http.md)
+* [Hello Servlet](java/servlets.md)
 
 ## Project week 1
 
