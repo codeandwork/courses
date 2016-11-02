@@ -63,9 +63,6 @@ An HTML page can have multiple tags in it.
 </html>
 ```
 
-<a href="http://www.w3schools.com/html/tryit.asp?filename=tryhtml_default" target="_blank">Try me</a>
-
-
 ## Content structure tags
 
 Inside the `<body>` tag, we can include multiple HTML tags, which structure the page's content.
