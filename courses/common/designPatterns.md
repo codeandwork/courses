@@ -117,3 +117,13 @@ public class Student implements Observer{
 
 ##Observer Design Pattern
 ![](media/observer.png)
+
+
+##Observable and Observer
+![](media/ObservableAndObserver.png)
+
+
+##What about .NET
+* IObservable interface
+* IObserver interface
+
