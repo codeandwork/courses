@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# CI script to deploy the material on the web site
+#
+
 set -e # Exit with nonzero exit code if anything fails
 
 if [ -n "$DEBUG" ] ; then
