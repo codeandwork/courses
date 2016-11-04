@@ -73,7 +73,7 @@ _In Java, we use usually reverse domains for package names_
 
 ## Set the Servlet URI to `/hello`
 
-![](media/eclipse-06-servlet-uri.png)
+<img src="media/eclipse-06-servlet-uri.png" height="539" width="552">
 
 
 ## A simple servlet
@@ -227,7 +227,9 @@ Defines an object that receives requests from the client and sends them to any r
 public class DispatchServlet extends HttpServlet {
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/hello").forward(request, response);
+		RequestDispatcher dispatcher = request
+			.getRequestDispatcher("/hello");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

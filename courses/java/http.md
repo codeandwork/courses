@@ -124,7 +124,7 @@ name=My Project&project_type=java
 ## Anatomy of an HTTP response
 
 ```http
-HTTP/1.1 STATUC_CODE STATUC_CODE_TEXT
+HTTP/1.1 STATUS_CODE STATUS_CODE_TEXT
 ...Headers...
 
 ...Body...
