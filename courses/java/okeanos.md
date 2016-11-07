@@ -109,7 +109,7 @@ From Windows, download and run [Putty](https://the.earth.li/~sgtatham/putty/late
 
 ## Keep up to date
 * It's important to keep your system up to date with the latest updates installed. Update your system by executing the following command in your terminal:
-		sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+		sudo apt-get update && sudo apt-get upgrade
 * Enter your password if asked, and respond "Y" or "y" if asked the following
 		Do you want to continue? [Y/n]
 * Press **Enter** and wait until the installation is complete (it might take some time!)
@@ -340,4 +340,13 @@ sudo systemctl restart tomcat
 * Port your personal assignment in the Remote Server that you just set up!
  * **Export** your local database in a dump file and **import** it to your remote mysql server through *phpMyAdmin* UI
  * **Export** your Java-web-application to a WAR file and **deploy** it to the remote apache tomcat server through the *Tomcat Web Application Manager*  
- * **Test** the functionalities of your web-app! 
+ * **Test** the functionalities of your web-app!
+
+
+ ## Further reading - dive deeper! 
+ * Basic Linux commands ([link](https://www.pcsteps.com/5010-basic-linux-commands-terminal/))
+ * The complete Bash command list ([link](http://ss64.com/bash/))
+ * Linux *users*, *groups* and *permissions* ([link](https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-permissions))
+ * A basic MySQL-server tutorial ([link](https://www.digitalocean.com/community/tutorials/a-basic-mysql-tutorial))
+ * How to make your Linux server more secure ([link](https://www.linux.com/learn/how-make-your-linux-server-more-secure))
+ * 20 Linux Server Hardening Security Tips (advanced) ([link](https://www.cyberciti.biz/tips/linux-security.html))
