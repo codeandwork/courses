@@ -131,14 +131,15 @@ From Windows, download and run [Putty](https://the.earth.li/~sgtatham/putty/late
 		sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
  * Install phpMyAdmin
 		sudo apt-get install phpmyadmin apache2-utils
-  * When asked, enter your MySQL *root* password
 
 
 ## Configure phpMyAdmin
-* Select **Yes** if you are prompted with a pink **Configuring phphmyadmin** screen
 * In the next screen select the **apache2** option and **ok**
 
-<img src=media/okeanos_phpMyAdmin.png width=350 height=400 />
+<img src=media/okeanos_phpMyAdmin.png width=250 height=300 />
+
+* Select **Yes** if you are prompted with a pink **Configuring phphmyadmin** screen
+* When asked, enter your MySQL *root* password in the corresponding screen
 
 
 ## Connect to your MySQL server remotely!
@@ -162,7 +163,7 @@ From Windows, download and run [Putty](https://the.earth.li/~sgtatham/putty/late
 ## Install Apache Tomcat
 * Create a directory that will store the apache tomcat and unzip the tar.gz that you downloaded earlier in this directory. Execute the following commands
 		sudo mkdir /opt/tomcat
-		sudo tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
+		sudo tar xzvf apache-tomcat-8.5.6.tar.gz -C /opt/tomcat --strip-components=1
 * Set-up the permissions for Tomcat. Execute the following commands
 		cd /opt/tomcat
 		sudo chgrp -R tomcat /opt/tomcat
