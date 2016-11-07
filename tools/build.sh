@@ -1,8 +1,12 @@
 #!/bin/sh
+#
+# Local build of the material into the web directory
+#
 
 COURSES=$(ls courses/*.md | sed 's/\.md$//;s/courses\///')
 
 set -e
+set -x
 
 if [ -n "$DEBUG" ] ; then
   pandoc --version
