@@ -10,10 +10,14 @@
 * [Exceptions](java/exceptions.md)
 * [Generics and Threads](java/generics_and_threads.md)
 
+
 ## Further test driven development and object oriented programming
 * [Introduction to Design Patterns](common/designPatterns.md)
 
+
 ## Introduction to web development
+* [Setting-up a Java Web-Server at okeanos](java/okeanos.md)
+
 
 ## Databases and user management
 * [Inner & Outer Joins and Aggregates](java/sqlJoins.md)
@@ -22,7 +26,6 @@
 
 ## Front-end technologies
 * [Hello (front end) world!](common/hello.md)
-* [HTML5 and HTML forms](java/html5.md)
 * [Introduction to CSS](java/css.md)
 * [Grids and columns with Bootstrap](java/bootstrap.md)
 

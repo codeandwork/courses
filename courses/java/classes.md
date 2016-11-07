@@ -77,9 +77,9 @@ class Circle {
 
 
 ## Access modifiers
-* *Public* - visible to all classes
-* *Private* - visible only inside the current class
-* *Protected* - Visible only to subclasses of the current class
+* *public* - visible to all classes
+* *private* - visible only inside the current class
+* *protected* - Visible only to subclasses of the current class
 <br><br>
 * Good practices:
  * All fields should be *private*
