@@ -60,9 +60,22 @@ private Instructor instructor;
 		student = new Student();
 		instructor = new Instructor();
 	}
-	public void update() {
+	private void updateAll() {
 		student.update();
 		instructor.update();	
+	}
+	public void changeTime() {
+		//change time
+		updateAll();
+	}
+}
+```
+```java
+public class Program {
+
+	public static void main(String[] args) {
+		Course course = new Course();
+		course.changeTime();
 	}
 }
 ```
@@ -70,12 +83,73 @@ private Instructor instructor;
 
 ##Implementation - Cont.
 <ul>
-<li>Course class is "tightly-coupled" to Student and Instructor classes.</li>
-<li class="fragment">Is it easy to add a new observer (a new Student or a new Instructor)?
+<li>Is it easy to add a new observer (a new Student or a new Instructor)?
 <ul><li>You need to make multiple changes</li>
 <li class="fragment">What about adding a new category of observers; for example "Organizers"!</li>
 </ul></ul>
 
+
+##Implementation - Take 2
+```java
+public class Program {
+
+	public static void main(String[] args) {
+		Student student = new Student();
+		Instructor instructor = new Instructor();
+		Organizer organizer = new Organizer();
+		
+		Course course = new Course();
+		course.addObserver(student);
+		course.addObserver(organizer);
+		course.addObserver(instructor);
+		
+		course.changeTime();
+	}
+}
+```
+
+
+##Implementation - Take 2
+```java
+public class Course extends Observable{
+
+	public void changeTime() {
+		//change time
+		setChanged();
+		notifyObservers();
+	}
+}
+```
+```java
+public class Student implements Observer{
+
+	@Override
+	public void update(Observable o, Object arg) {
+	
+	}
+}
+```
+
+
+##A Motivating Example
+* Now, think again about adding new observers.
+* Is it easier?
+
+
+##A Motivating Example
+<ul>
+<li>Yes? WHY?</li>
+<li class="fragment">In the first implementation, Course class is "tightly-coupled" to Student and Instructor classes. While in the second case, Course class is "loosely-coupled" to it's observers.</li>
+</ul>
+
+
+##A Motivating Example
+![](media/observerExample.png)
+
+
+
+##Observer Design Pattern
+![](media/observer.png)
 					</script>
 				</section>
 				<section>

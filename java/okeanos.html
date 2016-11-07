@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Setting-up a Java Web-Server at okeanos</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-setting-up-a-java-web-server-at-okeanos">Coding Bootcamp: Setting-up a Java Web-Server at okeanos</h1>
+<h2 id="todays-objectives">Today's objectives</h2>
+<ul>
+<li>Create a VM at ~okeanos<br /></li>
+<li>Set-up all required packages<br /></li>
+<li>An operatign system [Ubuntu Server 16.04 LTS]<br /></li>
+<li>MySQL server<br /></li>
+<li>PhpMyAdmin<br /></li>
+<li>Apache Tomcat<br /></li>
+<li>Learn (just the tip of the iceberg of) how to administrate your Server</li>
+</ul>
+<h2 id="todays-objective">Today's objective</h2>
+<p><img src=media/okeanos_matrix.jpg width=900 height=400 /></br></p>
+<ul>
+<li>Leave this room with a hacker's attitude!<br /></li>
+<li>The <em>blue</em> pill is not a choice..</li>
+</ul>
+<h2 id="okeanos---an-ocean-of-resources">~okeanos - an Ocean of resources!</h2>
+<ul>
+<li>Connect to ~okeanos using the following link:<br /> <a href="https://accounts.okeanos.grnet.gr/ui/">https://accounts.okeanos.grnet.gr/ui/</a><br /></li>
+<li>In the <strong>LOGIN using</strong> choose the <strong>CLASSIC ACCOUNT</strong> option<br /></li>
+<li>Fill in the <em>email</em> and <em>password</em> that you used to create your account<br /></li>
+<li>Go to the projects are of ~okeanos with the link<br /> <a href="https://accounts.okeanos.grnet.gr/ui/projects">https://accounts.okeanos.grnet.gr/ui/projects</a><br /></li>
+<li>and choose <strong>Join</strong> a project. In the <strong>search</strong> area, search for project<br /> <strong>bootcamp.afdemp.gr</strong><br /> and ask to join!</li>
+</ul>
+<h2 id="create-your-first-virtual-machine">Create your first Virtual Machine!</h2>
+<ul>
+<li>At the <a href="https://cyclades.okeanos.grnet.gr/ui/">Cyclades</a> User Interface, click the <strong>New Machine+</strong> orange button<br /><img src=media/okeanos_01_new_machine.png width=800 height=400 /><br /></li>
+<li>There are 5 Steps in order to create a VM</li>
+</ul>
+<h2 id="creating-a-vm---step-1-image">Creating a VM - Step 1 (Image)</h2>
+<ul>
+<li>From the <strong>Images</strong> left list select the <strong>System</strong><br /></li>
+<li>From the <strong>Available images</strong> on the right list select the <strong>Ubuntu Server LST</strong> (Ubuntu Server 16.04.1 LTS), and click <strong>next</strong><br /><br><img src=media/okeanos_02_ubuntu_server.png width=800 height=400 /></li>
+</ul>
+<h2 id="creating-a-vm---step-2-flavor">Creating a VM - Step 2 (Flavor)</h2>
+<ul>
+<li>Select, <em>2x</em> at the <strong>CPU</strong>, <em>4 GB</em> at the <strong>RAM</strong> and <em>40 GB</em> at the <strong>Disk Size</strong><br /></li>
+<li>Click the green <strong>next</strong> button<br /><br><img src=media/okeanos_03_step2.png width=800 height=400 /></li>
+</ul>
+<h2 id="creating-a-vm---step-3-networking">Creating a VM - Step 3 (Networking)</h2>
+<ul>
+<li>Be sure that you have an <strong>Internet (public IPv4)</strong> selected. (<em>Create new if necessary!</em>)<br /><br><img src=media/okeanos_03_step3.png width=800 height=400 /></li>
+</ul>
+<h2 id="creating-a-vm---step-4-personalize">Creating a VM - Step 4 (Personalize)</h2>
+<ul>
+<li>Fill in a <em>Machine name</em> and click the green <em>next</em> button<br /><br><img src=media/okeanos_03_step4.png width=800 height=400 /></li>
+</ul>
+<h2 id="creating-a-vm---step-5-confirm">Creating a VM - Step 5 (Confirm)</h2>
+<ul>
+<li>Be sure that the settings for your VM are correct and then click the orange <strong>create machine</strong> button<br /><br><img src=media/okeanos_03_step5.png width=800 height=400 /><br /></li>
+<li><strong>Caution!!</strong> Save the temporary password that is going to appear after clicking the <em>create machine</em></li>
+</ul>
+<h2 id="storing-the-temporary-password">Storing the temporary password</h2>
+<ul>
+<li>Save the temporary password that appeared on your screen. <em>If you lose this password you have to repeat all steps form the beginning!</em><br /><br><img src=media/okeanos_03_stepFinal.png width=800 height=400 /></li>
+</ul>
+<h2 id="creating-a-vm---final-step">Creating a VM - Final step</h2>
+<p>Congratulations, your system is up and running!<br /><img src=media/okeanos_03_stepFinal2.png width=500 height=250 /></p>
+<ul>
+<li>At the bottom of the page there is public IPv4 address from which you can connect from everywhere<br /></li>
+<li>The default user created with the VM is <strong>user</strong> and the password the one that you saved at the end of Step 5</li>
+</ul>
+<h2 id="how-to-connect-to-your-vm">How to connect to your VM</h2>
+<p>From Windows, download and run <a href="https://the.earth.li/~sgtatham/putty/latest/x86/putty.exe">Putty</a><br /><br><img src=media/okeanos_putty.png width=350 height=350 /></p>
+<ul>
+<li>Fill the <strong>Host Name (or IP address)</strong> field with <script type="text/javascript">
+<!--
+h='&#x79;&#x6f;&#x75;&#114;&#x2d;&#118;&#x6d;&#x2d;&#112;&#x75;&#98;&#108;&#x69;&#x63;&#x2d;&#x69;&#112;&#118;&#52;';a='&#64;';n='&#42;&#x75;&#x73;&#x65;&#114;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#42;&#x75;&#x73;&#x65;&#114;&#32;&#x61;&#116;&#32;&#x79;&#x6f;&#x75;&#114;&#x2d;&#118;&#x6d;&#x2d;&#112;&#x75;&#98;&#108;&#x69;&#x63;&#x2d;&#x69;&#112;&#118;&#52;</noscript>* and the <strong>Port</strong> field with <em>22</em><br /></li>
+<li>Press <strong>Open</strong> (and <strong>Yes</strong> if a <em>Putty Alert-Warning</em> window pops up)</li>
+</ul>
+<h2 id="how-to-connect-to-your-vm-1">How to connect to your VM</h2>
+<ul>
+<li>From Linux or MacOS devices just open a terminal and use the following command<br /> ssh <script type="text/javascript">
+<!--
+h='&#x79;&#x6f;&#x75;&#114;&#x2d;&#118;&#x6d;&#x2d;&#112;&#x75;&#98;&#108;&#x69;&#x63;&#x2d;&#x69;&#112;&#118;&#52;';a='&#64;';n='&#x75;&#x73;&#x65;&#114;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x75;&#x73;&#x65;&#114;&#32;&#x61;&#116;&#32;&#x79;&#x6f;&#x75;&#114;&#x2d;&#118;&#x6d;&#x2d;&#112;&#x75;&#98;&#108;&#x69;&#x63;&#x2d;&#x69;&#112;&#118;&#52;</noscript><br /></li>
+<li>If your connection is declined and you received the following message<br /> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@<br /> @ WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! @<br /> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@<br /></li>
+<li>Execute the following command<br /> sudo ssh-keygen -R your-ipv4<br /></li>
+<li>If your connection is successful then your terminal will control your VM until you use the following command<br /> logout</li>
+</ul>
+<h2 id="am-i-connected">Am I connected?</h2>
+<ul>
+<li>If the connection was successful you should see something similar to the following picture</li>
+</ul>
+<p><img src=media/okeanos_putty_connected.png width=650 height=400 /></p>
+<h2 id="security---our-first-priority">Security - our first priority!</h2>
+<ul>
+<li>Let's change the password of the default <strong>user</strong><br /></li>
+<li>In your terminal type the following command (as shown in the screen-shot)<br /> passwd<br /></li>
+<li><strong>Note</strong> that filling the password is not visible on the screen!</li>
+</ul>
+<p><img src=media/okeanos_passwd.png width=450 height=200 /></p>
+<h2 id="keep-up-to-date">Keep up to date</h2>
+<ul>
+<li>It's important to keep your system up to date with the latest updates installed. Update your system by executing the following command in your terminal:<br /> sudo apt-get update &amp;&amp; sudo apt-get upgrade &amp;&amp; sudo apt-get dist-upgrade<br /></li>
+<li>Enter your password if asked, and respond &quot;Y&quot; or &quot;y&quot; if asked the following<br /> Do you want to continue? [Y/n]<br /></li>
+<li>Press <strong>Enter</strong> and wait until the installation is complete (it might take some time!)</li>
+</ul>
+<h2 id="mysql-server">MySQL server</h2>
+<ul>
+<li>In order to install the latest MySQL server in your system execute the following command in your terminal:<br /> sudo apt-get install mysql-server<br /></li>
+<li>Enter a <strong>password</strong> when asked (see the following figure). <!-- Using the same as your **user** might help you remember it easier.  --></li>
+</ul>
+<p><img src=media/okeanos_mysql.png width=700 height=350 /></p>
+<h2 id="install-web-server-and-mysql-web-manager">Install Web-Server and MySQL web-manager</h2>
+<ul>
+<li>Our goal is to install the phpMyAdmin, a web-browser user interface for managing your MySQL database.<br /></li>
+<li>In order to install the Apache Web-Server execute the following command in your terminal<br /> sudo apt-get install apache2<br /></li>
+<li>Install PHP<br /> sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql<br /></li>
+<li>Install phpMyAdmin<br /> sudo apt-get install phpmyadmin apache2-utils<br /></li>
+<li>When asked, enter your MySQL <em>root</em> password</li>
+</ul>
+<h2 id="configure-phpmyadmin">Configure phpMyAdmin</h2>
+<ul>
+<li>Select <strong>Yes</strong> if you are prompted with a pink <strong>Configuring phphmyadmin</strong> screen<br /></li>
+<li>In the next screen select the <strong>apache2</strong> option and <strong>ok</strong></li>
+</ul>
+<p><img src=media/okeanos_phpMyAdmin.png width=350 height=400 /></p>
+<h2 id="connect-to-your-mysql-server-remotely">Connect to your MySQL server remotely!</h2>
+<ul>
+<li>Access your MySQL server through a Web-Browser at<br /> <a href="http://your-ipv4/phpmyadmin/">http://your-ipv4/phpmyadmin/</a><br /></li>
+<li>Enter your MySQL <em>root</em> credentials in the following form, ang click <strong>Go</strong></li>
+</ul>
+<p><img src=media/okeanos_phpMyAdmin3.png width=400 height=350 /></p>
+<h2 id="download-java-jdk-apache-tomcat">Download Java JDK &amp; Apache Tomcat</h2>
+<ul>
+<li>First we need to install the latest Java Development Kit. Execute the following command in the terminal<br /> sudo apt-get install default-jdk<br /></li>
+<li>Create a Tomcat group and user for security purpose<br /> sudo groupadd tomcat<br /> sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat<br /></li>
+<li>Download Tomcat 8.5 from the following link (it's curl -Omicron! not zero)<br /> curl -O <a href="http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.6/bin/apache-tomcat-8.5.6.tar.gz">http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.6/bin/apache-tomcat-8.5.6.tar.gz</a></li>
+</ul>
+<h2 id="install-apache-tomcat">Install Apache Tomcat</h2>
+<ul>
+<li>Create a directory that will store the apache tomcat and unzip the tar.gz that you downloaded earlier in this directory. Execute the following commands<br /> sudo mkdir /opt/tomcat<br /> sudo tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1<br /></li>
+<li>Set-up the permissions for Tomcat. Execute the following commands<br /> cd /opt/tomcat<br /> sudo chgrp -R tomcat /opt/tomcat<br /> sudo chmod -R g+r conf<br /> sudo chmod g+x conf<br /> sudo chown -R tomcat webapps/ work/ temp/ logs/</li>
+</ul>
+<h2 id="configure-apache-tomcat">Configure Apache Tomcat</h2>
+<ul>
+<li>In your terminal execute the following command to edit the <strong>tomcat.service</strong> file<br /> sudo nano /etc/systemd/system/tomcat.service<br /></li>
+<li>Copy-paste the following text in the file</li>
+</ul>
+<pre><code>[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre
+Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat
+Environment=CATALINA_BASE=/opt/tomcat
+Environment=&#39;CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC&#39;
+Environment=&#39;JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom&#39;
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+User=tomcat
+Group=tomcat
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+<h2 id="configure-apache-tomcat-2">Configure Apache Tomcat (2)</h2>
+<ul>
+<li>Press <strong>CTLR + O</strong> to save the changes, <strong>Enter</strong> to verify, and <strong>CTRL + X</strong> to exit<br /></li>
+<li>Allow traffic to port 8080 used by Apache Tomcat by executing the following command<br /> sudo ufw allow 8080<br /></li>
+<li>Restart Tomcat and set to open on start-up<br /> sudo systemctl stop tomcat<br /> sudo systemctl start tomcat<br /> sudo systemctl enable tomcat<br /></li>
+<li>Check if Tomcat is running and listening to the 8080 port. In a web-browser open:<br /> <a href="http://your-ipv4:8080">http://your-ipv4:8080</a><br /></li>
+<li>If everything is fine you should see a web-page like the one in the next slide!</li>
+</ul>
+<h2 id="configure-apache-tomcat-3">Configure Apache Tomcat (3)</h2>
+<p><br><img src=media/okeanos_tomcat.png width=800 height=400 /></p>
+<h2 id="configure-apache-tomcat-4">Configure Apache Tomcat (4)</h2>
+<ul>
+<li>In order to access the <em>manager-gui</em> and the <em>admin-gui</em> we need to provide credentials at the <em>tomcat-users</em> xml file:<br /> sudo nano /opt/tomcat/conf/tomcat-users.xml<br /></li>
+<li><p>Add the following line (with your own &quot;admin&quot; and &quot;password&quot; credentials)</p>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;user</span><span class="ot"> username=</span><span class="st">&quot;admin&quot;</span><span class="ot"> password=</span><span class="st">&quot;password&quot;</span><span class="ot"> roles=</span><span class="st">&quot;manager-gui,admin-gui&quot;</span><span class="kw">/&gt;</span></code></pre>
+after the (replace the green line)<br /> <tomcat-users xmlns="http://tomcat.apache.org/xml"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://tomcat.apache.org/xml tomcat-users.xsd"
+                      version="1.0"><br /> <!-- ADD YOUR LINE HERE --><br /></li>
+<li><p>Press <strong>CTLR + O</strong> to save the changes, <strong>Enter</strong> to verify, and <strong>CTRL + X</strong> to exit</p></li>
+</ul>
+<h2 id="configure-apache-tomcat-5">Configure Apache Tomcat (5)</h2>
+<ul>
+<li>In order to allow external access to the <em>manager-gui</em> and the <em>admin-gui</em> we should edit the <em>context</em> xml file, by executing the following command:<br /> sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml<br /></li>
+<li>Navigate to the file until you find the following entry<br /> <Context antiResourceLocking="false" privileged="true" ><br /> <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+                 allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /><br /> </Context><br /></li>
+<li>Comment the <Valve className... /> element by adding <code>&lt;!--</code> at the beginning and <code>--&gt;</code> at the end, like:<br /> <Context antiResourceLocking="false" privileged="true" ><br /> <!--<Valve className="org.apache.catalina.valves.RemoteAddrValve"
+                 allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />--><br /> </Context></li>
+</ul>
+<h2 id="configure-apache-tomcat-6">Configure Apache Tomcat (6)</h2>
+<ul>
+<li>Press <strong>CTLR + O</strong> to save the changes, <strong>Enter</strong> to verify, and <strong>CTRL + X</strong> to exit<br /></li>
+<li>Make the same changes as in the previous file to the following <em>context</em> xml file by executing the command<br /> sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml<br /></li>
+<li><p>Restart tomcat</p>
+<pre><code>sudo systemctl restart tomcat</code></pre></li>
+</ul>
+<h2 id="testing-tomcat">Testing Tomcat</h2>
+<ul>
+<li>Access your tomcat web-api from a web browser from the following link<br /> <a href="http://your-ipv4:8080">http://your-ipv4:8080</a><br /></li>
+<li>Make sure that <strong>Manager App</strong> and <strong>Host Manager</strong> pages are accessible<br /></li>
+<li>When asked for credentials, provide those that you selected in slide &quot;Configure Apache Tomcat (4)&quot;</li>
+</ul>
+<p><img src=media/okeanos_tomcat_creds.png width=700 height=300 /></p>
+<h2 id="export-your-local-database">Export your local database</h2>
+<ul>
+<li>Open the MySQL Workbench, connect to your local database and then go to the Menu <strong>Server--&gt;Data Export</strong></li>
+</ul>
+<p><img src=media/okeanos_mysql_workbench_export.png width=900 height=500 /></p>
+<h2 id="export-your-local-database-2">Export your local database (2)</h2>
+<ul>
+<li>In the <strong>Objects Selection</strong> tab, select the schema that you want to Export<br /></li>
+<li>Be sure that the <em>Include Create Schema</em> check box at the bottom is checked and press <strong>Start Export</strong><br /></li>
+<li>Click &quot;Continue Anyway&quot; if you get a <strong>mysqldump Version Mismatch</strong> Warning.</li>
+</ul>
+<h2 id="import-the-database-to-the-vms-mysql-server">Import the database to the VMs mysql server</h2>
+<ul>
+<li>Open the PhpMyAdmin of your VM from a browser<br /> <a href="http://you-ipv4/phpmyadmin/">http://you-ipv4/phpmyadmin/</a><br /></li>
+<li>Enter your MySQL credentials and click <strong>go</strong><br /></li>
+<li>From the top-menu select <strong>Import</strong> like in the screen-shot presented in the next slide</li>
+</ul>
+<h2 id="import-the-database-to-the-vms-mysql-server-2">Import the database to the VMs mysql server (2)</h2>
+<p><img src=media/okeanos_phpmyadmin_import.png width=900 height=500 /></p>
+<h2 id="import-the-database-to-the-vms-mysql-server-3">Import the database to the VMs mysql server (3)</h2>
+<ul>
+<li>Select <strong>Choose file</strong>, navigate to the <em>dump</em> file that you exported earlier with MySQL Workbench and select the <strong>dump</strong> file and then click <strong>Go</strong> at the end of the page</li>
+</ul>
+<p><img src=media/okeanos_phpmyadmin_import2.png width=650 height=350 /></p>
+<h2 id="export-your-java-web-application">Export your Java Web Application</h2>
+<ul>
+<li>(step 1) be sure that the database credentials are the correct for your MySQL at ~okenaos<br /></li>
+<li>change them accordignly in the <strong>StudentDAO.java</strong> file<br /> con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/bootcamp&quot;, &quot;root&quot;, &quot;your password&quot;);</li>
+</ul>
+<p><img src=media/okeanos_eclipse_db_connection_creds.png width=650 height=400 /></p>
+<h2 id="export-your-java-web-application-2">Export your Java Web Application (2)</h2>
+<ul>
+<li>Save all changed files and &quot;Right-click&quot; on the <strong>Project--&gt;Export--&gt;WAR file</strong><br /></li>
+<li>Be sure that (1) is saved in a location that you remember and (2) is optimized for Tomcat 8.0.<br /></li>
+<li>Click <strong>Finish</strong><br /><img src=media/okeanos_eclipse_export_war.png width=450 height=400 /></li>
+</ul>
+<h2 id="deploy-the-war-file-on-the-remote-server">Deploy the WAR file on the remote server</h2>
+<ul>
+<li>go to<br /> <a href="http://your-ipv4:8080/manager/html">http://your-ipv4:8080/manager/html</a><br /></li>
+<li>Enter the credentials that you declared for the Tomcat management if asked<br /></li>
+<li>In the <strong>WAR file to deploy</strong> sub-section of the <strong>Deploy</strong> section click the <strong>Choose File</strong> and select the &quot;CodingBootcampJSPExercise1.war&quot; that you exported earlier on your Desktop<br /></li>
+<li>Then click <strong>Deploy</strong><br /></li>
+<li>Soon the page should be refreshed and at the top your Servlet should be visible! (Check the next screen-shot)</li>
+</ul>
+<h2 id="running-your-java-web-application">Running your Java-Web Application</h2>
+<p><img src=media/okeanos_tomcat_deploy.png width=650 height=350 /></p>
+<ul>
+<li>Click the <strong>/CodingBootcampJSPExercise1</strong> and check if your web-application is alive!<br /></li>
+<li>You can <em>Stop</em>, <em>Reload</em>, <em>Undeploy</em> web-applications.</li>
+</ul>
+<h2 id="running-your-java-web-application-1">Running your Java-Web Application</h2>
+<ul>
+<li>In order to redeploy your web-application, first <em>Undeploy</em> and then follow the <strong>Deploy the WAR file on the remote server</strong> instruction from the beginning.</li>
+</ul>
+<h2 id="exercise-3">Exercise 3</h2>
+<ul>
+<li>Port your personal assignment in the Remote Server that you just set up!<br /></li>
+<li><strong>Export</strong> your local database in a dump file and <strong>import</strong> it to your remote mysql server through <em>phpMyAdmin</em> UI<br /></li>
+<li><strong>Export</strong> your Java-web-application to a WAR file and <strong>deploy</strong> it to the remote apache tomcat server through the <em>Tomcat Web Application Manager</em><br /></li>
+<li><strong>Test</strong> the functionalities of your web-app!</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
