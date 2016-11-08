@@ -342,7 +342,7 @@ sudo systemctl restart tomcat
  * **Export** your Java-web-application to a WAR file and **deploy** it to the remote apache tomcat server through the *Tomcat Web Application Manager*  
  * **Test** the functionalities of your web-app!
 
-
+ 
  ## Further reading - dive deeper! 
  * Basic Linux commands ([link](https://www.pcsteps.com/5010-basic-linux-commands-terminal/))
  * The complete Bash command list ([link](http://ss64.com/bash/))
