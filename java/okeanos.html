@@ -129,7 +129,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <p><img src=media/okeanos_passwd.png width=450 height=200 /></p>
 <h2 id="keep-up-to-date">Keep up to date</h2>
 <ul>
-<li>It's important to keep your system up to date with the latest updates installed. Update your system by executing the following command in your terminal:<br /> sudo apt-get update &amp;&amp; sudo apt-get upgrade &amp;&amp; sudo apt-get dist-upgrade<br /></li>
+<li>It's important to keep your system up to date with the latest updates installed. Update your system by executing the following command in your terminal:<br /> sudo apt-get update &amp;&amp; sudo apt-get upgrade<br /></li>
 <li>Enter your password if asked, and respond &quot;Y&quot; or &quot;y&quot; if asked the following<br /> Do you want to continue? [Y/n]<br /></li>
 <li>Press <strong>Enter</strong> and wait until the installation is complete (it might take some time!)</li>
 </ul>
@@ -144,15 +144,17 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 <li>Our goal is to install the phpMyAdmin, a web-browser user interface for managing your MySQL database.<br /></li>
 <li>In order to install the Apache Web-Server execute the following command in your terminal<br /> sudo apt-get install apache2<br /></li>
 <li>Install PHP<br /> sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql<br /></li>
-<li>Install phpMyAdmin<br /> sudo apt-get install phpmyadmin apache2-utils<br /></li>
-<li>When asked, enter your MySQL <em>root</em> password</li>
+<li>Install phpMyAdmin<br /> sudo apt-get install phpmyadmin apache2-utils</li>
 </ul>
 <h2 id="configure-phpmyadmin">Configure phpMyAdmin</h2>
 <ul>
-<li>Select <strong>Yes</strong> if you are prompted with a pink <strong>Configuring phphmyadmin</strong> screen<br /></li>
 <li>In the next screen select the <strong>apache2</strong> option and <strong>ok</strong></li>
 </ul>
-<p><img src=media/okeanos_phpMyAdmin.png width=350 height=400 /></p>
+<p><img src=media/okeanos_phpMyAdmin.png width=250 height=300 /></p>
+<ul>
+<li>Select <strong>Yes</strong> if you are prompted with a pink <strong>Configuring phphmyadmin</strong> screen<br /></li>
+<li>When asked, enter your MySQL <em>root</em> password in the corresponding screen</li>
+</ul>
 <h2 id="connect-to-your-mysql-server-remotely">Connect to your MySQL server remotely!</h2>
 <ul>
 <li>Access your MySQL server through a Web-Browser at<br /> <a href="http://your-ipv4/phpmyadmin/">http://your-ipv4/phpmyadmin/</a><br /></li>
@@ -167,7 +169,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 </ul>
 <h2 id="install-apache-tomcat">Install Apache Tomcat</h2>
 <ul>
-<li>Create a directory that will store the apache tomcat and unzip the tar.gz that you downloaded earlier in this directory. Execute the following commands<br /> sudo mkdir /opt/tomcat<br /> sudo tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1<br /></li>
+<li>Create a directory that will store the apache tomcat and unzip the tar.gz that you downloaded earlier in this directory. Execute the following commands<br /> sudo mkdir /opt/tomcat<br /> sudo tar xzvf apache-tomcat-8.5.6.tar.gz -C /opt/tomcat --strip-components=1<br /></li>
 <li>Set-up the permissions for Tomcat. Execute the following commands<br /> cd /opt/tomcat<br /> sudo chgrp -R tomcat /opt/tomcat<br /> sudo chmod -R g+r conf<br /> sudo chmod g+x conf<br /> sudo chown -R tomcat webapps/ work/ temp/ logs/</li>
 </ul>
 <h2 id="configure-apache-tomcat">Configure Apache Tomcat</h2>
@@ -303,6 +305,15 @@ after the (replace the green line)<br /> <tomcat-users xmlns="http://tomcat.apac
 <li><strong>Export</strong> your local database in a dump file and <strong>import</strong> it to your remote mysql server through <em>phpMyAdmin</em> UI<br /></li>
 <li><strong>Export</strong> your Java-web-application to a WAR file and <strong>deploy</strong> it to the remote apache tomcat server through the <em>Tomcat Web Application Manager</em><br /></li>
 <li><strong>Test</strong> the functionalities of your web-app!</li>
+</ul>
+<p>## Further reading - dive deeper!</p>
+<ul>
+<li>Basic Linux commands (<a href="https://www.pcsteps.com/5010-basic-linux-commands-terminal/">link</a>)<br /></li>
+<li>The complete Bash command list (<a href="http://ss64.com/bash/">link</a>)<br /></li>
+<li>Linux <em>users</em>, <em>groups</em> and <em>permissions</em> (<a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-permissions">link</a>)<br /></li>
+<li>A basic MySQL-server tutorial (<a href="https://www.digitalocean.com/community/tutorials/a-basic-mysql-tutorial">link</a>)<br /></li>
+<li>How to make your Linux server more secure (<a href="https://www.linux.com/learn/how-make-your-linux-server-more-secure">link</a>)<br /></li>
+<li>20 Linux Server Hardening Security Tips (advanced) (<a href="https://www.cyberciti.biz/tips/linux-security.html">link</a>)</li>
 </ul>
 
 <hr />
