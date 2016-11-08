@@ -1,3 +1,7 @@
+##Who Am I?
+![](media/Tushar_slide.png)
+
+
 ##Quick Recap - Principles of Object-orientation
 * Abstraction
 * Encapsulation
@@ -107,13 +111,72 @@ public class Student implements Observer{
 <ul>
 <li>Yes? WHY?</li>
 <li class="fragment">In the first implementation, Course class is "tightly-coupled" to Student and Instructor classes. While in the second case, Course class is "loosely-coupled" to it's observers.</li>
+<br>
+<li class="fragment">Congratulations!! You have just learned the first design pattern :)</li>
 </ul>
 
 
-##A Motivating Example
+##The Implemented Solution
 ![](media/observerExample.png)
 
 
 
 ##Observer Design Pattern
 ![](media/observer.png)
+
+
+##Observable and Observer
+![](media/ObservableAndObserver.png)
+
+
+##What About .NET
+* IObservable interface
+* IObserver interface
+
+
+##Let Us Define Design Patterns
+* <i>Design patterns are descriptions of communicating objects and classes that are customized to solve a general design problem in a particular context. (By Gang of Four)</i>
+<br>
+<br>
+* <i>Design patterns are solutions to commonly occurring design problems.</i>
+
+
+##Essential Elements of Patterns
+<ul>
+<li>Name</li>
+<br>
+<li class="fragment">
+Problem
+</li>
+<ul class="fragment">
+<li>
+Problem and context</li></ul>
+<br>
+<li class="fragment">
+Solution</li>
+<ul  class="fragment">
+<li>
+Relationships, roles, and responsibilities</li></ul>
+<br>
+<li class="fragment">
+Consequences</li>
+<ul class="fragment">
+<li>Benefits and liabilities</li>
+<li>Tradeoffs</li>
+</ul>
+</ul>
+
+
+##Why to Use Patterns
+<ul>
+<li class="fragment">
+Higher design quality </li>
+<ul class="fragment">
+<li>Flexibility</li>
+<li>Changeability</li>
+<li>Testability</li>
+<li>...</li>
+</ul>
+<br>
+<li class="fragment">Common vocabulary</li>
+</ul>
