@@ -134,10 +134,8 @@ From Windows, download and run [Putty](https://the.earth.li/~sgtatham/putty/late
 
 
 ## Configure phpMyAdmin
-* In the next screen select the **apache2** option and **ok**
-
+* In the next screen select the **apache2** option. **Important** Press **space** on your **apache2** selection. Only if an asterisk (```*```) is marked on the left of the **apache2** proceed with **ok**  
 <img src=media/okeanos_phpMyAdmin.png width=250 height=300 />
-
 * Select **Yes** if you are prompted with a pink **Configuring phphmyadmin** screen
 * When asked, enter your MySQL *root* password in the corresponding screen
 
