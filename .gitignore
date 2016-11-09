@@ -1,3 +1,6 @@
 web
 tools/build.sh
 tools/travis-deploy.sh
+*.swp
+*.swo
+.DS_Store
