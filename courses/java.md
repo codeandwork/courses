@@ -34,6 +34,9 @@
 
 ## Other programming languages and MVC frameworks
 
+* [Structure, depend and build](java/maven.md)
+
+
 ## Further JavaScript
 
 ## Further Java
