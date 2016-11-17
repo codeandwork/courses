@@ -180,3 +180,108 @@ Higher design quality </li>
 <br>
 <li class="fragment">Common vocabulary</li>
 </ul>
+
+
+##Categories of Patterns
+<ul>
+<li><b>Creational</b> - patterns answer how to create and when to create</li>
+<ul>
+<li>Examples: Factory, Abstract Factory, Builder</li></ul>
+<br>
+
+<li class="fragment"><b>Structural</b> - patterns answer how to comppose/structure</li>
+<ul>
+<li class="fragment">Examples: Adapter, Composite, Decorator</li></ul>
+<br>
+<li class="fragment"><b>Behavioral</b> - patterns describe how a group of objects cooperate to carry out a task</li>
+<ul>
+<li class="fragment">Examples: Observer, Strategy, Visitor</li></ul>
+</ul>
+
+
+##Factory Pattern
+* <b>Motivation</b>
+  * Creating objects without exposing the instantiation logic to the clients
+  * Proving a common interface to refer all objects (of a kind)
+  
+
+
+##Factory Pattern
+![](media/Factory.png)
+
+
+##Factory Pattern Example
+![](media/FactoryExample.png)
+
+
+##Factory Pattern
+<ul>
+<li><b>Benefits</b></li>
+<ul>
+<li>Separation of concerns - the logic to instantiate is separated</li>
+<li>Flexibility - to extend Product hierarchy without affecting clients</li>
+</ul>
+  
+<br>
+
+<li class="fragment"><b>Liabilities</b></li>
+<ul>
+<li class="fragment">Don't bypass</li></ul></ul>
+
+
+##Let us extend the Factory Pattern
+* <b>Motivation</b>
+  * Let us assume you have <u><i>families of objects</i></u> to instantiate
+  
+  <br>
+  * Widget library providing UI elements such as Button and TextBox
+  * The library instantiate UI elements based on the platform such as Windows and Linux
+
+
+
+##Abstract Factory Pattern
+![](media/AbstractFactory.png)
+
+
+##Abstract Factory Pattern
+<ul>
+<li><b>Benefits</b></li>
+<ul>
+<li>Flexibility (Entire product families can be easily exchanged)
+</li>
+<li>Separation of concerns (Object lifetime management is separated from object use)</li></ul>
+
+<br>
+<li class="fragment"><b>Liabilities</b></li>
+<ul>
+<li class="fragment">GoF Abstract Factory only covers object creation, not object disposal</li>
+</ul>
+</ul>
+
+
+##Strategy Pattern
+* <b>Motivation</b>
+  * Support to more than one algorithm required in many situations:
+    * Clients do not want to be dependent on a supplied default algorithm
+    * Suitability of an algorithm may change based on the context (input, platform, ...)
+    * Integrating new algorithms should be easy (without modifying existing code, if possible)
+
+<br>
+
+* Examples - compression algorithm, sort algorithm
+
+
+##Strategy Pattern
+![](media/Strategy.png)
+
+
+
+##Strategy Pattern
+<ul>
+<li><b>Benefits</b></li>
+<ul>
+<li>Freedom to chose algorithms
+</li>
+<li>Easier entensibility</li></ul>
+
+</ul>
