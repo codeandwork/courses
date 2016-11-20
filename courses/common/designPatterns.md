@@ -363,3 +363,12 @@ Higher design quality </li>
 
 ##References
 ![](media/patterns-references.png)
+
+
+
+##Exercises
+<ol>
+<li>Write a program to compute following metrics for a C# (or Java) code: LOC (Lines of Code), Number of classes, number of methods. Use regular expressions to achieve the same.
+</li>
+<li>Provide another way to implement the same functionality but by using string comparison. Pay attension to your design (hint: implement strategy and factory paterns)</li>
+<li>Extend the above program and implement a segregated interface to compute all the supported metrics. Write all the computed metrics to a CSV file. (hint: use Facade pattern)</li></ol>
