@@ -285,3 +285,81 @@ Higher design quality </li>
 <li>Easier entensibility</li></ul>
 
 </ul>
+
+
+
+##Strategy Pattern
+* <b>Applicability</b>
+  * Many related classes differ only in their behavior
+  * You need different variants of an algorithm
+  * A class defines many behaviors, and these appear as multiple conditional statements in its operations
+  
+
+
+##Composite Pattern
+![](media/whole-part.png)
+
+
+
+##Composite Pattern
+<b>Motivation</b>
+* Need to represent "whole-part" hierarchies with following requirements
+  * Preserve hierarchical structure
+  * Same interface for both compound or atomic objects for clients 
+  * It should be easy to extend the hierarchy with new element types
+
+
+
+##Composite Pattern
+![](media/Composite.png)
+
+
+
+##Composite Pattern
+![](media/Composite-interaction.png)
+
+
+
+##Composite Pattern
+* <b>Benefits</b>
+  * Transparency (Clients are shielded from the object hierarchy)
+  * Extensibility (New leafs are easy to add)
+
+
+
+##Façade Pattern
+* <b>Motivation</b>
+  * Let us assume that we have a component that provide complex multi-steps services
+  * How to provide a client simplified access to the functionality of such a component
+
+
+
+##Façade Pattern
+![](media/Facade.png)
+
+
+
+##Façade Pattern
+* Create a façade class that provides a high-level unified interface which contains functions commonly-accessed by the clients
+* The client can invoke functions in the façade class which will in turn invoke the specialized functionality in the system
+* This makes it very simple for the client to invoke functionality without knowing the innards of the system
+* However, the client can always directly access a sub-system for specific services
+
+
+
+##Façade Pattern
+* <b>Benefits</b>
+  * Provides a simple interface to a complex system
+  * Decouples the subsystem for clients and other subsystems, thereby promoting subsystem independence and portability
+  * Layers the subsystem
+    * Use façade to define an entry point to each subsystem level
+    * If subsystems are dependent, then the dependencies between them can be simplified by making them communicate with each other solely through their facades
+
+
+
+![](media/allPatterns.gif)
+
+
+
+##References
+![](media/patterns-references.png)
