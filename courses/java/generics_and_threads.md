@@ -558,7 +558,7 @@ Results = 12586269025
 
 ## Link to enchance your programming skills
 * https://www.hackerrank.com/
-* https://projecteuler.net/
+* https://projecteuler.net/ s
 
 
 ## References
