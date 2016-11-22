@@ -129,7 +129,7 @@ class name`<T1, T2, ..., Tn>` { /* ... */ }
 
 
 ## Concurrency and Parallelism
-* The progress of concurrency is one task at the time
+* Concurrency means that an application is making progress on more than one task at the same time 
 * May not finish one task before starting another
 * Parallelism can split a single task in many subtasks
 * Using multiple CPUs can execute tasks on the same time
