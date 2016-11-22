@@ -85,11 +85,11 @@ class name`<T1, T2, ..., Tn>` { /* ... */ }
 			this.obj2 = o2;			
 		}	
 
-		public O1 getFirst() {
+		public O1 getFirstO1() {
 			return this.obj1;		
 		}
 
-		public O2 getFirst() {
+		public O2 getFirstO2() {
 			return this.obj2;		
 		}
 
