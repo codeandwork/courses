@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Structure, depend and build</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-structure-depend-and-build">Coding Bootcamp: Structure, depend and build</h1>
+<h2 id="the-problems">The problems</h2>
+<blockquote>
+<p><em>&quot;I want to structure my project in a way that is independent of the IDE I (or others) use.&quot;</em></p>
+</blockquote>
+<blockquote>
+<p><em>&quot;I want to have an easy way to package and deploy my project on Tomcat.&quot;</em></p>
+</blockquote>
+<blockquote>
+<p><em>&quot;I want to be able to manage the dependencies of my project in a less messy way.&quot;</em></p>
+</blockquote>
+<h2 id="the-tool">The tool</h2>
+<p><a href="https://maven.apache.org">Apache Maven</a> is a tool to manage Java<br />projects.</p>
+<p>There are similar tools both for Java and for other programming<br />languages.</p>
+<ul>
+<li>Gradle<br /></li>
+<li>Apache Ant + Apache Ivy<br /></li>
+<li>SBT<br /></li>
+<li>npm<br /></li>
+<li>bower<br /></li>
+<li>pip<br /></li>
+<li>...</li>
+</ul>
+<h2 id="the-projects">The projects</h2>
+<p>Each Maven project has a <strong>group ID</strong> and an <strong>artifact ID</strong>.</p>
+<p><strong>Group ID</strong>: follows package naming rules</p>
+<p>E.g. <code>org.afdemp</code></p>
+<p><strong>Artifact ID</strong>: contains lowercase letters and no strange symbols</p>
+<p>E.g. <code>coding-bootcamp</code></p>
+<p>A project is <strong>uniquely identified</strong> by the combination of its group<br />and artifact ID.</p>
+<h2 id="the-pom">The POM</h2>
+<p>The <code>pom.xml</code> file resides in the root directory of the project.</p>
+<p>It is the main (and, in most cases, the only) <strong>configuration file</strong> for the project.</p>
+<p>It is an <strong>XML file</strong>.</p>
+<pre class="sourceCode XML"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
+<span class="kw">&lt;project</span><span class="ot"> xmlns=</span><span class="st">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span class="ot"> xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="ot">  xsi:schemaLocation=</span><span class="st">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span><span class="kw">&gt;</span>
+
+  <span class="kw">&lt;modelVersion&gt;</span>4.0.0<span class="kw">&lt;/modelVersion&gt;</span>
+
+  <span class="kw">&lt;groupId&gt;</span>org.afdemp<span class="kw">&lt;/groupId&gt;</span>
+  <span class="kw">&lt;artifactId&gt;</span>coding-bootcamp<span class="kw">&lt;/artifactId&gt;</span>
+  <span class="kw">&lt;version&gt;</span>1.0.0<span class="kw">&lt;/version&gt;</span>
+
+  <span class="kw">&lt;packaging&gt;</span>jar<span class="kw">&lt;/packaging&gt;</span>
+
+  <span class="kw">&lt;name&gt;</span>Coding bootcamp<span class="kw">&lt;/name&gt;</span>
+  <span class="kw">&lt;description&gt;</span>The project for the 1st coding bootcamp.<span class="kw">&lt;/description&gt;</span>
+  
+  <span class="kw">&lt;dependencies&gt;</span>
+  ...
+  <span class="kw">&lt;/dependencies&gt;</span>
+  
+  <span class="kw">&lt;build&gt;</span>
+  ...
+  <span class="kw">&lt;/build&gt;</span>
+  
+<span class="kw">&lt;/project&gt;</span></code></pre>
+<h2 id="the-structure">The structure</h2>
+<p>All Maven projects are expected to have the following <strong>directory layout</strong>.</p>
+<p><code>src/main/java</code>: the application sources</p>
+<p><code>src/main/resources</code>: the application resources</p>
+<p><code>src/main/webapp</code>:the web application sources</p>
+<p><code>src/test/java</code>: the test sources</p>
+<p><code>src/test/resources</code>: the test resources</p>
+<h2 id="the-dependencies">The dependencies</h2>
+<p>Dependencies are listed in the <code>&lt;dependencies&gt;</code> element.</p>
+<p><strong>Group ID</strong>, <strong>artifact ID</strong> and <strong>version</strong> must be specified for all dependencies.</p>
+<pre class="sourceCode XML"><code class="sourceCode xml"><span class="kw">&lt;dependencies&gt;</span>
+  ...
+  <span class="kw">&lt;dependency&gt;</span>
+    <span class="kw">&lt;groupId&gt;</span>commons-io<span class="kw">&lt;/groupId&gt;</span>
+    <span class="kw">&lt;artifactId&gt;</span>commons-io<span class="kw">&lt;/artifactId&gt;</span>
+    <span class="kw">&lt;version&gt;</span>2.5<span class="kw">&lt;/version&gt;</span>
+  <span class="kw">&lt;/dependency&gt;</span>
+  ...
+<span class="kw">&lt;/dependencies&gt;</span></code></pre>
+<h2 id="the-build-process">The build process</h2>
+<p>The <code>&lt;build&gt;</code> element contains most build settings.</p>
+<p>The final name of the packaged project.</p>
+<pre class="sourceCode XML"><code class="sourceCode xml"><span class="kw">&lt;build&gt;</span>
+  ...
+  <span class="kw">&lt;finalName&gt;</span>coding-bootcamp<span class="kw">&lt;/finalName&gt;</span>
+  ...
+<span class="kw">&lt;/build&gt;</span></code></pre>
+<p>The version of the Java compiler.</p>
+<pre class="sourceCode XML"><code class="sourceCode xml"><span class="kw">&lt;build&gt;</span>
+  ...
+  <span class="kw">&lt;plugins&gt;</span>
+    <span class="kw">&lt;plugin&gt;</span>
+      <span class="kw">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="kw">&lt;/groupId&gt;</span>
+      <span class="kw">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="kw">&lt;/artifactId&gt;</span>
+      <span class="kw">&lt;version&gt;</span>3.2<span class="kw">&lt;/version&gt;</span>
+      <span class="kw">&lt;configuration&gt;</span>
+        <span class="kw">&lt;source&gt;</span>1.8<span class="kw">&lt;/source&gt;</span>
+        <span class="kw">&lt;target&gt;</span>1.8<span class="kw">&lt;/target&gt;</span>
+      <span class="kw">&lt;/configuration&gt;</span>
+    <span class="kw">&lt;/plugin&gt;</span>
+  <span class="kw">&lt;/plugins&gt;</span>
+  ...
+<span class="kw">&lt;/build&gt;</span></code></pre>
+<h2 id="the-phases">The phases</h2>
+<p>The <strong>build lifecycle</strong> is made of <strong>phases</strong>.</p>
+<p><code>compile</code>: compile the sources</p>
+<p><code>test</code>: run the tests</p>
+<p><code>package</code>: package the compiled code in its distributable format (e.g. JAR)</p>
+<p><code>install</code>: install the package into the local repository</p>
+<p><code>clean</code>: clean up after previous builds</p>
+<h2 id="hello-maven">Hello Maven</h2>
+<p><code>hello-maven/pom.xml</code></p>
+<pre class="sourceCode XML"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
+<span class="kw">&lt;project</span><span class="ot"> xmlns=</span><span class="st">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span class="ot"> xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="ot">  xsi:schemaLocation=</span><span class="st">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;modelVersion&gt;</span>4.0.0<span class="kw">&lt;/modelVersion&gt;</span>
+
+  <span class="kw">&lt;groupId&gt;</span>hellos<span class="kw">&lt;/groupId&gt;</span>
+  <span class="kw">&lt;artifactId&gt;</span>hello-maven<span class="kw">&lt;/artifactId&gt;</span>
+
+  <span class="kw">&lt;version&gt;</span>1.0.0<span class="kw">&lt;/version&gt;</span>
+
+  <span class="kw">&lt;name&gt;</span>Hello Maven<span class="kw">&lt;/name&gt;</span>
+  <span class="kw">&lt;description&gt;</span>Says hello to Maven.<span class="kw">&lt;/description&gt;</span>
+
+  <span class="kw">&lt;packaging&gt;</span>jar<span class="kw">&lt;/packaging&gt;</span>
+
+  <span class="kw">&lt;build&gt;</span>
+    <span class="kw">&lt;plugins&gt;</span>
+      <span class="kw">&lt;plugin&gt;</span>
+        <span class="kw">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="kw">&lt;/groupId&gt;</span>
+        <span class="kw">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="kw">&lt;/artifactId&gt;</span>
+        <span class="kw">&lt;version&gt;</span>3.2<span class="kw">&lt;/version&gt;</span>
+        <span class="kw">&lt;configuration&gt;</span>
+          <span class="kw">&lt;source&gt;</span>1.8<span class="kw">&lt;/source&gt;</span>
+          <span class="kw">&lt;target&gt;</span>1.8<span class="kw">&lt;/target&gt;</span>
+        <span class="kw">&lt;/configuration&gt;</span>
+      <span class="kw">&lt;/plugin&gt;</span>
+     <span class="kw">&lt;/plugins&gt;</span>
+  <span class="kw">&lt;/build&gt;</span>
+
+<span class="kw">&lt;/project&gt;</span></code></pre>
+<h2 id="hello-maven-1">Hello Maven</h2>
+<p><code>hello-maven/src/main/java/hellos/HelloMaven.java</code></p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package hellos;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> HelloMaven {
+  <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String...<span class="fu">args</span>) {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Hello Maven!&quot;</span>);
+  }
+}</code></pre>
+<h2 id="say-hello-to-maven">Say hello to Maven</h2>
+<pre><code>$ mvn clean package
+
+$ java -cp target/hello-maven-1.0.0.jar hellos.HelloMaven</code></pre>
+<h2 id="hello-web">Hello Web</h2>
+<p><code>pom.xml</code></p>
+<pre class="sourceCode XML"><code class="sourceCode xml">?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<span class="kw">&lt;project</span><span class="ot"> xmlns=</span><span class="st">&quot;http://maven.apache.org/POM/4.0.0&quot;</span><span class="ot"> xmlns:xsi=</span><span class="st">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="ot">  xsi:schemaLocation=</span><span class="st">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;</span><span class="kw">&gt;</span>
+
+  <span class="kw">&lt;modelVersion&gt;</span>4.0.0<span class="kw">&lt;/modelVersion&gt;</span>
+
+  <span class="kw">&lt;groupId&gt;</span>hellos<span class="kw">&lt;/groupId&gt;</span>
+  <span class="kw">&lt;artifactId&gt;</span>hello-web<span class="kw">&lt;/artifactId&gt;</span>
+
+  <span class="kw">&lt;version&gt;</span>1.0.0<span class="kw">&lt;/version&gt;</span>
+
+  <span class="kw">&lt;name&gt;</span>Hello Web<span class="kw">&lt;/name&gt;</span>
+  <span class="kw">&lt;description&gt;</span>Says hello to the Web.<span class="kw">&lt;/description&gt;</span>
+
+  <span class="kw">&lt;packaging&gt;</span>war<span class="kw">&lt;/packaging&gt;</span>
+
+  <span class="kw">&lt;dependencies&gt;</span>
+    <span class="kw">&lt;dependency&gt;</span>
+      <span class="kw">&lt;groupId&gt;</span>javax.servlet<span class="kw">&lt;/groupId&gt;</span>
+      <span class="kw">&lt;artifactId&gt;</span>servlet-api<span class="kw">&lt;/artifactId&gt;</span>
+      <span class="kw">&lt;version&gt;</span>2.5<span class="kw">&lt;/version&gt;</span>
+    <span class="kw">&lt;/dependency&gt;</span>
+  <span class="kw">&lt;/dependencies&gt;</span>
+
+  <span class="kw">&lt;build&gt;</span>
+    <span class="kw">&lt;finalName&gt;</span>hello-web<span class="kw">&lt;/finalName&gt;</span>
+  <span class="kw">&lt;/build&gt;</span>
+ 
+<span class="kw">&lt;/project&gt;</span></code></pre>
+<h2 id="hello-web-1">Hello Web</h2>
+<p><code>src/main/webapp/index.html</code></p>
+<pre class="sourceCode HTML"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+  <span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;title&gt;</span>Hello Web!<span class="kw">&lt;/title&gt;</span>
+  <span class="kw">&lt;/head&gt;</span>
+  <span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;p&gt;</span>Hello Web!<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<h2 id="hello-web-2">Hello Web</h2>
+<p><code>src/main/webapp/WEB-INF/web.xml</code></p>
+<pre class="sourceCode XML"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
+<span class="dt">&lt;!DOCTYPE </span>web-app
+  PUBLIC &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;
+  &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;<span class="dt">&gt;</span>
+<span class="kw">&lt;web-app&gt;</span>
+  <span class="kw">&lt;welcome-file-list&gt;</span>
+    <span class="kw">&lt;welcome-file&gt;</span>index.html<span class="kw">&lt;/welcome-file&gt;</span>
+  <span class="kw">&lt;/welcome-file-list&gt;</span>
+<span class="kw">&lt;/web-app&gt;</span>   </code></pre>
+<h2 id="say-hello-to-the-web">Say hello to the Web</h2>
+<pre><code>$ mvn clean package
+
+$ cp target/hello-web.war $CATALINA_HOME/webapps/
+
+$ $CATALINA_HOME/bin/catalina.sh run
+</code></pre>
+<h2 id="exercise">Exercise</h2>
+<p>Write a Java application that receives a number as a command-line<br />argument, and prints whether that number is prime or not.</p>
+<p>Use Apache Maven.</p>
+<p>Use <a href="http://commons.apache.org/proper/commons-math/">Apache Commons Math Library</a>.</p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

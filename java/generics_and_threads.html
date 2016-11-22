@@ -89,14 +89,14 @@
 <li>Allows programmer to add an empty type arguments (&lt;&gt;) while calling the constructor<br /></li>
 <li>Statement of the object although always require the type arguments</li>
 </ul>
-<pre class="sourceCode java"><code class="sourceCode java">    Box&lt;<span class="dt">int</span>&gt; intBoxer = <span class="kw">new</span> Box&lt;&gt;();</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java">    Box&lt;Object&gt; objBoxer = <span class="kw">new</span> Box&lt;&gt;();</code></pre>
 <h2 id="multiple-parameters-in-generics">Multiple parameters in generics</h2>
 <pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">class</span> Pairing &lt;O1, O2&gt; {
         <span class="kw">private</span> O1 obj1;
         <span class="kw">private</span> O2 obj2;
-        <span class="kw">public</span> <span class="fu">Pairing</span>(O1 o1, O2 o2) {
-            obj1 = o1;
-            obj2 = o2;          
+        <span class="kw">public</span> <span class="fu">Pairing</span>(O2 o2, O1 o1) {
+            <span class="kw">this</span>.<span class="fu">obj1</span> = o1;
+            <span class="kw">this</span>.<span class="fu">obj2</span> = o2;         
         }   
 
         <span class="kw">public</span> O1 <span class="fu">getFirst</span>() {
@@ -117,19 +117,12 @@
     
     <span class="kw">class</span> Test {
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
-            Pairing&lt;Male, Female&gt; marryThem = <span class="kw">new</span> Pairing&lt;&gt;();
+            Male newMale = <span class="kw">new</span> <span class="fu">Male</span>();
+            Female newFemale = <span class="kw">new</span> <span class="fu">Female</span>();
+            Pairing&lt;Male, Female&gt; marryThem = <span class="kw">new</span> Pairing&lt;&gt;(newFemale, newMale);
             System.<span class="fu">out</span>.<span class="fu">println</span>(marryThem.<span class="fu">toString</span>());   
         }       
     }</code></pre>
-<h2 id="wildcards-generics">Wildcards generics</h2>
-<ul>
-<li>Represents an unknown type of object<br /></li>
-<li>Can be used as a type of parameter, field, or local variable, and as a return type<br /></li>
-<li>Never use it as argument type for generic method, class, or supertype.</li>
-</ul>
-<pre class="sourceCode java"><code class="sourceCode java">    Collection &lt;?&gt;
-    Collection &lt;? extend E&gt;
-    Collection &lt;? <span class="kw">super</span> E&gt;</code></pre>
 <h2 id="introducation-to-threads">Introducation to Threads</h2>
 <ul>
 <li>Thread is a piece of code that lives inside a process<br /></li>
@@ -199,7 +192,10 @@
 </ul>
 <h2 id="executing-our-thread">Executing our thread</h2>
 <pre class="sourceCode java"><code class="sourceCode java">    FindCountOfEvenNumbers newThread = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
-    newThread.<span class="fu">start</span>();</code></pre>
+    <span class="kw">new</span> Thread(findNumber).<span class="fu">start</span>();</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java">        FindCountOfEvenNumbers findNumber = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
+        Thread t = <span class="kw">new</span> Thread(findNumber);
+    t.<span class="fu">start</span>();</code></pre>
 <h2 id="ways-for-executing-threads-2">Ways for executing threads (2)</h2>
 <ul>
 <li>Declare class that implements the Runnable interface<br /></li>
@@ -221,14 +217,11 @@
     }
 }</code></pre></li>
 </ul>
-<h2 id="executing-our-thread-1">Executing our thread</h2>
-<pre class="sourceCode java"><code class="sourceCode java">    FindCountOfEvenNumbers newThread = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumbers</span>(<span class="dv">1200</span>);
-    <span class="kw">new</span> Thread(newThread).<span class="fu">start</span>();</code></pre>
 <h2 id="differences-from-using-thread-and-runnable">Differences from using Thread and Runnable</h2>
 <ul>
 <li>After extending Thread class you can't extend any other that you may require in the future<br /></li>
 <li>After implementing Runnable you may extend from other class on the spot or in the future<br /></li>
-<li>Extending create different objects of the Tread class, on the other hand, in Runnable many threads can share the instance of the same object</li>
+<li>Extending creates different objects of the Tread class, on the other hand, in Runnable many threads can share the instance of the same object</li>
 </ul>
 <h2 id="example-of-threadvsrunnable-1">Example of ThreadVsRunnable (1)</h2>
 <pre class="sourceCode java"><code class="sourceCode java">    <span class="co">//Implementing Runnable Interface</span>
@@ -251,7 +244,7 @@
 <h2 id="example-of-threadvsrunnable-2">Example of ThreadVsRunnable (2)</h2>
 <pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> ThreadVsRunnable {
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) <span class="kw">throws</span> Exception {
-            <span class="co">// Multiple threads share the same object.</span>
+                <span class="co">// Multiple threads share the same object.</span>
                 ImplementsRunnable rc = <span class="kw">new</span> <span class="fu">ImplementsRunnable</span>();
                 Thread t1 = <span class="kw">new</span> Thread(rc);
                 t1.<span class="fu">start</span>();
@@ -281,14 +274,16 @@
     ExtendsThread : Counter : <span class="dv">1</span>
     ExtendsThread : Counter : <span class="dv">1</span>
     ExtendsThread : Counter : <span class="dv">1</span></code></pre>
-<h2 id="stopping-a-threads-execution-1">Stopping a threads execution (1)</h2>
+<h2 id="pausing-and-stopping-a-threads-execution-1">Pausing and Stopping a threads execution (1)</h2>
 <ul>
 <li>Thread.sleep sunspends thread execution for a specified amount of time</li>
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java">    Thread pThread = <span class="kw">new</span> Thread();
     pthread.<span class="fu">start</span>();
     <span class="co">//Make thread sleep for 5 seconds</span>
-    pthread.<span class="fu">sleep</span>(<span class="dv">5000</span>);</code></pre>
+    pthread.<span class="fu">sleep</span>(<span class="dv">5000</span>);
+    <span class="co">//Interrupts thread&#39;s execution</span>
+    pthread.<span class="fu">stop</span>();</code></pre>
 <h2 id="stopping-a-threads-exexution-2">Stopping a threads exexution (2)</h2>
 <ul>
 <li>Sleep period of a thread can be termindated by interrupts<br /></li>
@@ -296,30 +291,48 @@
 </ul>
 <pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">class</span> TestInterruptingThread1 <span class="kw">extends</span> Thread{  
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>(){  
-        <span class="kw">try</span>{  
-            Thread.<span class="fu">sleep</span>(<span class="dv">1000</span>);  
+        <span class="kw">try</span> {  
+            Thread.<span class="fu">sleep</span>(<span class="dv">10000</span>);  
             System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;task&quot;</span>);  
-        }<span class="kw">catch</span>(InterruptedException e){  
-            <span class="kw">throw</span> <span class="kw">new</span> RuntimeException(<span class="st">&quot;Thread interrupted...&quot;</span>+e);  
+        } <span class="kw">catch</span>(InterruptedException e) {  
+            <span class="kw">throw</span> <span class="kw">new</span> RuntimeException(<span class="st">&quot;Thread interrupted...&quot;</span> + e);  
     }  
 }  
   
     <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]){  
-        TestInterruptingThread1 t1=<span class="kw">new</span> <span class="fu">TestInterruptingThread1</span>();  
+        TestInterruptingThread1 t1 = <span class="kw">new</span> <span class="fu">TestInterruptingThread1</span>();  
         t1.<span class="fu">start</span>();  
-        <span class="kw">try</span>{  
+        <span class="kw">try</span> {  
             t1.<span class="fu">interrupt</span>();  
-        }<span class="kw">catch</span>(Exception e){System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception handled &quot;</span>+e);}   
+        } <span class="kw">catch</span>(Exception e) {
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception handled &quot;</span> + e);
+}   
     }  
 }   </code></pre>
 <h2 id="output-of-interrupt-thread">Output of interrupt thread</h2>
 <pre class="sourceCode java"><code class="sourceCode java">    Exception in thread <span class="st">&quot;Thread-0&quot;</span> java.<span class="fu">lang</span>.<span class="fu">RuntimeException</span>: Thread interrupted...<span class="fu">java</span>.<span class="fu">lang</span>.<span class="fu">InterruptedException</span>: sleep interrupted
     at TestInterruptingThread1.<span class="fu">run</span>(TestInterruptingThread1.<span class="fu">java</span>:<span class="dv">7</span>)</code></pre>
-<h2 id="thread-join">Thread Join</h2>
+<h2 id="thread-join1">Thread Join(1)</h2>
 <ul>
 <li><p>Method that allows a thread to wait for the completion of another thread.</p>
 <pre class="sourceCode java"><code class="sourceCode java">    t.<span class="fu">join</span>();</code></pre>
-<p>Consider a thread P running and find t.join() in its execution code, P thread must wait from t thread to finish in order o continue its execution.</p></li>
+<p>Consider a thread P running and find t.join() in its execution code, P thread must wait from t thread to finish in order o continue its execution.</p>
+<pre class="sourceCode java"><code class="sourceCode java">    FindCountOfEvenNumbers findNumber = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumber</span>(<span class="dv">1200</span>);
+    Thread t = <span class="kw">new</span> Thread(findNumber);
+    t.<span class="fu">start</span>();
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Now thread &quot;</span> + t.<span class="fu">getName</span>() + <span class="st">&quot; is running&quot;</span>);
+    t.<span class="fu">join</span>();</code></pre></li>
+</ul>
+<h2 id="thread-join2">Thread Join(2)</h2>
+<ul>
+<li><p>Method that allows a thread to wait for the completion of another thread.</p>
+<pre class="sourceCode java"><code class="sourceCode java">        t.<span class="fu">join</span>();</code></pre>
+<p>Consider a thread P running and find t.join() in its execution code, P thread must wait from t thread to finish in order o continue its execution.</p>
+<pre class="sourceCode java"><code class="sourceCode java">        FindCountOfEvenNumbers findNumber = <span class="kw">new</span> <span class="fu">FindCountOfEvenNumber</span>(<span class="dv">1200</span>);
+        Thread t = <span class="kw">new</span> Thread(findNumber);
+        t.<span class="fu">start</span>();
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Now thread &quot;</span> + t.<span class="fu">getName</span>() + <span class="st">&quot; is running&quot;</span>);
+        t.<span class="fu">join</span>(<span class="dv">1000</span>);</code></pre></li>
 </ul>
 <h2 id="simplethread-example-1">SimpleThread Example (1)</h2>
 <pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> SimpleThreads {
@@ -390,7 +403,7 @@
     <span class="kw">public</span> <span class="kw">synchronized</span> <span class="dt">int</span> <span class="fu">value</span>() { <span class="kw">return</span> c; }
     <span class="kw">public</span> <span class="kw">synchronized</span> <span class="dt">void</span> <span class="fu">run</span>() {
         <span class="fu">increment</span>();      
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am thread&quot;</span> + Thread.<span class="fu">currentThread</span>().<span class="fu">getName</span>()+<span class="st">&quot;and the c value is &quot;</span> + <span class="kw">this</span>.<span class="fu">c</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I am thread&quot;</span> + Thread.<span class="fu">currentThread</span>().<span class="fu">getName</span>() + <span class="st">&quot;and the c value is &quot;</span> + <span class="fu">value</span>());
         <span class="fu">decrement</span>();
     }
 }</code></pre>
@@ -413,11 +426,31 @@
 <h2 id="exercises">Exercises</h2>
 <p><img src="media/Yoda_Exercises_Meme.jpg" /></p>
 <h2 id="exercise-1">Exercise 1</h2>
+<p>It's give to you a class name Hedonism that receives five parametric types and also class Granch.<br />Also create four classes with the following names: Cellulase, Semiserf, Mina, and Contrite<br />with nothing inside the classes.<br />Now, create a class named Trikeria with public visibility and main class that has a public static<br />method named stenchful.<br />This method does not have any arguments. This method also creates objects from classes Cellulase, Semiserf,<br />Mina, Contrite, and Granch. Furthermore, it creates an object from class Hedonism with the parameter types<br />of Cellulase, Semiserf, Mina, Contrite, and Granch (with this exact sequense). In the end, method stenchful<br />calls method myoglibin from class Hedonism with the &quot;correct created object&quot; and returns the result of the<br />method....</p>
+<h2 id="exercise-1-cont.">Exercise 1 (Cont.)</h2>
+<p>The return data type of myoglobin defines the return time of stenchful too.<br />At the end call method print from Granch class.<br />Source code can be found at <a href="https://drive.google.com/open?id=0B4OihM0nDwEJNERadzZKSGhHYkE">https://drive.google.com/open?id=0B4OihM0nDwEJNERadzZKSGhHYkE</a></p>
+<h2 id="exercise-2">Exercise 2</h2>
+<p>Write a generics method that can swap the first element of an array with the last, the<br />second with the semilas and keep going.<br />The first array has int as data type with numbers from 1 to 10.<br />The second array has double as data type with numbers from 1 to 10.</p>
+<h2 id="exercise-3">Exercise 3</h2>
+<p>Does the following code compiles without any error?</p>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">final</span> <span class="kw">class</span> Algorithm {
+            <span class="kw">public</span> <span class="dt">static</span> &lt;T&gt; T <span class="fu">max</span>(T x, T y) {
+                <span class="kw">return</span> x &gt; y ? x : y;
+            }
+    }</code></pre>
+<p>Take your time to think about it, the answer is on the next page</p>
+<h2 id="exercise-3-answer">Exercise 3 (Answer)</h2>
+<p>No! The &quot;&gt;&quot; symbols applies only on primitive numeric types</p>
+<h2 id="exercise-4">Exercise 4</h2>
 <p>Remove the synchronized parameter from all the methods of the Counter and run the program and observe its behavior.</p>
+<h2 id="exercise-5">Exercise 5</h2>
+<p>Consider having an array with elements starting from 1,2,3,....,998,999,1000.<br />Create a thread pool with any data structure you like (array, linklist, arraylist, etc.) that has 10 threads.<br />Balance your work-load among threads and find out the sum of all elements from the array.<br />This problem can be solved easily with many others ways, although, you are summoned to solve it<br />using threads.</p>
+<h2 id="exercise-6">Exercise 6</h2>
+<p>For this exercise you are called to create Fibonacci program and find the end results of number 50.<br />Create a thread that will execute the Fibonacci code and when the thread is done print the end result.<br />Use the existing class from here <a href="https://drive.google.com/open?id=0B4OihM0nDwEJRGtnaHhTaUhqV1U">https://drive.google.com/open?id=0B4OihM0nDwEJRGtnaHhTaUhqV1U</a><br />As an advanced part of this exercise try to reduce the programs execution time with multiple<br />threads<br />Results = 12586269025</p>
 <h2 id="link-to-enchance-your-programming-skills">Link to enchance your programming skills</h2>
 <ul>
 <li><a href="https://www.hackerrank.com/">https://www.hackerrank.com/</a><br /></li>
-<li><a href="https://projecteuler.net/">https://projecteuler.net/</a></li>
+<li><a href="https://projecteuler.net/">https://projecteuler.net/</a> s</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>

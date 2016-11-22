@@ -190,6 +190,173 @@ Higher design quality </li>
 
 
 
+<h2 id="categories-of-patterns">Categories of Patterns</h2>
+<ul>
+<li><b>Creational</b> - patterns answer how to create and when to create</li>
+<ul>
+<li>Examples: Factory, Abstract Factory, Builder</li></ul>
+<br>
+
+<li class="fragment"><b>Structural</b> - patterns answer how to comppose/structure</li>
+<ul>
+<li class="fragment">Examples: Adapter, Composite, Decorator</li></ul>
+<br>
+<li class="fragment"><b>Behavioral</b> - patterns describe how a group of objects cooperate to carry out a task</li>
+<ul>
+<li class="fragment">Examples: Observer, Strategy, Visitor</li></ul>
+</ul>
+
+
+
+<h2 id="factory-pattern">Factory Pattern</h2>
+<ul>
+<li><b>Motivation</b><br /></li>
+<li>Creating objects without exposing the instantiation logic to the clients<br /></li>
+<li>Proving a common interface to refer all objects (of a kind)</li>
+</ul>
+<h2 id="factory-pattern-1">Factory Pattern</h2>
+<p><img src="media/Factory.png" /></p>
+<h2 id="factory-pattern-example">Factory Pattern Example</h2>
+<p><img src="media/FactoryExample.png" /></p>
+<h2 id="factory-pattern-2">Factory Pattern</h2>
+<ul>
+<li><b>Benefits</b></li>
+<ul>
+<li>Separation of concerns - the logic to instantiate is separated</li>
+<li>Flexibility - to extend Product hierarchy without affecting clients</li>
+</ul>
+  
+<br>
+
+<li class="fragment"><b>Liabilities</b></li>
+<ul>
+<li class="fragment">Don't bypass</li></ul></ul>
+
+
+
+<h2 id="let-us-extend-the-factory-pattern">Let us extend the Factory Pattern</h2>
+<ul>
+<li><b>Motivation</b><br /></li>
+<li>Let us assume you have <u><i>families of objects</i></u> to instantiate</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Widget library providing UI elements such as Button and TextBox<br /></li>
+<li>The library instantiate UI elements based on the platform such as Windows and Linux</li>
+</ul>
+<h2 id="abstract-factory-pattern">Abstract Factory Pattern</h2>
+<p><img src="media/AbstractFactory.png" /></p>
+<h2 id="abstract-factory-pattern-1">Abstract Factory Pattern</h2>
+<ul>
+<li><b>Benefits</b></li>
+<ul>
+<li>Flexibility (Entire product families can be easily exchanged)
+</li>
+<li>Separation of concerns (Object lifetime management is separated from object use)</li></ul>
+
+<br>
+<li class="fragment"><b>Liabilities</b></li>
+<ul>
+<li class="fragment">GoF Abstract Factory only covers object creation, not object disposal</li>
+</ul>
+</ul>
+
+
+
+<h2 id="strategy-pattern">Strategy Pattern</h2>
+<ul>
+<li><b>Motivation</b><br /></li>
+<li><p>Support to more than one algorithm required in many situations:</p>
+<ul>
+<li>Clients do not want to be dependent on a supplied default algorithm<br /></li>
+<li>Suitability of an algorithm may change based on the context (input, platform, ...)<br /></li>
+<li>Integrating new algorithms should be easy (without modifying existing code, if possible)</li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li>Examples - compression algorithm, sort algorithm</li>
+</ul>
+<h2 id="strategy-pattern-1">Strategy Pattern</h2>
+<p><img src="media/Strategy.png" /></p>
+<h2 id="strategy-pattern-2">Strategy Pattern</h2>
+<ul>
+<li><b>Benefits</b></li>
+<ul>
+<li>Freedom to chose algorithms
+</li>
+<li>Easier entensibility</li></ul>
+
+</ul>
+
+
+
+
+<h2 id="strategy-pattern-3">Strategy Pattern</h2>
+<ul>
+<li><b>Applicability</b><br /></li>
+<li>Many related classes differ only in their behavior<br /></li>
+<li>You need different variants of an algorithm<br /></li>
+<li>A class defines many behaviors, and these appear as multiple conditional statements in its operations</li>
+</ul>
+<h2 id="composite-pattern">Composite Pattern</h2>
+<p><img src="media/whole-part.png" /></p>
+<h2 id="composite-pattern-1">Composite Pattern</h2>
+<p><b>Motivation</b></p>
+<ul>
+<li>Need to represent &quot;whole-part&quot; hierarchies with following requirements<br /></li>
+<li>Preserve hierarchical structure<br /></li>
+<li>Same interface for both compound or atomic objects for clients<br /></li>
+<li>It should be easy to extend the hierarchy with new element types</li>
+</ul>
+<h2 id="composite-pattern-2">Composite Pattern</h2>
+<p><img src="media/Composite.png" /></p>
+<h2 id="composite-pattern-3">Composite Pattern</h2>
+<p><img src="media/Composite-interaction.png" /></p>
+<h2 id="composite-pattern-4">Composite Pattern</h2>
+<ul>
+<li><b>Benefits</b><br /></li>
+<li>Transparency (Clients are shielded from the object hierarchy)<br /></li>
+<li>Extensibility (New leafs are easy to add)</li>
+</ul>
+<h2 id="facade-pattern">Façade Pattern</h2>
+<ul>
+<li><b>Motivation</b><br /></li>
+<li>Let us assume that we have a component that provide complex multi-steps services<br /></li>
+<li>How to provide a client simplified access to the functionality of such a component</li>
+</ul>
+<h2 id="facade-pattern-1">Façade Pattern</h2>
+<p><img src="media/Facade.png" /></p>
+<h2 id="facade-pattern-2">Façade Pattern</h2>
+<ul>
+<li>Create a façade class that provides a high-level unified interface which contains functions commonly-accessed by the clients<br /></li>
+<li>The client can invoke functions in the façade class which will in turn invoke the specialized functionality in the system<br /></li>
+<li>This makes it very simple for the client to invoke functionality without knowing the innards of the system<br /></li>
+<li>However, the client can always directly access a sub-system for specific services</li>
+</ul>
+<h2 id="facade-pattern-3">Façade Pattern</h2>
+<ul>
+<li><b>Benefits</b><br /></li>
+<li>Provides a simple interface to a complex system<br /></li>
+<li>Decouples the subsystem for clients and other subsystems, thereby promoting subsystem independence and portability<br /></li>
+<li><p>Layers the subsystem</p>
+<ul>
+<li>Use façade to define an entry point to each subsystem level<br /></li>
+<li>If subsystems are dependent, then the dependencies between them can be simplified by making them communicate with each other solely through their facades</li>
+</ul></li>
+</ul>
+<p><img src="media/allPatterns.gif" /></p>
+<h2 id="references">References</h2>
+<p><img src="media/patterns-references.png" /></p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>Write a program to compute following metrics for a C# (or Java) code: LOC (Lines of Code), Number of classes, number of methods. Use regular expressions to achieve the same.
+</li>
+<li>Provide another way to implement the same functionality but by using string comparison. Pay attension to your design (hint: implement strategy and factory paterns)</li>
+<li>Extend the above program and implement a segregated interface to compute all the supported metrics. Write all the computed metrics to a CSV file. (hint: use Facade pattern)</li></ol>
+
+
+
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
   </body>
