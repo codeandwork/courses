@@ -71,7 +71,7 @@ class name`<T1, T2, ..., Tn>` { /* ... */ }
 * Statement of the object although always require the type arguments 
 
 ```java
-	Box<int> intBoxer = new Box<>();
+	Box<Object> objBoxer = new Box<>();
 ```
 
 
@@ -80,16 +80,16 @@ class name`<T1, T2, ..., Tn>` { /* ... */ }
 	class Pairing <O1, O2> {
 		private O1 obj1;
 		private O2 obj2;
-		public Pairing(O1 o1, O2 o2) {
-			obj1 = o1;
-			obj2 = o2;			
+		public Pairing(O2 o2, O1 o1) {
+			this.obj1 = o1;
+			this.obj2 = o2;			
 		}	
 
-		public O1 getFirst() {
+		public O1 getFirstO1() {
 			return this.obj1;		
 		}
 
-		public O2 getFirst() {
+		public O2 getFirstO2() {
 			return this.obj2;		
 		}
 
@@ -103,22 +103,12 @@ class name`<T1, T2, ..., Tn>` { /* ... */ }
 	
 	class Test {
 		public static void main(String[] args) {
-			Pairing<Male, Female> marryThem = new Pairing<>();
+			Male newMale = new Male();
+			Female newFemale = new Female();
+			Pairing<Male, Female> marryThem = new Pairing<>(newFemale, newMale);
 			System.out.println(marryThem.toString());	
 		}		
 	}
-```
-
-
-## Wildcards generics
-* Represents an unknown type of object
-* Can be used as a type of parameter, field, or local variable, and as a return type
-* Never use it as argument type for generic method, class, or supertype.
-
-```java 
-	Collection <?>
-	Collection <? extend E>
-	Collection <? super E>
 ```
 
 
@@ -139,7 +129,7 @@ class name`<T1, T2, ..., Tn>` { /* ... */ }
 
 
 ## Concurrency and Parallelism
-* The progress of concurrency is one task at the time
+* Concurrency means that an application is making progress on more than one task at the same time 
 * May not finish one task before starting another
 * Parallelism can split a single task in many subtasks
 * Using multiple CPUs can execute tasks on the same time
@@ -209,8 +199,15 @@ Scenario with parallelism
 ## Executing our thread
 ```java
 	FindCountOfEvenNumbers newThread = new FindCountOfEvenNumbers(1200);
-	newThread.start();
+	new Thread(findNumber).start();
 ```
+
+```java
+        FindCountOfEvenNumbers findNumber = new FindCountOfEvenNumbers(1200);
+        Thread t = new Thread(findNumber);
+	t.start();
+```
+
 
 
 ## Ways for executing threads (2)
@@ -236,17 +233,10 @@ Scenario with parallelism
 ```
 
 
-## Executing our thread
-```java
-	FindCountOfEvenNumbers newThread = new FindCountOfEvenNumbers(1200);
-	new Thread(newThread).start();
-```
-
-
 ## Differences from using Thread and Runnable
 * After extending Thread class you can't extend any other that you may require in the future
 * After implementing Runnable you may extend from other class on the spot or in the future
-* Extending create different objects of the Tread class, on the other hand, in Runnable many threads can share the instance of the same object
+* Extending creates different objects of the Tread class, on the other hand, in Runnable many threads can share the instance of the same object
 
 
 ## Example of ThreadVsRunnable (1)
@@ -275,12 +265,12 @@ Scenario with parallelism
 ```java
 	public class ThreadVsRunnable {
 		public static void main(String args[]) throws Exception {
-    		// Multiple threads share the same object.
+    			// Multiple threads share the same object.
     			ImplementsRunnable rc = new ImplementsRunnable();
     			Thread t1 = new Thread(rc);
     			t1.start();
     			Thread.sleep(1000); // Waiting for 1 second before starting next thread
-  		 	Thread t2 = new Thread(rc);
+  			Thread t2 = new Thread(rc);
     			t2.start();
     			Thread.sleep(1000); // Waiting for 1 second before starting next thread
     			Thread t3 = new Thread(rc);
@@ -312,7 +302,7 @@ Scenario with parallelism
 ```
 
 
-## Stopping a threads execution (1)
+## Pausing and Stopping a threads execution (1)
 * Thread.sleep sunspends thread execution for a specified amount of time
 
 ```java
@@ -320,6 +310,8 @@ Scenario with parallelism
 	pthread.start();
 	//Make thread sleep for 5 seconds
 	pthread.sleep(5000);
+	//Interrupts thread's execution
+	pthread.stop();
 ```
 
 
@@ -330,20 +322,22 @@ Scenario with parallelism
 ```java
 	class TestInterruptingThread1 extends Thread{  
 	public void run(){  
-		try{  
-			Thread.sleep(1000);  
+		try {  
+			Thread.sleep(10000);  
 			System.out.println("task");  
-		}catch(InterruptedException e){  
-			throw new RuntimeException("Thread interrupted..."+e);  
+		} catch(InterruptedException e) {  
+			throw new RuntimeException("Thread interrupted..." + e);  
 	}  
 }  
   
 	public static void main(String args[]){  
-		TestInterruptingThread1 t1=new TestInterruptingThread1();  
+		TestInterruptingThread1 t1 = new TestInterruptingThread1();  
 		t1.start();  
-		try{  
+		try {  
 			t1.interrupt();  
-		}catch(Exception e){System.out.println("Exception handled "+e);}   
+		} catch(Exception e) {
+			System.out.println("Exception handled " + e);
+}   
 	}  
 }  	
 ```
@@ -357,12 +351,34 @@ Scenario with parallelism
 ```
 
 
-## Thread Join
+## Thread Join(1)
 * Method that allows a thread to wait for the completion of another thread.
 ```java
 	t.join();
 ```
 Consider a thread P running and find t.join() in its execution code, P thread must wait from t thread to finish in order o continue its execution.
+```java 
+	FindCountOfEvenNumbers findNumber = new FindCountOfEvenNumber(1200);
+	Thread t = new Thread(findNumber);
+	t.start();
+	System.out.println("Now thread " + t.getName() + " is running");
+	t.join();
+```
+
+
+## Thread Join(2)
+* Method that allows a thread to wait for the completion of another thread.
+```java
+        t.join();
+```
+Consider a thread P running and find t.join() in its execution code, P thread must wait from t thread to finish in order o continue its execution.
+```java 
+        FindCountOfEvenNumbers findNumber = new FindCountOfEvenNumber(1200);
+        Thread t = new Thread(findNumber);
+        t.start();
+        System.out.println("Now thread " + t.getName() + " is running");
+        t.join(1000);
+```
 
 
 ## SimpleThread Example (1)
@@ -446,7 +462,7 @@ public class Counter implements Runnable {
     public synchronized int value() { return c; }
     public synchronized void run() {
         increment();      
-        System.out.println("I am thread" + Thread.currentThread().getName()+"and the c value is " + this.c);
+        System.out.println("I am thread" + Thread.currentThread().getName() + "and the c value is " + value());
         decrement();
     }
 }
@@ -478,11 +494,71 @@ public class SimpleThreadWithMain {
 
 
 ## Exercise 1
+It's give to you a class name Hedonism that receives five parametric types and also class Granch. 
+Also create four classes with the following names: Cellulase, Semiserf, Mina, and Contrite 
+with nothing inside the classes.
+Now, create a class named Trikeria with public visibility and main class that has a public static 
+method named stenchful. 
+This method does not have any arguments. This method also creates objects from classes Cellulase, Semiserf, 
+Mina, Contrite, and Granch. Furthermore, it creates an object from class Hedonism with the parameter types 
+of Cellulase, Semiserf, Mina, Contrite, and Granch (with this exact sequense). In the end, method stenchful 
+calls method myoglibin from class Hedonism with the "correct created object" and returns the result of the 
+method....
+
+
+## Exercise 1 (Cont.)
+The return data type of myoglobin defines the return time of stenchful too.
+At the end call method print from Granch class.
+Source code can be found at https://drive.google.com/open?id=0B4OihM0nDwEJNERadzZKSGhHYkE
+
+
+## Exercise 2 
+Write a generics method that can swap the first element of an array with the last, the 
+second with the semilas and keep going.
+The first array has int as data type with numbers from 1 to 10.
+The second array has double as data type with numbers from 1 to 10.
+
+
+## Exercise 3
+Does the following code compiles without any error?
+```java
+	public final class Algorithm {
+    		public static <T> T max(T x, T y) {
+        		return x > y ? x : y;
+    		}
+	}
+```
+Take your time to think about it, the answer is on the next page
+
+
+## Exercise 3 (Answer)
+No! The ">" symbols applies only on primitive numeric types
+
+
+## Exercise 4
 Remove the synchronized parameter from all the methods of the Counter and run the program and observe its behavior.
+
+
+## Exercise 5
+Consider having an array with elements starting from 1,2,3,....,998,999,1000.
+Create a thread pool with any data structure you like (array, linklist, arraylist, etc.) that has 10 threads.
+Balance your work-load among threads and find out the sum of all elements from the array.
+This problem can be solved easily with many others ways, although, you are summoned to solve it 
+using threads.
+
+
+## Exercise 6
+For this exercise you are called to create Fibonacci program and find the end results of number 50. 
+Create a thread that will execute the Fibonacci code and when the thread is done print the end result.
+Use the existing class from here https://drive.google.com/open?id=0B4OihM0nDwEJRGtnaHhTaUhqV1U 
+As an advanced part of this exercise try to reduce the programs execution time with multiple 
+threads
+Results = 12586269025
+
 
 ## Link to enchance your programming skills
 * https://www.hackerrank.com/
-* https://projecteuler.net/
+* https://projecteuler.net/ s
 
 
 ## References
