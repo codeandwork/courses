@@ -13,6 +13,7 @@
 
 ## Further test driven development and object oriented programming
 * [Introduction to Design Patterns](common/designPatterns.md)
+* [Writing Maintainable Code](common/writingMaintainableCode.md)
 
 
 ## Introduction to web development

@@ -17,3 +17,7 @@
 
 ## ORMs - Entity Framework
 * [ORMs - Entity Framework an orm written in C# from asp.net team](cs/ormEntity.md)
+
+## Advanced topics in object oriented programming
+* [Introduction to Design Patterns](common/designPatterns.md)
+* [Writing Maintainable Code](common/writingMaintainableCode.md)
