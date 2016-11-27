@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Writing Maintainable Code</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-writing-maintainable-code">Coding Bootcamp: Writing Maintainable Code</h1>
+<h2 id="who-am-i">Who Am I?</h2>
+<p><img src="media/Tushar_slide.png" /></p>
+<h2 id="which-one-is-easy-to-work-with">Which one is easy to work with?</h2>
+<p><img src="media/motivationMaintainability.png" /></p>
+<h2 id="evolution-of-junit">Evolution of Junit</h2>
+<p><img src="media/junitEvolution.png" /></p>
+<p>Software evolves and we need to manage it’s complexity otherwise it will become very difficult to maintain</p>
+<h2 id="code-quality-why-to-care">Code Quality: Why to care?</h2>
+<p><img src="media/quality.png" /></p>
+<h2 id="part-1---software-metrics">Part 1 - Software Metrics</h2>
+<p><img src="media/metrics.png" /></p>
+<h2 id="metrics---what-and-why">Metrics - What and Why?</h2>
+<ul>
+<li><b>What</b><br /></li>
+<li>A software metric is a measure of some property of a software system.</li>
+</ul>
+<p><br></p>
+<ul>
+<li><b>Why?</b><br /></li>
+<li>&quot;Measurement is the first step that leads to control and eventually to improvement. If you can’t measure something, you can’t understand it.&quot; (by James Harrington)</li>
+</ul>
+<h2 id="object-oriented-metrics">Object Oriented Metrics</h2>
+<p><img src="media/ooMetrics.png" /></p>
+<h2 id="oo-metrics-size">OO Metrics (Size)</h2>
+<p><img src="media/sizeMetrics.png" /></p>
+<ul>
+<li>Large entities make the comprehension difficult.<br /></li>
+<li>Large entities indicate presence of various smells.</li>
+</ul>
+<h2 id="oo-metrics-size---hierarchy">OO Metrics (Size - Hierarchy)</h2>
+<p><img src="media/hierarchy.png" /></p>
+<ul>
+<li>Excessively deep or wide inheritance trees make the comprehension difficult.<br /></li>
+<li>The deeper a class is in the hierarchy, the greater the number of methods it is likely to inherit, making it more complex to predict its behaviour.<br /></li>
+<li>A wide hierarchy indicates missing intermediate inheritance level that in turn may lead to code duplication.</li>
+</ul>
+<h2 id="oo-metrics-cohesion-and-coupling">OO Metrics (Cohesion and Coupling)</h2>
+<p><img src="media/lcom.png" /></p>
+<p>Consider a class C with n methods M1, M2..., Mn. </p>
+
+<p>Let {Ij} = set of instance variables used by method Mi. 
+There are n such sets I1 ,…, In</p>
+
+<p>P = {(Ii, Ij) | (Ii ∩ Ij ) = ∅}</p>
+
+<p>Q = {(Ii, Ij) | (Ii ∩ Ij ) ≠ ∅}</p>
+
+
+<p>LCOM = |P| - |Q|, if |P| &gt; |Q|</p>
+<p>= 0, otherwise</p>
+<h2 id="oo-metrics-cohesion-and-coupling-1">OO Metrics (Cohesion and Coupling)</h2>
+<p><img src="media/lcom.png" /></p>
+<p>High LCOM indicate the violation of the Single Responsibility Principle.</p>
+<h2 id="oo-metrics-cohesion-and-coupling-2">OO Metrics (Cohesion and Coupling)</h2>
+<p><img src="media/cbo.png" /></p>
+<ul>
+<li>CBO for a class is a count of the number of other classes to which it is coupled.<br /></li>
+<li>Excessive coupling between object classes is detrimental to modular design and prevents reuse. The more independent a class is, the easier it is to reuse it in another application.<br /></li>
+<li>The higher the inter-object class coupling, the more rigorous the testing needs to be.</li>
+</ul>
+<h2 id="oo-metrics-complexity">OO Metrics (Complexity)</h2>
+<p><img src="media/complexity.png" /></p>
+<ul>
+<li>CC - It is a quantitative measure of the number of linearly independent paths through a program's source code.<br /></li>
+<li>WMC – Sum of CC of each method in the class</li>
+</ul>
+<h2 id="oo-metrics-complexity-1">OO Metrics (Complexity)</h2>
+<p><img src="media/complexity.png" /></p>
+<ul>
+<li>The number of methods and the complexity of methods involved is a predictor of how much time and effort is required to develop, test, and maintain the class.</li>
+</ul>
+<h2 id="tools-to-compute-metrics">Tools to compute metrics</h2>
+<ul>
+<li><b>Java</b><br /></li>
+<li>Source Monitor (<a href="http://www.campwoodsw.com/sourcemonitor.html">http://www.campwoodsw.com/sourcemonitor.html</a>)<br /></li>
+<li><p>Jarchitect (<a href="http://www.jarchitect.com/">http://www.jarchitect.com/</a>)</p></li>
+<li><b>C#</b><br /></li>
+<li>Designite (<a href="http://www.designite-tools.com">http://www.designite-tools.com</a>)<br /></li>
+<li><p>NDepend (<a href="http://www.ndepend.com/">http://www.ndepend.com/</a>)</p></li>
+</ul>
+<h2 id="part-2---software-smells">Part 2 - Software Smells</h2>
+<p><img src="media/metrics.png" /></p>
+<h2 id="jugaad">Jugaad</h2>
+<p><img src="media/jugaad.jpg" /></p>
+<h2 id="jugaad-1">Jugaad</h2>
+<ul>
+<li>Jugaad (alternatively Juggaar) is a colloquial Hindi word that can mean an <b>innovative fix</b> or a simple <b>work-around</b>, used for solutions that bend rules, or a resource that can be used as such, or a person who can solve a complicated issue.<br /></li>
+<li>Kind of a <b>hack</b>.</li>
+</ul>
+<h2 id="jugaad-2">Jugaad</h2>
+<p><img src="media/jugaad1.jpg" /></p>
+<h2 id="jugaad-3">Jugaad</h2>
+<p><img src="media/jugaad2.jpeg" /></p>
+<h2 id="jugaad-4">Jugaad</h2>
+<p><img src="media/jugaad3.jpg" /></p>
+<h2 id="jugaad-5">Jugaad</h2>
+<p><img src="media/jugaad4.jpg" /></p>
+<h2 id="jugaad-6">Jugaad</h2>
+<p><img src="media/jugaad5.jpg" /></p>
+<h2 id="smells-are-jugaads-in-software">Smells are Jugaads in software</h2>
+<ul>
+<li>They solve some problem but introduces quality deficit<br /></li>
+<li>They cannot be long term solutions<br /></li>
+<li>However, there is a difference between smells and Jugaads; Jugaads solve a problem when resources are restricted (innovation) where as smells arise many a time due to ignorance.</li>
+</ul>
+<h2 id="smell-granularity">Smell Granularity</h2>
+<ul>
+<li>Smells can be classified based on the granularity of abstraction where the smell arises and affects.<br /></li>
+<li>Architecture smells<br /></li>
+<li>Design smells<br /></li>
+<li>Implementation smells</li>
+</ul>
+<h2 id="implmentation-smells">Implmentation smells</h2>
+<ul>
+<li>Long Method<br /></li>
+<li>Complex Method<br /></li>
+<li>Long Parameter List<br /></li>
+<li>Long Identifier<br /></li>
+<li>Long Statement<br /></li>
+<li>Complex Conditional<br /></li>
+<li>Empty Catch Block<br /></li>
+<li>Magic Number<br /></li>
+<li>Duplicate Code</li>
+</ul>
+<h2 id="design-smells">Design Smells</h2>
+<p><img src="media/designSmells.jpg" /></p>
+<h2 id="example">Example</h2>
+<p><img src="media/BM_Example.png" /></p>
+<h2 id="broken-modularization">Broken Modularization</h2>
+<p>This smell arises when members of an abstraction are broken and spread across multiple abstractions (when ideally they should have been localized into a single abstraction).</p>
+<h2 id="example-1">Example</h2>
+<p><img src="media/IM_Example.png" /></p>
+<h2 id="insufficient-modularization">Insufficient Modularization</h2>
+<p>This smell arises when an abstraction exists that has not been completely decomposed and a further decomposition could reduce its size, implementation complexity, or both.</p>
+<h2 id="example-2">Example</h2>
+<p><img src="media/BH_Example.png" /></p>
+<h2 id="broken-hierarchy">Broken Hierarchy</h2>
+<p>This smell arises when a supertype and its subtype conceptually do not share an “IS-A” relationship resulting in broken substitutability.</p>
+<h2 id="example-3">Example</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Throwable {
+  <span class="co">// following method is available      </span>
+  <span class="co">// from Java 1.0 version. </span>
+  <span class="co">// Prints the stack trace as a string </span>
+  <span class="co">// to standard output </span>
+  <span class="co">// for processing a stack trace, </span>
+  <span class="co">// we need to write </span>
+  <span class="co">// regular expressions </span>
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">printStackTrace</span>();     
+
+<span class="co">// other methods elided </span>
+}</code></pre>
+<h2 id="missing-abstraction">Missing Abstraction</h2>
+<p>This smell arises when clumps of data or encoded strings are used instead of creating a class or an interface.</p>
+<h2 id="a-tool-to-detect-these-smells">A tool to detect these smells</h2>
+<p><img src="media/DesigniteFeatures.PNG" /><br /><a href="http://www.designite-tools.com">http://www.designite-tools.com</a></p>
+<h2 id="further-reading">Further reading</h2>
+<p><img src="media/DSBookCover.png" /></p>
+<h2 id="part-3---refactoring">Part 3 - Refactoring</h2>
+<p><img src="media/Refactoring.png" /></p>
+<h2 id="once-upon-a-time...">Once upon a time...</h2>
+<ul>
+<li>A software system
+</li>
+<ul>
+<li>three different variants (standard, pro, ultimate)</li>
+<li>trial and release versions</li>
+</ul>
+<li>The code was filled with conditional compiling statements that make the code messy.</li>
+<li>Even worst, we need to make changes (such as version number, product name) at huge number of places to release a variant.</li>
+
+<li class="fragment">I bring the changes to one file. Thus, changes are required only in one file in order to release a variant/version.</li>
+<li class="fragment">What I did? Bingo…. REFACTORING!</li>
+</ul>
+
+<aside class="notes">
+A  software system that comes in three different variants (standard, pro, ultimate) along with trial and release versions.
+I was asked to fix a bug and release a new set of variants with both versions.
+The code was filled with conditional compiling statements that make the code messy.
+Even worst, we need to make changes (such as version number, product name) at huge number of places to release a variant.
+Frustrated and annoyed with the exercise, I summarized the list of places where a change is required to release a variant.
+I bring the changes to one file. Thus, changes are required only in one file in order to release a variant/version.
+What I did? Bingo…. REFACTORING!</aside>
+
+
+
+
+<h2 id="definition">Definition</h2>
+<ul>
+<li><p>Opdyke introduced the term “Refactoring” and defined as <q>“behavior-preserving program restructuring”</q>.</p></li>
+<li><p>According to Fowler<br /><q>“Refactoring is the process of changing a software system in such a way that it does not alter the external behavior of the code, yet improves its internal structure.”</q></p></li>
+</ul>
+<h2 id="why-to-refactor">Why to Refactor?</h2>
+<ul>
+<li>Refactoring improves<br /></li>
+<li>Understandability<br /></li>
+<li>Extensibility and Flexibility<br /></li>
+<li>Testability<br /></li>
+<li>Reusability</li>
+</ul>
+<p><b class="fragment">Better code/design quality leads to improved productivity as well as high morale and motivation</b></p>
+<h2 id="refactoring-techniques">Refactoring Techniques</h2>
+<h2 id="are-these-names-conveying-the-right-message">Are these names conveying the right message??</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">double</span> <span class="fu">round_type5</span>(<span class="dt">double</span> n)
+{
+    <span class="dt">double</span> d,d1,d2,d3;
+    
+    d=n*<span class="dv">100</span>;
+    d=(<span class="dt">int</span>)d/<span class="dv">100</span>;
+
+    d1= ((d*<span class="dv">100</span>) - ((<span class="dt">int</span>)d) * <span class="dv">100</span>)/<span class="dv">100</span>; 
+    d1+=<span class="fl">2.5</span>;
+    d2= (((<span class="dt">int</span>)(d1/<span class="dv">5</span>))*<span class="dv">5</span>)/<span class="dv">100</span>;
+    d3 = (<span class="dt">int</span>)d +d2;
+    <span class="kw">return</span> d3;
+}</code></pre>
+<h2 id="what-about-this">What about this?</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">double</span> <span class="fu">roundToNearestPoint05</span>(<span class="dt">double</span> number_in)
+{
+    <span class="dt">double</span> roundedNo, fractionalPart, roundedFracPart, result;
+
+    roundedNo=number_in*<span class="dv">100</span>;
+    roundedNo=(<span class="dt">int</span>)roundedNo/<span class="dv">100</span>;
+
+    fractionalPart= ((roundedNo*<span class="dv">100</span>) - ((<span class="dt">int</span>)roundedNo) * <span class="dv">100</span>)/<span class="dv">100</span>; 
+    fractionalPart+=<span class="fl">2.5</span>;
+    roundedFracPart= (((<span class="dt">int</span>)(fractionalPart/<span class="dv">5</span>))*<span class="dv">5</span>)/<span class="dv">100</span>;
+    result = (<span class="dt">int</span>)roundedNo +roundedFracPart;
+    <span class="kw">return</span> result;
+}</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">double</span> <span class="fu">round_type5</span>(<span class="dt">double</span> n)
+{
+    <span class="dt">double</span> d,d1,d2,d3;
+    
+    d=n*<span class="dv">100</span>;
+    d=(<span class="dt">int</span>)d/<span class="dv">100</span>;
+
+    d1= ((d*<span class="dv">100</span>) - ((<span class="dt">int</span>)d) * <span class="dv">100</span>)/<span class="dv">100</span>; 
+    d1+=<span class="fl">2.5</span>;
+    d2= (((<span class="dt">int</span>)(d1/<span class="dv">5</span>))*<span class="dv">5</span>)/<span class="dv">100</span>;
+    d3 = (<span class="dt">int</span>)d +d2;
+    <span class="kw">return</span> d3;
+}</code></pre>
+<h2 id="refactoring---renaming-variable-to-more-meaningful-name">Refactoring - “Renaming variable to more meaningful name”</h2>
+<ul>
+<li>Name of a variable plays important role in describing the behavior to the developer.<br /></li>
+<li>Unclear, meaningless or confusing names make the things hard to understand.<br /></li>
+<li>This activity can be aligned with coding style followed.</li>
+</ul>
+<h2 id="example-4">Example</h2>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> printAppObjects(cInvoice *invoiceObj, list&lt;cItem *&gt; itemContainer)
+{
+    list&lt;cItem*&gt;::iterator itemItr = itemContainer.begin();
+    
+    <span class="kw">while</span>(itemItr != itemContainer.end())
+    {
+        cout&lt;&lt;(*itemItr)-&gt;getItemName()&lt;&lt;endl;
+        cout&lt;&lt;(*itemItr)-&gt;getItemPrice()&lt;&lt;endl;
+        cout&lt;&lt;(*itemItr)-&gt;getItemTaxes()&lt;&lt;endl;
+    }
+    cout&lt;&lt;<span class="st">&quot;Total items:&quot;</span>&lt;&lt;invoiceObj.getItemCount()&lt;&lt;endl;
+    cout&lt;&lt;<span class="st">&quot;Total amount:&quot;</span>&lt;&lt;invoiceObj.getTotalAmount()&lt;&lt;endl;
+    cout&lt;&lt;<span class="st">&quot;Total taxes:&quot;</span>&lt;&lt;invoiceObj.getTotalTaxes()&lt;&lt;endl;
+}</code></pre>
+<h2 id="a-better-way">A better way</h2>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> printAppObjects(cInvoice *invoiceObj, list&lt;cItem *&gt; itemContainer){
+    printAllItems(itemContainer);
+    printInvoiceObj(invoiceObj); 
+}
+<span class="dt">void</span> printAllItems(list&lt;cItem*&gt; itemContainer) {    
+    list&lt;cItem*&gt;::iterator itemItr = itemContainer.begin();
+    <span class="kw">while</span>(itemItr != itemContainer.end()) {
+        cout&lt;&lt;(*itemItr)-&gt;getItemName()&lt;&lt;endl;
+        cout&lt;&lt;(*itemItr)-&gt;getItemPrice()&lt;&lt;endl;
+                cout&lt;&lt;(*itemItr)-&gt;getItemTaxes()&lt;&lt;endl;     
+    }
+ }
+<span class="dt">void</span> printInvoiceObj(cInvoice *invoiceObj){
+    cout&lt;&lt;<span class="st">&quot;Total items:&quot;</span>&lt;&lt;invoiceObj.getItemCount()&lt;&lt;endl;
+    cout&lt;&lt;<span class="st">&quot;Total amount:&quot;</span>&lt;&lt;invoiceObj.getTotalAmount()&lt;&lt;endl;
+    cout&lt;&lt;<span class="st">&quot;Total taxes:&quot;</span>&lt;&lt;invoiceObj.getTotalTaxes()&lt;&lt;endl; 
+}</code></pre>
+<h2 id="refactoring---extract-method">Refactoring - “Extract method”</h2>
+<ul>
+<li>Applicability<br /></li>
+<li>Multiple responsibilities for single method.<br /></li>
+<li>Quite large method.<br /></li>
+<li>Duplicated code block.</li>
+</ul>
+<h2 id="example-5">Example</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">if</span>(itemObj.<span class="fu">getAvailableUnits</span>() &gt; requiredUnits &amp;&amp; 
+  itemObj.<span class="fu">getExpiryDate</span>()&gt;<span class="fu">date</span>() &amp;&amp; 
+  itemObj.<span class="fu">getUnitWeight</span>()== requiredUnitWeight)
+{
+        …
+}
+<span class="kw">else</span>
+{
+        …
+}</code></pre>
+<h2 id="a-better-way-1">A better way</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">if</span>(<span class="fu">isItemSellable</span>(…))
+{
+        …
+} 
+<span class="kw">else</span> 
+{
+        …
+}
+
+<span class="dt">int</span> <span class="fu">isItemSellable</span>(…) {
+    <span class="kw">return</span> (itemObj.<span class="fu">getAvailableUnits</span>() &gt; requiredUnits 
+    &amp;&amp; itemObj.<span class="fu">getExpiryDate</span>()&gt;<span class="fu">date</span>() &amp;&amp; 
+    itemObj.<span class="fu">getUnitWeight</span>()== requiredUnitWeight);
+}</code></pre>
+<h2 id="refactoring---decompose-conditional">Refactoring - “Decompose conditional”</h2>
+<ul>
+<li>Complicated conditional logic with their actions make code harder to read and understand.<br /></li>
+<li>The ‘Decompose conditional’ Refactoring introduces another layer of abstraction and encapsulates complex conditional logic and corresponding actions into separate methods.</li>
+</ul>
+<h2 id="example-6">Example</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">switch</span>(angle)
+{
+  <span class="kw">case</span> <span class="dv">90</span>:
+    <span class="fu">rotateBy90</span>(…);  
+    <span class="kw">break</span>;
+  <span class="kw">case</span> <span class="dv">180</span>:
+    <span class="fu">rotateBy180</span>(…);     
+    <span class="kw">break</span>;
+}
+
+<span class="dt">int</span> <span class="fu">rotateBy90</span>(…)
+{ …}
+
+<span class="dt">int</span> <span class="fu">rotateBy180</span>(…)
+{… }</code></pre>
+<h2 id="refactoring---parameterized-method">Refactoring - &quot;Parameterized Method&quot;</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">rotate</span>(angle);
+
+<span class="dt">int</span> <span class="fu">rotate</span>(angle, …)
+{ …}</code></pre>
+<h2 id="approching-design-level-refacorings">Approching &quot;design-level&quot; refacorings</h2>
+<ul>
+<li><p>It requires the knowledge of the big picture.</p></li>
+<li><b>Sense</b><br /></li>
+<li>Difficulty in making changes<br /></li>
+<li><p>Comprehension woes</p></li>
+<li><b>Identify</b><br /></li>
+<li>Presence of design smells<br /></li>
+<li><p>“Red” values of object-oriented metrics</p></li>
+<li><b>Refactor</b><br /></li>
+<li>Roll of context<br /></li>
+<li><p>Design principles</p></li>
+</ul>
+<h2 id="example-7">Example</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> GraphicsDevice {
+ <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setFullScreenWindow</span>(Window w) {
+        <span class="kw">if</span> (w != <span class="kw">null</span>) {
+            <span class="kw">if</span> (w.<span class="fu">getShape</span>() != <span class="kw">null</span>) { w.<span class="fu">setShape</span>(<span class="kw">null</span>); }
+            <span class="kw">if</span> (w.<span class="fu">getOpacity</span>() &lt; <span class="fl">1.</span>0f) { w.<span class="fu">setOpacity</span>(<span class="fl">1.</span>0f); }
+            <span class="kw">if</span> (!w.<span class="fu">isOpaque</span>()) {
+                Color bgColor = w.<span class="fu">getBackground</span>();
+                bgColor = <span class="kw">new</span> Color(bgColor.<span class="fu">getRed</span>(), bgColor.<span class="fu">getGreen</span>(), bgColor.<span class="fu">getBlue</span>(), <span class="dv">255</span>);
+                w.<span class="fu">setBackground</span>(bgColor);
+            }
+        }
+…
+}</code></pre>
+<ul>
+<li class="fragment">This code in GraphicsDevice uses more methods of Window class than calling its own methods!
+</li></ul>
+
+
+
+
+<h2 id="refactoring---move-method">Refactoring - “Move Method”</h2>
+<ul>
+<li>Put apples with apples<br /></li>
+<li>Improves cohesion<br /></li>
+<li>Reduces coupling<br /></li>
+<li>Reduces the size of a big class<br /></li>
+<li><p>Typically employed to remove “feature envy” smell</p></li>
+<li><p>A related refactoring is “Move field”</p></li>
+</ul>
+<h2 id="refactoring---move-method-1">Refactoring - “Move Method”</h2>
+<ul>
+<li><b>Mechanism</b><br /></li>
+<li>Identify a block to be moved to other class (identify that class too).<br /></li>
+<li>Check whether you can safely move the code (overridden?, side effects?)<br /></li>
+<li>Create a method in the target class<br /></li>
+<li>Move the block to the target method<br /></li>
+<li>Replace the block with method call<br /></li>
+<li>Adjust and align (look for parameters in and out)<br /></li>
+<li><p>Compile and test</p></li>
+<li><b>Consequences</b><br /></li>
+<li>A more cohesive, smaller method/class<br /></li>
+<li><p>Typically carried out in groups (with fields/methods)</p></li>
+</ul>
+<h2 id="example-8">Example</h2>
+<p><img src="media/ExtractClassCandidate.png" /></p>
+<h2 id="refactoring---extract-class">Refactoring - &quot;Extract Class&quot;</h2>
+<ul>
+<li><p>Each abstraction should have a unique responsibility.</p></li>
+<li><p>In case, an abstraction is changed for multiple causes then it is a multifaceted abstraction (having multiple responsibilities).</p></li>
+<li><p>Extract-class refactoring splits a multifaceted abstraction into multiple cohesive smaller abstractions.</p></li>
+</ul>
+<h2 id="refactoring---extract-class-1">Refactoring - &quot;Extract Class&quot;</h2>
+<ul>
+<li><b>Mechanism</b><br /></li>
+<li>Identify a responsibility that needs to be split and create a class for the responsibility.<br /></li>
+<li>Apply “move field” refactoring<br /></li>
+<li>Apply “move method” refactoring<br /></li>
+<li>Establish association between clients and the new class<br /></li>
+<li>Check clients are not breaking<br /></li>
+<li><p>Compile and test</p></li>
+<li><b>Consequences</b><br /></li>
+<li>It improves cohesion and coupling measures<br /></li>
+<li><p>It may break client’s code</p></li>
+</ul>
+<h2 id="other-refactorings">Other Refactorings</h2>
+<ul>
+<li>Renaming variable to more meaningful name<br /></li>
+<li>Split temporary variable<br /></li>
+<li>Consolidate duplicate conditional fragments<br /></li>
+<li>Extract class/interface/method/package/sub-class/super-class<br /></li>
+<li>Form template method<br /></li>
+<li>Introduce parameter object<br /></li>
+<li>Move class/method/field<br /></li>
+<li>Pull-up field/method<br /></li>
+<li>Push-down field/method<br /></li>
+<li>Replace conditional with polymorphism<br /></li>
+<li>Replace constructor with factory method<br /></li>
+<li>Replace type code with state/strategy pattern</li>
+</ul>
+<h2 id="using-ides-to-refactor">Using IDEs to refactor</h2>
+<p><img src="media/Eclipse_Refactorings.png" /></p>
+<h2 id="further-reading-1">Further reading</h2>
+<p><img src="media/codeQualityBooks.png" /></p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
