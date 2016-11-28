@@ -32,7 +32,7 @@
 
 
 ## Data Structures
-* A particular way of organizing data in a computer so that it can be used efficiently
+* A particular way of organizing data in a computer so that it can be used efficiently.
 
 
 ## Categories
@@ -43,10 +43,10 @@
 
 
 ## Data Structures in Java
-* The core collection interfaces encapsulate different types of collections
+* The core collection interfaces encapsulate different types of collections.
 * These interfaces allow collections to be manipulated independently
-of the details of their representation
-* Core collection interfaces are the foundation of the Java Collections Framework (JCF)
+of the details of their representation.
+* Core collection interfaces are the foundation of the Java Collections Framework (JCF).
 
 
 ## The core collection interfaces
@@ -66,16 +66,16 @@ of the details of their representation
  * +More
 
 
-## Sets (2)
-* *HashSet*
- * Class offers constant time performance for the basic operations
- (add, remove, contains and size)
- * It does not guarantee that the order of elements will remain constant over time
-* *TreeSet*
- * Guarantees log(n) time cost for the basic operations
- (add, remove and contains)
- * Guarantees that elements of set will be sorted
- * Offers a few handy methods to deal with the ordered set like first(), last()
+## HashSet VS TreeSet
+* *HashSet* offers constant time performance for the basic operations
+(add, remove, contains and size).
+It does not guarantee that the order of
+elements will remain constant over time.
+* *TreeSet* guarantees log(n) time cost for the basic operations
+(add, remove and contains).
+It also guarantees that elements of set will be sorted.
+Finally, it offers a few handy methods to deal with
+the ordered set like first(), last().
 
 
 ## Lists
@@ -92,11 +92,11 @@ of the details of their representation
 * *LinkedList<E>* allows for constant-time insertions or removals,
 but only sequential access of elements.
 You can walk the list forwards or backwards,
-but finding a position in the list takes time proportional to the size of the list
+but finding a position in the list takes time proportional to the size of the list.
 * *ArrayList<E>* allows fast random read access,
 so you can retrieve any element in constant time.
 But adding or removing from anywhere but the end requires
-shifting all the latter elements over, either to make an opening or fill the gap
+shifting all the latter elements over, either to make an opening or fill the gap.
 
 
 ## Queues
@@ -118,36 +118,36 @@ shifting all the latter elements over, either to make an opening or fill the gap
 
 
 ## HashMap VS HashTable
-* *Hashtable* is synchronized, whereas HashMap is not
+* *Hashtable* is synchronized, whereas HashMap is not.
 * Hashtable does not allow null keys or values.
-*HashMap* allows one null key and any number of null values
+*HashMap* allows one null key and any number of null values.
 * One of HashMap's subclasses is *LinkedHashMap*,
 so in the event that you'd want predictable iteration order
 (which is insertion order by default),
-you could easily swap out the HashMap for a LinkedHashMap
+you could easily swap out the HashMap for a LinkedHashMap.
 
 
 ## Exercise 1
-* Create *intersection* and *union* for Lists
+* Create *intersection* and *union* for Lists.
 * The methods should support ArrayLists, LinkedLists etc.
-(Generics are coming)
+(Generics are coming).
 
 
 ## Exercise 2
 * Create a PriorityQueue that can handle
 integers in an ascending order.
-The maximum capacity of the queue should be 50
+The maximum capacity of the queue should be 50.
 
 
 ## Exercise 3
 * Find the *intersection* of two given HashMaps that
-share the same keys and return it in a new Hashmap
+share the same keys and return it in a new Hashmap.
 
 
 ## Exercise 4
 * Create a method that accepts a Java source code as input
 and creates a "bracket" fingerprint. A bracket fingerprint
-includes all brackets in their order of appearance
+includes all brackets in their order of appearance.
 * For instance, consider the following snippet:
 ```java
 for (T t : list1) {
@@ -156,9 +156,9 @@ for (T t : list1) {
 	}
 }
 ```
-* The fingerprint is the following: {{}}
+* The fingerprint is the following: {{}}.
 * Be careful, you should use the most appropriate
-data structure
+data structure.
 					</script>
 				</section>
 				<section>
