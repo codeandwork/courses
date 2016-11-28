@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Data Structures</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Coding Bootcamp
+
+## Data Structures
+
+
+## Data Structures
+* A particular way of organizing data in a computer so that it can be used efficiently
+
+
+## Categories
+* Linear data structures
+* Trees
+* Hashes
+* Graphs
+
+
+## Data Structures in Java
+* The core collection interfaces encapsulate different types of collections
+* These interfaces allow collections to be manipulated independently
+of the details of their representation
+* Core collection interfaces are the foundation of the Java Collections Framework (JCF)
+
+
+## The core collection interfaces
+<img src=media/coreInterfaces.gif width=900 height=400 /></br>
+
+
+## Iterators
+* To iterate over a collection
+* [Methods and Descriptions](https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
+
+
+## Sets
+* [Methods and Descriptions](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html)
+* Implemented by:
+ * *HashSet*: No guarantees concerning the order of iteration
+ * *TreeSet*: Orders its elements based on their values
+ * +More
+
+
+## Sets (2)
+* *HashSet*
+ * Class offers constant time performance for the basic operations
+ (add, remove, contains and size)
+ * It does not guarantee that the order of elements will remain constant over time
+* *TreeSet*
+ * Guarantees log(n) time cost for the basic operations
+ (add, remove and contains)
+ * Guarantees that elements of set will be sorted
+ * Offers a few handy methods to deal with the ordered set like first(), last()
+
+
+## Lists
+* [Methods and Descriptions](https://docs.oracle.com/javase/8/docs/api/java/util/List.html)
+* Implemented by:
+ * *ArrayList*
+ * *LinkedList*
+ * *Vector*
+ * *Stack*
+ * +More
+
+
+## ArrayList VS LinkedList
+* *LinkedList<E>* allows for constant-time insertions or removals,
+but only sequential access of elements.
+You can walk the list forwards or backwards,
+but finding a position in the list takes time proportional to the size of the list
+* *ArrayList<E>* allows fast random read access,
+so you can retrieve any element in constant time.
+But adding or removing from anywhere but the end requires
+shifting all the latter elements over, either to make an opening or fill the gap
+
+
+## Queues
+* [Methods and Descriptions](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html)
+* Implemented by:
+ * *PriorityQueue*
+ * and... *LinkedList*
+ * +More
+
+
+## Maps
+* [Methods and Descriptions](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
+* This concept maps keys to values
+* Implemented by:
+ * *HashMap*
+ * *LinkedHashMap*
+ * *HashTable*
+ * +More
+
+
+## HashMap VS HashTable
+* *Hashtable* is synchronized, whereas HashMap is not
+* Hashtable does not allow null keys or values.
+*HashMap* allows one null key and any number of null values
+* One of HashMap's subclasses is *LinkedHashMap*,
+so in the event that you'd want predictable iteration order
+(which is insertion order by default),
+you could easily swap out the HashMap for a LinkedHashMap
+
+
+## Exercise 1
+* Create *intersection* and *union* for Lists
+* The methods should support ArrayLists, LinkedLists etc.
+(Generics are coming)
+
+
+## Exercise 2
+* Create a PriorityQueue that can handle
+integers in an ascending order.
+The maximum capacity of the queue should be 50
+
+
+## Exercise 3
+* Find the *intersection* of two given HashMaps that
+share the same keys and return it in a new Hashmap
+
+
+## Exercise 4
+* Create a method that accepts a Java source code as input
+and creates a "bracket" fingerprint. A bracket fingerprint
+includes all brackets in their order of appearance
+* For instance, consider the following snippet:
+```java
+for (T t : list1) {
+	if(list2.contains(t)) {
+		list.add(t);
+	}
+}
+```
+* The fingerprint is the following: {{}}
+* Be careful, you should use the most appropriate
+data structure. 
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

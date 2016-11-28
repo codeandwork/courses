@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Data Structures</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-data-structures">Coding Bootcamp: Data Structures</h1>
+<h2 id="data-structures">Data Structures</h2>
+<ul>
+<li>A particular way of organizing data in a computer so that it can be used efficiently</li>
+</ul>
+<h2 id="categories">Categories</h2>
+<ul>
+<li>Linear data structures<br /></li>
+<li>Trees<br /></li>
+<li>Hashes<br /></li>
+<li>Graphs</li>
+</ul>
+<h2 id="data-structures-in-java">Data Structures in Java</h2>
+<ul>
+<li>The core collection interfaces encapsulate different types of collections<br /></li>
+<li>These interfaces allow collections to be manipulated independently<br />of the details of their representation<br /></li>
+<li>Core collection interfaces are the foundation of the Java Collections Framework (JCF)</li>
+</ul>
+<h2 id="the-core-collection-interfaces">The core collection interfaces</h2>
+<p><img src=media/coreInterfaces.gif width=900 height=400 /></br></p>
+<h2 id="iterators">Iterators</h2>
+<ul>
+<li>To iterate over a collection<br /></li>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html">Methods and Descriptions</a></li>
+</ul>
+<h2 id="sets">Sets</h2>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html">Methods and Descriptions</a><br /></li>
+<li>Implemented by:<br /></li>
+<li><em>HashSet</em>: No guarantees concerning the order of iteration<br /></li>
+<li><em>TreeSet</em>: Orders its elements based on their values<br /></li>
+<li>+More</li>
+</ul>
+<h2 id="sets-2">Sets (2)</h2>
+<ul>
+<li><em>HashSet</em><br /></li>
+<li>Class offers constant time performance for the basic operations<br /> (add, remove, contains and size)<br /></li>
+<li>It does not guarantee that the order of elements will remain constant over time<br /></li>
+<li><em>TreeSet</em><br /></li>
+<li>Guarantees log(n) time cost for the basic operations<br /> (add, remove and contains)<br /></li>
+<li>Guarantees that elements of set will be sorted<br /></li>
+<li>Offers a few handy methods to deal with the ordered set like first(), last()</li>
+</ul>
+<h2 id="lists">Lists</h2>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">Methods and Descriptions</a><br /></li>
+<li>Implemented by:<br /></li>
+<li><em>ArrayList</em><br /></li>
+<li><em>LinkedList</em><br /></li>
+<li><em>Vector</em><br /></li>
+<li><em>Stack</em><br /></li>
+<li>+More</li>
+</ul>
+<h2 id="arraylist-vs-linkedlist">ArrayList VS LinkedList</h2>
+<ul>
+<li><em>LinkedList<E></em> allows for constant-time insertions or removals,<br />but only sequential access of elements.<br />You can walk the list forwards or backwards,<br />but finding a position in the list takes time proportional to the size of the list<br /></li>
+<li><em>ArrayList<E></em> allows fast random read access,<br />so you can retrieve any element in constant time.<br />But adding or removing from anywhere but the end requires<br />shifting all the latter elements over, either to make an opening or fill the gap</li>
+</ul>
+<h2 id="queues">Queues</h2>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html">Methods and Descriptions</a><br /></li>
+<li>Implemented by:<br /></li>
+<li><em>PriorityQueue</em><br /></li>
+<li>and... <em>LinkedList</em><br /></li>
+<li>+More</li>
+</ul>
+<h2 id="maps">Maps</h2>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Methods and Descriptions</a><br /></li>
+<li>This concept maps keys to values<br /></li>
+<li>Implemented by:<br /></li>
+<li><em>HashMap</em><br /></li>
+<li><em>LinkedHashMap</em><br /></li>
+<li><em>HashTable</em><br /></li>
+<li>+More</li>
+</ul>
+<h2 id="hashmap-vs-hashtable">HashMap VS HashTable</h2>
+<ul>
+<li><em>Hashtable</em> is synchronized, whereas HashMap is not<br /></li>
+<li>Hashtable does not allow null keys or values.<br /><em>HashMap</em> allows one null key and any number of null values<br /></li>
+<li>One of HashMap's subclasses is <em>LinkedHashMap</em>,<br />so in the event that you'd want predictable iteration order<br />(which is insertion order by default),<br />you could easily swap out the HashMap for a LinkedHashMap</li>
+</ul>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li>Create <em>intersection</em> and <em>union</em> for Lists<br /></li>
+<li>The methods should support ArrayLists, LinkedLists etc.<br />(Generics are coming)</li>
+</ul>
+<h2 id="exercise-2">Exercise 2</h2>
+<ul>
+<li>Create a PriorityQueue that can handle<br />integers in an ascending order.<br />The maximum capacity of the queue should be 50</li>
+</ul>
+<h2 id="exercise-3">Exercise 3</h2>
+<ul>
+<li>Find the <em>intersection</em> of two given HashMaps that<br />share the same keys and return it in a new Hashmap</li>
+</ul>
+<h2 id="exercise-4">Exercise 4</h2>
+<ul>
+<li>Create a method that accepts a Java source code as input<br />and creates a &quot;bracket&quot; fingerprint. A bracket fingerprint<br />includes all brackets in their order of appearance<br /></li>
+<li><p>For instance, consider the following snippet:</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">for</span> (T t : list1) {
+    <span class="kw">if</span>(list2.<span class="fu">contains</span>(t)) {
+        list.<span class="fu">add</span>(t);
+    }
+}</code></pre></li>
+<li>The fingerprint is the following: {{}}<br /></li>
+<li><p>Be careful, you should use the most appropriate<br />data structure.</p></li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
