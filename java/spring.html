@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Spring Framework</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-spring-framework">Coding Bootcamp: Spring Framework</h1>
+<h2 id="inversion-of-control-ioc">Inversion of Control (IoC)</h2>
+<blockquote>
+<p>Each object defines its dependencies only through constructor<br />arguments, arguments to a factory method, or properties that<br />are set on the object instance after it is constructed or<br />returned from a factory method.</p>
+</blockquote>
+<p>Applications are built from objects that work together</p>
+<p>An object depends on other objects</p>
+<p>An object does not know how to construct or locate the objects it<br />depends on</p>
+<p>When an object is created, its dependencies are <strong>injected</strong> to it</p>
+<h2 id="spring-framework">Spring Framework</h2>
+<blockquote>
+<p>Build enterprise-ready Java applications</p>
+</blockquote>
+<ul>
+<li>Beans<br /></li>
+<li>Transactions<br /></li>
+<li>JDBC<br /></li>
+<li>ORM<br /></li>
+<li>Web<br /></li>
+<li>...</li>
+</ul>
+<h2 id="beans">Beans</h2>
+<blockquote>
+<p>Define building blocks</p>
+</blockquote>
+<p>Beans are objects that are instantiated, assembled and managed by<br />a container</p>
+<p>Bean definitions are recipes for creating beans</p>
+<p>Containers look at recipes and create beans</p>
+<h2 id="configuration-metadata">Configuration metadata</h2>
+<blockquote>
+<p>Tell the container how to instantiate, configure and assemble<br />beans</p>
+</blockquote>
+<p>XML-based</p>
+<pre class="sourceCode XML"><code class="sourceCode xml"><span class="kw">&lt;beans</span> <span class="er">...</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;bean</span> <span class="er">...</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;/bean&gt;</span>
+<span class="kw">&lt;/beans&gt;</span></code></pre>
+<p>Annotation-based</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Component</span>
+...</code></pre>
+<p>Java-based</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Configuration</span>
+...</code></pre>
+<h2 id="bean-scopes">Bean scopes</h2>
+<p>Singleton (default): only one</p>
+<p>Prototype: one per injection (or per <code>getBean()</code> invocation)</p>
+<p>Request: one per HTTP request</p>
+<p>Session: one per HTTP session</p>
+<h2 id="configuration">@Configuration</h2>
+<p>Indicates that the class contains bean definitions</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Configuration</span>
+<span class="kw">public</span> <span class="kw">class</span> AppConfig {
+
+}</code></pre>
+<h2 id="bean">@Bean</h2>
+<p>Indicates that the method instantiates, configures and initialises<br />a new object to be managed by the container</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Configuration</span>
+<span class="kw">public</span> <span class="kw">class</span> AppConfig {
+
+    <span class="fu">@Bean</span>
+    <span class="kw">public</span> A <span class="fu">a</span>() {
+        <span class="kw">return</span> <span class="kw">new</span> <span class="fu">A</span>();
+    }
+
+}</code></pre>
+<h2 id="componentscan">@ComponentScan</h2>
+<p>Configures component scanning</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Configuration</span>
+<span class="fu">@ComponentScan</span>(basePackages = <span class="st">&quot;org.afdemp&quot;</span>)
+<span class="kw">public</span> <span class="kw">class</span> AppConfig  {
+    ...
+}</code></pre>
+<h2 id="component">@Component</h2>
+<p>Indicates that the class is a component</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Component</span>
+<span class="kw">public</span> <span class="kw">class</span> A {
+    ...
+}</code></pre>
+<h2 id="repository">@Repository</h2>
+<p>Indicates that the class is a repository (e.g. a DAO)</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Repository</span>
+<span class="kw">public</span> <span class="kw">class</span> A {
+    ...
+}</code></pre>
+<h2 id="service">@Service</h2>
+<p>Indicates that the class is a service</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Service</span>
+<span class="kw">public</span> <span class="kw">class</span> A {
+    ...
+}</code></pre>
+<h2 id="autowired">@Autowired</h2>
+<p>Marks a constructor, a field, a setter method or a config method<br />as to be autowired</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Component</span>
+<span class="kw">public</span> <span class="kw">class</span> A {
+
+    ...
+    <span class="fu">@Autowired</span>
+    <span class="kw">private</span> B b;
+    ...
+    
+}</code></pre>
+<ul>
+<li>By name<br /></li>
+<li>By name<br /></li>
+<li>Constructor</li>
+</ul>
+<h2 id="scope">@Scope</h2>
+<p>Indicates the scope to use for the bean</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Component</span>
+<span class="fu">@Scope</span>(<span class="st">&quot;prototype&quot;</span>)
+<span class="kw">public</span> <span class="kw">class</span> A {
+
+    ...
+  
+}</code></pre>
+<h2 id="spring-mvc">Spring MVC</h2>
+<blockquote>
+<p>Build web applications</p>
+</blockquote>
+<p>The DispatcherServlet dispatches requests to handlers</p>
+<h2 id="enablewebmvc">@EnableWebMvc</h2>
+<h2 id="controller">@Controller</h2>
+<p>Indicates that the class is a controller</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Controller</span>
+<span class="kw">public</span> <span class="kw">class</span> AController {
+    ...
+}</code></pre>
+<h2 id="requestmapping">@RequestMapping</h2>
+<p>Maps web requests onto specific handler classes and/or handler<br />methods</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Controller</span>
+<span class="fu">@RequestMapping</span>(<span class="st">&quot;/a&quot;</span>)
+<span class="kw">public</span> <span class="kw">class</span> AController {
+    
+    <span class="fu">@RequestMapping</span>(path = <span class="st">&quot;/b&quot;</span>, method = RequestMethod.<span class="fu">GET</span>)
+    <span class="kw">public</span> <span class="kw">... </span><span class="fu">b</span>() {
+        ...
+    }
+
+}</code></pre>
+<h2 id="requestparam">@RequestParam</h2>
+<p>Indicates that the method parameter should be bound to a web<br />request parameter</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Controller</span>
+<span class="kw">public</span> <span class="kw">class</span> AController {
+    
+    <span class="fu">@RequestMapping</span>(path = <span class="st">&quot;/b&quot;</span>, method = RequestMethod.<span class="fu">GET</span>)
+    <span class="kw">public</span> <span class="kw">... </span><span class="fu">b</span>(<span class="fu">@RequestParam</span>(<span class="st">&quot;x&quot;</span>) String x) {
+        ...
+    }
+
+}</code></pre>
+<h2 id="requestheader">@RequestHeader</h2>
+<p>Indicates that the method parameter should be bound to a web<br />request header</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Controller</span>
+<span class="kw">public</span> <span class="kw">class</span> AController {
+    
+    <span class="fu">@RequestMapping</span>(path = <span class="st">&quot;/b&quot;</span>, method = RequestMethod.<span class="fu">GET</span>)
+    <span class="kw">public</span> <span class="kw">... </span><span class="fu">b</span>(<span class="fu">@RequestHeader</span>(<span class="st">&quot;Accept-Encoding&quot;</span>) String encoding) {
+        ...
+    }
+
+}</code></pre>
+<h2 id="pathvariable">@PathVariable</h2>
+<p>Indicates that the method parameter should be bound to a URI<br />template variable</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Controller</span>
+<span class="kw">public</span> <span class="kw">class</span> AController {
+    
+    <span class="fu">@RequestMapping</span>(path = <span class="st">&quot;/b/{c}&quot;</span>, method = RequestMethod.<span class="fu">GET</span>)
+    <span class="kw">public</span> <span class="kw">... </span><span class="fu">b</span>(<span class="fu">@PathVariable</span> String c) {
+        ...
+    }
+
+}</code></pre>
+<h2 id="responsebody">@ResponseBody</h2>
+<p>Indicates that the method return value should be bound to the web<br />response body</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Controller</span>
+<span class="kw">public</span> <span class="kw">class</span> AController {
+    
+    <span class="fu">@RequestMapping</span>(path = <span class="st">&quot;/b&quot;</span>, method = RequestMethod.<span class="fu">GET</span>)
+    <span class="fu">@ResponseBody</span>
+    <span class="kw">public</span> String <span class="fu">b</span>() {
+        <span class="kw">return</span> <span class="st">&quot;B&quot;</span>;
+    }
+
+}</code></pre>
+<h2 id="restcontroller">@RestController</h2>
+<p>Indicates that the controller implements a REST API, thus serving<br />only JSON, XML or custom MediaType content</p>
+<p>@Controller + @ResponseBody</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@RestController</span>
+<span class="kw">public</span> <span class="kw">class</span> AController {
+    
+    <span class="fu">@RequestMapping</span>(path = <span class="st">&quot;/b&quot;</span>, method = RequestMethod.<span class="fu">GET</span>)
+    <span class="kw">public</span> String <span class="fu">b</span>() {
+        <span class="kw">return</span> <span class="st">&quot;B&quot;</span>;
+    }
+
+}</code></pre>
+<h2 id="spring-boot">Spring Boot</h2>
+<blockquote>
+<p>Create standalone, production-grade Spring-based applications<br />with minimum fuss</p>
+</blockquote>
+<p>Minimise configuration</p>
+<p>Embed the servlet container (Tomcat, Jetty, Undertow)</p>
+<h2 id="spring-initializr">Spring Initializr</h2>
+<blockquote>
+<p>Generate basic projects that use Spring Boot</p>
+</blockquote>
+<p>Deployed @ <a href="https://start.spring.io">https://start.spring.io</a></p>
+<p>Can be accessed with web browsers (e.g. Google Chrome), through<br />IDEs (e.g. STS), or from the command-line (e.g. cURL)</p>
+<p>Source code available @ <a href="https://github.com/spring-io/initializr">https://github.com/spring-io/initializr</a></p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
