@@ -17,7 +17,7 @@ of the details of their representation
 
 
 ## The core collection interfaces
-<img src=media/coreInterfaces.gif width=900 height=400 /></br>
+<img src=media/coreInterfaces.jpg width=900 height=400 /></br>
 
 
 ## Iterators
