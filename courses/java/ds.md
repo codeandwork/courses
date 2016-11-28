@@ -125,4 +125,4 @@ for (T t : list1) {
 ```
 * The fingerprint is the following: {{}}
 * Be careful, you should use the most appropriate
-data structure. 
+data structure
