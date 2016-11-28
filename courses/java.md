@@ -43,6 +43,8 @@
 
 ## Further Java
 
+* [Data Structures](java/ds.md)
+
 ## End-user driven design & development - UX & UI principles
 
 ## Project & technical management
