@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Threads</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-threads">Coding Bootcamp: Threads</h1>
+<h2 id="processes-and-threads">Processes and Threads</h2>
+<ul>
+<li>Most implementations of the Java virtual machine<br />run as a single process and in the Java<br />programming language, concurrent programming<br />is mostly concerned with threads (also called lightweight processes).<br />Multiple processes can only be realized with multiple JVMs.</li>
+</ul>
+<h2 id="threads">Threads</h2>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html">Methods and Descriptions</a><br /></li>
+<li>Threads share the process's resources.<br />This makes for efficient,<br />but potentially problematic, communication.<br /></li>
+<li>Two ways to start a thread.</li>
+</ul>
+<h2 id="provide-a-runnable-object">Provide a runnable object</h2>
+<pre class="sourceCode java"><code class="sourceCode java"> <span class="kw">public</span> <span class="kw">class</span> HelloRunnable <span class="kw">implements</span> Runnable {
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Hello from thread!&quot;</span>);
+    }
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        (<span class="kw">new</span> Thread(<span class="kw">new</span> <span class="fu">HelloRunnable</span>())).<span class="fu">start</span>();
+    }
+ }</code></pre>
+<h2 id="subclass-thread">Subclass thread</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> HelloThread <span class="kw">extends</span> Thread {
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Hello from thread!&quot;</span>);
+    }
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        (<span class="kw">new</span> <span class="fu">HelloThread</span>()).<span class="fu">start</span>();
+    }
+ }</code></pre>
+<h2 id="interrupts-and-joins">Interrupts and Joins</h2>
+<ul>
+<li>An <em>interrupt</em> is an indication to a thread that it should stop.<br /></li>
+<li>The <em>Thread.join</em> methods allow one thread to wait for the completion of another.</li>
+</ul>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li>Create a Thread called <em>CounterLoop</em>.<br />This thread<br />prints to the terminal all numbers up to a<br />specified-in-the-constructor variable called <em>counter</em>.<br />When a number is printed the thread pauses for 2 seconds.<br />If the thread is interrupted it prints<br />a message indicating that it has not finish.<br /></li>
+<li>Your <em>main</em> should accept two arguments.<br />The first is passed to a variable called <em>patience</em>.<br />Main then initiates a CounterLoop thread and passes the second<br />argument to the constructor.<br />It then starts the thread.<br />If the CounterLoop thread takes more time (in ms)<br />than main's patience then it interrupts the thread<br />and finishes.<br />Before every check main waits for 1 second,<br />for the thread to finish.</li>
+</ul>
+<h2 id="exercise-2">Exercise 2</h2>
+<ul>
+<li><em>ThreadEx</em> is a thread that has a Java collection<br />as a variable. The collection must be set<br />into the thread's constructor.<br />We do not want any synchronization issues so be<br />careful on your collection choice!<br />When the thread runs, it registers its ID<br />(see the <em>getId()</em> method) to the vector and<br />then it sleeps for 1 second.<br /></li>
+<li>Your <em>main</em> should initiate three<br />threads by bypassing the same collection as<br />an argument to all of them.<br />Then, it starts all three threads.<br />It waits for them to finish and then it prints:<br /></li>
+</ul>
+<p>a) the size of the collection and b) the collection's<br />contents by using the corresponding iterator.</p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
