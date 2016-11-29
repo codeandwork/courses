@@ -44,6 +44,7 @@
 ## Further Java
 
 * [Data Structures](java/ds.md)
+* [Threads](java/threads.md)
 
 ## End-user driven design & development - UX & UI principles
 
