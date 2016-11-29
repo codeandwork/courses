@@ -109,6 +109,8 @@ The maximum capacity of the queue should be 50.
 ## Exercise 3
 * Find the *intersection* of two given HashMaps that
 share the same keys and return it in a new Hashmap.
+The values should be the ones coming from the
+secnod HashMaps.
 
 
 ## Exercise 4
