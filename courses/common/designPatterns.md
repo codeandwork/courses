@@ -282,7 +282,7 @@ Higher design quality </li>
 <ul>
 <li>Freedom to chose algorithms
 </li>
-<li>Easier entensibility</li></ul>
+<li>Easier extensibility</li></ul>
 
 </ul>
 
