@@ -1,5 +1,5 @@
 ##Who Am I?
-![](media/Tushar_slide.png)
+![](media/Tushar_Slide.png)
 
 
 ##Quick Recap - Principles of Object-orientation
