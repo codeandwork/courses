@@ -1,5 +1,5 @@
 ##Who Am I?
-<img src=media/Tushar_Slide.png />
+![](../java/media/Tushar_Slide.png)
 
 
 ##Quick Recap - Principles of Object-orientation
@@ -19,7 +19,7 @@
 
 
 ##Design Patterns - A Motivating Example
-![](media/observerMotivation.png)
+![](../java/media/observerMotivation.png)
 
 
 ##Implementation
@@ -117,16 +117,16 @@ public class Student implements Observer{
 
 
 ##The Implemented Solution
-![](media/observerExample.png)
+![](../java/media/observerExample.png)
 
 
 
 ##Observer Design Pattern
-![](media/observer.png)
+![](../java/media/observer.png)
 
 
 ##Observable and Observer
-![](media/ObservableAndObserver.png)
+![](../java/media/ObservableAndObserver.png)
 
 
 ##What About .NET
@@ -207,11 +207,11 @@ Higher design quality </li>
 
 
 ##Factory Pattern
-![](media/Factory.png)
+![](../java/media/Factory.png)
 
 
 ##Factory Pattern Example
-![](media/FactoryExample.png)
+![](../java/media/FactoryExample.png)
 
 
 ##Factory Pattern
@@ -240,7 +240,7 @@ Higher design quality </li>
 
 
 ##Abstract Factory Pattern
-![](media/AbstractFactory.png)
+![](../java/media/AbstractFactory.png)
 
 
 ##Abstract Factory Pattern
@@ -272,7 +272,7 @@ Higher design quality </li>
 
 
 ##Strategy Pattern
-![](media/Strategy.png)
+![](../java/media/Strategy.png)
 
 
 
@@ -297,7 +297,7 @@ Higher design quality </li>
 
 
 ##Composite Pattern
-![](media/whole-part.png)
+![](../java/media/whole-part.png)
 
 
 
@@ -311,12 +311,12 @@ Higher design quality </li>
 
 
 ##Composite Pattern
-![](media/Composite.png)
+![](../java/media/Composite.png)
 
 
 
 ##Composite Pattern
-![](media/Composite-interaction.png)
+![](../java/media/Composite-interaction.png)
 
 
 
@@ -335,7 +335,7 @@ Higher design quality </li>
 
 
 ##Façade Pattern
-![](media/Facade.png)
+![](../java/media/Facade.png)
 
 
 
@@ -357,12 +357,12 @@ Higher design quality </li>
 
 
 
-![](media/allPatterns.gif)
+![](../java/media/allPatterns.gif)
 
 
 
 ##References
-![](media/patterns-references.png)
+![](../java/media/patterns-references.png)
 
 
 

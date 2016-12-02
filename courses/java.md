@@ -11,7 +11,7 @@
 * [Generics and Threads](java/generics_and_threads.md)
 
 
-## Further test driven development and object oriented programming
+## Advanced object oriented programming
 * [Introduction to Design Patterns](common/designPatterns.md)
 * [Writing Maintainable Code](common/writingMaintainableCode.md)
 
