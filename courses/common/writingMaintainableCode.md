@@ -1,5 +1,5 @@
 ##Who Am I?
-![](../java/media/Tushar_slide.png)
+![](../java/media/Tushar_Slide.png)
 
 
 
