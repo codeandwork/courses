@@ -31,16 +31,16 @@
   <body>
 <h1 id="coding-bootcamp-writing-maintainable-code">Coding Bootcamp: Writing Maintainable Code</h1>
 <h2 id="who-am-i">Who Am I?</h2>
-<p><img src="media/Tushar_slide.png" /></p>
+<p><img src="../java/media/Tushar_slide.png" /></p>
 <h2 id="which-one-is-easy-to-work-with">Which one is easy to work with?</h2>
-<p><img src="media/motivationMaintainability.png" /></p>
+<p><img src="../java/media/motivationMaintainability.png" /></p>
 <h2 id="evolution-of-junit">Evolution of Junit</h2>
-<p><img src="media/junitEvolution.png" /></p>
+<p><img src="../java/media/junitEvolution.png" /></p>
 <p>Software evolves and we need to manage it’s complexity otherwise it will become very difficult to maintain</p>
 <h2 id="code-quality-why-to-care">Code Quality: Why to care?</h2>
-<p><img src="media/quality.png" /></p>
+<p><img src="../java/media/quality.png" /></p>
 <h2 id="part-1---software-metrics">Part 1 - Software Metrics</h2>
-<p><img src="media/metrics.png" /></p>
+<p><img src="../java/media/metrics.png" /></p>
 <h2 id="metrics---what-and-why">Metrics - What and Why?</h2>
 <ul>
 <li><b>What</b><br /></li>
@@ -52,22 +52,22 @@
 <li>&quot;Measurement is the first step that leads to control and eventually to improvement. If you can’t measure something, you can’t understand it.&quot; (by James Harrington)</li>
 </ul>
 <h2 id="object-oriented-metrics">Object Oriented Metrics</h2>
-<p><img src="media/ooMetrics.png" /></p>
+<p><img src="../java/media/ooMetrics.png" /></p>
 <h2 id="oo-metrics-size">OO Metrics (Size)</h2>
-<p><img src="media/sizeMetrics.png" /></p>
+<p><img src="../java/media/sizeMetrics.png" /></p>
 <ul>
 <li>Large entities make the comprehension difficult.<br /></li>
 <li>Large entities indicate presence of various smells.</li>
 </ul>
 <h2 id="oo-metrics-size---hierarchy">OO Metrics (Size - Hierarchy)</h2>
-<p><img src="media/hierarchy.png" /></p>
+<p><img src="../java/media/hierarchy.png" /></p>
 <ul>
 <li>Excessively deep or wide inheritance trees make the comprehension difficult.<br /></li>
 <li>The deeper a class is in the hierarchy, the greater the number of methods it is likely to inherit, making it more complex to predict its behaviour.<br /></li>
 <li>A wide hierarchy indicates missing intermediate inheritance level that in turn may lead to code duplication.</li>
 </ul>
 <h2 id="oo-metrics-cohesion-and-coupling">OO Metrics (Cohesion and Coupling)</h2>
-<p><img src="media/lcom.png" /></p>
+<p><img src="../java/media/lcom.png" /></p>
 <p>Consider a class C with n methods M1, M2..., Mn. </p>
 
 <p>Let {Ij} = set of instance variables used by method Mi. 
@@ -81,23 +81,23 @@ There are n such sets I1 ,…, In</p>
 <p>LCOM = |P| - |Q|, if |P| &gt; |Q|</p>
 <p>= 0, otherwise</p>
 <h2 id="oo-metrics-cohesion-and-coupling-1">OO Metrics (Cohesion and Coupling)</h2>
-<p><img src="media/lcom.png" /></p>
+<p><img src="../java/media/lcom.png" /></p>
 <p>High LCOM indicate the violation of the Single Responsibility Principle.</p>
 <h2 id="oo-metrics-cohesion-and-coupling-2">OO Metrics (Cohesion and Coupling)</h2>
-<p><img src="media/cbo.png" /></p>
+<p><img src="../java/media/cbo.png" /></p>
 <ul>
 <li>CBO for a class is a count of the number of other classes to which it is coupled.<br /></li>
 <li>Excessive coupling between object classes is detrimental to modular design and prevents reuse. The more independent a class is, the easier it is to reuse it in another application.<br /></li>
 <li>The higher the inter-object class coupling, the more rigorous the testing needs to be.</li>
 </ul>
 <h2 id="oo-metrics-complexity">OO Metrics (Complexity)</h2>
-<p><img src="media/complexity.png" /></p>
+<p><img src="../java/media/complexity.png" /></p>
 <ul>
 <li>CC - It is a quantitative measure of the number of linearly independent paths through a program's source code.<br /></li>
 <li>WMC – Sum of CC of each method in the class</li>
 </ul>
 <h2 id="oo-metrics-complexity-1">OO Metrics (Complexity)</h2>
-<p><img src="media/complexity.png" /></p>
+<p><img src="../java/media/complexity.png" /></p>
 <ul>
 <li>The number of methods and the complexity of methods involved is a predictor of how much time and effort is required to develop, test, and maintain the class.</li>
 </ul>
@@ -111,24 +111,24 @@ There are n such sets I1 ,…, In</p>
 <li><p>NDepend (<a href="http://www.ndepend.com/">http://www.ndepend.com/</a>)</p></li>
 </ul>
 <h2 id="part-2---software-smells">Part 2 - Software Smells</h2>
-<p><img src="media/metrics.png" /></p>
+<p><img src="../java/media/metrics.png" /></p>
 <h2 id="jugaad">Jugaad</h2>
-<p><img src="media/jugaad.jpg" /></p>
+<p><img src="../java/media/jugaad.jpg" /></p>
 <h2 id="jugaad-1">Jugaad</h2>
 <ul>
 <li>Jugaad (alternatively Juggaar) is a colloquial Hindi word that can mean an <b>innovative fix</b> or a simple <b>work-around</b>, used for solutions that bend rules, or a resource that can be used as such, or a person who can solve a complicated issue.<br /></li>
 <li>Kind of a <b>hack</b>.</li>
 </ul>
 <h2 id="jugaad-2">Jugaad</h2>
-<p><img src="media/jugaad1.jpg" /></p>
+<p><img src="../java/media/jugaad1.jpg" /></p>
 <h2 id="jugaad-3">Jugaad</h2>
-<p><img src="media/jugaad2.jpeg" /></p>
+<p><img src="../java/media/jugaad2.jpeg" /></p>
 <h2 id="jugaad-4">Jugaad</h2>
-<p><img src="media/jugaad3.jpg" /></p>
+<p><img src="../java/media/jugaad3.jpg" /></p>
 <h2 id="jugaad-5">Jugaad</h2>
-<p><img src="media/jugaad4.jpg" /></p>
+<p><img src="../java/media/jugaad4.jpg" /></p>
 <h2 id="jugaad-6">Jugaad</h2>
-<p><img src="media/jugaad5.jpg" /></p>
+<p><img src="../java/media/jugaad5.jpg" /></p>
 <h2 id="smells-are-jugaads-in-software">Smells are Jugaads in software</h2>
 <ul>
 <li>They solve some problem but introduces quality deficit<br /></li>
@@ -155,17 +155,17 @@ There are n such sets I1 ,…, In</p>
 <li>Duplicate Code</li>
 </ul>
 <h2 id="design-smells">Design Smells</h2>
-<p><img src="media/designSmells.jpg" /></p>
+<p><img src="../java/media/designSmells.jpg" /></p>
 <h2 id="example">Example</h2>
-<p><img src="media/BM_Example.png" /></p>
+<p><img src="../java/media/BM_Example.png" /></p>
 <h2 id="broken-modularization">Broken Modularization</h2>
 <p>This smell arises when members of an abstraction are broken and spread across multiple abstractions (when ideally they should have been localized into a single abstraction).</p>
 <h2 id="example-1">Example</h2>
-<p><img src="media/IM_Example.png" /></p>
+<p><img src="../java/media/IM_Example.png" /></p>
 <h2 id="insufficient-modularization">Insufficient Modularization</h2>
 <p>This smell arises when an abstraction exists that has not been completely decomposed and a further decomposition could reduce its size, implementation complexity, or both.</p>
 <h2 id="example-2">Example</h2>
-<p><img src="media/BH_Example.png" /></p>
+<p><img src="../java/media/BH_Example.png" /></p>
 <h2 id="broken-hierarchy">Broken Hierarchy</h2>
 <p>This smell arises when a supertype and its subtype conceptually do not share an “IS-A” relationship resulting in broken substitutability.</p>
 <h2 id="example-3">Example</h2>
@@ -184,11 +184,11 @@ There are n such sets I1 ,…, In</p>
 <h2 id="missing-abstraction">Missing Abstraction</h2>
 <p>This smell arises when clumps of data or encoded strings are used instead of creating a class or an interface.</p>
 <h2 id="a-tool-to-detect-these-smells">A tool to detect these smells</h2>
-<p><img src="media/DesigniteFeatures.PNG" /><br /><a href="http://www.designite-tools.com">http://www.designite-tools.com</a></p>
+<p><img src="../java/media/DesigniteFeatures.PNG" /><br /><a href="http://www.designite-tools.com">http://www.designite-tools.com</a></p>
 <h2 id="further-reading">Further reading</h2>
-<p><img src="media/DSBookCover.png" /></p>
+<p><img src="../java/media/DSBookCover.png" /></p>
 <h2 id="part-3---refactoring">Part 3 - Refactoring</h2>
-<p><img src="media/Refactoring.png" /></p>
+<p><img src="../java/media/Refactoring.png" /></p>
 <h2 id="once-upon-a-time...">Once upon a time...</h2>
 <ul>
 <li>A software system
@@ -428,7 +428,7 @@ What I did? Bingo…. REFACTORING!</aside>
 <li><p>Typically carried out in groups (with fields/methods)</p></li>
 </ul>
 <h2 id="example-8">Example</h2>
-<p><img src="media/ExtractClassCandidate.png" /></p>
+<p><img src="../java/media/ExtractClassCandidate.png" /></p>
 <h2 id="refactoring---extract-class">Refactoring - &quot;Extract Class&quot;</h2>
 <ul>
 <li><p>Each abstraction should have a unique responsibility.</p></li>
@@ -464,9 +464,9 @@ What I did? Bingo…. REFACTORING!</aside>
 <li>Replace type code with state/strategy pattern</li>
 </ul>
 <h2 id="using-ides-to-refactor">Using IDEs to refactor</h2>
-<p><img src="media/Eclipse_Refactorings.png" /></p>
+<p><img src="../java/media/Eclipse_Refactorings.png" /></p>
 <h2 id="further-reading-1">Further reading</h2>
-<p><img src="media/codeQualityBooks.png" /></p>
+<p><img src="../java/media/codeQualityBooks.png" /></p>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
