@@ -37,10 +37,14 @@
 
 * [Structure, depend and build](java/maven.md)
 
+* [Spring Framework](java/spring.md)
 
 ## Further JavaScript
 
 ## Further Java
+
+* [Data Structures](java/ds.md)
+* [Threads](java/threads.md)
 
 ## End-user driven design & development - UX & UI principles
 
