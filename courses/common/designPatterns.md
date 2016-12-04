@@ -47,6 +47,7 @@
 ![](../java/media/observerMotivation.png)
 
 
+
 ##Implementation
 ```java
 public class Course {
@@ -233,6 +234,10 @@ Implement a program that notifies the stakeholders whenever the time changes for
 
 
 ##Exercise 2
+* Write a utility class for reading a text file and writing to a text file.
+
+
+##Exercise 3
 * Write a program to compute following metrics for a C# (or Java) code: 
   * LOC (Lines of Code)
   * Number of classes
@@ -245,7 +250,7 @@ Use regular expressions to achieve the same.
 ##Factory Pattern
 * <b>Motivation</b>
   * Creating objects without exposing the instantiation logic to the clients
-  * Proving a common interface to refer all objects (of a kind)
+  * Providing a common interface to refer all objects (of a kind)
   
 
 
