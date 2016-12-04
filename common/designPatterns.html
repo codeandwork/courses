@@ -42,7 +42,7 @@
 <h2 id="principles-of-object-orientation">Principles of Object-orientation</h2>
 <ul>
 <li><b>Abstraction</b> - Simplify entities via<br /></li>
-<li>Reduction of unncessary details<br /></li>
+<li>Reduction of unnecessary details<br /></li>
 <li>Generalization of common and important aspects</li>
 </ul>
 <h2 id="principles-of-object-orientation-1">Principles of Object-orientation</h2>
@@ -103,7 +103,7 @@
 <ul>
 <li>Is it easy to add a new observer (a new Student or a new Instructor)?
 <ul><li>You need to make multiple changes</li>
-<li class="fragment">What about adding a new category of observers; for example "Organizers"!</li>
+<li class="fragment">What about adding a new category of observers; for example "Organizer"!</li>
 </ul></ul>
 
 
@@ -148,7 +148,7 @@
 <h2 id="a-motivating-example-1">A Motivating Example</h2>
 <ul>
 <li>Yes? WHY?</li>
-<li class="fragment">In the first implementation, Course class is "tightly-coupled" to Student and Instructor classes. While in the second case, Course class is "loosely-coupled" to it's observers.</li>
+<li class="fragment">In the first implementation, `Course` class is "tightly-coupled" to `Student` and `Instructor` classes. While in the second case, `Course` class is "loosely-coupled" to it's observers.</li>
 <br>
 <li class="fragment">Congratulations!! You have just learned the first design pattern :)</li>
 </ul>
@@ -159,7 +159,7 @@
 <p><img src="../java/media/observerExample.png" /></p>
 <h2 id="observer-design-pattern">Observer Design Pattern</h2>
 <p><img src="../java/media/observer.png" /></p>
-<h2 id="observable-and-observer">Observable and Observer</h2>
+<h2 id="observable-and-observer-in-java">Observable and Observer (in Java)</h2>
 <p><img src="../java/media/ObservableAndObserver.png" /></p>
 <h2 id="what-about-.net">What About .NET</h2>
 <ul>
@@ -221,7 +221,7 @@ Higher design quality </li>
 <li>Examples: Factory, Abstract Factory, Builder</li></ul>
 <br>
 
-<li class="fragment"><b>Structural</b> - patterns answer how to comppose/structure</li>
+<li class="fragment"><b>Structural</b> - patterns answer how to compose/structure</li>
 <ul>
 <li class="fragment">Examples: Adapter, Composite, Decorator</li></ul>
 <br>
@@ -305,7 +305,7 @@ Higher design quality </li>
 <h2 id="strategy-pattern">Strategy Pattern</h2>
 <ul>
 <li><b>Motivation</b><br /></li>
-<li><p>Support to more than one algorithm required in many situations:</p>
+<li><p>Support for more than one algorithm required in many situations:</p>
 <ul>
 <li>Clients do not want to be dependent on a supplied default algorithm<br /></li>
 <li>Suitability of an algorithm may change based on the context (input, platform, ...)<br /></li>
@@ -322,7 +322,7 @@ Higher design quality </li>
 <ul>
 <li><b>Benefits</b></li>
 <ul>
-<li>Freedom to chose algorithms
+<li>Freedom to choose algorithms
 </li>
 <li>Easier extensibility</li></ul>
 
@@ -377,7 +377,7 @@ Higher design quality </li>
 <ul>
 <li><b>Benefits</b><br /></li>
 <li>Provides a simple interface to a complex system<br /></li>
-<li>Decouples the subsystem for clients and other subsystems, thereby promoting subsystem independence and portability<br /></li>
+<li>De-couples the subsystem for clients and other subsystems, thereby promoting subsystem independence and portability<br /></li>
 <li><p>Layers the subsystem</p>
 <ul>
 <li>Use façade to define an entry point to each subsystem level<br /></li>
@@ -391,7 +391,7 @@ Higher design quality </li>
 <ol>
 <li> Complete exercise 2
 </li>
-<li>Provide another way to implement the same functionality but by using string comparison. Pay attension to your design (hint: implement strategy and factory paterns)</li>
+<li>Provide another way to implement the same functionality but by using string comparison. Pay attention to your design (hint: implement strategy and factory paterns)</li>
 <li>Extend the above program and implement a segregated interface to compute all the supported metrics. Write all the computed metrics to a CSV file. (hint: use Facade pattern)</li></ol>
 
 
