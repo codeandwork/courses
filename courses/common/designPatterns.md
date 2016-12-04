@@ -9,6 +9,31 @@
 * Hierarchy
 
 
+##Principles of Object-orientation
+* <b>Abstraction</b> - Simplify entities via
+  * Reduction of unncessary details
+  * Generalization of common and important aspects
+
+
+##Principles of Object-orientation
+* <b>Encapsulation</b> - Separation of concerns and information hiding via
+  * Hiding implementation details
+  * Hiding variations
+
+
+##Principles of Object-orientation
+* <b>Modularization</b> - Cohesive and loosely-coupled abstractions via
+  * Localization
+  * Decomposition
+
+
+##Principles of Object-orientation
+* <b>Hierarchy</b> - Hierarchical organization of abstractions via
+  * Classification and ordering
+  * Generalization and factoring
+
+
+
 ##Design Patterns - A Motivating Example
 <ul class="fragment">
 <li>Bootcamp course and a few stakeholders (Students and Instructors)</li>
@@ -199,6 +224,24 @@ Higher design quality </li>
 </ul>
 
 
+##Exercise 1
+* In the context of bootcamp course, there is a course, students, instructors, and organizers.
+* The course has a start time and end time.
+* If any of the timing changes, the stakeholders have to be notified.
+
+Implement a program that notifies the stakeholders whenever the time changes for the course.
+
+
+##Exercise 2
+* Write a program to compute following metrics for a C# (or Java) code: 
+  * LOC (Lines of Code)
+  * Number of classes
+  * Number of methods. 
+  
+Use regular expressions to achieve the same.
+
+
+
 ##Factory Pattern
 * <b>Motivation</b>
   * Creating objects without exposing the instantiation logic to the clients
@@ -368,7 +411,7 @@ Higher design quality </li>
 
 ##Exercises
 <ol>
-<li>Write a program to compute following metrics for a C# (or Java) code: LOC (Lines of Code), Number of classes, number of methods. Use regular expressions to achieve the same.
+<li> Complete exercise 2
 </li>
 <li>Provide another way to implement the same functionality but by using string comparison. Pay attension to your design (hint: implement strategy and factory paterns)</li>
 <li>Extend the above program and implement a segregated interface to compute all the supported metrics. Write all the computed metrics to a CSV file. (hint: use Facade pattern)</li></ol>
