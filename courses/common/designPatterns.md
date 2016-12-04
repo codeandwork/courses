@@ -11,7 +11,7 @@
 
 ##Principles of Object-orientation
 * <b>Abstraction</b> - Simplify entities via
-  * Reduction of unncessary details
+  * Reduction of unnecessary details
   * Generalization of common and important aspects
 
 
@@ -81,7 +81,7 @@ public class Program {
 <ul>
 <li>Is it easy to add a new observer (a new Student or a new Instructor)?
 <ul><li>You need to make multiple changes</li>
-<li class="fragment">What about adding a new category of observers; for example "Organizers"!</li>
+<li class="fragment">What about adding a new category of observers; for example "Organizer"!</li>
 </ul></ul>
 
 
@@ -135,7 +135,7 @@ public class Student implements Observer{
 ##A Motivating Example
 <ul>
 <li>Yes? WHY?</li>
-<li class="fragment">In the first implementation, Course class is "tightly-coupled" to Student and Instructor classes. While in the second case, Course class is "loosely-coupled" to it's observers.</li>
+<li class="fragment">In the first implementation, `Course` class is "tightly-coupled" to `Student` and `Instructor` classes. While in the second case, `Course` class is "loosely-coupled" to it's observers.</li>
 <br>
 <li class="fragment">Congratulations!! You have just learned the first design pattern :)</li>
 </ul>
@@ -150,7 +150,7 @@ public class Student implements Observer{
 ![](../java/media/observer.png)
 
 
-##Observable and Observer
+##Observable and Observer (in Java)
 ![](../java/media/ObservableAndObserver.png)
 
 
@@ -214,7 +214,7 @@ Higher design quality </li>
 <li>Examples: Factory, Abstract Factory, Builder</li></ul>
 <br>
 
-<li class="fragment"><b>Structural</b> - patterns answer how to comppose/structure</li>
+<li class="fragment"><b>Structural</b> - patterns answer how to compose/structure</li>
 <ul>
 <li class="fragment">Examples: Adapter, Composite, Decorator</li></ul>
 <br>
@@ -304,7 +304,7 @@ Use regular expressions to achieve the same.
 
 ##Strategy Pattern
 * <b>Motivation</b>
-  * Support to more than one algorithm required in many situations:
+  * Support for more than one algorithm required in many situations:
     * Clients do not want to be dependent on a supplied default algorithm
     * Suitability of an algorithm may change based on the context (input, platform, ...)
     * Integrating new algorithms should be easy (without modifying existing code, if possible)
@@ -323,7 +323,7 @@ Use regular expressions to achieve the same.
 <ul>
 <li><b>Benefits</b></li>
 <ul>
-<li>Freedom to chose algorithms
+<li>Freedom to choose algorithms
 </li>
 <li>Easier extensibility</li></ul>
 
@@ -393,7 +393,7 @@ Use regular expressions to achieve the same.
 ##Façade Pattern
 * <b>Benefits</b>
   * Provides a simple interface to a complex system
-  * Decouples the subsystem for clients and other subsystems, thereby promoting subsystem independence and portability
+  * De-couples the subsystem for clients and other subsystems, thereby promoting subsystem independence and portability
   * Layers the subsystem
     * Use façade to define an entry point to each subsystem level
     * If subsystems are dependent, then the dependencies between them can be simplified by making them communicate with each other solely through their facades
@@ -413,5 +413,5 @@ Use regular expressions to achieve the same.
 <ol>
 <li> Complete exercise 2
 </li>
-<li>Provide another way to implement the same functionality but by using string comparison. Pay attension to your design (hint: implement strategy and factory paterns)</li>
+<li>Provide another way to implement the same functionality but by using string comparison. Pay attention to your design (hint: implement strategy and factory paterns)</li>
 <li>Extend the above program and implement a segregated interface to compute all the supported metrics. Write all the computed metrics to a CSV file. (hint: use Facade pattern)</li></ol>
