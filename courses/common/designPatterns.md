@@ -415,8 +415,8 @@ Use regular expressions to achieve the same.
 
 
 ##Exercises
-<ol>
-<li> Complete exercise 2
+<ol start="4">
+<li> Complete exercise 1, 2, and 3
 </li>
 <li>Provide another way to implement the same functionality but by using string comparison. Pay attention to your design (hint: implement strategy and factory paterns)</li>
 <li>Extend the above program and implement a segregated interface to compute all the supported metrics. Write all the computed metrics to a CSV file. (hint: use Facade pattern)</li></ol>

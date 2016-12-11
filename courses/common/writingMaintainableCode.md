@@ -13,7 +13,9 @@
 
 
 
-Software evolves and we need to manage it’s complexity otherwise it will become very difficult to maintain
+##Lehman's laws of evolution
+* Software system evolves, its complexity increases unless work is done to maintain or reduce it.
+* ...
 
 
 
@@ -61,12 +63,12 @@ Software evolves and we need to manage it’s complexity otherwise it will becom
 ![](../java/media/lcom.png)
 
 <p>Consider a class C with n methods M1, M2..., Mn. </p>
-<p>Let {Ij} = set of instance variables used by method Mi. 
+<p>Let {Ij} = set of instance variables used by method Mj. 
 There are n such sets I1 ,…, In</p>
 <p>P = {(Ii, Ij) | (Ii ∩ Ij ) = ∅}</p>
 <p>Q = {(Ii, Ij) | (Ii ∩ Ij ) ≠ ∅}</p>
 
-LCOM = |P| - |Q|, if |P| > |Q| 
+LCOM = (||P| - |Q||)/|P|, if |P| > 0
 
 = 0, otherwise
 
