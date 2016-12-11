@@ -36,7 +36,11 @@
 <p><img src="../java/media/motivationMaintainability.png" /></p>
 <h2 id="evolution-of-junit">Evolution of Junit</h2>
 <p><img src="../java/media/junitEvolution.png" /></p>
-<p>Software evolves and we need to manage it’s complexity otherwise it will become very difficult to maintain</p>
+<h2 id="lehmans-laws-of-evolution">Lehman's laws of evolution</h2>
+<ul>
+<li>Software system evolves, its complexity increases unless work is done to maintain or reduce it.<br /></li>
+<li>...</li>
+</ul>
 <h2 id="code-quality-why-to-care">Code Quality: Why to care?</h2>
 <p><img src="../java/media/quality.png" /></p>
 <h2 id="part-1---software-metrics">Part 1 - Software Metrics</h2>
@@ -70,7 +74,7 @@
 <p><img src="../java/media/lcom.png" /></p>
 <p>Consider a class C with n methods M1, M2..., Mn. </p>
 
-<p>Let {Ij} = set of instance variables used by method Mi. 
+<p>Let {Ij} = set of instance variables used by method Mj. 
 There are n such sets I1 ,…, In</p>
 
 <p>P = {(Ii, Ij) | (Ii ∩ Ij ) = ∅}</p>
@@ -78,7 +82,7 @@ There are n such sets I1 ,…, In</p>
 <p>Q = {(Ii, Ij) | (Ii ∩ Ij ) ≠ ∅}</p>
 
 
-<p>LCOM = |P| - |Q|, if |P| &gt; |Q|</p>
+<p>LCOM = (||P| - |Q||)/|P|, if |P| &gt; 0</p>
 <p>= 0, otherwise</p>
 <h2 id="oo-metrics-cohesion-and-coupling-1">OO Metrics (Cohesion and Coupling)</h2>
 <p><img src="../java/media/lcom.png" /></p>
