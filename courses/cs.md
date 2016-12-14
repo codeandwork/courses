@@ -14,6 +14,9 @@
 * [Inner & Outer Joins and Aggregates](cs/sqlJoins.md)
 * [Advanced queries](cs/sqlAdvancedQueries.md)
 * [Consuming data in C# with ADO.NET](cs/adonet.md)
+* [Database Normalization](cs/database_normalization.md)
+* [Database Views](cs/database_views.md)
+* [Stored Procedures, Cursors, Triggers, Indexes](cs/sp_cursors_triggers_indexes.md)
 
 ## ORMs - Entity Framework
 * [ORMs - Entity Framework an orm written in C# from asp.net team](cs/ormEntity.md)

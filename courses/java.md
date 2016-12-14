@@ -23,7 +23,9 @@
 ## Databases and user management
 * [Inner & Outer Joins and Aggregates](java/sqlJoins.md)
 * [Connecting SQL with Java](java/sqlJavaConnection.md)
-
+* [Database Normalization](java/database_normalization.md)
+* [Database Views](java/database_views.md)
+* [Stored Procedures, Cursors, Triggers, Indexes](java/sp_cursors_triggers_indexes.md)
 
 ## Front-end technologies
 * [Hello (front end) world!](common/hello.md)
