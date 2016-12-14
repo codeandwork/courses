@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Database Normalization</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-database-normalization">Coding Bootcamp: Database Normalization</h1>
+<h2 id="database-normalization">Database Normalization</h2>
+<h2 id="background-and-terminology">Background and terminology</h2>
+<ul>
+<li>What is a relational database<br /></li>
+<li>What is a primary key<br /></li>
+<li>What is a foreign key</li>
+</ul>
+<h2 id="relational-database-management-system-rdbms">Relational Database Management System (RDBMS)</h2>
+<ul>
+<li>Collection of information organized in tables<br /></li>
+<li>Tables are also relations<br /></li>
+<li>Tables are constructed and associated to each other through shared fields – “common” fields<br /></li>
+<li>Fields are also “columns” or “attributes”<br /></li>
+<li>A set of attributes comprises a record<br /></li>
+<li>Records are also “rows” or “tuples”<br /></li>
+<li>Tables are related through common fields designated as primary and foreign keys<br /></li>
+<li>Allows to update and delete data while ensuring accuracy</li>
+</ul>
+<h2 id="primary-and-foreign-key-fields">Primary and Foreign Key Fields</h2>
+<ul>
+<li>Primary Key<br /></li>
+<li>Primary key fields must be unique and cannot contain a null value<br /></li>
+<li>Each table should have a primary key field<br /></li>
+<li><p>Concatenated keys: using more than one field as a primary key field</p></li>
+<li>Foreign key<br /></li>
+<li>Fields in a table that refer to the primary key in another table<br /></li>
+<li><p>The data in this field must exactly match data contained in the primary key field</p></li>
+</ul>
+<h2 id="relational-database-model">Relational database model</h2>
+<ul>
+<li>Basic design principle of relational database model<br /></li>
+<li>Group attribute types of an entity<br /></li>
+<li>Create tables for the entity types<br /></li>
+<li>Correlate tables as they have been defined in E-R diagram<br /></li>
+<li>Questions that occur during the aforementioned process have to do with the selection of the attributes that will be grouped and form a table<br /></li>
+<li>Based on which criterion we perform the selection?<br /></li>
+<li>Is there any better combination of the attributes that could lead to a more flexible and reliable database?<br /></li>
+<li>Presentation of the basic rules followed during designing a database</li>
+</ul>
+<h2 id="database-anomalies">Database anomalies</h2>
+<ul>
+<li>Update anomalies<br /></li>
+<li><p>If data items are scattered and are not linked to each other properly, then it could lead to strange situations. For example, when we try to update one data item having its copies scattered over several places, a few instances get updated properly while a few others are left with old values. Such instances leave the database in an inconsistent state.</p></li>
+<li>Deletion anomalies<br /></li>
+<li><p>We tried to delete a record, but parts of it was left undeleted because of unawareness, the data is also saved somewhere else</p></li>
+<li>Insert anomalies<br /></li>
+<li><p>We tried to insert data in a record that does not exist at all</p></li>
+<li><p>Normalization is a method to remove all these anomalies and bring the database to a consistent state</p></li>
+</ul>
+<h2 id="what-is-normalization">What is Normalization</h2>
+<ul>
+<li>The process by which we efficiently organize data to achieve these goals:<br /></li>
+<li>Eliminating redundancy<br /></li>
+<li>Ensuring data is stored in the correct table<br /></li>
+<li><p>Eliminating need for restructuring database when data is added</p></li>
+<li>Five levels of normal form<br /></li>
+<li><p>In order to achieve one level of normal form, each previous level must be met</p></li>
+<li><p>Third normal form is sufficient for most typical database applications</p></li>
+</ul>
+<h2 id="problem-without-normalization">Problem without normalization</h2>
+<ul>
+<li>Without Normalization, it becomes difficult to handle and update the database, without facing data loss<br /></li>
+<li>Insertion, Update and Deletion anomalies are very frequent if the database is not normalized<br /><img src="media/normalization1.png" /></li>
+</ul>
+<h2 id="insertion-anomaly">Insertion anomaly</h2>
+<ul>
+<li>Suppose for a new admission, we have a Student id (S_id), name and address of a student but if student has not opted for any subjects yet then we have to insert NULL there, leading to insertion anomaly<br /><img src="media/normalization1.png" /></li>
+</ul>
+<h2 id="modification-anomaly">Modification anomaly</h2>
+<ul>
+<li>To update address of a student who occurs twice or more than twice in a table, we will have to update S_Address column in all the rows, else data will become inconsistent<br /><img src="media/normalization1.png" /></li>
+</ul>
+<h2 id="deletion-anomaly">Deletion anomaly</h2>
+<ul>
+<li>If (S_id) 401 has only one subject and temporarily he drops it, when we delete that row, entire student record will be deleted along with it<br /><img src="media/normalization1.png" /></li>
+</ul>
+<h2 id="normalization-overview">Normalization overview</h2>
+<ul>
+<li><p>Normalization is a process of organizing the data in database to avoid data redundancy, insertion anomaly, update anomaly and deletion anomaly.</p></li>
+<li>The most commonly used normal forms:<br /></li>
+<li>First normal form (1NF)<br /></li>
+<li>Second normal form (2NF)<br /></li>
+<li>Third normal form (3NF)<br /></li>
+<li><p>Boyce &amp; Codd normal form (BCNF)</p></li>
+</ul>
+<h2 id="st-normal-form">1st Normal Form</h2>
+<p>First normal form: An attribute (column) of a table cannot hold multiple values. It should hold only atomic values</p>
+<h2 id="st-normal-form-1">1st normal form</h2>
+<p><img src="media/normalization2.png" /></p>
+<h2 id="st-normal-form-2">1st normal form</h2>
+<p><img src="media/normalization3.png" /><br />SELECT: Are all possible queries feasible to be expressed?<br />INSERT: Can new data be inserted without requiring complicated queries?<br />DELETE: Can data be deleted without losing valuable information?<br />UPDATE: Can data modification be performed in an easy way and without modifying data that should not be affected?</p>
+<h2 id="st-normal-form-select-failure">1st normal form – select failure</h2>
+<p><img src="media/normalization4.png" /><br />SELECT *<br />FROM employee<br />WHERE language = ‘English’</p>
+<p>Potential solution:<br />SELECT *<br />FROM employee<br />WHERE language LIKE ‘%English%’</p>
+<h2 id="st-normal-form-update-failure">1st normal form – update failure</h2>
+<p><img src="media/normalization5.png" /><br />What happens if we want to add ‘English’ language to George?</p>
+<p>We need to know that he already speaks French:<br />UPDATE employee<br />SET language = ‘French, English’<br />WHERE name = ‘George’</p>
+<h2 id="st-normal-form-an-alternative-approach">1st normal form – An alternative approach</h2>
+<p><img src="media/normalization6.png" /></p>
+<h2 id="st-normal-form-new-problems">1st normal form – New problems</h2>
+<ul>
+<li>Storage: More storage is required for data that are not needed<br /></li>
+<li>SELECT: It is easier to perform. Employees that speak a specific language are easier to be found.<br /></li>
+<li>INSERT: Data insertion is problematic.<br /></li>
+<li>UPDATE: Data update is easy to perform.<br /></li>
+<li>DELETE: Data deletion is easy to perform</li>
+</ul>
+<h2 id="st-normal-form-3">1st normal form</h2>
+<p><img src="media/normalization7.png" /></p>
+<ul>
+<li>First normal form: An attribute (column) of a table cannot hold multiple values. It should hold only atomic values</li>
+</ul>
+<h2 id="st-normal-form-4">1st normal form</h2>
+<p><img src="media/normalization2.png" /></p>
+<h2 id="st-normal-form-5">1st normal form</h2>
+<ul>
+<li>The multivalued attribute is turned into a “Many-to-Many” relationship</li>
+</ul>
+<p><img src="media/normalization8.png" /></p>
+<h2 id="st-normal-form-in-a-nutshell">1st normal form – In a nutshell</h2>
+<ul>
+<li>First normal form (1NF) sets the very basic rules for an organized database<br /></li>
+<li>There are no repeating or duplicate fields<br /></li>
+<li>Each cell contains only a single value<br /></li>
+<li>Each record is unique (identified by a primary key)</li>
+</ul>
+<h2 id="st-normal-form-in-a-nutshell-1">1st normal form – In a nutshell</h2>
+<p><img src="media/normalization9.png" /></p>
+<h2 id="functional-dependencies">Functional Dependencies</h2>
+<ul>
+<li>A functional dependency is defined as an association among a table’s attributes<br /></li>
+<li>Suppose that given the value of one attribute, we can obtain the value of another attribute<br /></li>
+<li>An attribute B is considered as functional dependent to an attribute A if the value of A sets uniquely the value of B<br /></li>
+<li>The aforementioned association is depicted as Α → Β<br /></li>
+<li>Read as: A determines B or B depends on A</li>
+</ul>
+<h2 id="functional-dependencies-example-1">Functional dependencies – example 1</h2>
+<p>Examples of functional dependencies:</p>
+<ul>
+<li>ZipCode → AddressCity<br /></li>
+<li>16652 is Huntingdon’s ZIP<br /></li>
+<li>ArtistName → BirthYear<br /></li>
+<li>Picasso was born in 1881<br /></li>
+<li>Autobrand → Manufacturer, Engine type<br /></li>
+<li>Pontiac is built by General Motors with gasoline engine<br /></li>
+<li>Author, Title → PublDate<br /></li>
+<li>Shakespeare’s Hamlet was published in 1600</li>
+</ul>
+<h2 id="functional-dependencies-example-2">Functional dependencies – example 2</h2>
+<p><img src="media/normalization10.png" /><br />We say an attribute B has a functional dependency on another attribute A, if for any two records, which have the same value for A, then the values for B in these two records must be the same</p>
+<h2 id="functional-dependencies-example-3">Functional dependencies – example 3</h2>
+<p><img src="media/normalization11.png" /><br />Knowing the Team name we can identify uniquely the League it participates</p>
+<h2 id="functional-dependencies-example-4">Functional dependencies – example 4</h2>
+<p><img src="media/normalization12.png" /></p>
+<h2 id="functional-dependencies-1">Functional dependencies</h2>
+<ul>
+<li>A functional dependency can be full or partial<br /></li>
+<li>Full dependency<br /></li>
+<li>Partial dependency<br /></li>
+<li>A partial dependency is a situation where a non-prime attribute is functionally dependent to a portion/part of a primary key/Candidate key<br /></li>
+<li>A functional dependency is a full functional dependency when the removal of any attribute means that the dependency does not hold any more</li>
+</ul>
+<h2 id="nd-normal-form">2nd Normal Form</h2>
+<p>Second normal form: an entity type is in second normal form (2NF) when it is in 1NF and when every non-key attribute, any attribute that is not part of the primary key, is fully dependent on the primary key</p>
+<h2 id="nd-normal-form-example-1">2nd Normal Form – example 1</h2>
+<p><img src="media/normalization13.png" /><br />2NF: No non-prime attribute is dependent on the proper subset of any candidate key of the table</p>
+<h2 id="nd-normal-form-example-1-1">2nd Normal Form – example 1</h2>
+<ul>
+<li>Primary key is composite<br /></li>
+<li>Comprises of ‘Title’ and ‘Actor’ attributes<br /></li>
+<li>The following functional dependencies occur:<br /></li>
+<li>{title, actor} → director<br /></li>
+<li>title → director</li>
+</ul>
+<h2 id="nd-normal-form-approach">2nd normal form – Approach</h2>
+<p><img src="media/normalization14.png" /></p>
+<h2 id="nd-normal-form-example-1-2">2nd normal form – Example 1</h2>
+<ul>
+<li>We split the initial table to the following two:<br /><img src="media/normalization15.png" /></li>
+</ul>
+<h2 id="nd-normal-form-example-2">2nd normal form – Example 2</h2>
+<p><img src="media/normalization16.png" /><br />{Manufacturer, Model} → Manufacturer Country</p>
+<h2 id="nd-normal-form-example-2-1">2nd normal form – Example 2</h2>
+<ul>
+<li>We split the initial table to the following two:<br /><img src="media/normalization17.png" /></li>
+</ul>
+<h2 id="nd-normal-form-in-a-nutshell">2nd normal form – In a nutshell</h2>
+<ul>
+<li>A table is said to in second normal form (2NF) if both the following conditions hold:<br /></li>
+<li>Table is in first normal form (1NF)<br /></li>
+<li>No non-prime attribute is dependent on the proper subset of any candidate key of the table</li>
+</ul>
+<h2 id="nd-normal-form-in-a-nutshell-1">2nd normal form – In a nutshell</h2>
+<p><img src="media/normalization18.png" /></p>
+<h2 id="rd-normal-form">3rd Normal Form</h2>
+<p>Third normal form: an entity type is in third normal form (3NF) when it is in 2NF and all non-primary fields are dependent on the primary key</p>
+<h2 id="rd-normal-form-1">3rd Normal Form</h2>
+<ul>
+<li>Refers to the functional dependencies of attributes that do not belong to the primary key.<br /></li>
+<li>Normalization with decomposition<br /></li>
+<li>Decomposition is the process of breaking a relation into two or more relations to eliminate the redundancies and corresponding anomalies<br /></li>
+<li>The dependent part of the functional dependency Y → Z, (i.e. Z) is removed from the initial table<br /></li>
+<li>The parts of the functional dependency Y → Z, (i.e. Y and Z) form a new table with Y being the primary key.<br /></li>
+<li>The initial table can be produced by joining the new tables</li>
+</ul>
+<h2 id="rd-normal-form-2">3rd Normal Form</h2>
+<p><img src="media/normalization19.png" /></p>
+<h2 id="rd-normal-form-3">3rd Normal Form</h2>
+<ul>
+<li>3NF requires that the initial table is broken down to two tables<br /></li>
+<li>The dependent part ‘region’ of the functional dependency region → country is removed from the table<br /></li>
+<li>The parts of the functional dependency form a new table with primary key the attribute ‘region’</li>
+</ul>
+<h2 id="rd-normal-form-4">3rd Normal Form</h2>
+<p><img src="media/normalization20.png" /></p>
+<h2 id="rd-normal-form-in-a-nutshell">3rd normal form – In a nutshell</h2>
+<ul>
+<li>A table is said to in third normal form (3NF) if both the following conditions hold:<br /></li>
+<li>Table is in second normal form (2NF)<br /></li>
+<li>All non-primary fields are dependent on the primary key</li>
+</ul>
+<h2 id="rd-normal-form-5">3rd Normal Form</h2>
+<p><img src="media/normalization21.png" /></p>
+<h2 id="some-good-reasons-not-to-normalize">Some good reasons not to normalize</h2>
+<ul>
+<li>Joins are expensive<br /></li>
+<li>Normalizing your database often involves creating lots of tables.<br /></li>
+<li><p>In fact, you can easily wind up with what might seem like a simple query spanning five or ten tables.</p></li>
+<li><p>Normalized design is difficult</p></li>
+<li>Quick and dirty should be quick and dirty<br /></li>
+<li>If you’re just developing a prototype, just do whatever works quickly<br /></li>
+<li><p>Rapid application development is sometimes more important than elegant design.</p></li>
+</ul>
+<h2 id="exercises">Exercises</h2>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li>Consider the following the following table:<br /><img src="media/normalization22.png" /><br />Which of the following Functional Dependencies is not correct?<br /></li>
+</ul>
+<p>a) A → B</p>
+<p>b) B → C</p>
+<p>c) BC → A</p>
+<p>d) AC → B</p>
+<h2 id="exercise-2">Exercise 2</h2>
+<ul>
+<li>Consider the following the following table:<br /><img src="media/normalization23.png" /><br />Which of the following Functional Dependencies are satisfied?<br />XY → Z, Z → Y<br />XZ → X, Y → Z<br />YZ → X, X → Z<br />XZ → Y, Y → X</li>
+</ul>
+<h2 id="exercise-3">Exercise 3</h2>
+<ul>
+<li>Which is the DB schema for the following E-R diagram?<br /></li>
+<li>Each employee can have from no email up to two email accounts<br /><img src="media/normalization24.png" /></li>
+</ul>
+<h2 id="exercise-4">Exercise 4</h2>
+<ul>
+<li>Convert the following table into First Normal Form<br /><img src="media/normalization25.png" /></li>
+</ul>
+<h2 id="exercise-5">Exercise 5</h2>
+<ul>
+<li>Convert the following table into Third Normal Form<br /><img src="media/normalization26.png" /></li>
+</ul>
+<h2 id="exercise-6">Exercise 6</h2>
+<ul>
+<li>Convert the following table into Second Normal Form<br /><img src="media/normalization27.png" /></li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Stored Procedures, Cursors, Triggers, Indexes</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-stored-procedures-cursors-triggers-indexes">Coding Bootcamp: Stored Procedures, Cursors, Triggers, Indexes</h1>
+<h2 id="stored-procedures-cursors-triggers-indexes">Stored Procedures, Cursors, Triggers, Indexes</h2>
+<h2 id="stored-procedures">Stored Procedures</h2>
+<h2 id="stored-procedures-1">Stored Procedures</h2>
+<ul>
+<li>A stored procedure (also termed proc, storp, sproc, StoPro, StoredProc, StoreProc, sp, or SP) is a subroutine - a pre-defined batch of code- available to applications that access a relational database management system (RDMS).<br /></li>
+<li>It includes all the statements of SQL, but we can also use if, then, else blocks and while loops.</li>
+</ul>
+<h2 id="stored-procedures-2">Stored Procedures</h2>
+<p><img src="media/sp1.png" /></p>
+<h2 id="stored-procedures-benefits">Stored Procedures Benefits</h2>
+<ul>
+<li>Code Reusability<br /></li>
+<li>SQL Server compiles and stores these in memory for future use<br /></li>
+<li>Enhanced Security<br /></li>
+<li>Requires valid permissions to execute<br /></li>
+<li>Users can have permission to execute a stored procedure, without having permission to read from the underlying tables or views<br /></li>
+<li>You can specify the security context<br /></li>
+<li>Owner, Caller or User<br /></li>
+<li>Speed / Optimization<br /></li>
+<li>Stored procedures are cached on the server</li>
+</ul>
+<h2 id="stored-procedures-drawbacks">Stored Procedures Drawbacks</h2>
+<ul>
+<li>Limited Coding Functionality<br /></li>
+<li>Stored procedure code is not as robust as app code, particularly in the area of looping (not to mention that iterative constructs, like cursors, are slow and processor intensive)<br /></li>
+<li>Testing<br /></li>
+<li>Any data errors in handling Stored Procedures are not generated until runtime<br /></li>
+<li>Portability<br /></li>
+<li>Complex Stored Procedures that utilize complex, core functionality of the RDBMS used for their creation will not always port to upgraded versions of the same database. This is especially true if moving from one database type (Oracle) to another (MS SQL Server).</li>
+</ul>
+<h2 id="stored-procedures-3">Stored Procedures</h2>
+<ul>
+<li>SQL Server, My SQL etc. have many built-in stored procedures, called System Stored Procedures<br /></li>
+<li>Used for maintenance and management activities<br /></li>
+<li>They start with the ps_ prefix i.e. ps_tables<br /></li>
+<li>Owned by the sys schema in each database</li>
+</ul>
+<h2 id="store-procedures">Store Procedures</h2>
+<p><img src="media/sp2.png" /></p>
+<h2 id="t-sql-store-procedures">T-SQL Store Procedures</h2>
+<ul>
+<li>T-SQL: Transact-SQL is proprietary extension to the used to interact with relational databases<br /></li>
+<li>SP are batches of T-SQL code stored as an object in the database<br /></li>
+<li>They can accept input parameters<br /></li>
+<li>They can return various output types</li>
+</ul>
+<h2 id="t-sql-store-procedures-1">T-SQL Store Procedures</h2>
+<p><img src="media/sp3.png" /></p>
+<h2 id="creation-calling-deleting-a-sp">Creation, calling &amp; deleting a SP</h2>
+<ul>
+<li>Creating a procedure<br /></li>
+<li>CREATE PROCEDURE hello_world()<br /></li>
+<li>Calling a Stored Procedure<br /></li>
+<li>Exec or Call hello_world(<param list>)<br /></li>
+<li>Show the script of an already created procedure<br /></li>
+<li>SHOW CREATE PROCEDURE hello_world();<br /></li>
+<li>Delete a store procedure<br /></li>
+<li>DROP PROCEDURE hello_world();</li>
+</ul>
+<h2 id="st-creation">ST Creation</h2>
+<ul>
+<li>CREATE PROCEDURE hello_world() SELECT * FROM student;<br /></li>
+<li>CALL hello_world();<br /></li>
+<li>Returns:<br /><img src="media/sp4.png" /></li>
+</ul>
+<h2 id="sp-structure-my-sql">SP – Structure (My SQL)</h2>
+<pre><code>DELIMITER //  ##declare the character  end the procedure
+CREATE PROCEDURE test()   
+BEGIN  
+    SELECT *  FROM actor;   
+END //
+CALL test() ;
+DROP PROCEDURE test;</code></pre>
+<h2 id="sp-example-my-sql">SP – Example (My SQL)</h2>
+<pre><code>DELIMITER $
+CREATE PROCEDURE hello_world2()
+BEGIN
+ SELECT * FROM student ORDER BY am;
+ SELECT * FROM course ORDER BY course_id;
+ SELECT * FROM registration;
+END$
+
+CALL hello_world2();</code></pre>
+<h2 id="sp-example-my-sql-1">SP – Example (My SQL)</h2>
+<p><img src="media/sp5.png" /></p>
+<h2 id="value-assignments">Value Assignments</h2>
+<ul>
+<li>We can set a value into a variable<br /></li>
+<li>Its value last for a specific session<br /></li>
+<li>The name should start with a “@”<br /></li>
+<li>The value assignment is done using the SET command<br /></li>
+<li>SET @x=4;<br /></li>
+<li>SET @y=7;<br /></li>
+<li>SET @<script type="text/javascript">
+<!--
+h='&#120;&#x2d;&#64;&#x79;';a='&#64;';n='&#122;&#x3d;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#122;&#x3d;&#32;&#x61;&#116;&#32;&#120;&#x2d;&#64;&#x79;</noscript>;<br /></li>
+<li>We can print the value of a variable using the select command, e.g:<br /></li>
+<li>Select @x;</li>
+</ul>
+<h2 id="declarations-in-a-sp">Declarations in a SP</h2>
+<ul>
+<li>We can create a variable in a procedure.<br /></li>
+<li>Each variable lasts for the specific session<br /></li>
+<li>We can use “DECLARE” command to declare a variable<br /></li>
+<li>We have to declare its data type e.g:<br /></li>
+<li>DECLARE id INT;<br /></li>
+<li>DECLARE name VARCHAR(20);<br /></li>
+<li>DECLARE birthday DATETIME;<br /></li>
+<li>The declarations should be made at the beginning of the store procedure</li>
+</ul>
+<h2 id="declarations-value-assignments-in-sp">Declarations &amp; value assignments in SP</h2>
+<p><img src="media/sp6.png" /><br /><img src="media/sp7.png" /></p>
+<h2 id="input-output-of-a-sp">Input &amp; Output of a SP</h2>
+<ul>
+<li>SP could receive an input and return an output when we call then using parameters<br /></li>
+<li>Parameters are declared as arguments in a SP<br /></li>
+<li>We have 3 different types of arguments:<br /></li>
+<li>IN arguments<br /></li>
+<li>Its value is used as an input in the procedure.<br /></li>
+<li>When their value is changed in the SP environment it is not transferred to the rest environment<br /></li>
+<li>Default type of arguments<br /></li>
+<li>OUT arguments<br /></li>
+<li>Its value is not used as an input in the procedure (NULL).<br /></li>
+<li>When their value is changed in the SP environment it is transferred to the rest environment<br /></li>
+<li>INOUT arguments<br /></li>
+<li>Combines both IN &amp; OUT arguments</li>
+</ul>
+<h2 id="input-output-of-a-sp-example-12">Input &amp; Output of a SP – Example (1/2)</h2>
+<pre><code>DELIMITER $
+CREATE PROCEDURE afairesi(IN a INT, IN b INT, OUT result INT)
+BEGIN
+SET result=a-b;
+END$
+DELIMITER ;
+
+CALL afairesi(5,4,@res);
+
+SELECT @res; (result=1)</code></pre>
+<h2 id="input-output-of-a-sp-example-22">Input &amp; Output of a SP – Example (2/2)</h2>
+<pre><code>DELIMITER $
+CREATE PROCEDURE arnitiko(INOUT num INT)
+BEGIN
+ SET num=-num;
+END$
+mysql&gt;DELIMITER ;
+
+mysql&gt;SET @y=17;
+mysql&gt;CALL arnitiko(@y);
+mysql&gt;SELECT @y;</code></pre>
+<h2 id="sp-example-mssql">SP – Example, MSSQL</h2>
+<p><img src="media/sp8.png" /></p>
+<h2 id="flow-control-structures">Flow control structures</h2>
+<ul>
+<li>MySQL supports flow control structures<br /></li>
+<li>The basic are:<br /></li>
+<li>If-then-else<br /></li>
+<li>While loops<br /></li>
+<li>Repeat loops<br /></li>
+<li>Case</li>
+</ul>
+<h2 id="sp-if-then-else-example">SP – If, Then, else Example</h2>
+<pre><code>IF condition
+    THEN statement/s
+ELSEIF condition
+    THEN statement/s
+ELSE</code></pre>
+<pre><code>DELIMITER $
+CREATE PROCEDURE absolute(IN num INT, OUT abs_num INT)
+BEGIN
+IF(num&lt;0) THEN
+    SET abs_num=-num;
+ELSE
+    SET abs_num=num;
+END IF;
+END$
+mysql&gt;DELIMITER ;</code></pre>
+<h2 id="sp-if-then-else-example-1">SP – If, Then, else Example</h2>
+<pre><code>DELIMITER $
+CREATE PROCEDURE pointOfTime(IN inputDay DATE)
+BEGIN
+ DECLARE currentDay DATE;
+ SET currentDay=CURDATE();
+ IF(inputDay&gt;currentDay) THEN
+    SELECT &#39;Future&#39;;
+ ELSEIF(inputDay=currentDay) THEN
+    SELECT &#39;Present&#39;;
+ ELSE
+    SELECT &#39;Past&#39;;
+ END IF;
+END$
+DELIMITER ;
+CALL pointOfTime(&#39;2011-12-31&#39;);</code></pre>
+<p>What else we could do?</p>
+<h2 id="store-procedure-example---mssql">Store Procedure Example - MSSQL</h2>
+<pre><code>CREATE PROCEDURE SP_ChangeSupplier @FromSID INT,@ToSID INT,  @Result INT OUTPUT AS
+DECLARE @Error INT
+set @Error = 0
+Begin
+IF @ToSID&gt;0
+Begin
+Update Products
+Set SupplierID = @ToSID
+WHERE SupplierID =@FromSID
+End
+Else 
+    @Error = 1
+End
+Set @Result =@Error
+GO</code></pre>
+<p>Calling the SP<br />EXEC SP_ChangeSupplier (30, 37, @r output)</p>
+<p>Dropping the SP<br />DROP PROCEDURE SP_ChangeSupplier</p>
+<h2 id="while">WHILE</h2>
+<pre><code>WHILE condition
+    DO statement/s
+END WHILE;</code></pre>
+<pre><code>DELIMITER $
+CREATE PROCEDURE simpleFor(IN maxNum INT)
+BEGIN
+    DECLARE i INT;
+    SET i=0;
+    WHILE(i&lt;maxNum AND maxNum&gt;=0) DO
+        SELECT i;
+         SET i=i+1;
+    END WHILE;
+END$
+DELIMITER ;</code></pre>
+<h2 id="while-1">WHILE</h2>
+<p><img src="media/sp9.png" /></p>
+<h2 id="if-then-else-while-ms-sql">If –then-else &amp; While / MS SQL</h2>
+<p><img src="media/sp10.png" /></p>
+<h2 id="repeat">REPEAT</h2>
+<pre><code>REPEAT statement/s
+    UNTIL condition
+END REPEAT;</code></pre>
+<pre><code>DELIMITER $
+CREATE PROCEDURE simpleForAlt(IN maxNum INT)
+BEGIN
+ DECLARE i INT;
+ SET i=0;
+ REPEAT
+ SELECT i;
+ SET i=i+1;
+ UNTIL(i&gt;=maxNum OR maxNum&lt;0)
+ END REPEAT;
+END$</code></pre>
+<p>CALL simpleForAlt(2);</p>
+<h2 id="repeat-1">REPEAT</h2>
+<p><img src="media/sp11.png" /></p>
+<h2 id="case">CASE</h2>
+<pre><code>CASE
+WHEN condition1 THEN statement/s
+WHEN condition2 THEN statement/s
+...
+ELSE statement/s
+END CASE;</code></pre>
+<h2 id="case-1">CASE</h2>
+<p><img src="media/sp11.png" /></p>
+<h2 id="sp-in-class-exercises-13">SP: in Class Exercises (1/3)</h2>
+<p>Write a stored procedure that receives as as input the id of an employee and displays his name and his salary. Then call this procedure for the employee id=2<br />Employee (id, FNAME, LNAME ,SALARY)</p>
+<pre><code>CREATE PROCEDURE find_emp_salary  @ide int
+AS
+BEGIN
+    SELECT FNAME
+      ,LNAME
+      ,SALARY
+FROM EMPLOYEE
+WHERE ID = @ide
+END
+CALL find_emp_salary (2);</code></pre>
+<h2 id="sp-in-class-exercises-23">SP: in Class Exercises (2/3)</h2>
+<p>Write a stored procedure that receives as input the id of an employee and returns his id and the number of projects he participates in<br />Employee (id, NAME)<br />Works_On (idEmpl, project)</p>
+<pre><code>CREATE PROCEDURE find_emp_projects @ide int
+AS
+BEGIN
+    SELECT a.Name, COUNT(b.project) AS NUM_OF_PROJECT
+    FROM EMPLOYEE a
+    INNER JOIN WORKS_ON b
+    ON a.id=b. idEmpl
+    WHERE a.ID = @ide
+    GROUP BY a.Name
+END
+--------
+exec find_emp_projects (@ide)</code></pre>
+<h2 id="sp-in-class-exercises-23-1">SP: in Class Exercises (2/3)</h2>
+<p>-OR-</p>
+<pre><code>CREATE PROCEDURE find_emp_projects @ide int, @numb int out
+AS 
+BEGIN
+     SET @numb =(
+    SELECT COUNT(b.project)
+    FROM EMPLOYEE a
+    INNER JOIN WORKS_ON b
+    ON a.id=b. idEmpl
+    WHERE a.ID = @ide
+    GROUP BY a.Name)
+    END
+------
+exec find_emp_projects (@ide, @numb)
+Select @ide, @numb</code></pre>
+<h2 id="sp-in-class-exercises-33--solution-ms-sql">SP: in Class Exercises (3/3)- Solution MS SQL</h2>
+<p>Write a stored procedure that receives as input the sex and the department and displays the average salary of the employees<br />Employees (id, name, salary, sex, Did)<br />Department(Did, Dname)</p>
+<pre><code>CREATE PROCEDURE find_avg_salaries @sex nvarchar(20), @department nvarchar(50)
+AS
+BEGIN
+SELECT  d. DNAME,
+        e.SEX,
+        avg(e.SALARY) AS AVG_SALARY
+    FROM EMPLOYEE e
+    INNER JOIN DEPARTMENT d
+    ON e.DID = d.DID
+    WHERE d.DNAME = @department AND e.SEX = @sex
+    GROUP BY d. DNAME
+END</code></pre>
+<h2 id="cursors">Cursors</h2>
+<h2 id="cursors-in-sql">Cursors in SQL</h2>
+<ul>
+<li>A mechanism to navigate tuple-by-tuple over a relation<br /></li>
+<li>Typically used inside triggers, stored procedures<br /></li>
+<li>When we execute a query, a relation is returned<br /></li>
+<li>It is stored in private work area for the query<br /></li>
+<li>Cursor is a pointer to this area<br /></li>
+<li>Move the cursor to navigate over the tuples<br /></li>
+<li>Enables users to loop around a selection of data<br /></li>
+<li>Use complex actions which would not be feasible in standard SQL selection queries</li>
+</ul>
+<h2 id="syntax-for-cursors">Syntax for Cursors</h2>
+<ul>
+<li>Declared as a variable in the same way as standard variables<br /></li>
+<li>Identified as cursor type<br />SQL included<br />e.g.<br /><img src="media/sp13.png" /></li>
+</ul>
+<h2 id="controlling-cursor">Controlling Cursor…</h2>
+<p><img src="media/sp14.png" /></p>
+<h2 id="controlling-cursor-1">Controlling Cursor</h2>
+<p><img src="media/sp15.png" /></p>
+<h2 id="cursors-example-ms-sql">Cursors example – MS SQL</h2>
+<p><img src="media/sp16.png" /></p>
+<h2 id="advantages-disadvantages">Advantages &amp; Disadvantages</h2>
+<ul>
+<li>Advantages:<br /></li>
+<li>Cursors are best used when performing row-by-row operations that can't be accomplished with set-based operations (i.e., when you need to fire a stored procedure once per row in a table).<br /></li>
+<li><p>Quick and dirty</p></li>
+<li>Disadvantage:<br /></li>
+<li>Speed and performance issues<br /></li>
+<li><p>A factor affecting cursor speed is the number of rows and columns brought into the cursor. Time how long it takes to open your cursor and fetch statements.</p></li>
+</ul>
+<h2 id="cursor-procedure-example---mysql">Cursor &amp; Procedure example - MySQL</h2>
+<pre><code>DELIMITER $
+DROP PROCEDURE IF EXISTS showCourseLectures$
+CREATE PROCEDURE showCourseLectures(IN courseId INT)
+BEGIN
+ DECLARE lectSubject VARCHAR(128);
+ DECLARE lectNum INT(2);
+ DECLARE finishedFlag INT;
+ DECLARE lectCursor CURSOR FOR
+ SELECT subject, num_lecture FROM lecture WHERE course_lecture=courseId;
+ DECLARE CONTINUE HANDLER FOR NOT FOUND SET finishedFlag=1;
+ OPEN lectCursor;
+    SET finishedFlag=0;
+    FETCH lectCursor INTO lectSubject, lectNum;
+        WHILE(finishedFlag=0) DO
+            SELECT lectNum AS &#39;Αριθμός Διάλεξης&#39;, lectSubject AS &#39;Θέμα&#39;;
+            FETCH lectCursor INTO lectSubject, lectNum;
+        END WHILE;
+ CLOSE lectCursor;
+END$
+DELIMITER ;</code></pre>
+<h2 id="cursors-example---mysql">Cursors example - MySQL</h2>
+<pre><code>DELIMITER $
+DROP PROCEDURE IF EXISTS showCourseLecturesAlt$
+CREATE PROCEDURE showCourseLecturesAlt(IN courseId INT)
+BEGIN
+ DECLARE lectSubject VARCHAR(128);
+ DECLARE lectNum INT(2);
+ DECLARE finishedFlag INT;
+ DECLARE lectCursor CURSOR FOR
+ SELECT subject,num_lecture FROM lecture WHERE course_lecture=courseId;
+ DECLARE CONTINUE HANDLER FOR NOT FOUND SET finishedFlag=1;
+ OPEN lectCursor;
+ SET finishedFlag=0;
+ REPEAT
+ FETCH lectCursor INTO lectSubject, lectNum;
+ IF(finishedFlag=0) THEN
+     SELECT lectNum AS &#39;Αριθμός Διάλεξης&#39;, lectSubject AS &#39;Θέμα&#39;;
+ END IF;
+ UNTIL(finishedFlag=1)
+ END REPEAT;
+ CLOSE lectCursor;
+END$
+DELIMITER ;</code></pre>
+<h2 id="triggers">Triggers</h2>
+<h2 id="triggers-1">Triggers</h2>
+<ul>
+<li>Triggers are very similar to stored procedures<br /></li>
+<li>One big difference is: triggers cannot be manually executed<br /></li>
+<li>They only execute in response to a user action, like an INSERT<br /></li>
+<li>Is called when an event occurs in the table<br /></li>
+<li>Are used to:<br /></li>
+<li>Check the validity of the data that are inserted into a table<br /></li>
+<li>To calculate derived values<br /></li>
+<li>To maintain the sign in logs and the insertions in a table<br /></li>
+<li>Implementation Cost -&gt; time consuming</li>
+</ul>
+<h2 id="basic-commands">Basic Commands</h2>
+<ul>
+<li>Creation<br /></li>
+<li>CREATE TRIGGER <trigger name><br /></li>
+<li>Delete<br /></li>
+<li>DROP TRIGGER &lt; trigger name &gt;<br /></li>
+<li>Show Trigger Code<br /></li>
+<li>SHOW CREATE TRIGGER &lt; trigger name &gt;<br /></li>
+<li>Show list of created Triggers<br /></li>
+<li><p>SHOW TRIGGERS</p></li>
+<li>Call/execute a trigger<br /></li>
+<li>We cannot call a trigger, like a procedure<br /></li>
+<li><p>It is executed when an event happens call it</p></li>
+</ul>
+<h2 id="designing-a-trigger">Designing a Trigger</h2>
+<ul>
+<li>To design a trigger we have to determine:<br /></li>
+<li>In which table it would be applied<br /></li>
+<li>With what event it will be linked<br /></li>
+<li>e.g. INSERT, UPDATE, DELETE<br /></li>
+<li>When it will be executed<br /></li>
+<li>Before the event<br /></li>
+<li>After the event<br /></li>
+<li>Its functionality<br /></li>
+<li>At the main body of the trigger we can write SQL code</li>
+</ul>
+<h2 id="trigger-creation">Trigger Creation</h2>
+<p>CREATE TRIGGER trigger_name trigger_time trigger_event<br />ON table_name<br />FOR EACH ROW trigger_body</p>
+<ul>
+<li>trigger_name<br /></li>
+<li>trigger_time -&gt; When it will be executed (after or before)<br /></li>
+<li>trigger_event -&gt; the connected event<br /></li>
+<li>ON table_name -&gt; the table it belongs to<br /></li>
+<li>FOR EACH ROW -&gt; it will be executed for each row<br /></li>
+<li>trigger_body -&gt; the SQL scripts</li>
+</ul>
+<h2 id="trigger-events">Trigger Events</h2>
+<ul>
+<li>The Triggers events could be<br /></li>
+<li>INSERT<br /></li>
+<li>UPDATE<br /></li>
+<li>DELETE<br /></li>
+<li>TRUNCATE &amp; DROP don’t call a Trigger<br /></li>
+<li>We could have at max 6 triggers in every table</li>
+</ul>
+<h2 id="trigger-example-12">Trigger Example (1/2)</h2>
+<pre><code>SET @courseCount=
+    (SELECT COUNT(*) FROM course);
+SELECT @courseCount;  
+(assume the table was empty at the beginning-&gt;0)
+
+CREATE TRIGGER keep_count
+AFTER INSERT ON course
+FOR EACH ROW
+SET @courseCount=@courseCount+1;</code></pre>
+<pre><code>INSERT INTO course(title,course_id,supervisor)
+VALUES
+(&#39;t1&#39;,NULL,&#39;anastasia@aueb.gr&#39;),
+(&#39;t2&#39;,NULL, &#39;vasilis@aueb.gr&#39;);</code></pre>
+<p>SELECT @courseCount;<br />Result-&gt;2</p>
+<h2 id="trigger-example-22">Trigger Example (2/2)</h2>
+<pre><code>DELIMITER $
+CREATE TRIGGER checkRegDate
+BEFORE INSERT ON registration
+FOR EACH ROW
+BEGIN
+ DECLARE currDate DATE
+ SET currDate=CURDATE();
+ IF NEW.reg_date&gt;currDate THEN
+    SET NEW.reg_date=currDate;
+ END IF;
+END$
+DELIMITER ;</code></pre>
+<pre><code>INSERT INTO registration(reg_date,reg_student,reg_course)
+VALUES(&#39;2030-04-17&#39;,2193,2);
+SELECT * FROM registration
+WHERE reg_course=2 AND reg_student=2193;
+-&gt; What is the day of the value of the reg_date?</code></pre>
+<h2 id="indexes">Indexes</h2>
+<h2 id="indexes-13">Indexes (1/3)</h2>
+<ul>
+<li>A database index is a data structure that improves the speed of operations in a table.<br /></li>
+<li>Indexes can be created using one or more columns, providing the basis for both rapid random lookups and efficient ordering of access to records.<br /></li>
+<li>Basically an index on a table works like an index in a book (that's where the name came from):<br /></li>
+<li>Let's say you have a book about databases and you want to find some information about, say, storage. Without an index (assuming no other aid, such as a table of contents) you'd have to go through the pages one by one, until you found the topic (that's a full table scan).<br /></li>
+<li>An index has a list of keywords, so you'd consult the index and see that storage is mentioned on pages 113-120,231 and 354. Then you could flip to those pages directly, without searching (that's a search with an index)</li>
+</ul>
+<h2 id="indexes-23">Indexes (2/3)</h2>
+<ul>
+<li>How useful the index will be, depends on many things :<br /></li>
+<li>If you had a book on databases and indexed the word &quot;database&quot;, you'd see that it's mentioned on pages 1-59,61-290, and 292 to 400. In such case, the index is not much help and it might be faster to go through the pages one by one (in a database, this is &quot;poor selectivity&quot;).<br /></li>
+<li>For a 10-page book, it makes no sense to make an index, as you may end up with a 10-page book prefixed by a 5-page index<br /></li>
+<li>The index also needs to be useful - there's generally no point to index e.g. the frequency of the letter &quot;L&quot; per page.</li>
+</ul>
+<h2 id="indexes-33">Indexes (3/3)</h2>
+<ul>
+<li>While creating index, it should be considered that what are the columns which will be used to make SQL queries and create one or more indexes on those columns.<br /></li>
+<li>Practically, indexes are also type of tables, which keep the index field and a pointer to each record into the actual table.<br /></li>
+<li>The users cannot see the indexes, they are just used to speed up queries and will be used by Database Search Engine to locate records very fast.<br /></li>
+<li>INSERT and UPDATE statements take more time on tables having indexes where as SELECT statements become fast on those tables. The reason is that while doing insert or update, database need to insert or update index values as well.</li>
+</ul>
+<h2 id="exercises">Exercises</h2>
+<h2 id="exercise-1">Exercise 1</h2>
+<p>Create and execute a procedure that displays the first and the last name from table actors.</p>
+<h2 id="exercise-2">Exercise 2</h2>
+<p>Create a procedure to display everything from table actor with id=58</p>
+<h2 id="exercise-3">Exercise 3</h2>
+<p>Create a procedure that receives as input a payment amount and a date and returns those payments (table=payment) that exceed this amount for the days after the given day.<br />Then execute the procedure for amount=1, and date = '2004-05-25 11:30:37‘.</p>
+<h2 id="exercise-4">Exercise 4</h2>
+<p>In the previous procedure also count the number of distinct dates that satisfy the following the restriction (amount=1, and date = '2004-05-25 11:30:37‘.)</p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Database Views</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-database-views">Coding Bootcamp: Database Views</h1>
+<h2 id="database-views">Database Views</h2>
+<h2 id="database-view">Database View</h2>
+<ul>
+<li>Is a virtual table or logical table which is defined as a SQL SELECT query with joins.<br /></li>
+<li>A database view is similar to a database table, which consists of rows and columns<br /></li>
+<li>Ability to query data against it<br /></li>
+<li>A database view is dynamic because it is not related to the physical schema<br /></li>
+<li>The database system stores database views as a SQL SELECT statement with joins<br /></li>
+<li>When the data of the tables changes, the view reflects that changes as well</li>
+</ul>
+<h2 id="advantages-of-a-database-view">Advantages of a database View</h2>
+<ul>
+<li>Views can represent a subset of the data contained in a table and limit data access to specific users<br /></li>
+<li>A view can limit the degree of exposure of the underlying tables to others<br /></li>
+<li>A given user may have permission to query the view, while denied access to the rest of the base table<br /></li>
+<li>A database view allows you to simplify complex queries<br /></li>
+<li>Views can join and simplify multiple tables into a single virtual table</li>
+</ul>
+<h2 id="advantages-of-a-database-view-1">Advantages of a database View</h2>
+<ul>
+<li>Views can hide the complexity of data<br /></li>
+<li>Views can act as aggregated tables, where the database engine aggregates data (sum, average, etc.) and presents the calculated results as part of the data<br /></li>
+<li>Views take very little space to store<br /></li>
+<li>The database contains only the definition of a view, not a copy of all the data that it presents</li>
+</ul>
+<h2 id="disadvantages-of-a-database-view">Disadvantages of a database View</h2>
+<ul>
+<li>Performance<br /></li>
+<li>Querying data from a database view can be slow especially if the view is created based on other view<br /></li>
+<li>Tables dependency<br /></li>
+<li>You create a view based on underlying tables of the a database. Whenever you change the structure of those tables that view associated with, you have to change the view as well</li>
+</ul>
+<h2 id="sql-create-view-statement">SQL CREATE VIEW Statement</h2>
+<ul>
+<li>A view is a virtual table based on the result-set of an SQL statement<br /></li>
+<li>You can add SQL functions, WHERE, and JOIN statements to a view and present the data as if the data were coming from one single table</li>
+</ul>
+<p>Syntax</p>
+<pre><code>CREATE VIEW view_name AS
+SELECT column_name(s)
+FROM table_name
+WHERE condition</code></pre>
+<h2 id="sql-create-view-examples-16">SQL CREATE VIEW Examples 1/6</h2>
+<ul>
+<li>The view &quot;Current Product List&quot; lists all active products (products that are not discontinued) from the &quot;Products&quot; table.<br /></li>
+<li><p>The view is created with the following SQL</p>
+<pre><code>CREATE VIEW [Current Product List] AS
+SELECT ProductID, ProductName
+FROM Products
+WHERE Discontinued=No</code></pre></li>
+<li><p>We can query the view above as follow<br />SELECT * FROM [Current Product List]</p></li>
+</ul>
+<h2 id="sql-create-view-examples-26">SQL CREATE VIEW Examples 2/6</h2>
+<ul>
+<li>The following view calculates the total sale for each category in 1997.<br /></li>
+<li><p>The view is created with the following SQL</p>
+<pre><code>CREATE VIEW [Category Sales For 1997] AS
+SELECT DISTINCT CategoryName, Sum(ProductSales) AS CategorySales
+FROM [Product Sales for 1997]
+GROUP BY CategoryName</code></pre></li>
+<li><p>We can query the view above as follow<br />SELECT * FROM [Category Sales For 1997]</p></li>
+</ul>
+<h2 id="sql-create-view-examples-36">SQL CREATE VIEW Examples 3/6</h2>
+<ul>
+<li>Customer (cust, name, address)<br /></li>
+<li>Product (prod, name, price)<br /></li>
+<li>Sales(cust, prod, day, month, year, state, amount)<br />Per each product and for the sales during 2016, display the total product sales per month as percentage of product’s yearly sales</li>
+</ul>
+<h2 id="sql-create-view-examples-46">SQL CREATE VIEW Examples 4/6</h2>
+<pre><code>create view V1 (prod, month, sum_amount) as                                    
+select prod, month, sum(amount)
+from sales
+where year=2016
+group by prod, month
+
+create view V2(prod, sum_amount) as                            
+select prod, sum(amount)
+from sales
+where year=2016
+group by prod
+
+select V1.prod, V1.month, V1.sum_amount/V2.sum_amount
+from V1, V2
+where V1.prod=V2.prod</code></pre>
+<h2 id="sql-create-view-examples-56">SQL CREATE VIEW Examples 5/6</h2>
+<ul>
+<li>Customer (cust, name, address)<br /></li>
+<li>Product (prod, name, price)<br /></li>
+<li>Sales(cust, prod, day, month, year, state, amount)<br />Display for each customer the total sales in «ΝΥ», «CA», and «NJ»</li>
+</ul>
+<h2 id="sql-create-view-examples-66">SQL CREATE VIEW Examples 6/6</h2>
+<pre><code>CREATE VIEW V1 (cust, NYamount) AS
+SELECT cust, sum(amount) 
+FROM Sales
+WHERE state=‘NY’ 
+GROUP BY cust</code></pre>
+<pre><code>CREATE VIEW V2 (cust, CAamount) AS
+SELECT cust, sum(amount) 
+FROM Sales
+WHERE state=‘CA’ 
+GROUP BY cust</code></pre>
+<pre><code>CREATE VIEW V3 (cust, NJamount) AS
+SELECT cust, sum(amount) 
+FROM Sales
+WHERE state=‘NJ’ 
+GROUP BY cust</code></pre>
+<pre><code>SELECT V1.cust, NYamount, 
+       CAamount, NJamount 
+FROM V1, V2, V3
+WHERE V1.cust=V2.cust AND V2.cust=V3.cust</code></pre>
+<h2 id="sql-updating-a-view-12">SQL Updating a View 1/2</h2>
+<p>To update a view, we use the following syntax:</p>
+<pre><code>CREATE OR REPLACE VIEW view_name AS
+SELECT column_name(s)
+FROM table_name
+WHERE condition</code></pre>
+<h2 id="sql-updating-a-view-22">SQL Updating a View 2/2</h2>
+<ul>
+<li><p>To add the “Category” column to the “Current Product List” view, we add the following SQL:</p>
+<pre><code>CREATE OR REPLACE VIEW [Current Product List] AS
+SELECT ProductID, ProductName,Category
+FROM Products
+WHERE Discontinued=No</code></pre></li>
+</ul>
+<h2 id="sql-dropping-a-view">SQL Dropping a View</h2>
+<ul>
+<li><p>To delete a view, we use the following command:</p>
+<pre><code>DROP VIEW view_name</code></pre></li>
+<li><p>Example: To drop view ‘Current Product List’ we use the following command:</p>
+<pre><code>DROP VIEW [Current Product List]</code></pre></li>
+</ul>
+<h2 id="exercises">Exercises</h2>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li>Create a view in sakilaDB (i.e. actor_sample) that contains the values from columns ‘actor_id’, ‘first_name’, ‘last_name’ from table ‘actor’<br /></li>
+<li>Display view’s content</li>
+</ul>
+<h2 id="exercise-2">Exercise 2</h2>
+<p>Remove the “last_name” column from the “actor_sample” view</p>
+<h2 id="exercise-3">Exercise 3</h2>
+<ul>
+<li>Per each customer (id) and for its rentals, display the total customer’s rentals per month as percentage of customer’s yearly rentals</li>
+</ul>
+<h2 id="exercise-4">Exercise 4</h2>
+<ul>
+<li>Per each customer (display only the id) and for its payments, display the total customer’s payments per month as percentage of customer’s yearly payments</li>
+</ul>
+<h2 id="exercise-5">Exercise 5</h2>
+<ul>
+<li>Per each customer (first name &amp; last name) and for its payments, display the total customer’s payments per month as percentage of customer’s yearly payments</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
