@@ -75,6 +75,9 @@
 <li><p>If data items are scattered and are not linked to each other properly, then it could lead to strange situations. For example, when we try to update one data item having its copies scattered over several places, a few instances get updated properly while a few others are left with old values. Such instances leave the database in an inconsistent state.</p></li>
 <li>Deletion anomalies<br /></li>
 <li><p>We tried to delete a record, but parts of it was left undeleted because of unawareness, the data is also saved somewhere else</p></li>
+</ul>
+<h2 id="database-anomalies-1">Database anomalies</h2>
+<ul>
 <li>Insert anomalies<br /></li>
 <li><p>We tried to insert data in a record that does not exist at all</p></li>
 <li><p>Normalization is a method to remove all these anomalies and bring the database to a consistent state</p></li>
@@ -120,7 +123,13 @@
 <h2 id="st-normal-form-1">1st normal form</h2>
 <p><img src="media/normalization2.png" /></p>
 <h2 id="st-normal-form-2">1st normal form</h2>
-<p><img src="media/normalization3.png" /><br />SELECT: Are all possible queries feasible to be expressed?<br />INSERT: Can new data be inserted without requiring complicated queries?<br />DELETE: Can data be deleted without losing valuable information?<br />UPDATE: Can data modification be performed in an easy way and without modifying data that should not be affected?</p>
+<p><img src="media/normalization3.png" /></p>
+<ul>
+<li>SELECT: Are all possible queries feasible to be expressed?<br /></li>
+<li>INSERT: Can new data be inserted without requiring complicated queries?<br /></li>
+<li>DELETE: Can data be deleted without losing valuable information?<br /></li>
+<li>UPDATE: Can data modification be performed in an easy way and without modifying data that should not be affected?</li>
+</ul>
 <h2 id="st-normal-form-select-failure">1st normal form – select failure</h2>
 <p><img src="media/normalization4.png" /><br />SELECT *<br />FROM employee<br />WHERE language = ‘English’</p>
 <p>Potential solution:<br />SELECT *<br />FROM employee<br />WHERE language LIKE ‘%English%’</p>
@@ -274,7 +283,12 @@
 <p>d) AC → B</p>
 <h2 id="exercise-2">Exercise 2</h2>
 <ul>
-<li>Consider the following the following table:<br /><img src="media/normalization23.png" /><br />Which of the following Functional Dependencies are satisfied?<br />XY → Z, Z → Y<br />XZ → X, Y → Z<br />YZ → X, X → Z<br />XZ → Y, Y → X</li>
+<li>Consider the following the following table:<br /><img src="media/normalization23.png" /><br /></li>
+<li>Which of the following Functional Dependencies are satisfied?<br /></li>
+<li>a) XY → Z, Z → Y<br /></li>
+<li>b) XZ → X, Y → Z<br /></li>
+<li>c) YZ → X, X → Z<br /></li>
+<li>d) XZ → Y, Y → X</li>
 </ul>
 <h2 id="exercise-3">Exercise 3</h2>
 <ul>
