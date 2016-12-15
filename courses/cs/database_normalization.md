@@ -47,6 +47,8 @@
 * Deletion anomalies 
   * We tried to delete a record, but parts of it was left undeleted because of unawareness, the data is also saved somewhere else
 
+
+## Database anomalies
 * Insert anomalies  
   * We tried to insert data in a record that does not exist at all
 
@@ -106,10 +108,10 @@ First normal form: An attribute (column) of a table cannot hold multiple values.
 
 ## 1st normal form
 ![](media/normalization3.png)
-SELECT: Are all possible queries feasible to be expressed? 
-INSERT: Can new data be inserted without requiring complicated queries?
-DELETE: Can data be deleted without losing valuable information? 
-UPDATE: Can data modification be performed in an easy way and without modifying data that should not be affected?
+* SELECT: Are all possible queries feasible to be expressed? 
+* INSERT: Can new data be inserted without requiring complicated queries?
+* DELETE: Can data be deleted without losing valuable information? 
+* UPDATE: Can data modification be performed in an easy way and without modifying data that should not be affected?
 
 
 ## 1st normal form – select failure
@@ -325,11 +327,11 @@ d) AC → B
 ## Exercise 2
 * Consider the following the following table:
 ![](media/normalization23.png)
-Which of the following Functional Dependencies are satisfied?
-XY → Z, Z → Y
-XZ → X, Y → Z
-YZ → X, X → Z
-XZ → Y, Y → X
+* Which of the following Functional Dependencies are satisfied?
+* a) XY → Z, Z → Y
+* b) XZ → X, Y → Z
+* c) YZ → X, X → Z
+* d) XZ → Y, Y → X
 
 
 ## Exercise 3

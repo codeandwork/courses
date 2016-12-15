@@ -115,7 +115,7 @@ CALL hello_world2();
 * We can print the value of a variable using the select command, e.g: 
   * Select @x;
 
-  
+
 ## Declarations in a SP
 * We can create a variable in a procedure.
 * Each variable lasts for the specific session
