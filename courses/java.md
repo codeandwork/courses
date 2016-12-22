@@ -49,7 +49,7 @@
 * [Threads](java/threads.md)
 
 ## Security
-* [Application Security](common/sec.md)
+* [Application Security](java/sec.md)
 
 ## End-user driven design & development - UX & UI principles
 
