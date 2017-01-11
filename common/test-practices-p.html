@@ -1,0 +1,558 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Testing practices</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Coding Bootcamp
+
+## Testing practices
+
+
+## Static analysis
+* Automated code checking
+* Finds:
+ * logical errors
+ * style problems
+ * security problems
+* Can include symbolic execution
+* Representative Java tools:
+ * [Checkstyle](http://checkstyle.sourceforge.net/)
+ * [PMD](http://pmd.sourceforge.net/pmd-5.0.0)
+ * [Findbugs](http://findbugs.sourceforge.net/)
+
+
+## Checkstyle example
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.7">
+<file name="C:\dds\pubs\courses\prog2gp\junit\src\main\java\gr\aueb\dmst\dds\example\LinkedList.java">
+<error line="0" severity="error" message="Missing package-info.java file." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck"/>
+<error line="3" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="4" severity="error" message="Type Javadoc comment is missing an @param &lt;E&gt; tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck"/>
+<error line="5" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="7" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="10" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="11" column="16" severity="error" message="Parameter v should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="11" column="18" severity="error" message="Expected @param tag for &apos;v&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="16" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="17" severity="error" message="Expected an @return tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="17" column="5" severity="error" message="Method &apos;add&apos; is not designed for extension - needs to be abstract, final or empty." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="17" column="31" severity="error" message="Parameter v should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="17" column="33" severity="error" message="Expected @param tag for &apos;v&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="19" column="15" severity="error" message="&apos;=&apos; is not preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="19" column="16" severity="error" message="&apos;=&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="23" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="24" severity="error" message="Expected an @return tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="24" column="5" severity="error" message="Method &apos;getHead&apos; is not designed for extension - needs to be abstract, final or empty." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="25" column="21" severity="error" message="&apos;;&apos; is preceded with whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck"/>
+<error line="28" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="29" severity="error" message="Expected an @return tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="29" column="5" severity="error" message="Method &apos;getTail&apos; is not designed for extension - needs to be abstract, final or empty." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="33" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="34" severity="error" message="Expected an @return tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="34" column="5" severity="error" message="Method &apos;toString&apos; is not designed for extension - needs to be abstract, final or empty." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="38" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="40" severity="error" message="&apos;else&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="44" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="45" severity="error" message="Expected an @return tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="45" column="5" severity="error" message="Method &apos;size&apos; is not designed for extension - needs to be abstract, final or empty." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="47" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="49" severity="error" message="&apos;else&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="53" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="54" severity="error" message="Expected an @return tag." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="54" column="5" severity="error" message="Method &apos;contains&apos; is not designed for extension - needs to be abstract, final or empty." source="com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck"/>
+<error line="54" column="29" severity="error" message="Parameter e should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="54" column="31" severity="error" message="Expected @param tag for &apos;e&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="56" severity="error" message="&apos;for&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="57" severity="error" message="&apos;if&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="62" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
+<error line="63" column="12" severity="error" message="&apos;public&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
+<error line="63" column="29" severity="error" message="Parameter args should be final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+<error line="63" column="36" severity="error" message="Expected @param tag for &apos;args&apos;." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="63" column="40" severity="error" message="Array brackets at illegal position." source="com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck"/>
+<error line="67" column="25" severity="error" message="&apos;18&apos; is a magic number." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="68" column="25" severity="error" message="&apos;45&apos; is a magic number." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="70" severity="error" message="&apos;for&apos; construct must use &apos;{}&apos;s." source="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck"/>
+<error line="70" column="29" severity="error" message="&apos;5&apos; is a magic number." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="71" column="33" severity="error" message="&apos;10&apos; is a magic number." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+</file>
+</checkstyle>
+```
+
+
+## Code before the corrections
+```java
+package gr.aueb.dmst.dds.example;
+
+/** Implementation of a simple non-empty parametric linked list type */
+public class LinkedList <E> {
+    /** Node's value */
+    private E value;
+    /** Next node */
+    private LinkedList <E> next;
+
+    /** Construct a list with a single element v */
+    LinkedList(E v) {
+        value = v;
+        next = null;
+    }
+
+    /** Return a list with element n added to it */
+    public LinkedList <E> add(E v) {
+        LinkedList <E> n = new LinkedList <E>(v);
+        n.next = this;
+        return n;
+    }
+
+    /** Return the element at the list's head */
+    public E getHead() {
+        return value;
+    }
+
+    /** Return the list's tail */
+    public LinkedList<E> getTail() {
+        return next;
+    }
+
+    /** Return a string representation of the list */
+    public String toString() {
+        String me = value.toString();
+
+        /* Recursive implementation */
+        if (next == null)
+            return me;
+        else
+            return me + " -> " + next;
+    }
+
+    /** Return the number of elements in the list */
+    public int size() {
+        /* Recursive implementation */
+        if (next == null)
+            return 1;
+        else
+            return next.size() + 1;
+    }
+
+    /** Return true if the specified element exists in the list */
+    public boolean contains(E e) {
+        /* Iterative implementation */
+        for (LinkedList <E> i = this; i != null; i = i.next)
+            if (i.value.equals(e))
+                return true;
+        return false;
+    }
+
+    /** Test harness */
+    static public void main(String args[]) {
+        LinkedList <Integer> ilst = new LinkedList <Integer>(0);
+
+        ilst = ilst.add(1);
+        ilst = ilst.add(18);
+        ilst = ilst.add(45);
+
+        for (int i = 0; i < 5; i++)
+            ilst = ilst.add(i * 10);
+        System.out.println(ilst);
+    }
+}
+```
+
+
+## Code after corrections
+```java
+package gr.aueb.dmst.dds.example;
+
+/**
+ * Implementation of a simple non-empty parametric linked list type.
+ * @param <E> The type of the values stored in the list.
+ */
+public class LinkedList <E> {
+    /** Node's value. */
+    private E value;
+    /** Next node. */
+    private LinkedList <E> next;
+
+    /**
+     * Construct a list with a single element.
+     * @param v The value of the list's first element.
+     */
+    LinkedList(final E v) {
+        value = v;
+        next = null;
+    }
+
+    /** Add an element to the list.
+     * @param v The value of the element to add.
+     * @return A list with element v added to it.
+     */
+    public final LinkedList <E> add(final E v) {
+        LinkedList <E> n = new LinkedList <E>(v);
+        n.next = this;
+        return n;
+    }
+
+    /**
+     * Obtain the element at the list's head.
+     * @return The value of the first element of the list.
+     */
+    public final E getHead() {
+        return value;
+    }
+
+    /**
+     * Obtain the list's tail.
+     * @return The list starting from the second element.
+     */
+    public final LinkedList<E> getTail() {
+        return next;
+    }
+
+    /**
+     * Obtain a string representation of the list.
+     * @return The list as a series of elements connected with arrows.
+     */
+    public final String toString() {
+        String me = value.toString();
+
+        /* Recursive implementation */
+        if (next == null) {
+            return me;
+        } else {
+            return me + " -> " + next;
+        }
+    }
+
+    /**
+     * Obtain the number of elements in the list.
+     * @return The number of elements in the list.
+     */
+    public final int size() {
+        /* Recursive implementation */
+        if (next == null) {
+            return 1;
+        } else {
+            return next.size() + 1;
+        }
+    }
+
+    /**
+     * Check whether the specified element exists in the list.
+     * @param e The element to search for in the list.
+     * @return True if the specified element is in the list, false otherwise.
+     */
+    public final boolean contains(final E e) {
+        /* Iterative implementation */
+        for (LinkedList <E> i = this; i != null; i = i.next) {
+            if (i.value.equals(e)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
+
+## Unit testing
+* On smallest possible module
+* Stand-alone
+* Mutually independent
+* Developed before or together with implementation
+* Automatically executed
+ * At build time
+ * During (continuous) integration
+* Aim at full code coverage
+
+
+## Unit testing advantages
+* Diagnoses problems in time
+* Facilitates code refactoring
+* Facilitates integration
+* Provides documentation
+* Encourages modular design (but discourages encapsulation)
+
+
+## Simple unit testing example
+```java
+public class MoneyTest extends TestCase {
+    private Money f12CHF;
+    private Money f14CHF;
+    private Money f28USD;
+
+    protected void setUp() {
+        f12CHF= new Money(12, "CHF");
+        f14CHF= new Money(14, "CHF");
+        f28USD= new Money(28, "USD");
+    }
+}
+
+public void testMoneyMoneyBag() {
+    // [12 CHF] + [14 CHF] + [28 USD] == {[26 CHF][28 USD]}
+    Money bag[]= { f26CHF, f28USD };
+    MoneyBag expected= new MoneyBag(bag);
+    assertEquals(expected, f12CHF.add(f28USD.add(f14CHF)));
+}
+
+public static Test suite() {
+    TestSuite suite= new TestSuite();
+    suite.addTest(new MoneyTest("testMoneyEquals"));
+    suite.addTest(new MoneyTest("testSimpleAdd"));
+    return suite;
+}
+```
+
+
+## Example: Running JUnit
+![JUnit execution](media/junit.gif)
+
+
+## Example 2: Code
+```java
+package gr.aueb.dmst.dds.example;
+
+/**
+ * Implementation of a simple non-empty parametric linked list type.
+ * @param <E> The type of the values stored in the list.
+ */
+public class LinkedList <E> {
+    /** Node's value. */
+    private E value;
+    /** Next node. */
+    private LinkedList <E> next;
+
+    /**
+     * Construct a list with a single element.
+     * @param v The value of the list's first element.
+     */
+    LinkedList(final E v) {
+        value = v;
+        next = null;
+    }
+
+    /** Add an element to the list.
+     * @param v The value of the element to add.
+     * @return A list with element v added to it.
+     */
+    public final LinkedList <E> add(final E v) {
+        LinkedList <E> n = new LinkedList <E>(v);
+        n.next = this;
+        return n;
+    }
+
+    /**
+     * Obtain the element at the list's head.
+     * @return The value of the first element of the list.
+     */
+    public final E getHead() {
+        return value;
+    }
+
+    /**
+     * Obtain the list's tail.
+     * @return The list starting from the second element.
+     */
+    public final LinkedList<E> getTail() {
+        return next;
+    }
+
+    /**
+     * Obtain a string representation of the list.
+     * @return The list as a series of elements connected with arrows.
+     */
+    public final String toString() {
+        String me = value.toString();
+
+        /* Recursive implementation */
+        if (next == null) {
+            return me;
+        } else {
+            return me + " -> " + next;
+        }
+    }
+
+    /**
+     * Obtain the number of elements in the list.
+     * @return The number of elements in the list.
+     */
+    public final int size() {
+        /* Recursive implementation */
+        if (next == null) {
+            return 1;
+        } else {
+            return next.size() + 1;
+        }
+    }
+
+    /**
+     * Check whether the specified element exists in the list.
+     * @param e The element to search for in the list.
+     * @return True if the specified element is in the list, false otherwise.
+     */
+    public final boolean contains(final E e) {
+        /* Iterative implementation */
+        for (LinkedList <E> i = this; i != null; i = i.next) {
+            if (i.value.equals(e)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
+
+## Example 2: Unit Tests
+```java
+package gr.aueb.dmst.dds.example;
+
+import gr.aueb.dmst.dds.example.LinkedList;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+public class TestLinkedList {
+
+    private LinkedList<Integer> list;
+    private final int firstElement = 4;
+    private final int missingElement = 42;
+
+    @Before
+    public void setUp() {
+        list = new LinkedList<Integer>(firstElement);
+    }
+
+    @Test
+    public void testGetSize() {
+        Assert.assertEquals("failure - wrong size", list.size(), 1);
+        list = list.add(1);
+        Assert.assertEquals("failure - wrong size", list.size(), 2);
+    }
+
+    @Test
+    public void testContains() {
+        Assert.assertTrue("failure - does not contain first element",
+                list.contains(firstElement));
+        Assert.assertFalse("failure - contains missing element",
+                list.contains(missingElement));
+    }
+
+    @Test
+    public void testGetHead() {
+        Assert.assertEquals("failure - wrong head", list.getHead(),
+                (Integer)firstElement);
+    }
+
+    @Test
+    public void testGetTail() {
+        final int secondElement = 1000;
+        list = list.add(secondElement).getTail();
+        Assert.assertEquals("failure - wrong size", list.size(), 1);
+        Assert.assertEquals("failure - wrong head", list.getHead(),
+                (Integer)firstElement);
+        Assert.assertTrue("failure - does not contain first element",
+                list.contains(firstElement));
+        Assert.assertFalse("failure - contains second element",
+                list.contains(secondElement));
+    }
+
+    @Test
+    public void testContructor() {
+        Assert.assertEquals("failure - wrong size", list.size(), 1);
+        Assert.assertEquals("failure - wrong head", list.getHead(),
+                (Integer)firstElement);
+        Assert.assertTrue("failure - does not contain first element",
+                list.contains(firstElement));
+        Assert.assertFalse("failure - contains missing element",
+                list.contains(missingElement));
+    }
+
+    @Test
+    public void testAdd() {
+        final int secondElement = 1000;
+        list = list.add(secondElement);
+        Assert.assertEquals("failure - wrong size", list.size(), 2);
+        Assert.assertEquals("failure - wrong head", list.getHead(),
+                (Integer)secondElement);
+        Assert.assertTrue("failure - does not contain first element",
+                list.contains(firstElement));
+        Assert.assertTrue("failure - does not contain second element",
+                list.contains(secondElement));
+        Assert.assertFalse("failure - contains missing element",
+                list.contains(missingElement));
+    }
+
+    @Test
+    public void testToString() {
+        Assert.assertEquals("failure - wrong to String", list.toString(),
+                ((Integer)firstElement).toString());
+        final int secondElement = 1000;
+        list = list.add(secondElement);
+        Assert.assertEquals("failure - wrong to String", list.toString(),
+                ((Integer)secondElement).toString() + " -> " +
+                ((Integer)firstElement).toString());
+    }
+
+    @After
+    public void tearDown() {
+        /* Not really needed */
+        list = null;
+    }
+}
+```
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

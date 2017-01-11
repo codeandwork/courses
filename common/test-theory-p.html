@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Testing theory</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Coding Bootcamp
+
+## Testing theory
+
+
+# Definition
+*Dynamic* verification that the program has the
+*expected* behevior
+in a suitably *selected* *final* set of test cases
+
+(Others also consider static analysis as a testing activity.)
+
+
+## Terminology
+* Verification: Are we correctly implementing the software?
+* Validation: Are we implementing the right software?
+* A *fault* leads to a
+* *failure*
+
+
+## Levels of testing
+* Unit Testing
+* Component Testing
+* Integration Testing
+* System Testing
+* Acceptance Testing
+* Alpha Testing
+* Beta Testing
+
+
+## Testing by goal
+* Acceptance testing
+* Installation testing
+* Alpha/beta testing
+* Regression testing
+* Performance testing
+* Stress testing
+* Recovery testing
+* Interface testing
+* Configuration testing
+* Usability testing
+
+
+## Useful testing techniques
+* Ad hoc
+* Exploratory
+* Extreme values
+* Random values
+* Cover control paths
+* Cover data paths
+* Guess probably mistakes
+
+
+## Useful testing data
+* Fault history
+* Fault categories
+* Ratio of faults to code volume
+* This can be used to
+  * Determine reliability from failures
+  * Finish testing based on assumed reliability
+
+
+## Judging testing progress
+* Based on test coverage
+* Based on finding injected faults
+
+
+## Testing practices
+* Testing succeeds when it finds faults
+* Establish test process and guidelines
+* Documentation
+* Test-driven development (TDD)
+* Internal or through external team
+* Integration based on risk analysis
+
+
+## Testing activities
+* Test plan
+* Test cases
+* Testing environment
+* Test execution
+* Test result evaluation
+* Issue reporting
+* Issue management
+
+
+## Testing tools
+* Test harnesses
+* Test generators
+* Fuzzers
+* Record and replay tools
+* Difference analyzers
+* Testing frameworks
+* Test coverage analyzers
+* Unit test execution frameworks
+* Static analyzers
+* Regression testers
+* Tracing tools
+* Stress generators
+
+
+## Example: Test coverage analysis with gcov
+```
+      1    if (*++argv && !strcmp(*argv, "-n")) {
+ ######            ++argv;
+ ######            nflag = 1;
+           }
+           else
+      1            nflag = 0;
+      3    while (*argv) {
+      2            (void)printf("%s", *argv);
+      2            if (*++argv)
+      1                    putchar(' ');
+           }
+      1    if (!nflag)
+      1            putchar('\n');
+      1    exit(0);
+```
+
+
+## Example: Statement coverage (Perl)
+![Perl statement coverage](media/perlcov.png)
+
+
+## Example: Branch coverage (Perl)
+![Perl branch coverage](media/perlbcov.png)
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

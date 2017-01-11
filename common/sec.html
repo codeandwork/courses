@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Application Security</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-application-security">Coding Bootcamp: Application Security</h1>
+<h2 id="application-security">Application Security</h2>
+<ul>
+<li>Most programmers have been trained in terms of writing<br />code that implements the required functionality without<br />considering its many security aspects.<br /></li>
+<li>As a result, they introduce &quot;security bugs&quot; in<br />their code.<br /></li>
+<li>Such bugs can be exploited by attackers.</li>
+</ul>
+<h2 id="common-application-security-threats-attacks">Common Application Security Threats / Attacks</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Code_injection">Code Injection</a><br /></li>
+<li><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">Cross-Site Request Forgery</a><br /></li>
+<li><a href="https://www.owasp.org/index.php/Top_10_2013-A2-Broken_Authentication_and_Session_Management">Broken Authentication and Session Management</a><br /></li>
+<li><a href="https://www.owasp.org/index.php/Top_10_2013-A5-Security_Misconfiguration">Security Misconfigurations</a></li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://www.owasp.org/index.php/Top_10_2013-Top_10">OWASP Top 10</a><br /></li>
+<li><a href="http://cwe.mitre.org/top25/">CWE Top 25</a></li>
+</ul>
+<h2 id="code-injection-attacks">Code Injection Attacks</h2>
+<p><img src=media/tree-uml-1.png width=900 height=500 /></br></p>
+<h2 id="sql-injection">SQL Injection</h2>
+<pre class="sourceCode java"><code class="sourceCode java">statement = <span class="st">&quot;SELECT * FROM users WHERE name = &#39;&quot;</span> + userName + <span class="st">&quot;&#39;;&quot;</span></code></pre>
+<h2 id="xss-persistent">XSS (Persistent)</h2>
+<p><img src=media/stored_xss.png width=900 height=500 /></br></p>
+<h2 id="xss-non-persistent">XSS (Non-Persistent)</h2>
+<p><img src=media/reflected_xss.png width=880 height=450 /></br></p>
+<h2 id="xss-dom-based">XSS (DOM-Based)</h2>
+<p><img src=media/dom-based_xss.png width=880 height=570 /></br></p>
+<h2 id="csrf">CSRF</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;/url/profile.php&quot;</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;firstname&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;lastname&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;br/&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;text&quot;</span><span class="ot"> name=</span><span class="st">&quot;email&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;submit&quot;</span><span class="ot"> name=</span><span class="st">&quot;submit&quot;</span><span class="ot"> value=</span><span class="st">&quot;Update&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/form&gt;</span></code></pre>
+<h2 id="csrf-2">CSRF (2)</h2>
+<pre class="sourceCode php"><code class="sourceCode php">// initiate the session in order to validate sessions
+
+session_start();
+
+//if the session is registered to a valid user then allow update
+
+if (! session_is_registered(&quot;username&quot;)) {
+
+echo &quot;invalid session detected!&quot;;
+
+// Redirect user to login page
+[...]
+
+exit;
+}
+
+// The user session is valid, so process the request
+// and update the information
+
+update_profile();
+
+function update_profile {
+// read in the data from $POST and send an update
+// to the database
+SendUpdateToDatabase($_SESSION[&#39;username&#39;], $_POST[&#39;email&#39;]);
+[...]
+echo &quot;Your profile has been successfully updated.&quot;;
+}</code></pre>
+<h2 id="csrf-3">CSRF (3)</h2>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="er">&lt;</span> script &gt;
+
+function SendAttack () {
+    form.email = &quot;attacker@example.com&quot;;
+    // send to profile.php
+    form.submit();
+}
+
+<span class="er">&lt;</span> /script &gt;
+
+<span class="kw">&lt;BODY</span><span class="ot"> onload=</span><span class="st">&quot;javascript:SendAttack();&quot;</span><span class="kw">&gt;</span>
+
+<span class="kw">&lt;form</span><span class="ot"> action=</span><span class="st">&quot;http://victim.example.com/profile.php&quot;</span><span class="ot"> id=</span><span class="st">&quot;form&quot;</span><span class="ot"> method=</span><span class="st">&quot;post&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;hidden&quot;</span><span class="ot"> name=</span><span class="st">&quot;firstname&quot;</span><span class="ot"> value=</span><span class="st">&quot;Funny&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;hidden&quot;</span><span class="ot"> name=</span><span class="st">&quot;lastname&quot;</span><span class="ot"> value=</span><span class="st">&quot;Joke&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;br/&gt;</span>
+<span class="kw">&lt;input</span><span class="ot"> type=</span><span class="st">&quot;hidden&quot;</span><span class="ot"> name=</span><span class="st">&quot;email&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/form&gt;</span></code></pre>
+<h2 id="secure-coding-practices">Secure Coding Practices</h2>
+<ul>
+<li>User Input Validation: Consider all potentially<br />relevant properties, including length, type,<br />the range of acceptable values, and syntax<br /></li>
+<li>Output Encoding: Check which input data will<br />be used in a dynamically generated web page that<br />is going to be displayed to a user<br />Parts of the same generated document may require<br />different encodings (i.e. JavaScript sections,<br />element attributes) and may contain malicious code.<br />There are many security encoding libraries that<br />can be utilized through the various web<br />application frameworks. All encoding must be<br />done on a trusted system</li>
+</ul>
+<h2 id="secure-coding-practices-2">Secure Coding Practices (2)</h2>
+<ul>
+<li>Problematic APIs: Inspect API functions that<br />are misused in a way that renders the system<br />vulnerable (i.e. the gets function in C).<br />Note that even if such problematic functions<br />have been supplanted by more secure ones they<br />still remain available to support backwards<br />compatibility<br /></li>
+<li>Data Protection: Sensitive data concerning<br />the application should be protected.<br />For instance, passwords should not be<br />stored in clear text on the server side</li>
+</ul>
+<h2 id="secure-coding-practices-3">Secure Coding Practices (3)</h2>
+<ul>
+<li>Error Handling: In a similar manner,<br />sensitive data including stack traces,<br />system details and session identifiers<br />should not be revealed in error responses.<br />Such information may prove useful<br />for a malicious user searching for<br />vulnerabilities<br /></li>
+<li>Authentication and Session Management:<br />For every critical functionality the<br />application should require strong<br />authentication for all pages and resources<br />(i.e. for money transactions enforce<br />authorization controls on every request).<br />In addition, the server’s information<br />interchange controls must follow well-vetted<br />algorithms that ensure sufficiently<br />random session identifiers</li>
+</ul>
+<h2 id="countermeasures">Countermeasures</h2>
+<p><img src=media/cias_countermeasures_all.png width=700 height=300 /></br></p>
+<h2 id="program-analysis">Program Analysis</h2>
+<ul>
+<li>Lexical Analysis<br /></li>
+<li>Data Flow Analysis<br /></li>
+<li>Model Checking<br /></li>
+<li>Symbolic Execution</li>
+</ul>
+<h2 id="dynamic-prevention">Dynamic Prevention</h2>
+<ul>
+<li>Policy Enforcement<br /></li>
+<li>Instruction Set Randomization<br /></li>
+<li>Training<br /></li>
+<li>Taint Tracking<br /></li>
+<li>Parse Tree Validation</li>
+</ul>
+<h2 id="criteria">Criteria</h2>
+<ul>
+<li>Accuracy (False Positives, Negatives)<br /></li>
+<li>Performance Overhead<br /></li>
+<li>Ease of Use<br /></li>
+<li>Security</li>
+</ul>
+<h2 id="practice-your-skills">Practice Your Skills</h2>
+<p><a href="https://www.checkmarx.com/2015/04/16/15-vulnerable-sites-to-legally-practice-your-hacking-skills/">15 Vulnerable Sites To (Legally) Practice Your Hacking Skills</a></p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

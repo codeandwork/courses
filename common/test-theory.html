@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Testing theory</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-testing-theory">Coding Bootcamp: Testing theory</h1>
+<h1 id="definition">Definition</h1>
+<p><em>Dynamic</em> verification that the program has the<br /><em>expected</em> behevior<br />in a suitably <em>selected</em> <em>final</em> set of test cases</p>
+<p>(Others also consider static analysis as a testing activity.)</p>
+<h2 id="terminology">Terminology</h2>
+<ul>
+<li>Verification: Are we correctly implementing the software?<br /></li>
+<li>Validation: Are we implementing the right software?<br /></li>
+<li>A <em>fault</em> leads to a<br /></li>
+<li><em>failure</em></li>
+</ul>
+<h2 id="levels-of-testing">Levels of testing</h2>
+<ul>
+<li>Unit Testing<br /></li>
+<li>Component Testing<br /></li>
+<li>Integration Testing<br /></li>
+<li>System Testing<br /></li>
+<li>Acceptance Testing<br /></li>
+<li>Alpha Testing<br /></li>
+<li>Beta Testing</li>
+</ul>
+<h2 id="testing-by-goal">Testing by goal</h2>
+<ul>
+<li>Acceptance testing<br /></li>
+<li>Installation testing<br /></li>
+<li>Alpha/beta testing<br /></li>
+<li>Regression testing<br /></li>
+<li>Performance testing<br /></li>
+<li>Stress testing<br /></li>
+<li>Recovery testing<br /></li>
+<li>Interface testing<br /></li>
+<li>Configuration testing<br /></li>
+<li>Usability testing</li>
+</ul>
+<h2 id="useful-testing-techniques">Useful testing techniques</h2>
+<ul>
+<li>Ad hoc<br /></li>
+<li>Exploratory<br /></li>
+<li>Extreme values<br /></li>
+<li>Random values<br /></li>
+<li>Cover control paths<br /></li>
+<li>Cover data paths<br /></li>
+<li>Guess probably mistakes</li>
+</ul>
+<h2 id="useful-testing-data">Useful testing data</h2>
+<ul>
+<li>Fault history<br /></li>
+<li>Fault categories<br /></li>
+<li>Ratio of faults to code volume<br /></li>
+<li>This can be used to<br /></li>
+<li>Determine reliability from failures<br /></li>
+<li>Finish testing based on assumed reliability</li>
+</ul>
+<h2 id="judging-testing-progress">Judging testing progress</h2>
+<ul>
+<li>Based on test coverage<br /></li>
+<li>Based on finding injected faults</li>
+</ul>
+<h2 id="testing-practices">Testing practices</h2>
+<ul>
+<li>Testing succeeds when it finds faults<br /></li>
+<li>Establish test process and guidelines<br /></li>
+<li>Documentation<br /></li>
+<li>Test-driven development (TDD)<br /></li>
+<li>Internal or through external team<br /></li>
+<li>Integration based on risk analysis</li>
+</ul>
+<h2 id="testing-activities">Testing activities</h2>
+<ul>
+<li>Test plan<br /></li>
+<li>Test cases<br /></li>
+<li>Testing environment<br /></li>
+<li>Test execution<br /></li>
+<li>Test result evaluation<br /></li>
+<li>Issue reporting<br /></li>
+<li>Issue management</li>
+</ul>
+<h2 id="testing-tools">Testing tools</h2>
+<ul>
+<li>Test harnesses<br /></li>
+<li>Test generators<br /></li>
+<li>Fuzzers<br /></li>
+<li>Record and replay tools<br /></li>
+<li>Difference analyzers<br /></li>
+<li>Testing frameworks<br /></li>
+<li>Test coverage analyzers<br /></li>
+<li>Unit test execution frameworks<br /></li>
+<li>Static analyzers<br /></li>
+<li>Regression testers<br /></li>
+<li>Tracing tools<br /></li>
+<li>Stress generators</li>
+</ul>
+<h2 id="example-test-coverage-analysis-with-gcov">Example: Test coverage analysis with gcov</h2>
+<pre><code>      1    if (*++argv &amp;&amp; !strcmp(*argv, &quot;-n&quot;)) {
+ ######            ++argv;
+ ######            nflag = 1;
+           }
+           else
+      1            nflag = 0;
+      3    while (*argv) {
+      2            (void)printf(&quot;%s&quot;, *argv);
+      2            if (*++argv)
+      1                    putchar(&#39; &#39;);
+           }
+      1    if (!nflag)
+      1            putchar(&#39;\n&#39;);
+      1    exit(0);</code></pre>
+<h2 id="example-statement-coverage-perl">Example: Statement coverage (Perl)</h2>
+<p><img src="media/perlcov.png" alt="Perl statement coverage" /></p>
+<h2 id="example-branch-coverage-perl">Example: Branch coverage (Perl)</h2>
+<p><img src="media/perlbcov.png" alt="Perl branch coverage" /></p>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>

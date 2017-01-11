@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Testing practices</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-testing-practices">Coding Bootcamp: Testing practices</h1>
+<h2 id="static-analysis">Static analysis</h2>
+<ul>
+<li>Automated code checking<br /></li>
+<li>Finds:<br /></li>
+<li>logical errors<br /></li>
+<li>style problems<br /></li>
+<li>security problems<br /></li>
+<li>Can include symbolic execution<br /></li>
+<li>Representative Java tools:<br /></li>
+<li><a href="http://checkstyle.sourceforge.net/">Checkstyle</a><br /></li>
+<li><a href="http://pmd.sourceforge.net/pmd-5.0.0">PMD</a><br /></li>
+<li><a href="http://findbugs.sourceforge.net/">Findbugs</a></li>
+</ul>
+<h2 id="checkstyle-example">Checkstyle example</h2>
+<pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;<span class="kw">?&gt;</span>
+<span class="kw">&lt;checkstyle</span><span class="ot"> version=</span><span class="st">&quot;5.7&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;file</span><span class="ot"> name=</span><span class="st">&quot;C:\dds\pubs\courses\prog2gp\junit\src\main\java\gr\aueb\dmst\dds\example\LinkedList.java&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;0&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Missing package-info.java file.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;3&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;4&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Type Javadoc comment is missing an @param </span><span class="dv">&amp;lt;</span><span class="st">E</span><span class="dv">&amp;gt;</span><span class="st"> tag.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;5&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;7&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;10&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;11&quot;</span><span class="ot"> column=</span><span class="st">&quot;16&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Parameter v should be final.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;11&quot;</span><span class="ot"> column=</span><span class="st">&quot;18&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected @param tag for </span><span class="dv">&amp;apos;</span><span class="st">v</span><span class="dv">&amp;apos;</span><span class="st">.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;16&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;17&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected an @return tag.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;17&quot;</span><span class="ot"> column=</span><span class="st">&quot;5&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Method </span><span class="dv">&amp;apos;</span><span class="st">add</span><span class="dv">&amp;apos;</span><span class="st"> is not designed for extension - needs to be abstract, final or empty.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;17&quot;</span><span class="ot"> column=</span><span class="st">&quot;31&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Parameter v should be final.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;17&quot;</span><span class="ot"> column=</span><span class="st">&quot;33&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected @param tag for </span><span class="dv">&amp;apos;</span><span class="st">v</span><span class="dv">&amp;apos;</span><span class="st">.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;19&quot;</span><span class="ot"> column=</span><span class="st">&quot;15&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">=</span><span class="dv">&amp;apos;</span><span class="st"> is not preceded with whitespace.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;19&quot;</span><span class="ot"> column=</span><span class="st">&quot;16&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">=</span><span class="dv">&amp;apos;</span><span class="st"> is not followed by whitespace.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;23&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;24&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected an @return tag.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;24&quot;</span><span class="ot"> column=</span><span class="st">&quot;5&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Method </span><span class="dv">&amp;apos;</span><span class="st">getHead</span><span class="dv">&amp;apos;</span><span class="st"> is not designed for extension - needs to be abstract, final or empty.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;25&quot;</span><span class="ot"> column=</span><span class="st">&quot;21&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">;</span><span class="dv">&amp;apos;</span><span class="st"> is preceded with whitespace.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;28&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;29&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected an @return tag.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;29&quot;</span><span class="ot"> column=</span><span class="st">&quot;5&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Method </span><span class="dv">&amp;apos;</span><span class="st">getTail</span><span class="dv">&amp;apos;</span><span class="st"> is not designed for extension - needs to be abstract, final or empty.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;33&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;34&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected an @return tag.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;34&quot;</span><span class="ot"> column=</span><span class="st">&quot;5&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Method </span><span class="dv">&amp;apos;</span><span class="st">toString</span><span class="dv">&amp;apos;</span><span class="st"> is not designed for extension - needs to be abstract, final or empty.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;38&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">if</span><span class="dv">&amp;apos;</span><span class="st"> construct must use </span><span class="dv">&amp;apos;</span><span class="st">{}</span><span class="dv">&amp;apos;</span><span class="st">s.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;40&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">else</span><span class="dv">&amp;apos;</span><span class="st"> construct must use </span><span class="dv">&amp;apos;</span><span class="st">{}</span><span class="dv">&amp;apos;</span><span class="st">s.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;44&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;45&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected an @return tag.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;45&quot;</span><span class="ot"> column=</span><span class="st">&quot;5&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Method </span><span class="dv">&amp;apos;</span><span class="st">size</span><span class="dv">&amp;apos;</span><span class="st"> is not designed for extension - needs to be abstract, final or empty.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;47&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">if</span><span class="dv">&amp;apos;</span><span class="st"> construct must use </span><span class="dv">&amp;apos;</span><span class="st">{}</span><span class="dv">&amp;apos;</span><span class="st">s.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;49&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">else</span><span class="dv">&amp;apos;</span><span class="st"> construct must use </span><span class="dv">&amp;apos;</span><span class="st">{}</span><span class="dv">&amp;apos;</span><span class="st">s.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;53&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;54&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected an @return tag.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;54&quot;</span><span class="ot"> column=</span><span class="st">&quot;5&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Method </span><span class="dv">&amp;apos;</span><span class="st">contains</span><span class="dv">&amp;apos;</span><span class="st"> is not designed for extension - needs to be abstract, final or empty.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;54&quot;</span><span class="ot"> column=</span><span class="st">&quot;29&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Parameter e should be final.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;54&quot;</span><span class="ot"> column=</span><span class="st">&quot;31&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected @param tag for </span><span class="dv">&amp;apos;</span><span class="st">e</span><span class="dv">&amp;apos;</span><span class="st">.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;56&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">for</span><span class="dv">&amp;apos;</span><span class="st"> construct must use </span><span class="dv">&amp;apos;</span><span class="st">{}</span><span class="dv">&amp;apos;</span><span class="st">s.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;57&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">if</span><span class="dv">&amp;apos;</span><span class="st"> construct must use </span><span class="dv">&amp;apos;</span><span class="st">{}</span><span class="dv">&amp;apos;</span><span class="st">s.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;62&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;First sentence should end with a period.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;63&quot;</span><span class="ot"> column=</span><span class="st">&quot;12&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">public</span><span class="dv">&amp;apos;</span><span class="st"> modifier out of order with the JLS suggestions.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;63&quot;</span><span class="ot"> column=</span><span class="st">&quot;29&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Parameter args should be final.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;63&quot;</span><span class="ot"> column=</span><span class="st">&quot;36&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Expected @param tag for </span><span class="dv">&amp;apos;</span><span class="st">args</span><span class="dv">&amp;apos;</span><span class="st">.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;63&quot;</span><span class="ot"> column=</span><span class="st">&quot;40&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;Array brackets at illegal position.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;67&quot;</span><span class="ot"> column=</span><span class="st">&quot;25&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">18</span><span class="dv">&amp;apos;</span><span class="st"> is a magic number.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;68&quot;</span><span class="ot"> column=</span><span class="st">&quot;25&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">45</span><span class="dv">&amp;apos;</span><span class="st"> is a magic number.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;70&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">for</span><span class="dv">&amp;apos;</span><span class="st"> construct must use </span><span class="dv">&amp;apos;</span><span class="st">{}</span><span class="dv">&amp;apos;</span><span class="st">s.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;70&quot;</span><span class="ot"> column=</span><span class="st">&quot;29&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">5</span><span class="dv">&amp;apos;</span><span class="st"> is a magic number.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;error</span><span class="ot"> line=</span><span class="st">&quot;71&quot;</span><span class="ot"> column=</span><span class="st">&quot;33&quot;</span><span class="ot"> severity=</span><span class="st">&quot;error&quot;</span><span class="ot"> message=</span><span class="st">&quot;</span><span class="dv">&amp;apos;</span><span class="st">10</span><span class="dv">&amp;apos;</span><span class="st"> is a magic number.&quot;</span><span class="ot"> source=</span><span class="st">&quot;com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/file&gt;</span>
+<span class="kw">&lt;/checkstyle&gt;</span></code></pre>
+<h2 id="code-before-the-corrections">Code before the corrections</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package gr.aueb.dmst.dds.example;</span>
+
+<span class="co">/** Implementation of a simple non-empty parametric linked list type */</span>
+<span class="kw">public</span> <span class="kw">class</span> LinkedList &lt;E&gt; {
+    <span class="co">/** Node&#39;s value */</span>
+    <span class="kw">private</span> E value;
+    <span class="co">/** Next node */</span>
+    <span class="kw">private</span> LinkedList &lt;E&gt; next;
+
+    <span class="co">/** Construct a list with a single element v */</span>
+    LinkedList(E v) {
+        value = v;
+        next = <span class="kw">null</span>;
+    }
+
+    <span class="co">/** Return a list with element n added to it */</span>
+    <span class="kw">public</span> LinkedList &lt;E&gt; <span class="fu">add</span>(E v) {
+        LinkedList &lt;E&gt; n = <span class="kw">new</span> LinkedList &lt;E&gt;(v);
+        n.<span class="fu">next</span> = <span class="kw">this</span>;
+        <span class="kw">return</span> n;
+    }
+
+    <span class="co">/** Return the element at the list&#39;s head */</span>
+    <span class="kw">public</span> E <span class="fu">getHead</span>() {
+        <span class="kw">return</span> value;
+    }
+
+    <span class="co">/** Return the list&#39;s tail */</span>
+    <span class="kw">public</span> LinkedList&lt;E&gt; <span class="fu">getTail</span>() {
+        <span class="kw">return</span> next;
+    }
+
+    <span class="co">/** Return a string representation of the list */</span>
+    <span class="kw">public</span> String <span class="fu">toString</span>() {
+        String me = value.<span class="fu">toString</span>();
+
+        <span class="co">/* Recursive implementation */</span>
+        <span class="kw">if</span> (next == <span class="kw">null</span>)
+            <span class="kw">return</span> me;
+        <span class="kw">else</span>
+            <span class="kw">return</span> me + <span class="st">&quot; -&gt; &quot;</span> + next;
+    }
+
+    <span class="co">/** Return the number of elements in the list */</span>
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">size</span>() {
+        <span class="co">/* Recursive implementation */</span>
+        <span class="kw">if</span> (next == <span class="kw">null</span>)
+            <span class="kw">return</span> <span class="dv">1</span>;
+        <span class="kw">else</span>
+            <span class="kw">return</span> next.<span class="fu">size</span>() + <span class="dv">1</span>;
+    }
+
+    <span class="co">/** Return true if the specified element exists in the list */</span>
+    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">contains</span>(E e) {
+        <span class="co">/* Iterative implementation */</span>
+        <span class="kw">for</span> (LinkedList &lt;E&gt; i = <span class="kw">this</span>; i != <span class="kw">null</span>; i = i.<span class="fu">next</span>)
+            <span class="kw">if</span> (i.<span class="fu">value</span>.<span class="fu">equals</span>(e))
+                <span class="kw">return</span> <span class="kw">true</span>;
+        <span class="kw">return</span> <span class="kw">false</span>;
+    }
+
+    <span class="co">/** Test harness */</span>
+    <span class="dt">static</span> <span class="kw">public</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+        LinkedList &lt;Integer&gt; ilst = <span class="kw">new</span> LinkedList &lt;Integer&gt;(<span class="dv">0</span>);
+
+        ilst = ilst.<span class="fu">add</span>(<span class="dv">1</span>);
+        ilst = ilst.<span class="fu">add</span>(<span class="dv">18</span>);
+        ilst = ilst.<span class="fu">add</span>(<span class="dv">45</span>);
+
+        <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">5</span>; i++)
+            ilst = ilst.<span class="fu">add</span>(i * <span class="dv">10</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(ilst);
+    }
+}</code></pre>
+<h2 id="code-after-corrections">Code after corrections</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package gr.aueb.dmst.dds.example;</span>
+
+<span class="co">/**</span>
+<span class="co"> * Implementation of a simple non-empty parametric linked list type.</span>
+<span class="co"> * </span><span class="kw">@param &lt;E&gt; </span><span class="co">The type of the values stored in the list.</span>
+<span class="co"> */</span>
+<span class="kw">public</span> <span class="kw">class</span> LinkedList &lt;E&gt; {
+    <span class="co">/** Node&#39;s value. */</span>
+    <span class="kw">private</span> E value;
+    <span class="co">/** Next node. */</span>
+    <span class="kw">private</span> LinkedList &lt;E&gt; next;
+
+    <span class="co">/**</span>
+<span class="co">     * Construct a list with a single element.</span>
+<span class="co">     * </span><span class="kw">@param v </span><span class="co">The value of the list&#39;s first element.</span>
+<span class="co">     */</span>
+    LinkedList(<span class="dt">final</span> E v) {
+        value = v;
+        next = <span class="kw">null</span>;
+    }
+
+    <span class="co">/** Add an element to the list.</span>
+<span class="co">     * </span><span class="kw">@param v </span><span class="co">The value of the element to add.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">A list with element v added to it.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> LinkedList &lt;E&gt; <span class="fu">add</span>(<span class="dt">final</span> E v) {
+        LinkedList &lt;E&gt; n = <span class="kw">new</span> LinkedList &lt;E&gt;(v);
+        n.<span class="fu">next</span> = <span class="kw">this</span>;
+        <span class="kw">return</span> n;
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Obtain the element at the list&#39;s head.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">The value of the first element of the list.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> E <span class="fu">getHead</span>() {
+        <span class="kw">return</span> value;
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Obtain the list&#39;s tail.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">The list starting from the second element.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> LinkedList&lt;E&gt; <span class="fu">getTail</span>() {
+        <span class="kw">return</span> next;
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Obtain a string representation of the list.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">The list as a series of elements connected with arrows.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> String <span class="fu">toString</span>() {
+        String me = value.<span class="fu">toString</span>();
+
+        <span class="co">/* Recursive implementation */</span>
+        <span class="kw">if</span> (next == <span class="kw">null</span>) {
+            <span class="kw">return</span> me;
+        } <span class="kw">else</span> {
+            <span class="kw">return</span> me + <span class="st">&quot; -&gt; &quot;</span> + next;
+        }
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Obtain the number of elements in the list.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">The number of elements in the list.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> <span class="dt">int</span> <span class="fu">size</span>() {
+        <span class="co">/* Recursive implementation */</span>
+        <span class="kw">if</span> (next == <span class="kw">null</span>) {
+            <span class="kw">return</span> <span class="dv">1</span>;
+        } <span class="kw">else</span> {
+            <span class="kw">return</span> next.<span class="fu">size</span>() + <span class="dv">1</span>;
+        }
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Check whether the specified element exists in the list.</span>
+<span class="co">     * </span><span class="kw">@param e </span><span class="co">The element to search for in the list.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">True if the specified element is in the list, false otherwise.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> <span class="dt">boolean</span> <span class="fu">contains</span>(<span class="dt">final</span> E e) {
+        <span class="co">/* Iterative implementation */</span>
+        <span class="kw">for</span> (LinkedList &lt;E&gt; i = <span class="kw">this</span>; i != <span class="kw">null</span>; i = i.<span class="fu">next</span>) {
+            <span class="kw">if</span> (i.<span class="fu">value</span>.<span class="fu">equals</span>(e)) {
+                <span class="kw">return</span> <span class="kw">true</span>;
+            }
+        }
+        <span class="kw">return</span> <span class="kw">false</span>;
+    }
+}</code></pre>
+<h2 id="unit-testing">Unit testing</h2>
+<ul>
+<li>On smallest possible module<br /></li>
+<li>Stand-alone<br /></li>
+<li>Mutually independent<br /></li>
+<li>Developed before or together with implementation<br /></li>
+<li>Automatically executed<br /></li>
+<li>At build time<br /></li>
+<li>During (continuous) integration<br /></li>
+<li>Aim at full code coverage</li>
+</ul>
+<h2 id="unit-testing-advantages">Unit testing advantages</h2>
+<ul>
+<li>Diagnoses problems in time<br /></li>
+<li>Facilitates code refactoring<br /></li>
+<li>Facilitates integration<br /></li>
+<li>Provides documentation<br /></li>
+<li>Encourages modular design (but discourages encapsulation)</li>
+</ul>
+<h2 id="simple-unit-testing-example">Simple unit testing example</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> MoneyTest <span class="kw">extends</span> TestCase {
+    <span class="kw">private</span> Money f12CHF;
+    <span class="kw">private</span> Money f14CHF;
+    <span class="kw">private</span> Money f28USD;
+
+    <span class="kw">protected</span> <span class="dt">void</span> <span class="fu">setUp</span>() {
+        f12CHF= <span class="kw">new</span> <span class="fu">Money</span>(<span class="dv">12</span>, <span class="st">&quot;CHF&quot;</span>);
+        f14CHF= <span class="kw">new</span> <span class="fu">Money</span>(<span class="dv">14</span>, <span class="st">&quot;CHF&quot;</span>);
+        f28USD= <span class="kw">new</span> <span class="fu">Money</span>(<span class="dv">28</span>, <span class="st">&quot;USD&quot;</span>);
+    }
+}
+
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">testMoneyMoneyBag</span>() {
+    <span class="co">// [12 CHF] + [14 CHF] + [28 USD] == {[26 CHF][28 USD]}</span>
+    Money bag[]= { f26CHF, f28USD };
+    MoneyBag expected= <span class="kw">new</span> <span class="fu">MoneyBag</span>(bag);
+    <span class="fu">assertEquals</span>(expected, f12CHF.<span class="fu">add</span>(f28USD.<span class="fu">add</span>(f14CHF)));
+}
+
+<span class="kw">public</span> <span class="dt">static</span> Test <span class="fu">suite</span>() {
+    TestSuite suite= <span class="kw">new</span> <span class="fu">TestSuite</span>();
+    suite.<span class="fu">addTest</span>(<span class="kw">new</span> <span class="fu">MoneyTest</span>(<span class="st">&quot;testMoneyEquals&quot;</span>));
+    suite.<span class="fu">addTest</span>(<span class="kw">new</span> <span class="fu">MoneyTest</span>(<span class="st">&quot;testSimpleAdd&quot;</span>));
+    <span class="kw">return</span> suite;
+}</code></pre>
+<h2 id="example-running-junit">Example: Running JUnit</h2>
+<p><img src="media/junit.gif" alt="JUnit execution" /></p>
+<h2 id="example-2-code">Example 2: Code</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package gr.aueb.dmst.dds.example;</span>
+
+<span class="co">/**</span>
+<span class="co"> * Implementation of a simple non-empty parametric linked list type.</span>
+<span class="co"> * </span><span class="kw">@param &lt;E&gt; </span><span class="co">The type of the values stored in the list.</span>
+<span class="co"> */</span>
+<span class="kw">public</span> <span class="kw">class</span> LinkedList &lt;E&gt; {
+    <span class="co">/** Node&#39;s value. */</span>
+    <span class="kw">private</span> E value;
+    <span class="co">/** Next node. */</span>
+    <span class="kw">private</span> LinkedList &lt;E&gt; next;
+
+    <span class="co">/**</span>
+<span class="co">     * Construct a list with a single element.</span>
+<span class="co">     * </span><span class="kw">@param v </span><span class="co">The value of the list&#39;s first element.</span>
+<span class="co">     */</span>
+    LinkedList(<span class="dt">final</span> E v) {
+        value = v;
+        next = <span class="kw">null</span>;
+    }
+
+    <span class="co">/** Add an element to the list.</span>
+<span class="co">     * </span><span class="kw">@param v </span><span class="co">The value of the element to add.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">A list with element v added to it.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> LinkedList &lt;E&gt; <span class="fu">add</span>(<span class="dt">final</span> E v) {
+        LinkedList &lt;E&gt; n = <span class="kw">new</span> LinkedList &lt;E&gt;(v);
+        n.<span class="fu">next</span> = <span class="kw">this</span>;
+        <span class="kw">return</span> n;
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Obtain the element at the list&#39;s head.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">The value of the first element of the list.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> E <span class="fu">getHead</span>() {
+        <span class="kw">return</span> value;
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Obtain the list&#39;s tail.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">The list starting from the second element.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> LinkedList&lt;E&gt; <span class="fu">getTail</span>() {
+        <span class="kw">return</span> next;
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Obtain a string representation of the list.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">The list as a series of elements connected with arrows.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> String <span class="fu">toString</span>() {
+        String me = value.<span class="fu">toString</span>();
+
+        <span class="co">/* Recursive implementation */</span>
+        <span class="kw">if</span> (next == <span class="kw">null</span>) {
+            <span class="kw">return</span> me;
+        } <span class="kw">else</span> {
+            <span class="kw">return</span> me + <span class="st">&quot; -&gt; &quot;</span> + next;
+        }
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Obtain the number of elements in the list.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">The number of elements in the list.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> <span class="dt">int</span> <span class="fu">size</span>() {
+        <span class="co">/* Recursive implementation */</span>
+        <span class="kw">if</span> (next == <span class="kw">null</span>) {
+            <span class="kw">return</span> <span class="dv">1</span>;
+        } <span class="kw">else</span> {
+            <span class="kw">return</span> next.<span class="fu">size</span>() + <span class="dv">1</span>;
+        }
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Check whether the specified element exists in the list.</span>
+<span class="co">     * </span><span class="kw">@param e </span><span class="co">The element to search for in the list.</span>
+<span class="co">     * </span><span class="kw">@return </span><span class="co">True if the specified element is in the list, false otherwise.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">final</span> <span class="dt">boolean</span> <span class="fu">contains</span>(<span class="dt">final</span> E e) {
+        <span class="co">/* Iterative implementation */</span>
+        <span class="kw">for</span> (LinkedList &lt;E&gt; i = <span class="kw">this</span>; i != <span class="kw">null</span>; i = i.<span class="fu">next</span>) {
+            <span class="kw">if</span> (i.<span class="fu">value</span>.<span class="fu">equals</span>(e)) {
+                <span class="kw">return</span> <span class="kw">true</span>;
+            }
+        }
+        <span class="kw">return</span> <span class="kw">false</span>;
+    }
+}</code></pre>
+<h2 id="example-2-unit-tests">Example 2: Unit Tests</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package gr.aueb.dmst.dds.example;</span>
+
+<span class="kw">import gr.aueb.dmst.dds.example.LinkedList;</span>
+<span class="kw">import org.junit.After;</span>
+<span class="kw">import org.junit.Assert;</span>
+<span class="kw">import org.junit.Before;</span>
+<span class="kw">import org.junit.Test;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> TestLinkedList {
+
+    <span class="kw">private</span> LinkedList&lt;Integer&gt; list;
+    <span class="kw">private</span> <span class="dt">final</span> <span class="dt">int</span> firstElement = <span class="dv">4</span>;
+    <span class="kw">private</span> <span class="dt">final</span> <span class="dt">int</span> missingElement = <span class="dv">42</span>;
+
+    <span class="fu">@Before</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setUp</span>() {
+        list = <span class="kw">new</span> LinkedList&lt;Integer&gt;(firstElement);
+    }
+
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testGetSize</span>() {
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong size&quot;</span>, list.<span class="fu">size</span>(), <span class="dv">1</span>);
+        list = list.<span class="fu">add</span>(<span class="dv">1</span>);
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong size&quot;</span>, list.<span class="fu">size</span>(), <span class="dv">2</span>);
+    }
+
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testContains</span>() {
+        Assert.<span class="fu">assertTrue</span>(<span class="st">&quot;failure - does not contain first element&quot;</span>,
+                list.<span class="fu">contains</span>(firstElement));
+        Assert.<span class="fu">assertFalse</span>(<span class="st">&quot;failure - contains missing element&quot;</span>,
+                list.<span class="fu">contains</span>(missingElement));
+    }
+
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testGetHead</span>() {
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong head&quot;</span>, list.<span class="fu">getHead</span>(),
+                (Integer)firstElement);
+    }
+
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testGetTail</span>() {
+        <span class="dt">final</span> <span class="dt">int</span> secondElement = <span class="dv">1000</span>;
+        list = list.<span class="fu">add</span>(secondElement).<span class="fu">getTail</span>();
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong size&quot;</span>, list.<span class="fu">size</span>(), <span class="dv">1</span>);
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong head&quot;</span>, list.<span class="fu">getHead</span>(),
+                (Integer)firstElement);
+        Assert.<span class="fu">assertTrue</span>(<span class="st">&quot;failure - does not contain first element&quot;</span>,
+                list.<span class="fu">contains</span>(firstElement));
+        Assert.<span class="fu">assertFalse</span>(<span class="st">&quot;failure - contains second element&quot;</span>,
+                list.<span class="fu">contains</span>(secondElement));
+    }
+
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testContructor</span>() {
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong size&quot;</span>, list.<span class="fu">size</span>(), <span class="dv">1</span>);
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong head&quot;</span>, list.<span class="fu">getHead</span>(),
+                (Integer)firstElement);
+        Assert.<span class="fu">assertTrue</span>(<span class="st">&quot;failure - does not contain first element&quot;</span>,
+                list.<span class="fu">contains</span>(firstElement));
+        Assert.<span class="fu">assertFalse</span>(<span class="st">&quot;failure - contains missing element&quot;</span>,
+                list.<span class="fu">contains</span>(missingElement));
+    }
+
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testAdd</span>() {
+        <span class="dt">final</span> <span class="dt">int</span> secondElement = <span class="dv">1000</span>;
+        list = list.<span class="fu">add</span>(secondElement);
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong size&quot;</span>, list.<span class="fu">size</span>(), <span class="dv">2</span>);
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong head&quot;</span>, list.<span class="fu">getHead</span>(),
+                (Integer)secondElement);
+        Assert.<span class="fu">assertTrue</span>(<span class="st">&quot;failure - does not contain first element&quot;</span>,
+                list.<span class="fu">contains</span>(firstElement));
+        Assert.<span class="fu">assertTrue</span>(<span class="st">&quot;failure - does not contain second element&quot;</span>,
+                list.<span class="fu">contains</span>(secondElement));
+        Assert.<span class="fu">assertFalse</span>(<span class="st">&quot;failure - contains missing element&quot;</span>,
+                list.<span class="fu">contains</span>(missingElement));
+    }
+
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testToString</span>() {
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong to String&quot;</span>, list.<span class="fu">toString</span>(),
+                ((Integer)firstElement).<span class="fu">toString</span>());
+        <span class="dt">final</span> <span class="dt">int</span> secondElement = <span class="dv">1000</span>;
+        list = list.<span class="fu">add</span>(secondElement);
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;failure - wrong to String&quot;</span>, list.<span class="fu">toString</span>(),
+                ((Integer)secondElement).<span class="fu">toString</span>() + <span class="st">&quot; -&gt; &quot;</span> +
+                ((Integer)firstElement).<span class="fu">toString</span>());
+    }
+
+    <span class="fu">@After</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">tearDown</span>() {
+        <span class="co">/* Not really needed */</span>
+        list = <span class="kw">null</span>;
+    }
+}</code></pre>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
