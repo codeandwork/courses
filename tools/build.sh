@@ -80,6 +80,7 @@ for course in $COURSES ; do
 
   # Deploy media files
   rsync -a --delete courses/$course/media web/$course/
+  rsync -a --delete courses/common/media web/common/
 
   # Prepare the course index files
   for hp in '' -p ; do
