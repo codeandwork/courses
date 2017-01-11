@@ -27,3 +27,10 @@
 
 ## Security
 * [Application Security](common/sec.md)
+
+
+## Testing
+* [Testing theory](common/test-theory.md)
+* [Testing practices](common/test-practices.md)
+
+

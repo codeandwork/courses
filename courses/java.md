@@ -55,5 +55,11 @@
 
 ## Project & technical management
 
+
+## Testing
+* [Testing theory](common/test-theory.md)
+* [Testing practices](common/test-practices.md)
+
+
 ## Final project implementation
 
