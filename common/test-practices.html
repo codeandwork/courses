@@ -283,7 +283,81 @@
 <li>Provides documentation<br /></li>
 <li>Encourages modular design (but discourages encapsulation)</li>
 </ul>
-<h2 id="simple-unit-testing-example">Simple unit testing example</h2>
+<h2 id="java-code">Java code</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package junit.samples.money;</span>
+
+<span class="co">/**</span>
+<span class="co"> * A simple Money.</span>
+<span class="co"> *</span>
+<span class="co"> */</span>
+<span class="kw">public</span> <span class="kw">class</span> Money <span class="kw">implements</span> IMoney {
+
+    <span class="kw">private</span> <span class="dt">int</span> fAmount;
+    <span class="kw">private</span> String fCurrency;
+
+    <span class="co">/**</span>
+<span class="co">     * Constructs a money from the given amount and currency.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="fu">Money</span>(<span class="dt">int</span> amount, String currency) {
+        fAmount= amount;
+        fCurrency= currency;
+    }
+    <span class="co">/**</span>
+<span class="co">     * Adds a money to this money. Forwards the request to the addMoney helper.</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> IMoney <span class="fu">add</span>(IMoney m) {
+        <span class="kw">return</span> m.<span class="fu">addMoney</span>(<span class="kw">this</span>);
+    }
+    <span class="kw">public</span> IMoney <span class="fu">addMoney</span>(Money m) {
+        <span class="kw">if</span> (m.<span class="fu">currency</span>().<span class="fu">equals</span>(<span class="fu">currency</span>()) )
+            <span class="kw">return</span> <span class="kw">new</span> <span class="fu">Money</span>(<span class="fu">amount</span>()+m.<span class="fu">amount</span>(), <span class="fu">currency</span>());
+        <span class="kw">return</span> MoneyBag.<span class="fu">create</span>(<span class="kw">this</span>, m);
+    }
+    <span class="kw">public</span> IMoney <span class="fu">addMoneyBag</span>(MoneyBag s) {
+        <span class="kw">return</span> s.<span class="fu">addMoney</span>(<span class="kw">this</span>);
+    }
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">amount</span>() {
+        <span class="kw">return</span> fAmount;
+    }
+    <span class="kw">public</span> String <span class="fu">currency</span>() {
+        <span class="kw">return</span> fCurrency;
+    }
+    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">equals</span>(Object anObject) {
+        <span class="kw">if</span> (<span class="fu">isZero</span>())
+            <span class="kw">if</span> (anObject <span class="kw">instanceof</span> IMoney)
+                <span class="kw">return</span> ((IMoney)anObject).<span class="fu">isZero</span>();
+        <span class="kw">if</span> (anObject <span class="kw">instanceof</span> Money) {
+            Money aMoney= (Money)anObject;
+            <span class="kw">return</span> aMoney.<span class="fu">currency</span>().<span class="fu">equals</span>(<span class="fu">currency</span>())
+                             &amp;&amp; <span class="fu">amount</span>() == aMoney.<span class="fu">amount</span>();
+        }
+        <span class="kw">return</span> <span class="kw">false</span>;
+    }
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">hashCode</span>() {
+        <span class="kw">return</span> fCurrency.<span class="fu">hashCode</span>()+fAmount;
+    }
+    <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">isZero</span>() {
+        <span class="kw">return</span> <span class="fu">amount</span>() == <span class="dv">0</span>;
+    }
+    <span class="kw">public</span> IMoney <span class="fu">multiply</span>(<span class="dt">int</span> factor) {
+        <span class="kw">return</span> <span class="kw">new</span> <span class="fu">Money</span>(<span class="fu">amount</span>()*factor, <span class="fu">currency</span>());
+    }
+    <span class="kw">public</span> IMoney <span class="fu">negate</span>() {
+        <span class="kw">return</span> <span class="kw">new</span> <span class="fu">Money</span>(-<span class="fu">amount</span>(), <span class="fu">currency</span>());
+    }
+    <span class="kw">public</span> IMoney <span class="fu">subtract</span>(IMoney m) {
+        <span class="kw">return</span> <span class="fu">add</span>(m.<span class="fu">negate</span>());
+    }
+    <span class="kw">public</span> String <span class="fu">toString</span>() {
+        StringBuffer buffer = <span class="kw">new</span> StringBuffer();
+        buffer.<span class="fu">append</span>(<span class="st">&quot;[&quot;</span>+<span class="fu">amount</span>()+<span class="st">&quot; &quot;</span>+<span class="fu">currency</span>()+<span class="st">&quot;]&quot;</span>);
+        <span class="kw">return</span> buffer.<span class="fu">toString</span>();
+    }
+    <span class="kw">public</span> <span class="co">/*this makes no sense*/</span> <span class="dt">void</span> <span class="fu">appendTo</span>(MoneyBag m) {
+        m.<span class="fu">appendMoney</span>(<span class="kw">this</span>);
+    }
+}</code></pre>
+<h2 id="java-tests">Java tests</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> MoneyTest <span class="kw">extends</span> TestCase {
     <span class="kw">private</span> Money f12CHF;
     <span class="kw">private</span> Money f14CHF;
@@ -309,8 +383,112 @@
     suite.<span class="fu">addTest</span>(<span class="kw">new</span> <span class="fu">MoneyTest</span>(<span class="st">&quot;testSimpleAdd&quot;</span>));
     <span class="kw">return</span> suite;
 }</code></pre>
-<h2 id="example-running-junit">Example: Running JUnit</h2>
+<h2 id="java-example-running-junit">Java Example: Running JUnit</h2>
 <p><img src="media/junit.gif" alt="JUnit execution" /></p>
+<h2 id="c-example-money">C# Example (Money)</h2>
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace MoneyApp
+{
+    public class Money
+    {
+        public int value;
+        public string currency;
+
+        public Money(int p1, string p2)
+        {
+            this.value = p1;
+            this.currency = p2;
+        }
+    }
+}</code></pre>
+<h2 id="c-example-moneybag">C# Example (MoneyBag)</h2>
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MoneyApp;
+
+namespace MoneyApp
+{
+    public class MoneyBag
+    {
+        public MyList bag;
+
+        public MoneyBag(MyList bag)
+        {
+            this.bag = bag;
+        }
+
+        public MoneyBag()
+        {
+            bag = new MyList();
+        }
+
+        public void add(Money moneyObj)
+        {
+            bool found = false;
+            foreach(Money money in bag)
+            {
+                if (money.currency.Equals(moneyObj.currency))
+                {
+                    money.value += moneyObj.value;
+                    found = true;
+                }
+            }
+            if (found == false)
+                bag.Add(moneyObj);
+        }
+    }
+}</code></pre>
+<h2 id="c-example-tests">C# Example (Tests)</h2>
+<pre class="csharp"><code>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NUnit.Framework;
+using MoneyApp;
+
+namespace MoneyTests
+{
+    [TestFixture]
+    public class MoneyTests
+    {
+        private Money f12CHF;
+        private Money f14CHF;
+        private Money f28USD;
+
+        [SetUp]
+        public void setUp()
+        {
+            f12CHF = new Money(12, &quot;CHF&quot;);
+            f14CHF = new Money(14, &quot;CHF&quot;);
+            f28USD = new Money(28, &quot;USD&quot;);
+        }
+        [Test]
+        public void testMoneyMoneyBag()
+        {
+            // [12 CHF] + [14 CHF] + [28 USD] == {[26 CHF][28 USD]}
+            MyList bag = new MyList();
+            Money f26CHF = new Money(26, &quot;CHF&quot;);
+            bag.Add(f26CHF);
+            bag.Add(f28USD);
+
+            MoneyBag expected = new MoneyBag(bag);
+            MoneyBag actual = new MoneyBag();
+            actual.add(f12CHF);
+            actual.add(f28USD);
+            actual.add(f14CHF);
+            bool result = expected.bag.Equals(actual.bag);
+            Assert.AreEqual(true, result);
+        }
+    }
+}</code></pre>
+<h2 id="c-example-running-tests">C# Example: Running tests</h2>
+<p><img src="media/cs-testing.PNG" alt="Running C# tests" /></p>
 <h2 id="example-2-code">Example 2: Code</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package gr.aueb.dmst.dds.example;</span>
 

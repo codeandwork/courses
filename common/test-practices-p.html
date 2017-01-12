@@ -296,7 +296,85 @@ public class LinkedList <E> {
 * Encourages modular design (but discourages encapsulation)
 
 
-## Simple unit testing example
+## Java code
+```java
+package junit.samples.money;
+
+/**
+ * A simple Money.
+ *
+ */
+public class Money implements IMoney {
+
+	private int fAmount;
+	private String fCurrency;
+
+	/**
+	 * Constructs a money from the given amount and currency.
+	 */
+	public Money(int amount, String currency) {
+		fAmount= amount;
+		fCurrency= currency;
+	}
+	/**
+	 * Adds a money to this money. Forwards the request to the addMoney helper.
+	 */
+	public IMoney add(IMoney m) {
+		return m.addMoney(this);
+	}
+	public IMoney addMoney(Money m) {
+		if (m.currency().equals(currency()) )
+			return new Money(amount()+m.amount(), currency());
+		return MoneyBag.create(this, m);
+	}
+	public IMoney addMoneyBag(MoneyBag s) {
+		return s.addMoney(this);
+	}
+	public int amount() {
+		return fAmount;
+	}
+	public String currency() {
+		return fCurrency;
+	}
+	public boolean equals(Object anObject) {
+		if (isZero())
+			if (anObject instanceof IMoney)
+				return ((IMoney)anObject).isZero();
+		if (anObject instanceof Money) {
+			Money aMoney= (Money)anObject;
+			return aMoney.currency().equals(currency())
+							 && amount() == aMoney.amount();
+		}
+		return false;
+	}
+	public int hashCode() {
+		return fCurrency.hashCode()+fAmount;
+	}
+	public boolean isZero() {
+		return amount() == 0;
+	}
+	public IMoney multiply(int factor) {
+		return new Money(amount()*factor, currency());
+	}
+	public IMoney negate() {
+		return new Money(-amount(), currency());
+	}
+	public IMoney subtract(IMoney m) {
+		return add(m.negate());
+	}
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("["+amount()+" "+currency()+"]");
+		return buffer.toString();
+	}
+	public /*this makes no sense*/ void appendTo(MoneyBag m) {
+		m.appendMoney(this);
+	}
+}
+```
+
+
+## Java tests
 ```java
 public class MoneyTest extends TestCase {
     private Money f12CHF;
@@ -326,9 +404,126 @@ public static Test suite() {
 ```
 
 
-## Example: Running JUnit
+## Java Example: Running JUnit
 ![JUnit execution](media/junit.gif)
 
+
+## C# Example (Money)
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace MoneyApp
+{
+    public class Money
+    {
+        public int value;
+        public string currency;
+
+        public Money(int p1, string p2)
+        {
+            this.value = p1;
+            this.currency = p2;
+        }
+    }
+}
+```
+
+
+## C# Example (MoneyBag)
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MoneyApp;
+
+namespace MoneyApp
+{
+    public class MoneyBag
+    {
+        public MyList bag;
+
+        public MoneyBag(MyList bag)
+        {
+            this.bag = bag;
+        }
+
+        public MoneyBag()
+        {
+            bag = new MyList();
+        }
+
+        public void add(Money moneyObj)
+        {
+            bool found = false;
+            foreach(Money money in bag)
+            {
+                if (money.currency.Equals(moneyObj.currency))
+                {
+                    money.value += moneyObj.value;
+                    found = true;
+                }
+            }
+            if (found == false)
+                bag.Add(moneyObj);
+        }
+    }
+}
+```
+
+
+## C# Example (Tests)
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NUnit.Framework;
+using MoneyApp;
+
+namespace MoneyTests
+{
+    [TestFixture]
+    public class MoneyTests
+    {
+        private Money f12CHF;
+        private Money f14CHF;
+        private Money f28USD;
+
+        [SetUp]
+        public void setUp()
+        {
+            f12CHF = new Money(12, "CHF");
+            f14CHF = new Money(14, "CHF");
+            f28USD = new Money(28, "USD");
+        }
+        [Test]
+        public void testMoneyMoneyBag()
+        {
+            // [12 CHF] + [14 CHF] + [28 USD] == {[26 CHF][28 USD]}
+            MyList bag = new MyList();
+            Money f26CHF = new Money(26, "CHF");
+            bag.Add(f26CHF);
+            bag.Add(f28USD);
+
+            MoneyBag expected = new MoneyBag(bag);
+            MoneyBag actual = new MoneyBag();
+            actual.add(f12CHF);
+            actual.add(f28USD);
+            actual.add(f14CHF);
+            bool result = expected.bag.Equals(actual.bag);
+            Assert.AreEqual(true, result);
+        }
+    }
+}
+```
+
+
+## C# Example: Running tests
+![Running C# tests](media/cs-testing.PNG)
 
 ## Example 2: Code
 ```java
