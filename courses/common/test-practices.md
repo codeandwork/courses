@@ -702,3 +702,39 @@ public class TestLinkedList {
     }
 }
 ```
+
+
+## Code reviews
+* Over-the-shoulder
+* Email of diffs
+* Pair programming (e.g. XP)
+* Tool-assisted code review
+  * (Pre or post commit)
+  * Gerrit
+  * GitLab / GitHub
+  * Phabricator
+  * Review Board
+
+
+## Continuous integration (CI)
+* Integrate changes to mainline in small increments
+* Typically includes
+  * Static analysis
+  * Testing
+  * Deployment
+* Tool supported
+  * Jenkins - Hudson
+  * Travis CI
+  * Team Foundation Server
+
+
+## CI Practices
+* Maintain a code repository
+* Automate the build
+* Make the build self-testing
+* Regular (e.g. daily) incremental commits
+* Build after every commit (to baseline)
+* Keep the build fast
+* Test in production environment clone
+* Developers work on the latest version
+* Everyone can see build results
