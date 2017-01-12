@@ -38,7 +38,7 @@
 <p>ADO.NET provides a relatively common way to interact with data sources, but comes in different sets of libraries for each way you can talk to a data source. These libraries are called Data Providers and are usually named for the protocol or data source type they allow you to interact with.</p>
 <h2 id="sql-data-provider">SQL Data Provider</h2>
 <p>Since, we are interested in the SQL Server, we will use the .NET Framework Data Provider for SQL Server which resides in the <code>System.Data.SqlCient</code> namespace.</p>
-<pre class="csharp"><code>using System.Data.SqlClient;</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">using</span> System.<span class="fu">Data</span>.<span class="fu">SqlClient</span>;</code></pre>
 <h2 id="overview">Overview</h2>
 <p>Before jumping into the code, we will have to understand some of the important objects of ADO.NET. In a typical scenario requiring data access, we need to perform four major tasks:</p>
 <ol>
@@ -54,19 +54,19 @@
 <p>The <code>SqlConnection</code> class is used to establish a connection to the database. The <code>SqlConnection</code> uses a <code>ConnectionString</code> to identify the database server location, authentication parameters, and other information to connect to the database.</p>
 <p><a href="http://www.connectionstrings.com/%C2%A0is">http://www.connectionstrings.com/ is</a> the website where you can easily find the connection string for your database. They provide the strings, for almost all of the database services and their types.</p>
 <h2 id="example-connectionstring---13">Example ConnectionString - 1/3</h2>
-<pre class="csharp"><code>&quot;Data Source=(LocalDB)\v11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True&quot;</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="st">&quot;Data Source=(LocalDB)</span><span class="ch">\v</span><span class="st">11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True&quot;</span></code></pre>
 <ul>
 <li><code>DataSource</code>: For SQL Server Express, LocalDB, SQL Server, and SQL Database, this setting specifies the name of the server and the SQL Server instance on the server. For example, you can specify ServerName\Instancename. You can use &quot;.&quot;, &quot;(local)&quot;, or &quot;localhost&quot; in place of the server name to specify the local computer, and you can use an IP address instead of the server name.<br /></li>
 <li><code>AttachDbFileName</code> specifies the path and name of the database file for SQL Server Express or LocalDB databases that are not defined in the local SQL Server Express instance.</li>
 </ul>
 <h2 id="example-connectionstring---23">Example ConnectionString - 2/3</h2>
-<pre class="csharp"><code>&quot;Data Source=(LocalDB)\v11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True&quot;</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="st">&quot;Data Source=(LocalDB)</span><span class="ch">\v</span><span class="st">11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True&quot;</span></code></pre>
 <ul>
 <li><code>InitialCatalog</code> specifies the name of the database in the SQL Server instance catalog. If omitted, ADO.NET connects to the default database for the SQL Server instance.<br /></li>
 <li><code>Integrated Security</code> specifies whether the connection should use the user ID and password in the connection string to log on to the SQL Server instance (=false), or the current Windows account credentials should be used for authentication (=true).</li>
 </ul>
 <h2 id="example-connectionstring---33">Example ConnectionString - 3/3</h2>
-<pre class="csharp"><code>&quot;Data Source=(LocalDB)\v11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True&quot;</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="st">&quot;Data Source=(LocalDB)</span><span class="ch">\v</span><span class="st">11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True&quot;</span></code></pre>
 <ul>
 <li>The <code>MultipleActiveResultSets</code> (MARS) option makes it possible to execute multiple queries simultaneously. This is a common scenario when you use the Entity Framework.</li>
 </ul>
@@ -80,188 +80,188 @@
 <li>Close the connection</li>
 </ol>
 <h2 id="demo-code">Demo Code</h2>
-<pre class="csharp"><code>// 1. Instantiate the connection
-SqlConnection conn = new SqlConnection(
-  &quot;Data Source=(local);Initial Catalog=Northwind;Integrated Security=SSPI&quot;);
-SqlDataReader rdr = null;
-try {
-  // 2. Open the connection
-  conn.Open();
-  // 3. Pass the connection to a command object
-  SqlCommand cmd = new SqlCommand(&quot;select * from Customers&quot;, conn);
-  // 4. Use the connection to get query results
-  rdr = cmd.ExecuteReader();
-} finally {
-  // close the reader
-  if (rdr != null)
-    rdr.Close();
-  // 5. Close the connection
-  if (conn != null)
-    conn.Close();
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">// 1. Instantiate the connection</span>
+SqlConnection conn = <span class="kw">new</span> <span class="fu">SqlConnection</span>(
+  <span class="st">&quot;Data Source=(local);Initial Catalog=Northwind;Integrated Security=SSPI&quot;</span>);
+SqlDataReader rdr = <span class="kw">null</span>;
+<span class="kw">try</span> {
+  <span class="co">// 2. Open the connection</span>
+  conn.<span class="fu">Open</span>();
+  <span class="co">// 3. Pass the connection to a command object</span>
+  SqlCommand cmd = <span class="kw">new</span> <span class="fu">SqlCommand</span>(<span class="st">&quot;select * from Customers&quot;</span>, conn);
+  <span class="co">// 4. Use the connection to get query results</span>
+  rdr = cmd.<span class="fu">ExecuteReader</span>();
+} <span class="kw">finally</span> {
+  <span class="co">// close the reader</span>
+  <span class="fu">if</span> (rdr != <span class="kw">null</span>)
+    rdr.<span class="fu">Close</span>();
+  <span class="co">// 5. Close the connection</span>
+  <span class="fu">if</span> (conn != <span class="kw">null</span>)
+    conn.<span class="fu">Close</span>();
 }</code></pre>
 <h2 id="sqlcommand">SqlCommand</h2>
 <p>A <code>SqlCommand</code> object allows you to specify what type of interaction you want to perform with a database. For example, you can do select, insert, modify, and delete commands on rows of data in a database table.</p>
 <h2 id="sqlcommand-1">SqlCommand</h2>
 <p>Similar to other C# objects, you instantiate a <code>SqlCommand</code> object via the new instance declaration, as follows:</p>
-<pre class="csharp"><code>SqlCommand cmd = new SqlCommand(&quot;select CategoryName from Categories&quot;, conn);</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs">SqlCommand cmd = <span class="kw">new</span> <span class="fu">SqlCommand</span>(<span class="st">&quot;select CategoryName from Categories&quot;</span>, conn);</code></pre>
 <h2 id="quering-data">Quering data</h2>
 <p>When using a SQL <code>SELECT</code> command, you retrieve a data set for viewing. To accomplish this with a <code>SqlCommand</code> object, you would use the <code>ExecuteReader</code> method, which returns a <code>SqlDataReader</code> object. The example below shows how to use the <code>SqlCommand</code> object to obtain a <code>SqlDataReader</code> object:</p>
-<pre class="csharp"><code>// 1. Instantiate a new command with a query and connection
- SqlCommand cmd = new SqlCommand(&quot;select CategoryName from Categories&quot;, conn);
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">// 1. Instantiate a new command with a query and connection</span>
+ SqlCommand cmd = <span class="kw">new</span> <span class="fu">SqlCommand</span>(<span class="st">&quot;select CategoryName from Categories&quot;</span>, conn);
 
-// 2. Call Execute reader to get query results
- SqlDataReader rdr = cmd.ExecuteReader();</code></pre>
+<span class="co">// 2. Call Execute reader to get query results</span>
+ SqlDataReader rdr = cmd.<span class="fu">ExecuteReader</span>();</code></pre>
 <h2 id="getting-single-values">Getting single values</h2>
-<p>Sometimes all we need from a database is a single value, which could be a count, sum, average, or other aggregated value from a data set. Performing an <code>ExecuteReader</code> and calculating the result in the code is not the most efficient way to do this. The best choice is to let the database perform the work and return just the single value we need. The following example shows how to do this with the <code>ExecuteScalar</code> method:<br />```csharp<br />// 1. Instantiate a new command<br /> SqlCommand cmd = new SqlCommand(&quot;select count(*) from Categories&quot;, conn);</p>
+<p>Sometimes all we need from a database is a single value, which could be a count, sum, average, or other aggregated value from a data set. Performing an <code>ExecuteReader</code> and calculating the result in the code is not the most efficient way to do this. The best choice is to let the database perform the work and return just the single value we need. The following example shows how to do this with the <code>ExecuteScalar</code> method:<br />```cs<br />// 1. Instantiate a new command<br /> SqlCommand cmd = new SqlCommand(&quot;select count(*) from Categories&quot;, conn);</p>
 <p>// 2. Call ExecuteNonQuery to send command<br /> int count = (int)cmd.ExecuteScalar();<br /> ```</p>
 <h2 id="inserting-data">Inserting data</h2>
 <p>To insert data into a database, use the <code>ExecuteNonQuery</code> method of the <code>SqlCommand</code> object. The following code shows how to insert data into a database table:</p>
-<pre class="csharp"><code>// prepare command string
-string insertString = &quot;insert into Categories (CategoryName, Description) values (&#39;Miscellaneous&#39;, &#39;Whatever doesn&#39;&#39;t fit elsewhere&#39;)&quot;;
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">// prepare command string</span>
+<span class="dt">string</span> insertString = <span class="st">&quot;insert into Categories (CategoryName, Description) values (&#39;Miscellaneous&#39;, &#39;Whatever doesn&#39;&#39;t fit elsewhere&#39;)&quot;</span>;
 
-// 1. Instantiate a new command with a query and connection
-SqlCommand cmd = new SqlCommand(insertString, conn);
+<span class="co">// 1. Instantiate a new command with a query and connection</span>
+SqlCommand cmd = <span class="kw">new</span> <span class="fu">SqlCommand</span>(insertString, conn);
 
-// 2. Call ExecuteNonQuery to send command
-cmd.ExecuteNonQuery();</code></pre>
+<span class="co">// 2. Call ExecuteNonQuery to send command</span>
+cmd.<span class="fu">ExecuteNonQuery</span>();</code></pre>
 <h2 id="updating-data">Updating data</h2>
-<p>The ExecuteNonQuery method is also used for updating data. The following code shows how to update data:<br />```csharp<br />// prepare command string<br /> string updateString = @&quot;<br /> update Categories<br /> set CategoryName = 'Other'<br /> where CategoryName = 'Miscellaneous'&quot;;</p>
+<p>The ExecuteNonQuery method is also used for updating data. The following code shows how to update data:<br />```cs<br />// prepare command string<br /> string updateString = @&quot;<br /> update Categories<br /> set CategoryName = 'Other'<br /> where CategoryName = 'Miscellaneous'&quot;;</p>
 <p>// 1. Instantiate a new command with command text only<br /> SqlCommand cmd = new SqlCommand(updateString);</p>
 <p>// 2. Set the Connection property<br /> cmd.Connection = conn;</p>
 <p>// 3. Call ExecuteNonQuery to send command<br /> cmd.ExecuteNonQuery();<br /> ```</p>
 <h2 id="deleting-data">Deleting data</h2>
 <p>You can also delete data using the <code>ExecuteNonQuery</code> method. The following example shows how to delete a record from a database:</p>
-<pre class="csharp"><code>// prepare command string
- string deleteString = @&quot;
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">// prepare command string</span>
+ <span class="dt">string</span> deleteString = @<span class="st">&quot;</span>
  delete from Categories
- where CategoryName = &#39;Other&#39;&quot;;
+ where CategoryName = &#39;Other&#39;<span class="st">&quot;;</span>
 
- // 1. Instantiate a new command
- SqlCommand cmd = new SqlCommand();
+ <span class="co">// 1. Instantiate a new command</span>
+ SqlCommand cmd = <span class="kw">new</span> <span class="fu">SqlCommand</span>();
 
- // 2. Set the CommandText property
- cmd.CommandText = deleteString;
+ <span class="co">// 2. Set the CommandText property</span>
+ cmd.<span class="fu">CommandText</span> = deleteString;
 
- // 3. Set the Connection property
- cmd.Connection = conn;
+ <span class="co">// 3. Set the Connection property</span>
+ cmd.<span class="fu">Connection</span> = conn;
 
- // 4. Call ExecuteNonQuery to send command
- cmd.ExecuteNonQuery();</code></pre>
+ <span class="co">// 4. Call ExecuteNonQuery to send command</span>
+ cmd.<span class="fu">ExecuteNonQuery</span>();</code></pre>
 <h2 id="parameterizing-the-query">Parameterizing the query</h2>
 <p>Parameterizing the query is done by using the <code>SqlParameter</code> passed into the command. For example, you might want to search for the records where a criteria matches. You can denote that criteria, by passing the variable name into the query and then adding the value to it using the <code>SqlParameter</code> object.</p>
-<pre class="csharp"><code>// Create the command
-SqlCommand insertCommand = new SqlCommand(&quot;INSERT INTO TableName
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">// Create the command</span>
+SqlCommand insertCommand = <span class="kw">new</span> <span class="fu">SqlCommand</span>(<span class="st">&quot;INSERT INTO TableName</span>
 (FirstColumn, SecondColumn, ThirdColumn, ForthColumn)
-VALUES (@0, @SecondParameter, @aDate, @3)&quot;, conn);
+<span class="fu">VALUES</span> (@<span class="dv">0</span>, @SecondParameter, @aDate, @<span class="dv">3</span>)<span class="st">&quot;, conn);</span>
 
-// Add the parameters.
-insertCommand.Parameters.Add(new SqlParameter(&quot;0&quot;, 10));
-insertCommand.Parameters.Add(new SqlParameter(&quot;SecondParameter&quot;, &quot;Test Column&quot;));
-insertCommand.Parameters.Add(new SqlParameter(&quot;aDate&quot;, DateTime.Now));
-insertCommand.Parameters.Add(new SqlParameter(&quot;3&quot;, false));</code></pre>
+<span class="co">// Add the parameters.</span>
+insertCommand.<span class="fu">Parameters</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">SqlParameter</span>(<span class="st">&quot;0&quot;</span>, <span class="dv">10</span>));
+insertCommand.<span class="fu">Parameters</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">SqlParameter</span>(<span class="st">&quot;SecondParameter&quot;</span>, <span class="st">&quot;Test Column&quot;</span>));
+insertCommand.<span class="fu">Parameters</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">SqlParameter</span>(<span class="st">&quot;aDate&quot;</span>, DateTime.<span class="fu">Now</span>));
+insertCommand.<span class="fu">Parameters</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">SqlParameter</span>(<span class="st">&quot;3&quot;</span>, <span class="kw">false</span>));</code></pre>
 <h2 id="using-using">using <code>using</code></h2>
 <p>In C# there are some objects which use the resources of the system. Which need to be removed, closed, flushed and disposed etc. In C# you can either write the code to Create a new instance to the resource, use it, close it, flush it, dispose it. Or on the other hand you can simply just use the <code>using</code> statement block in which the object created is closed, flushed and disposed and the resources are then allowed to be used again by other processes.</p>
 <h2 id="using-example"><code>using</code> example</h2>
-<pre class="csharp"><code>SqlConnection conn = new SqlConnection(&quot;connection string&quot;);
-conn.Open();
+<pre class="sourceCode cs"><code class="sourceCode cs">SqlConnection conn = <span class="kw">new</span> <span class="fu">SqlConnection</span>(<span class="st">&quot;connection string&quot;</span>);
+conn.<span class="fu">Open</span>();
 
-// use the connection here
+<span class="co">// use the connection here</span>
 
-conn.Close();
-conn.Dipose();
-// connections don&#39;t get flushed</code></pre>
+conn.<span class="fu">Close</span>();
+conn.<span class="fu">Dipose</span>();
+<span class="co">// connections don&#39;t get flushed</span></code></pre>
 <p>becomes</p>
-<pre class="csharp"><code>using (SqlConnection conn = new SqlConnection(&quot;connection string&quot;))
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">using</span> (SqlConnection conn = <span class="kw">new</span> <span class="fu">SqlConnection</span>(<span class="st">&quot;connection string&quot;</span>))
 {
-  conn.Open();
-  // use the connection here
+  conn.<span class="fu">Open</span>();
+  <span class="co">// use the connection here</span>
 }</code></pre>
 <h2 id="reading-data-with-the-sqldatareader">Reading Data with the <code>SqlDataReader</code></h2>
 <p><code>SqlDataReader</code> is a type that is good for reading data in the most efficient manner possible. You can <em>not</em> use it for writing data. <code>SqlDataReader</code>s are often described as fast-forward firehose-like streams of data.<br />You can read from <code>SqlDataReader</code> objects in a forward-only sequential manner. Once you’ve read some data, you must save it because you will not be able to go back and read it again.</p>
 <h2 id="creating-a-sqldatareader-object">Creating a <code>SqlDataReader</code> Object</h2>
 <p>Getting an instance of a SqlDataReader is a little different than the way you instantiate other ADO.NET objects. You must call <code>ExecuteReader</code> on a <code>SqlCommand</code> object, like this:</p>
-<pre class="csharp"><code>SqlDataReader rdr = cmd.ExecuteReader();</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs">SqlDataReader rdr = cmd.<span class="fu">ExecuteReader</span>();</code></pre>
 <p>The <code>ExecuteReader</code> method of the <code>SqlCommand</code> object returns a <code>SqlDataReader</code> instance. Creating a <code>SqlDataReader</code> with the new operator doesn’t do anything for you.</p>
 <h2 id="reading-data">Reading data</h2>
 <p>The typical method of reading from the data stream returned by the SqlDataReader is to iterate through each row with a while loop. The following code shows how to accomplish this:</p>
-<pre class="csharp"><code>while (rdr.Read())
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">while</span> (rdr.<span class="fu">Read</span>())
 {
-    // get the results of each column
-    string contact = (string) rdr[&quot;ContactName&quot;];
-    string company = (string) rdr[&quot;CompanyName&quot;];
-    string city    = (string) rdr[&quot;City&quot;];
+    <span class="co">// get the results of each column</span>
+    <span class="dt">string</span> contact = (<span class="dt">string</span>) rdr[<span class="st">&quot;ContactName&quot;</span>];
+    <span class="dt">string</span> company = (<span class="dt">string</span>) rdr[<span class="st">&quot;CompanyName&quot;</span>];
+    <span class="dt">string</span> city    = (<span class="dt">string</span>) rdr[<span class="st">&quot;City&quot;</span>];
 
-    // print out the results
-    Console.Write(&quot;{0,-25}&quot;, contact);
-    Console.Write(&quot;{0,-20}&quot;, city);
-    Console.Write(&quot;{0,-25}&quot;, company);
-    Console.WriteLine();
+    <span class="co">// print out the results</span>
+    Console.<span class="fu">Write</span>(<span class="st">&quot;{0,-25}&quot;</span>, contact);
+    Console.<span class="fu">Write</span>(<span class="st">&quot;{0,-20}&quot;</span>, city);
+    Console.<span class="fu">Write</span>(<span class="st">&quot;{0,-25}&quot;</span>, company);
+    Console.<span class="fu">WriteLine</span>();
 }</code></pre>
 <h2 id="closing-sqldatareader">Closing <code>SqlDataReader</code></h2>
 <p>Always remember to close and dispose your <code>SqlDataReader</code>, just like you need to close the <code>SqlConnection</code>. In fact, <code>SqlCommand</code> also requires disposing (there is no Close method). In order to be safe, it is recommended to use the <code>using</code> statement to let the Garbage Collector handle all three objects.</p>
 <h2 id="recommended-pattern">Recommended pattern</h2>
-<pre class="csharp"><code>using(SqlConnection connection = new SqlConnection(&quot;connection string&quot;))
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">using</span>(SqlConnection connection = <span class="kw">new</span> <span class="fu">SqlConnection</span>(<span class="st">&quot;connection string&quot;</span>))
 {
-  connection.Open();
-  using(SqlCommand cmd = new SqlCommand(&quot;SELECT * FROM SomeTable&quot;, connection))
+  connection.<span class="fu">Open</span>();
+  <span class="kw">using</span>(SqlCommand cmd = <span class="kw">new</span> <span class="fu">SqlCommand</span>(<span class="st">&quot;SELECT * FROM SomeTable&quot;</span>, connection))
   {
-    using (SqlDataReader reader = cmd.ExecuteReader())
+    <span class="kw">using</span> (SqlDataReader reader = cmd.<span class="fu">ExecuteReader</span>())
     {
-        if (reader != null)
+        <span class="kw">if</span> (reader != <span class="kw">null</span>)
         {
-            while (reader.Read())
+            <span class="kw">while</span> (reader.<span class="fu">Read</span>())
             {
-              //do something
+              <span class="co">//do something</span>
             }
         }
-    } // reader closed and disposed up here
-  } // command disposed here
-} //connection closed and disposed here</code></pre>
+    } <span class="co">// reader closed and disposed up here</span>
+  } <span class="co">// command disposed here</span>
+} <span class="co">//connection closed and disposed here</span></code></pre>
 <h2 id="working-with-disconnected-data">Working with Disconnected Data</h2>
 <p>A <code>DataSet</code> is an in-memory data store that can hold numerous tables. <code>DataSets</code> only hold data and do not interact with a data source. It is the <code>SqlDataAdapter</code> that manages connections with the data source and gives us disconnected behavior. The <code>SqlDataAdapter</code> opens a connection only when required and closes it as soon as it has performed its task.</p>
 <h2 id="creating-a-dataset-object">Creating a <code>DataSet</code> Object</h2>
 <p>There isn’t anything special about instantiating a <code>DataSet</code>. You just create a new instance, just like any other object:</p>
-<pre class="csharp"><code>DataSet dsCustomers = new DataSet();</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs">DataSet dsCustomers = <span class="kw">new</span> <span class="fu">DataSet</span>();</code></pre>
 <p>Right now, the <code>DataSet</code> is empty and you need a <code>SqlDataAdapter</code> to load it.</p>
 <h2 id="creating-a-sqldataadapter">Creating A <code>SqlDataAdapter</code></h2>
 <p>The <code>SqlDataAdapter</code> holds the SQL commands and connection object for reading and writing data. You initialize it with a SQL select statement and connection object:</p>
-<pre class="csharp"><code>SqlDataAdapter daCustomers = new SqlDataAdapter(&quot;select CustomerID, CompanyName from Customers&quot;, conn);</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs">SqlDataAdapter daCustomers = <span class="kw">new</span> <span class="fu">SqlDataAdapter</span>(<span class="st">&quot;select CustomerID, CompanyName from Customers&quot;</span>, conn);</code></pre>
 <p>The code above creates a new <code>SqlDataAdapter</code>, <strong>daCustomers</strong>. The SQL select statement specifies what data will be read into a <code>DataSet</code>. The connection object, <strong>conn</strong>, should have already been instantiated, but <em>not opened</em>. It is the <code>SqlDataAdapter</code>’s responsibility to open and close the connection.</p>
 <h2 id="insert-update-delete">INSERT, UPDATE, DELETE</h2>
 <p>The code showed how to specify the select statement, but didn’t show the <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> statements. These are added to the <code>SqlDataAdapter</code> after it is instantiated.</p>
 <p>There are two ways to add <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> commands: manually via <code>SqlDataAdapter</code> properties or with a <code>SqlCommandBuilder</code>.</p>
 <h2 id="sqlcommandbuilder---12"><code>SqlCommandBuilder - 1/2</code></h2>
-<pre class="csharp"><code>SqlCommandBuilder cmdBldr = new SqlCommandBuilder(daCustomers);</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs">SqlCommandBuilder cmdBldr = <span class="kw">new</span> <span class="fu">SqlCommandBuilder</span>(daCustomers);</code></pre>
 <p>Notice in the code above that the <code>SqlCommandBuilder</code> is instantiated with a single constructor parameter of the <code>SqlDataAdapter</code> instance. The <code>SqlCommandBuilder</code> will read the SQL SELECT statement (specified when the <code>SqlDataAdapter</code> was instantiated), infer the INSERT, UPDATE, and DELETE commands, and assign the new commands to the Insert, Update, and Delete properties of the <code>SqlDataAdapter</code>, respectively.</p>
 <h2 id="sqlcommandbuilder---22"><code>SqlCommandBuilder - 2/2</code></h2>
 <p>The <code>SqlCommandBuilder</code> has limitations. It works when you do a simple select statement on a single table. However, when you need a join of two or more tables or must do a stored procedure, it won’t work.</p>
 <h2 id="filling-the-dataset">Filling the <code>DataSet</code></h2>
 <p>Once you have a <code>DataSet</code> and <code>SqlDataAdapter</code> instances, you need to fill the <code>DataSet</code>. To do it we use the <code>Fill</code> method of the <code>SqlDataAdapter</code>:</p>
-<pre class="csharp"><code>daCustomers.Fill(dsCustomers, &quot;Customers&quot;);</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs">daCustomers.<span class="fu">Fill</span>(dsCustomers, <span class="st">&quot;Customers&quot;</span>);</code></pre>
 <p>The <code>Fill</code> method, in the code above, takes two parameters: a <code>DataSet</code> and a table name. The <code>DataSet</code> must be instantiated before trying to fill it with data. The second parameter is the name of the table that will be created in the <code>DataSet</code>.</p>
 <h2 id="updating-changes">Updating Changes</h2>
 <p>After modifications are made to the data, you’ll want to write the changes back to the database. The following code shows how to use the Update method of the <code>SqlDataAdapter</code> to push modifications back to the database.</p>
-<pre class="csharp"><code>daCustomers.Update(dsCustomers, &quot;Customers&quot;);</code></pre>
+<pre class="sourceCode cs"><code class="sourceCode cs">daCustomers.<span class="fu">Update</span>(dsCustomers, <span class="st">&quot;Customers&quot;</span>);</code></pre>
 <p>The <code>Update</code> method, above, is called on the <code>SqlDataAdapter</code> instance that originally filled the dsCustomers <code>DataSet</code>. The second parameter to the Update method specifies which table, from the <code>DataSet</code>, to update.</p>
 <h2 id="stored-procedures">Stored procedures</h2>
 <p>A stored procedure is a pre-defined, reusable routine that is stored in a database. SQL Server compiles stored procedures, which makes them more efficient to use. Therefore, rather than dynamically building queries in your code, you can take advantage of the reuse and performance benefits of stored procedures.</p>
 <h2 id="executing-a-stored-procedure">Executing a Stored Procedure</h2>
 <p>In addition to commands built with strings, the SqlCommand type can be used to execute stored procedures. There are two tasks require to make this happen: let the SqlCommand object know which stored procedure to execute and tell the SqlCommand object that it is executing a stored procedure. These two steps are shown below:</p>
-<pre class="csharp"><code>// 1. create a command object identifying the stored procedure
-SqlCommand cmd  = new SqlCommand(&quot;Ten Most Expensive Products&quot;, conn);
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">// 1. create a command object identifying the stored procedure</span>
+SqlCommand cmd  = <span class="kw">new</span> <span class="fu">SqlCommand</span>(<span class="st">&quot;Ten Most Expensive Products&quot;</span>, conn);
 
-// 2. set the command object so it knows to execute a stored procedure
-cmd.CommandType = CommandType.StoredProcedure;</code></pre>
+<span class="co">// 2. set the command object so it knows to execute a stored procedure</span>
+cmd.<span class="fu">CommandType</span> = CommandType.<span class="fu">StoredProcedure</span>;</code></pre>
 <h2 id="sending-parameters-to-stored-procedures">Sending Parameters to Stored Procedures</h2>
 <p>Using parameters for stored procedures is the same as using parameters for query string commands. The following code shows this:</p>
-<pre class="csharp"><code>// 1. create a command object identifying the stored procedure
-SqlCommand cmd  = new SqlCommand(&quot;CustOrderHist&quot;, conn);
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">// 1. create a command object identifying the stored procedure</span>
+SqlCommand cmd  = <span class="kw">new</span> <span class="fu">SqlCommand</span>(<span class="st">&quot;CustOrderHist&quot;</span>, conn);
 
-// 2. set the command object so it knows to execute a stored procedure
-cmd.CommandType = CommandType.StoredProcedure;
+<span class="co">// 2. set the command object so it knows to execute a stored procedure</span>
+cmd.<span class="fu">CommandType</span> = CommandType.<span class="fu">StoredProcedure</span>;
 
-// 3. add parameter to command, which will be passed to the stored procedure
-cmd.Parameters.Add(new SqlParameter(&quot;@CustomerID&quot;, custId));</code></pre>
+<span class="co">// 3. add parameter to command, which will be passed to the stored procedure</span>
+cmd.<span class="fu">Parameters</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">SqlParameter</span>(<span class="st">&quot;@CustomerID&quot;</span>, custId));</code></pre>
 <h2 id="catching-the-errors-from-sql-server">Catching the errors from SQL Server</h2>
 <p>SQL Server generates the errors for you to catch and work on them. In the namespace we're working there are two classes that work with the errors and exceptions thrown by SQL Server, </p>
 <ol>
@@ -271,15 +271,15 @@ cmd.Parameters.Add(new SqlParameter(&quot;@CustomerID&quot;, custId));</code></p
 <p>These are used to catch the exceptions in the code and get the error details respectively. <code>SqlException</code> always contains at least one instance of <code>SqlError</code>.</p>
 <h2 id="catching-the-errors-from-sql-server-1">Catching the errors from SQL Server</h2>
 <h3 id="example">Example</h3>
-<pre class="csharp"><code>try
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">try</span>
 {
-  //Do something here
+  <span class="co">//Do something here</span>
 }
-catch (SqlException ex)
+<span class="kw">catch</span> (SqlException ex)
 {
-  for (int i = 0; i &lt; exception.Errors.Count; i++)
+  <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; exception.<span class="fu">Errors</span>.<span class="fu">Count</span>; i++)
   {
-    Console.WriteLine(&quot;Error: &quot; + exception.Errors[i].ToString());
+    Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Error: &quot;</span> + exception.<span class="fu">Errors</span>[i].<span class="fu">ToString</span>());
   }
 }</code></pre>
 

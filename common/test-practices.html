@@ -401,104 +401,104 @@
 <h2 id="java-example-running-junit">Java Example: Running JUnit</h2>
 <p><img src="media/junit.gif" alt="JUnit execution" /></p>
 <h2 id="c-example-money">C# Example (Money)</h2>
-<pre class="csharp"><code>using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Text</span>;
 
-namespace MoneyApp
+<span class="kw">namespace</span> MoneyApp
 {
-    public class Money
+    <span class="kw">public</span> <span class="kw">class</span> Money
     {
-        public int value;
-        public string currency;
+        <span class="kw">public</span> <span class="dt">int</span> value;
+        <span class="kw">public</span> <span class="dt">string</span> currency;
 
-        public Money(int p1, string p2)
+        <span class="kw">public</span> <span class="fu">Money</span>(<span class="dt">int</span> p1, <span class="dt">string</span> p2)
         {
-            this.value = p1;
-            this.currency = p2;
+            <span class="kw">this</span>.<span class="fu">value</span> = p1;
+            <span class="kw">this</span>.<span class="fu">currency</span> = p2;
         }
     }
 }</code></pre>
 <h2 id="c-example-moneybag">C# Example (MoneyBag)</h2>
-<pre class="csharp"><code>using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MoneyApp;
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Text</span>;
+<span class="kw">using</span> MoneyApp;
 
-namespace MoneyApp
+<span class="kw">namespace</span> MoneyApp
 {
-    public class MoneyBag
+    <span class="kw">public</span> <span class="kw">class</span> MoneyBag
     {
-        public MyList bag;
+        <span class="kw">public</span> MyList bag;
 
-        public MoneyBag(MyList bag)
+        <span class="kw">public</span> <span class="fu">MoneyBag</span>(MyList bag)
         {
-            this.bag = bag;
+            <span class="kw">this</span>.<span class="fu">bag</span> = bag;
         }
 
-        public MoneyBag()
+        <span class="kw">public</span> <span class="fu">MoneyBag</span>()
         {
-            bag = new MyList();
+            bag = <span class="kw">new</span> <span class="fu">MyList</span>();
         }
 
-        public void add(Money moneyObj)
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(Money moneyObj)
         {
-            bool found = false;
-            foreach(Money money in bag)
+            <span class="dt">bool</span> found = <span class="kw">false</span>;
+            <span class="kw">foreach</span>(Money money <span class="kw">in</span> bag)
             {
-                if (money.currency.Equals(moneyObj.currency))
+                <span class="kw">if</span> (money.<span class="fu">currency</span>.<span class="fu">Equals</span>(moneyObj.<span class="fu">currency</span>))
                 {
-                    money.value += moneyObj.value;
-                    found = true;
+                    money.<span class="fu">value</span> += moneyObj.<span class="fu">value</span>;
+                    found = <span class="kw">true</span>;
                 }
             }
-            if (found == false)
-                bag.Add(moneyObj);
+            <span class="kw">if</span> (found == <span class="kw">false</span>)
+                bag.<span class="fu">Add</span>(moneyObj);
         }
     }
 }</code></pre>
 <h2 id="c-example-tests">C# Example (Tests)</h2>
-<pre class="csharp"><code>using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using MoneyApp;
+<pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Text</span>;
+<span class="kw">using</span> NUnit.<span class="fu">Framework</span>;
+<span class="kw">using</span> MoneyApp;
 
-namespace MoneyTests
+<span class="kw">namespace</span> MoneyTests
 {
     [TestFixture]
-    public class MoneyTests
+    <span class="kw">public</span> <span class="kw">class</span> MoneyTests
     {
-        private Money f12CHF;
-        private Money f14CHF;
-        private Money f28USD;
+        <span class="kw">private</span> Money f12CHF;
+        <span class="kw">private</span> Money f14CHF;
+        <span class="kw">private</span> Money f28USD;
 
         [SetUp]
-        public void setUp()
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setUp</span>()
         {
-            f12CHF = new Money(12, &quot;CHF&quot;);
-            f14CHF = new Money(14, &quot;CHF&quot;);
-            f28USD = new Money(28, &quot;USD&quot;);
+            f12CHF = <span class="kw">new</span> <span class="fu">Money</span>(<span class="dv">12</span>, <span class="st">&quot;CHF&quot;</span>);
+            f14CHF = <span class="kw">new</span> <span class="fu">Money</span>(<span class="dv">14</span>, <span class="st">&quot;CHF&quot;</span>);
+            f28USD = <span class="kw">new</span> <span class="fu">Money</span>(<span class="dv">28</span>, <span class="st">&quot;USD&quot;</span>);
         }
         [Test]
-        public void testMoneyMoneyBag()
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testMoneyMoneyBag</span>()
         {
-            // [12 CHF] + [14 CHF] + [28 USD] == {[26 CHF][28 USD]}
-            MyList bag = new MyList();
-            Money f26CHF = new Money(26, &quot;CHF&quot;);
-            bag.Add(f26CHF);
-            bag.Add(f28USD);
+            <span class="co">// [12 CHF] + [14 CHF] + [28 USD] == {[26 CHF][28 USD]}</span>
+            MyList bag = <span class="kw">new</span> <span class="fu">MyList</span>();
+            Money f26CHF = <span class="kw">new</span> <span class="fu">Money</span>(<span class="dv">26</span>, <span class="st">&quot;CHF&quot;</span>);
+            bag.<span class="fu">Add</span>(f26CHF);
+            bag.<span class="fu">Add</span>(f28USD);
 
-            MoneyBag expected = new MoneyBag(bag);
-            MoneyBag actual = new MoneyBag();
-            actual.add(f12CHF);
-            actual.add(f28USD);
-            actual.add(f14CHF);
-            bool result = expected.bag.Equals(actual.bag);
-            Assert.AreEqual(true, result);
+            MoneyBag expected = <span class="kw">new</span> <span class="fu">MoneyBag</span>(bag);
+            MoneyBag actual = <span class="kw">new</span> <span class="fu">MoneyBag</span>();
+            actual.<span class="fu">add</span>(f12CHF);
+            actual.<span class="fu">add</span>(f28USD);
+            actual.<span class="fu">add</span>(f14CHF);
+            <span class="dt">bool</span> result = expected.<span class="fu">bag</span>.<span class="fu">Equals</span>(actual.<span class="fu">bag</span>);
+            Assert.<span class="fu">AreEqual</span>(<span class="kw">true</span>, result);
         }
     }
 }</code></pre>
