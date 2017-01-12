@@ -1,4 +1,4 @@
-## ORM
+### ORM
 
 Object-relational mapping is a programming technique for converting data between incompatible type systems in object-oriented programming languages. 
 
@@ -153,7 +153,7 @@ In this approach, your code defines only the database mappings and EF will handl
 
 
 ## 1. Design our Domain Model 1/2
-```csharp
+```cs
 public class Blog
 {
     //Primary Key
@@ -184,7 +184,7 @@ public class Post
 When we are designing our model we have in mind some conventions.
 Conventions are sets of rules that are used to automatically configure a conceptual model based on class definitions when working with Code First.
 
-```csharp
+```cs
 public class Blog
 {
     //Primary Key
@@ -192,7 +192,7 @@ public class Blog
     //....
 }
 ```
-```csharp
+```cs
     //Foreing Key
     public int BlogId { get; set; }
     //Navigation Property
@@ -219,7 +219,7 @@ DbContext is an important part of Entity Framework. It is a bridge between your 
 
 ## 2. Create our DbContext 3/3
 
-```csharp
+```cs
 public class BlogContext : DbContext
 {
 	public BlogContext() : base ("BlogContextConStringName")
@@ -299,7 +299,7 @@ To make changes
 
 Pull data from the Database
 
-```csharp
+```cs
 public static void PullDataFromTheDatabase()
 {
     var lstPosts = new List<Post>();
@@ -318,7 +318,7 @@ public static void PullDataFromTheDatabase()
 
 Insert in the database a new object
 
-```csharp
+```cs
 public static void InsertDataToTheDatabase()
 {
     var blog = new Blog()
@@ -343,7 +343,7 @@ public static void InsertDataToTheDatabase()
 
 Find Data And Update
 
-```csharp
+```cs
 public static void FindDataAndUpdate()
 {
     using (var db = new BlogContext())
@@ -360,7 +360,7 @@ public static void FindDataAndUpdate()
 
 Find Data And Delete it
 
-```csharp
+```cs
 public static void FindDataAndDelete()
 {
     using (var db = new BlogContext()) {
@@ -376,7 +376,7 @@ public static void FindDataAndDelete()
 
 Join 
 
-```csharp
+```cs
 public static void ASimpleJoin()
 {
 	//don't forget using System.Data.Entity;
@@ -399,7 +399,7 @@ public static void ASimpleJoin()
 
 Other stuff Linq can perform
 
-```csharp
+```cs
 public static void CounAllPosts()
 {
     using (var db = new BlogContext()) {
@@ -426,7 +426,7 @@ public static void CounAllPosts()
 
 Note! DataAnnotations only give you subset of configuration options. Fluent API provides full set of configuration options available in Code First. 
 
-```csharp
+```cs
 [Table("Product_Order")]
 public class Order
 {
@@ -454,7 +454,7 @@ public class Order
 
 The code first fluent API is most commonly accessed by overriding the OnModelCreating method on your derived DbContext. 
 
-```csharp
+```cs
 public class BlogContext : DbContext
 {
 	public BlogContext() : base ("BlogContextConStringName")
@@ -485,7 +485,7 @@ public class BlogContext : DbContext
 ##Data Annotation -- Fluent API 4/4
 ###A Comparison
 
-```csharp
+```cs
 
 //Data Annotation
 [Column("Order_ID")]
@@ -554,7 +554,7 @@ modelBuilder.Entity<Order>()
 
 ##Seeding 3/3
 
-```csharp
+```cs
 
 protected override void Seed(BlogContext context)
 {

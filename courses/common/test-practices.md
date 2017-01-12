@@ -391,7 +391,7 @@ public static Test suite() {
 
 
 ## C# Example (Money)
-```csharp
+```cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -415,7 +415,7 @@ namespace MoneyApp
 
 
 ## C# Example (MoneyBag)
-```csharp
+```cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -458,7 +458,7 @@ namespace MoneyApp
 
 
 ## C# Example (Tests)
-```csharp
+```cs
 using System;
 using System.Collections.Generic;
 using System.Linq;

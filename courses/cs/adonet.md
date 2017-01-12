@@ -13,7 +13,7 @@ ADO.NET provides a relatively common way to interact with data sources, but come
 
 ## SQL Data Provider
 Since, we are interested in the SQL Server, we will use the .NET Framework Data Provider for SQL Server which resides in the `System.Data.SqlCient` namespace.
-```csharp
+```cs
 using System.Data.SqlClient;
 ```
 
@@ -39,7 +39,7 @@ http://www.connectionstrings.com/ is the website where you can easily find the 
 
 
 ## Example ConnectionString - 1/3
-```csharp
+```cs
 "Data Source=(LocalDB)\v11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True"
 ```
 * `DataSource`: For SQL Server Express, LocalDB, SQL Server, and SQL Database, this setting specifies the name of the server and the SQL Server instance on the server. For example, you can specify ServerName\Instancename. You can use ".", "(local)", or "localhost" in place of the server name to specify the local computer, and you can use an IP address instead of the server name.
@@ -47,7 +47,7 @@ http://www.connectionstrings.com/ is the website where you can easily find the 
 
 
 ## Example ConnectionString - 2/3
-```csharp
+```cs
 "Data Source=(LocalDB)\v11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True"
 ```
 * `InitialCatalog` specifies the name of the database in the SQL Server instance catalog. If omitted, ADO.NET connects to the default database for the SQL Server instance.
@@ -55,7 +55,7 @@ http://www.connectionstrings.com/ is the website where you can easily find the 
 
 
 ## Example ConnectionString - 3/3
-```csharp
+```cs
 "Data Source=(LocalDB)\v11.0;AttachDbFileName=|DataDirectory|\DatabaseFileName.mdf;InitialCatalog=DatabaseName;Integrated Security=True;MultipleActiveResultSets=True"
 ```
 * The `MultipleActiveResultSets` (MARS) option makes it possible to execute multiple queries simultaneously. This is a common scenario when you use the Entity Framework.
@@ -71,7 +71,7 @@ The purpose of creating a `SqlConnection` object is so you can enable other ADO.
 
 
 ## Demo Code
-```csharp
+```cs
 // 1. Instantiate the connection
 SqlConnection conn = new SqlConnection(
   "Data Source=(local);Initial Catalog=Northwind;Integrated Security=SSPI");
@@ -100,14 +100,14 @@ A `SqlCommand` object allows you to specify what type of interaction you want to
 
 ## SqlCommand
 Similar to other C# objects, you instantiate a `SqlCommand` object via the new instance declaration, as follows:
-```csharp
+```cs
 SqlCommand cmd = new SqlCommand("select CategoryName from Categories", conn);
 ```
 
 
 ## Quering data
 When using a SQL `SELECT` command, you retrieve a data set for viewing. To accomplish this with a `SqlCommand` object, you would use the `ExecuteReader` method, which returns a `SqlDataReader` object. The example below shows how to use the `SqlCommand` object to obtain a `SqlDataReader` object:
-```csharp
+```cs
 // 1. Instantiate a new command with a query and connection
  SqlCommand cmd = new SqlCommand("select CategoryName from Categories", conn);
 
@@ -118,7 +118,7 @@ When using a SQL `SELECT` command, you retrieve a data set for viewing. To accom
 
 ## Getting single values
 Sometimes all we need from a database is a single value, which could be a count, sum, average, or other aggregated value from a data set. Performing an `ExecuteReader` and calculating the result in the code is not the most efficient way to do this. The best choice is to let the database perform the work and return just the single value we need. The following example shows how to do this with the `ExecuteScalar` method:
-```csharp
+```cs
 // 1. Instantiate a new command
  SqlCommand cmd = new SqlCommand("select count(*) from Categories", conn);
 
@@ -129,7 +129,7 @@ Sometimes all we need from a database is a single value, which could be a count,
 
 ## Inserting data
 To insert data into a database, use the `ExecuteNonQuery` method of the `SqlCommand` object. The following code shows how to insert data into a database table:
-```csharp
+```cs
 // prepare command string
 string insertString = "insert into Categories (CategoryName, Description) values ('Miscellaneous', 'Whatever doesn''t fit elsewhere')";
 
@@ -143,7 +143,7 @@ cmd.ExecuteNonQuery();
 
 ## Updating data
 The ExecuteNonQuery method is also used for updating data. The following code shows how to update data:
-```csharp
+```cs
 // prepare command string
  string updateString = @"
  update Categories
@@ -163,7 +163,7 @@ The ExecuteNonQuery method is also used for updating data. The following code sh
 
 ## Deleting data
 You can also delete data using the `ExecuteNonQuery` method. The following example shows how to delete a record from a database:
-```csharp
+```cs
 // prepare command string
  string deleteString = @"
  delete from Categories
@@ -185,7 +185,7 @@ You can also delete data using the `ExecuteNonQuery` method. The following examp
 
 ## Parameterizing the query
 Parameterizing the query is done by using the `SqlParameter` passed into the command. For example, you might want to search for the records where a criteria matches. You can denote that criteria, by passing the variable name into the query and then adding the value to it using the `SqlParameter` object.
-```csharp
+```cs
 // Create the command
 SqlCommand insertCommand = new SqlCommand("INSERT INTO TableName
 (FirstColumn, SecondColumn, ThirdColumn, ForthColumn)
@@ -204,7 +204,7 @@ In C# there are some objects which use the resources of the system. Which need t
 
 
 ## `using` example
-```csharp
+```cs
 SqlConnection conn = new SqlConnection("connection string");
 conn.Open();
 
@@ -215,7 +215,7 @@ conn.Dipose();
 // connections don't get flushed
 ```
 becomes
-```csharp
+```cs
 using (SqlConnection conn = new SqlConnection("connection string"))
 {
   conn.Open();
@@ -231,7 +231,7 @@ You can read from `SqlDataReader` objects in a forward-only sequential manner. O
 
 ## Creating a `SqlDataReader` Object
 Getting an instance of a SqlDataReader is a little different than the way you instantiate other ADO.NET objects. You must call `ExecuteReader` on a `SqlCommand` object, like this:
-```csharp
+```cs
 SqlDataReader rdr = cmd.ExecuteReader();
 ```
 The `ExecuteReader` method of the `SqlCommand` object returns a `SqlDataReader` instance. Creating a `SqlDataReader` with the new operator doesn’t do anything for you.
@@ -239,7 +239,7 @@ The `ExecuteReader` method of the `SqlCommand` object returns a `SqlDataReader` 
 
 ## Reading data
 The typical method of reading from the data stream returned by the SqlDataReader is to iterate through each row with a while loop. The following code shows how to accomplish this:
-```csharp
+```cs
 while (rdr.Read())
 {
 	// get the results of each column
@@ -261,7 +261,7 @@ Always remember to close and dispose your `SqlDataReader`, just like you need to
 
 
 ## Recommended pattern
-```csharp
+```cs
 using(SqlConnection connection = new SqlConnection("connection string"))
 {
   connection.Open();
@@ -288,7 +288,7 @@ A `DataSet` is an in-memory data store that can hold numerous tables. `DataSets`
 
 ##Creating a `DataSet` Object
 There isn’t anything special about instantiating a `DataSet`. You just create a new instance, just like any other object:
-```csharp
+```cs
 DataSet dsCustomers = new DataSet();
 ```
 Right now, the `DataSet` is empty and you need a `SqlDataAdapter` to load it.
@@ -296,7 +296,7 @@ Right now, the `DataSet` is empty and you need a `SqlDataAdapter` to load it.
 
 ## Creating A `SqlDataAdapter`
 The `SqlDataAdapter` holds the SQL commands and connection object for reading and writing data. You initialize it with a SQL select statement and connection object:
-```csharp
+```cs
 SqlDataAdapter daCustomers = new SqlDataAdapter("select CustomerID, CompanyName from Customers", conn);
 ```
 The code above creates a new `SqlDataAdapter`, **daCustomers**. The SQL select statement specifies what data will be read into a `DataSet`. The connection object, **conn**, should have already been instantiated, but *not opened*. It is the `SqlDataAdapter`’s responsibility to open and close the connection.
@@ -309,7 +309,7 @@ There are two ways to add `INSERT`, `UPDATE`, and `DELETE` commands: manually vi
 
 
 ## `SqlCommandBuilder - 1/2`
-```csharp
+```cs
 SqlCommandBuilder cmdBldr = new SqlCommandBuilder(daCustomers);
 ```
 Notice in the code above that the `SqlCommandBuilder` is instantiated with a single constructor parameter of the `SqlDataAdapter` instance. The `SqlCommandBuilder` will read the SQL SELECT statement (specified when the `SqlDataAdapter` was instantiated), infer the INSERT, UPDATE, and DELETE commands, and assign the new commands to the Insert, Update, and Delete properties of the `SqlDataAdapter`, respectively.
@@ -321,7 +321,7 @@ The `SqlCommandBuilder` has limitations. It works when you do a simple select st
 
 ## Filling the `DataSet`
 Once you have a `DataSet` and `SqlDataAdapter` instances, you need to fill the `DataSet`. To do it we use the `Fill` method of the `SqlDataAdapter`:
-```csharp
+```cs
 daCustomers.Fill(dsCustomers, "Customers");
 ```
 The `Fill` method, in the code above, takes two parameters: a `DataSet` and a table name. The `DataSet` must be instantiated before trying to fill it with data. The second parameter is the name of the table that will be created in the `DataSet`.
@@ -329,7 +329,7 @@ The `Fill` method, in the code above, takes two parameters: a `DataSet` and a ta
 
 ## Updating Changes
 After modifications are made to the data, you’ll want to write the changes back to the database. The following code shows how to use the Update method of the `SqlDataAdapter` to push modifications back to the database.
-```csharp
+```cs
 daCustomers.Update(dsCustomers, "Customers");
 ```
 The `Update` method, above, is called on the `SqlDataAdapter` instance that originally filled the dsCustomers `DataSet`. The second parameter to the Update method specifies which table, from the `DataSet`, to update.
@@ -341,7 +341,7 @@ A stored procedure is a pre-defined, reusable routine that is stored in a databa
 
 ## Executing a Stored Procedure
 In addition to commands built with strings, the SqlCommand type can be used to execute stored procedures. There are two tasks require to make this happen: let the SqlCommand object know which stored procedure to execute and tell the SqlCommand object that it is executing a stored procedure. These two steps are shown below:
-```csharp
+```cs
 // 1. create a command object identifying the stored procedure
 SqlCommand cmd  = new SqlCommand("Ten Most Expensive Products", conn);
 
@@ -352,7 +352,7 @@ cmd.CommandType = CommandType.StoredProcedure;
 
 ## Sending Parameters to Stored Procedures
 Using parameters for stored procedures is the same as using parameters for query string commands. The following code shows this:
-```csharp
+```cs
 // 1. create a command object identifying the stored procedure
 SqlCommand cmd  = new SqlCommand("CustOrderHist", conn);
 
@@ -374,7 +374,7 @@ These are used to catch the exceptions in the code and get the error details res
 
 ## Catching the errors from SQL Server
 ### Example
-```csharp
+```cs
 try
 {
   //Do something here
