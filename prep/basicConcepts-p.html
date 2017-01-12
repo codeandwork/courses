@@ -120,6 +120,13 @@
 					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+
+			Reveal.configure({
+                          keyboard: {
+                            38: 'prev', // go to the previous slide when the Doosl up key is pressed
+                            40: 'next'  // go to the next slide when the Doosl down key is pressed
+                          }
+                        });
 		</script>
 	</body>
 </html>
