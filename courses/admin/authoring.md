@@ -39,6 +39,7 @@
 * End code listings with three backticks on a single line
 * Indent Markdown code with a space to avoid it being interpreted by _reveal.js_
 * Prepend a space when closing a script tag in HTML listings (`</ script>`)
+* Avoid two blank lines in the code; they confuse *reveal.js*.
 
 
 ## Images and other media
