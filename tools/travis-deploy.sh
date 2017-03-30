@@ -28,8 +28,10 @@ REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 
-# Clone the existing gh-pages for this repo into web/
-# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
+# Clone the existing gh-pages for this repo into a second working repository
+# in the web/ directory.
+# Create a new empty branch if gh-pages doesn't exist yet
+# (should only happen on first deploy)
 git clone $REPO web
 cd web
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
