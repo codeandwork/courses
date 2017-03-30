@@ -11,8 +11,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1107,7 +1107,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2536,7 +2535,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3027,7 +3025,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8758,6 +8755,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8960,8 +8960,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8984,6 +8990,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9120,6 +9136,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9209,6 +9228,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9253,6 +9275,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9549,6 +9574,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9569,11 +9595,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11244,7 +11265,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11556,6 +11577,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11569,6 +11591,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11629,8 +11654,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11641,9 +11668,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11808,7 +11837,9 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[1]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11852,7 +11883,9 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[2]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11893,7 +11926,9 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[3]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11934,7 +11969,9 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11975,7 +12012,9 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12016,7 +12055,9 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[6]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12062,7 +12103,9 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>&#34;Isn&#39;t,&#34; she said.
 </pre>
@@ -12105,7 +12148,9 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>First line.
 Second line.
@@ -12145,7 +12190,9 @@ Second line.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[9]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12189,7 +12236,9 @@ Second line.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>C:\some
 ame
@@ -12206,7 +12255,7 @@ ame
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">r&#39;C:\some\name&#39;</span><span class="p">)</span>  <span class="c1"># note the r before the quote</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\some\name&#39;</span><span class="p">)</span>  <span class="c1"># note the r before the quote</span>
 </pre></div>
 
 </div>
@@ -12217,7 +12266,9 @@ ame
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>C:\some\name
 </pre>
@@ -12265,7 +12316,9 @@ ame
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Usage: thingy [OPTIONS]
      -h                        Display this usage message
@@ -12306,7 +12359,9 @@ ame
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[13]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12347,7 +12402,9 @@ ame
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[14]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12417,7 +12474,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[15]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12460,7 +12519,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[16]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12505,7 +12566,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[17]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12534,7 +12597,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[18]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12578,7 +12643,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[19]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12607,7 +12674,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[20]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12636,7 +12705,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[21]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12680,7 +12751,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[22]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12709,7 +12782,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[23]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12753,7 +12828,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[24]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12782,7 +12859,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[25]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12828,7 +12907,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[26]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12857,7 +12938,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[27]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12886,7 +12969,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[165]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[165]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12927,7 +13012,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[167]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[167]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12968,7 +13055,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[168]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[168]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12997,7 +13086,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[170]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[170]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13114,7 +13205,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[29]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13143,7 +13236,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[30]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13225,7 +13320,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[31]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13254,7 +13351,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[32]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13296,7 +13395,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[33]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13358,7 +13459,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Hello, World
 72:101:108:108:111:44:32:87:111:114:108:100:
@@ -13410,7 +13513,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>A = 65 B = 66 C = 67 D = 68 E = 69 F = 70 G = 71 H = 72 I = 73 J = 74 K = 75 L = 76 M = 77 N = 78 O = 79 P = 80 Q = 81 R = 82 S = 83 T = 84 U = 85 V = 86 W = 87 X = 88 Y = 89 Z = 90 
 a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k = 107 l = 108 m = 109 n = 110 o = 111 p = 112 q = 113 r = 114 s = 115 t = 116 u = 117 v = 118 w = 119 x = 120 y = 121 z = 122 </pre>
@@ -13452,7 +13557,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Καλημέρα, Κόσμε
 922:945:955:951:956:941:961:945:44:32:922:972:963:956:949:</pre>
@@ -13494,7 +13601,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>你好，世界
 20320:22909:65292:19990:30028:</pre>
@@ -13536,7 +13645,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>こんにちは世界
 12371:12435:12395:12385:12399:19990:30028:</pre>
@@ -13578,7 +13689,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>안녕하세요 세계
 50504:45397:54616:49464:50836:32:49464:44228:</pre>
@@ -13620,7 +13733,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>12345
 49:50:51:52:53:</pre>
@@ -13660,7 +13775,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Hello, World</pre>
 </div>
@@ -13705,7 +13822,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[42]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13734,7 +13853,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[43]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[43]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13763,7 +13884,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[44]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13792,7 +13915,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[45]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13839,7 +13964,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[46]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13880,7 +14007,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[47]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[47]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13909,7 +14038,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[48]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[48]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13938,7 +14069,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[171]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[171]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13979,7 +14112,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[176]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[176]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14008,7 +14143,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[175]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[175]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14054,7 +14191,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[50]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[50]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14095,7 +14234,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[51]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[51]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14137,7 +14278,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[52]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[52]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14167,7 +14310,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[53]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[53]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14210,7 +14355,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[54]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[54]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14252,7 +14399,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[55]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[55]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14283,7 +14432,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[56]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[56]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14314,7 +14465,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[57]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[57]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14346,7 +14499,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[58]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[58]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14386,7 +14541,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[59]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[59]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14430,7 +14587,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[60]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[60]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14459,7 +14618,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[61]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[61]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14488,7 +14649,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[62]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[62]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14575,7 +14738,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>2 1 0
 </pre>
@@ -14604,7 +14769,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[64]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[64]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14633,7 +14800,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[65]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[65]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14663,7 +14832,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[66]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[66]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14693,7 +14864,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[67]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[67]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14724,7 +14897,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[68]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[68]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14754,7 +14929,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[69]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[69]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14783,7 +14960,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[70]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[70]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14832,7 +15011,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[71]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[71]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14861,7 +15042,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[72]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[72]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14890,7 +15073,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[73]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[73]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14919,7 +15104,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[74]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[74]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14948,7 +15135,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[75]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[75]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -14977,7 +15166,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[76]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[76]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15026,7 +15217,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[77]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[77]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15119,7 +15312,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[79]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[79]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15165,7 +15360,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[80]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[80]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15223,7 +15420,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[81]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[81]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15253,7 +15452,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[82]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[82]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15283,7 +15484,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[83]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[83]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15314,7 +15517,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[84]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[84]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15344,7 +15549,9 @@ a = 97 b = 98 c = 99 d = 100 e = 101 f = 102 g = 103 h = 104 i = 105 j = 106 k =
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[85]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[85]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15393,7 +15600,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[86]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[86]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15435,7 +15644,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[87]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[87]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15508,7 +15719,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[89]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[89]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15552,7 +15765,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[90]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[90]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15601,7 +15816,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[91]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[91]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15645,7 +15862,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[92]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[92]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15693,7 +15912,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[93]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[93]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15723,7 +15944,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[94]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[94]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15753,7 +15976,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[95]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[95]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15967,7 +16192,9 @@ SyntaxError: invalid syntax</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>c == d: True
 c is d: False
@@ -15998,7 +16225,9 @@ c is d: False
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>ra == rb: True
 ra is rb: False
@@ -16046,7 +16275,9 @@ ra is rb: False
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>good evening
 </pre>
@@ -16095,7 +16326,9 @@ ra is rb: False
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>cat 3
 window 6
@@ -16144,7 +16377,9 @@ defenestrate 12
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[&#39;cat&#39;, &#39;window&#39;, &#39;defenestrate&#39;, &#39;defenestrate&#39;]
 </pre>
@@ -16209,7 +16444,9 @@ defenestrate 12
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0
 1
@@ -16270,7 +16507,9 @@ defenestrate 12
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>5 6 7 8 9 
 0 3 6 9 
@@ -16313,7 +16552,9 @@ defenestrate 12
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0 Mary
 1 had
@@ -16357,7 +16598,9 @@ defenestrate 12
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0 Mary
 1 had
@@ -16400,7 +16643,9 @@ defenestrate 12
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>range(0, 10)
 </pre>
@@ -16457,7 +16702,9 @@ defenestrate 12
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[106]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[106]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -16501,7 +16748,9 @@ defenestrate 12
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Found a name starting with C: Carol
 </pre>
@@ -16544,7 +16793,9 @@ defenestrate 12
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Found an even number 2
 Found a number 3
@@ -16615,7 +16866,9 @@ Found a number 9
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 
 </pre>
@@ -16664,7 +16917,9 @@ Found a number 9
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
 
@@ -16715,7 +16970,9 @@ None
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[111]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[111]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -16871,7 +17128,9 @@ None
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>-- This parrot wouldn&#39;t voom if you put 1000 volts through it.
 -- Lovely plumage, the Norwegian Blue
@@ -16973,7 +17232,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>3628800
 </pre>
@@ -17023,7 +17284,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[116]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[116]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17067,7 +17330,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[117]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[117]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17131,7 +17396,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[118]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[118]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17172,7 +17439,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[119]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[119]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17204,7 +17473,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[120]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[120]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17295,7 +17566,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0.0 1.0
 0.3141592653589793 0.9510565162951535
@@ -17347,7 +17620,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>(&#39;A&#39;, &#39;B&#39;)
 (&#39;A&#39;, &#39;C&#39;)
@@ -17396,7 +17671,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[124]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[124]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17447,7 +17724,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[125]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[125]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17476,7 +17755,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[126]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[126]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17507,7 +17788,9 @@ $$n!={\begin{cases}1&{\text{if }}n=0,\\(n-1)!\times n&{\text{if }}n>0\end{cases}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[127]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[127]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17556,7 +17839,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[128]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[128]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17586,7 +17871,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[129]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[129]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17670,7 +17957,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[130]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[130]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17699,7 +17988,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[131]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[131]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17728,7 +18019,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[132]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[132]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17773,7 +18066,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[133]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[133]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17815,7 +18110,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[134]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[134]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17844,7 +18141,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[135]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[135]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17873,7 +18172,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[136]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[136]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -17945,7 +18246,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{&#39;pear&#39;, &#39;apple&#39;, &#39;orange&#39;, &#39;banana&#39;}
 </pre>
@@ -17984,7 +18287,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[138]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[138]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18013,7 +18318,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[139]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[139]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18058,7 +18365,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{&#39;d&#39;, &#39;c&#39;, &#39;b&#39;, &#39;a&#39;, &#39;r&#39;}
 {&#39;l&#39;, &#39;m&#39;, &#39;c&#39;, &#39;a&#39;, &#39;z&#39;}
@@ -18098,7 +18407,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[141]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[141]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18139,7 +18450,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[142]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[142]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18180,7 +18493,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[143]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[143]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18221,7 +18536,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[144]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[144]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18263,7 +18580,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[145]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[145]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18385,7 +18704,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[146]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[146]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18414,7 +18735,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[147]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[147]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18460,7 +18783,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[148]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[148]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18504,7 +18829,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[149]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[149]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18548,7 +18875,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[150]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[150]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18589,7 +18918,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[151]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[151]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18618,7 +18949,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[152]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[152]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18661,7 +18994,9 @@ TypeError: 'tuple' object does not support item assignment</code></pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>robin the brave
 gallahad the pure
@@ -18702,7 +19037,9 @@ gallahad the pure
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>0 tic
 1 tac
@@ -18746,7 +19083,9 @@ gallahad the pure
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>What is your name?  It is lancelot.
 What is your quest?  It is the holy grail.
@@ -18788,7 +19127,9 @@ What is your favorite color?  It is blue.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>9
 7
@@ -18833,7 +19174,9 @@ What is your favorite color?  It is blue.
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+<div class="prompt"></div>
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>apple
 banana
@@ -18885,7 +19228,9 @@ pear
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[158]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[158]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -18931,7 +19276,9 @@ pear
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[159]:</div>
+<div class="output_area">
+<div class="prompt output_prompt">Out[159]:</div>
+
 
 
 <div class="output_text output_subarea output_execute_result">
