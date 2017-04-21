@@ -563,6 +563,9 @@ class Laptop {
 * Oracle Certified Professional Java SE 8 Programmer Exam 1Z0-809, A Comprehensive OCPJP 8 Certification Guide - S. G. Ganesh, Hari Kiran, Tushar Sharma
 * Java Programming - wikibooks ([link](https://en.wikibooks.org/wiki/Java_Programming))
 * Java™ Platform, Standard Edition 8 API Specification ([link](https://docs.oracle.com/javase/8/docs/api/))
+* Contact details
+ * email: antonios.gkortzis@aueb.gr
+ * slack: agkortzis 
 
 
 ## Exercise 1
@@ -637,9 +640,9 @@ Where *x*,*y* and *r* are the values of the current circle
 
 
 ## Exercise 2
-* Create a *class diagram* (on paper or any other tool) for the relation among the following entities:
+* Create a *class diagram* (on paper or any other tool) for the relation among the following entities (Each entity is a *Class*):
  * There is a *Car* that has a *CarLicense*. The *CarLicense* cannot exist without a *Car*.
- * There is a *Driver* that owns a *DriversLicense*. The *DriversLicense* cannot exist without a *Driver*.
+ * There is a *Driver* that owns (only one) *DriversLicense*. The *DriversLicense* cannot exist without a *Driver*.
  * The *Driver* owns one or more *Car*s. The *Car* exists even without a *Driver*.
 
 
@@ -650,62 +653,71 @@ Where *x*,*y* and *r* are the values of the current circle
 
 ## Exercise 3
 You have the following relations between entities:
-* There is a *Library* that has a collection of *Book*s
+* There is a *Library* that has a collection (single dimension array) of *Book*s
 * Each *Book* has an *Author*
 * The *Library* is operated by a *Librarian*
-* The user can make request regarding authors and book availability only by asking the Librarian. No direct contact to the other entities should be attempted!
-* For all of the following classes create the getter and setter methods for interacting with their fields
+* The user can make requests regarding authors' and book availability only by asking the Librarian
+* For all of the following classes, additional to the requirements described in the slides, create the **getter and setter methods** for interacting with their instance variables and any necessary **constructors** 
 
 
 ## Exercise 3 (continued)
 * **Class Author**
-* Fields: *name* (String)
+* Fields: 
+ * **name**, of type *String*
 * Methods: 
- * *toString* (returns the name of the author in a message) 
+ * **toString**, return type String, returns the name of the author 
 
 
 ## Exercise 3 (continued)
 * **Class Book**
-* Fields: *title* (String), *author* (custom type Author), *isbn* (String), *physical_copies* (int), *available_copies* (int) and *times_rented* (int)
-* *isbn* should not be changed after the initialization
-* Methods: 
- * *toString* (returns the details of the book in printable way. the book author's details should be acquired with the *toString* method from the *Book* class)
- * *rentPhysicalCopy* (checks if there is an available copy for renting. If yes, then it prints a message of success. What fields should be modified upon success??) 
+* Fields: 
+ * **title**, type String, 
+ * **author**, type Author,
+ * **isbn**, type String,
+ * **physicalCopies**, type int,
+ * **availableCopies**, type int, and 
+ * **timesRented**, type int
+* **Important** : **isbn** cannot change after the initialization 
 
 
 ## Exercise 3 (continued)
 * **Class Book**
 * Methods:
- * *isAvailable* (return true when there is at least one available copy of the book, otherwise false)
- * *hasAuthor* (return true or false if a given name is the name of the book's author)
+ * **toString**, return type String. Returns the details of the book including the Author details. The Authors' details should be acquired by the proper **toString** method
+ * **rentPhysicalCopy**, type *void*. Checks if there is an available copy for renting. If yes, then it prints a message of success. **What fields should be modified upon a successful rental?** 
+ * **isAvailable**, return type boolean. Checks if there is at least one available physical copy of the book, and
+ * **hasAuthor**, return type boolean. Checks if a given name is the name of this book's author
 
 
 ## Exercise 3 (continued)
 * **Class Library**
-* Fields: books (array of *Books*)
+* Fields: 
+ * **books**, type Book[] (array of **Books**)
 * Methods:
- * *printAvailableBooks* (Checks the book collection and prints those that are available. Hint: Use the *isAvailable* and the *toString* methods from the *Book* class
- * *printBookDetails* (Searches for a book based on a given title. If the book exists then its details should be printed, otherwise an error message should be displayed)
+ * **printAvailableBooks**, type *void*. Prints books that have at least one available physical copy. Hint: Use the **isAvailable** and the **toString** methods from the **Book** class
+ * **printBookDetails** (Searches for a book based on a given title. If the book exists then its details should be printed, otherwise an error message should be displayed)
 
 
 ## Exercise 3 (continued)
 * **Class Library**
 * Methods:
- * *printBookFromAuthor* (prints only the books that have an author that matches a given name)
+ * **printBooksFromAuthor**, type void. Prints only the books that have an author that matches a given name
+ * **printTheMostPopularBook**, type void. Prints the book with the highest number of the **timesRented** field.
 
 
 ## Exercise 3 (continued)
 * **Class Librarian**
-* Fields: library (The *Library* that he manages)
+* Fields: 
+ * **library**, type **Library**. The library that he manages. 
 * Methods:
- * *findMeBooksFromAuthor* (Receives an author name and delegates the request to the library's *printBookFromAuthor* method)
- * *findMeAvailableBooks* (Delegates the request to the library's *printAvailableBooks* method)
- * *findMeBook* (Receives a book's title and delegates the request to the library's *printBookDetails* method)
+ * **findMeBooksFromAuthor**, type void. Receives an author name and delegates the request to the library's **printBooksFromAuthor** method
+ * **findMeAvailableBooks**, type void. Delegates the request to the library's **printAvailableBooks** method
+ * **findMeBook**, type void. Receives a book's title and delegates the request to the library's **printBookDetails** method
+ * **findMostPopularBook**, type void. Delegates the request to the library's **printTheMostPopularBook** method 
 
 
 ## Exercise 3 (continued)
-* Create a *TestLibrary* class which will execute the following commands:
-* Test the functionality of your "System" by asking the Librarian to fetch you information!
+* Create a **TestLibrary** class with a **main** method in which you will execute the following code block:
 ```java
 /** Create Random authors */
 Author ruth = new Author("Ruth");
@@ -743,12 +755,14 @@ Book[] books = {book1,book2,book3,book4,book5,book6,book7,
 book8,book9,book10,book11,book12,book13,book14,book15,
 book16,book17,book18,book19,book20};/** Assign the book collection to the library */
 Library library = new Library(books);
-/** Librarian, the_guy_who _knows_a_lot, undertakes the operation of the library */
-Librarian the_guy = new Librarian(library);
-the_guy.findMeAvailableBooks();
-the_guy.findMeBook("Book3");
-the_guy.findMeBooksFromAuthor("Ruth");
+/** Librarian, theGuyWhoKnowsAlot, undertakes the operation of the library */
+Librarian theGuyWhoKnowsAlot = new Librarian(library);
+theGuyWhoKnowsAlot.findMeAvailableBooks();
+theGuyWhoKnowsAlot.findMeBook("Book3");
+theGuyWhoKnowsAlot.findMeBooksFromAuthor("Ruth");
+theGuyWhoKnowsAlot.findMostPopularBook();
 ```
+* **Compare your output to the one in the next slide**
 
 
 ## Exercise 3 (end)
@@ -900,5 +914,8 @@ Books by author "Ruth":
 		1. Show all available books
 		2. Search for a book (by book title)
 		3. Display books from a specific author
+		4. Show me the most popular book
 		q. Quit
 		> 
+
+* Create (a fully detailed) **class diagram** for the entities described in exercise 3. 
