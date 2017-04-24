@@ -1,7 +1,7 @@
 ## Transistors, gates, chips
 * Transistor: a miniature switch
 * Logic gate: digital building block
-* How two add two bits
+* How to add two bits
 * Counting with 0 and 1
 * Chip construction
 
@@ -42,7 +42,7 @@
 * C++, Go, Swift
 * Java, C#
 * JavaScript
-* Python, Ruby, Perl
+* Python, Ruby, Perl, PHP
 
 
 ## Memory organization
