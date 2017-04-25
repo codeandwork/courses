@@ -79,7 +79,7 @@
 <pre class="sourceCode java"><code class="sourceCode java">    impot java.<span class="fu">util</span>.*;
     <span class="kw">public</span> <span class="kw">class</span> CalendarTesting {
         <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
-            GregorianCalendar <span class="kw">new</span>, yesterday;
+            GregorianCalendar today, yesterday;
         }
     }</code></pre></li>
 </ul>
@@ -141,7 +141,7 @@
         <span class="kw">private</span> <span class="dt">boolean</span> visible;
         <span class="kw">private</span> <span class="dt">int</span> javaProgramming;
         <span class="co">//Private method</span>
-        <span class="dt">void</span> <span class="fu">setNumbers</span>(<span class="dt">int</span> one, <span class="dt">int</span> two) {
+        <span class="kw">private</span> <span class="dt">void</span> <span class="fu">setNumbers</span>(<span class="dt">int</span> one, <span class="dt">int</span> two) {
             number1 = one;
             number2 = two;
         }
@@ -220,6 +220,10 @@
 </ul>
 <h2 id="calling-constructor---example">Calling Constructor - Example</h2>
 <pre class="sourceCode java"><code class="sourceCode java">     <span class="kw">public</span> <span class="kw">class</span> BootCamp {
+        <span class="fu">BootCamp</span>() {
+        <span class="co">//Do nothing        </span>
+        }
+        
                 <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
                         BootCamp a = <span class="kw">new</span> <span class="fu">BootCamp</span>();
                 }
@@ -247,6 +251,7 @@
   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) <span class="kw">throws</span> Exception {
     FindDay today = <span class="kw">new</span> <span class="fu">FindDay</span>();
     System.<span class="fu">out</span>.<span class="fu">println</span>(today.<span class="fu">weekDayName</span>(<span class="dv">4</span>));
+}
 }</code></pre>
 <h2 id="methods-for-all-objects">Methods for all objects</h2>
 <ul>
