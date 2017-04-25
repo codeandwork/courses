@@ -47,7 +47,7 @@
 	impot java.util.*;
 	public class CalendarTesting {
 		public static void main(String[] args) {
-			GregorianCalendar new, yesterday;
+			GregorianCalendar today, yesterday;
 		}
 	}
 ```	
@@ -125,7 +125,7 @@
 		private boolean visible;
 		private int javaProgramming;
 		//Private method
-		void setNumbers(int one, int two) {
+		private void setNumbers(int one, int two) {
 			number1 = one;
 			number2 = two;
 		}
@@ -215,6 +215,10 @@
 ## Calling Constructor - Example 
 ```java
 	 public class BootCamp {
+		BootCamp() {
+		//Do nothing		
+		}
+		
                 public static void main(String[] args) {
                         BootCamp a = new BootCamp();
                 }
@@ -247,6 +251,7 @@
   public static void main(String args[]) throws Exception {
   	FindDay today = new FindDay();
 	System.out.println(today.weekDayName(4));
+}
 }
 ```
 
