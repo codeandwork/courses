@@ -146,6 +146,7 @@
 			a.changeNumbers();
 			a.number1 = 10;
 			a.javaProgramming = 1;
+			a.setNumber(10,11);
 		}	
 	}
 ```
@@ -235,7 +236,7 @@
 
 ## Class methods fields - Example 
 ```java
-	class FindDay {
+	public class FindDay {
  		public static String weekDayName(int weekNumber) {
     			switch (weekNumber) {
     				case Calendar.MONDAY: return "Monday";
@@ -250,7 +251,7 @@
 
   public static void main(String args[]) throws Exception {
   	FindDay today = new FindDay();
-	System.out.println(today.weekDayName(4));
+	System.out.println(FindDay.weekDayName(4));
 }
 }
 ```
@@ -312,6 +313,20 @@
 	String[] array = new String[]{"Hello BootCampers"," how are you"};
         System.out.println(Arrays.toString(array));
 ```
+
+
+## Data types
+* Type&nbsp;&nbsp;&nbsp;&nbsp;Bits&nbsp;&nbsp;&nbsp;&nbsp;Range
+* byte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;-128 till 127
+* short&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;-32768 till 32767
+* int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32&nbsp;&nbsp;&nbsp;&nbsp;-2^31 till 2^31 -1
+* long&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;64&nbsp;&nbsp;&nbsp;&nbsp;-2^63 till 2^63 -1
+* float&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32&nbsp;&nbsp;&nbsp;&nbsp;Single Precision
+* double&nbsp;&nbsp;&nbsp;64&nbsp;&nbsp;&nbsp;&nbsp;Double Precision
+
+
+## Primitives vs Non-Primitives
+![](media/OOP_Objects_primitives_and_not.JPG)
 
 
 ## Τype casting (1)
