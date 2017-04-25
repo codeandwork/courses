@@ -158,6 +158,7 @@
             a.<span class="fu">changeNumbers</span>();
             a.<span class="fu">number1</span> = <span class="dv">10</span>;
             a.<span class="fu">javaProgramming</span> = <span class="dv">1</span>;
+            a.<span class="fu">setNumber</span>(<span class="dv">10</span>,<span class="dv">11</span>);
         }   
     }</code></pre>
 <h2 id="scope-example-variable-visibility">Scope Example: variable visibility</h2>
@@ -235,7 +236,7 @@
 <li>Fields declared as final are constant and their values cannot change</li>
 </ul>
 <h2 id="class-methods-fields---example">Class methods fields - Example</h2>
-<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">class</span> FindDay {
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> FindDay {
         <span class="kw">public</span> <span class="dt">static</span> String <span class="fu">weekDayName</span>(<span class="dt">int</span> weekNumber) {
                 <span class="kw">switch</span> (weekNumber) {
                     <span class="kw">case</span> Calendar.<span class="fu">MONDAY</span>: <span class="kw">return</span> <span class="st">&quot;Monday&quot;</span>;
@@ -250,7 +251,7 @@
 
   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) <span class="kw">throws</span> Exception {
     FindDay today = <span class="kw">new</span> <span class="fu">FindDay</span>();
-    System.<span class="fu">out</span>.<span class="fu">println</span>(today.<span class="fu">weekDayName</span>(<span class="dv">4</span>));
+    System.<span class="fu">out</span>.<span class="fu">println</span>(FindDay.<span class="fu">weekDayName</span>(<span class="dv">4</span>));
 }
 }</code></pre>
 <h2 id="methods-for-all-objects">Methods for all objects</h2>
@@ -290,6 +291,18 @@
     System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;The size of array is&quot;</span>+ array.<span class="fu">length</span>);</code></pre>
 <pre class="sourceCode java"><code class="sourceCode java">    String[] array = <span class="kw">new</span> String[]{<span class="st">&quot;Hello BootCampers&quot;</span>,<span class="st">&quot; how are you&quot;</span>};
         System.<span class="fu">out</span>.<span class="fu">println</span>(Arrays.<span class="fu">toString</span>(array));</code></pre>
+<h2 id="data-types">Data types</h2>
+<ul>
+<li>Type    Bits    Range<br /></li>
+<li>byte     8    -128 till 127<br /></li>
+<li>short    16    -32768 till 32767<br /></li>
+<li>int       32    -2^31 till 2^31 -1<br /></li>
+<li>long     64    -2^63 till 2^63 -1<br /></li>
+<li>float     32    Single Precision<br /></li>
+<li>double   64    Double Precision</li>
+</ul>
+<h2 id="primitives-vs-non-primitives">Primitives vs Non-Primitives</h2>
+<p><img src="media/OOP_Objects_primitives_and_not.JPG" /></p>
 <h2 id="ype-casting-1">Τype casting (1)</h2>
 <p><img src="media/OOP_Objects_narrowing_casting.png" /><br /><img src="media/OOP_Objects_widening_casting.png" /></p>
 <h2 id="type-casting-2">Type casting (2)</h2>
