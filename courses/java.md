@@ -4,7 +4,7 @@
 * [Hello world!](java/hello.md)
 * [Constructing and using objects](java/objects.md)
 * [Creating classes](java/classes.md)
-* [Recapitulation](java/recapitulation.md)
+<!--* [Recapitulation](java/recapitulation.md)-->
 * [Linear data structures](java/linearDataStructures.md)
 * [Interfaces](java/interfaces.md)
 * [Exceptions](java/exceptions.md)
