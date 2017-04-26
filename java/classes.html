@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Creating classes</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-creating-classes">Coding Bootcamp: Creating classes</h1>
+<h2 id="defining-the-term-class">Defining the term <em>class</em></h2>
+<ul>
+<li>Is a blueprint/recipe/template that creates objects of specific types. Objects are also called <em>instances</em> of a class<br /></li>
+<li>Encapsulates data (fields/variables) and behaviour (methods) in a single unit</li>
+</ul>
+<h2 id="class-representation">Class representation</h2>
+<p><img src=media/sample_class.png width=650 height=400 /></br><br /><!-- * //TODO image from c++ book pg.241 --></p>
+<h2 id="porting-a-logical-entity-into-a-class">Porting a 'logical' entity into a class</h2>
+<p><img src=media/circle.png width=300 height=300 /></br></p>
+<ul>
+<li>Circle's attributes:<br /></li>
+<li>x coordinate<br /></li>
+<li>y coordinate<br /></li>
+<li>radius</li>
+</ul>
+<h2 id="class-name">Class name</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Circle {
+    <span class="co">/* class body */</span>
+}</code></pre>
+<ul>
+<li><em>Public</em> is the access modifier of the class. <em>Public</em> makes this class visible to classes in other packages<br /></li>
+<li><strong>Important</strong><br /></li>
+<li>Filenames should have the same name with the class ending with the <em>.java</em> extension<br /></li>
+<li>Good practice:<br /></li>
+<li>Class names should begin with a capital letter and follow the camel-case style<br /></li>
+<li>Examples: MyCustomClass, DatabaseConnection</li>
+</ul>
+<h2 id="instance-variables">Instance variables</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
+    <span class="co">/* Instance variables are defined here*/</span>
+    
+    <span class="co">/* Point x coordinate */</span> 
+    <span class="kw">private</span> <span class="dt">int</span> x;
+    <span class="co">/* Point y coordinate */</span>
+    <span class="kw">private</span> <span class="dt">int</span> y;
+    <span class="co">/* Circle&#39;s radius */</span>
+    <span class="kw">private</span> <span class="dt">int</span> radius;
+}</code></pre>
+<ul>
+<li>Fields have a type, a name and (optionally) an access modifier<br /></li>
+<li>Good practice:<br /></li>
+<li>Instance variables' names should begin with a lower-case letter and follow the camel-case style. Example: firstName, lastName, telephoneNumber<br /></li>
+<li>Instance variables should have a private access modifier</li>
+</ul>
+<h2 id="class-methods">Class methods</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
+
+    <span class="co">/* Point x coordinate */</span> 
+    <span class="kw">private</span> <span class="dt">int</span> x;
+    <span class="co">/* Point y coordinate */</span>
+    <span class="kw">private</span> <span class="dt">int</span> y;
+    <span class="co">/* Circle&#39;s radius */</span>
+    <span class="kw">private</span> <span class="dt">int</span> radius;
+
+    <span class="co">/* Methods are defined here */</span>
+
+    <span class="co">/* Returns the x coordinate */</span>
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getX</span>() { <span class="kw">return</span> x; }
+    <span class="co">/* Returns the y coordinate */</span>
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getY</span>() { <span class="kw">return</span> y; }
+    <span class="co">/* Returns the radius */</span>
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getRadius</span>() { <span class="kw">return</span> radius; }
+}</code></pre>
+<ul>
+<li>Methods, have a (return) type, a name, (optionally) an access modifier and (optionally) one or more arguments/parameters</li>
+</ul>
+<h2 id="access-modifiers">Access modifiers</h2>
+<ul>
+<li><em>public</em> - visible to all classes<br /></li>
+<li><em>private</em> - visible only inside the current class<br /></li>
+<li><em>protected</em> - Visible only to subclasses of the current class<br /><br><br><br /></li>
+<li>Good practices:<br /></li>
+<li>All fields should be <em>private</em><br /></li>
+<li>Methods that are not design to interact with other classes should also be <em>private</em></li>
+</ul>
+<h2 id="getters-and-setters-methods">Getters and setters methods</h2>
+<ul>
+<li><p>Fields should be accessed and modified only through dedicated methods</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
+
+<span class="co">/* x and y coordinates and radius */</span>
+<span class="kw">private</span> <span class="dt">int</span> x;
+<span class="kw">private</span> <span class="dt">int</span> y; 
+<span class="kw">private</span> <span class="dt">int</span> radius;
+
+<span class="co">/* getters and setters methods */</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">setX</span>(<span class="dt">int</span> x) { <span class="kw">this</span>.<span class="fu">x</span> = x; }
+<span class="kw">public</span> <span class="dt">int</span> <span class="fu">getX</span>() { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">x</span>; }
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">setY</span>(<span class="dt">int</span> y) { <span class="kw">this</span>.<span class="fu">y</span> = y; }
+<span class="kw">public</span> <span class="dt">int</span> <span class="fu">getY</span>() { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">y</span>; }
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">setRadius</span>(<span class="dt">int</span> r) { <span class="kw">this</span>.<span class="fu">radius</span> = r; }
+<span class="kw">public</span> <span class="dt">int</span> <span class="fu">getRadius</span>() { <span class="kw">return</span> radius; }
+}</code></pre></li>
+</ul>
+<h2 id="getters-and-setters-methods-1">Getters and setters methods</h2>
+<ul>
+<li><p>Recommended way to access or modify fields</p>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c = <span class="kw">new</span> <span class="fu">Circle</span>();
+c.<span class="fu">setX</span>(<span class="dv">5</span>);
+c.<span class="fu">setY</span>(<span class="dv">3</span>);
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Hello, I&#39;m circle (&quot;</span> + p.<span class="fu">getX</span>() + <span class="st">&quot;,&quot;</span> + p.<span class="fu">getY</span>() + <span class="st">&quot;)&quot;</span>);</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java">I&#39;m <span class="fu">circle</span> (<span class="dv">5</span>,<span class="dv">3</span>)</code></pre></li>
+<li><p>And never directly (this would be possible only if <em>x</em> and <em>y</em> instance variables had public access</p>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c = <span class="kw">new</span> <span class="fu">Circle</span>();
+c.<span class="fu">x</span> = <span class="dv">5</span>;
+c.<span class="fu">y</span> = <span class="dv">3</span>;
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Hello, I&#39;m circle (&quot;</span> + p.<span class="fu">x</span> + <span class="st">&quot;,&quot;</span> + p.<span class="fu">y</span> + <span class="st">&quot;)&quot;</span>);</code></pre></li>
+</ul>
+<h2 id="the-keyword-this">The keyword <em>this</em></h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
+
+    <span class="co">/* x and y coordinates and radius */</span>
+    <span class="kw">private</span> <span class="dt">int</span> x;
+    <span class="kw">private</span> <span class="dt">int</span> y; 
+    <span class="kw">private</span> <span class="dt">int</span> radius;
+
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setCoordinates</span>(<span class="dt">int</span> x, <span class="dt">int</span> y) {
+        <span class="kw">this</span>.<span class="fu">x</span> = x;
+        <span class="kw">this</span>.<span class="fu">y</span> = y;
+    }
+}</code></pre>
+<ul>
+<li>The keyword <strong>this</strong> refer to the instance variables<br /></li>
+<li>Good practice:<br /></li>
+<li>Always use <strong>this</strong> when you are refering to an instance variable</li>
+</ul>
+<h2 id="anatomy-of-a-method">Anatomy of a method</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">double</span> <span class="fu">getPerimeter</span>(<span class="dt">double</span> pi) {
+    <span class="dt">double</span> perimeter = <span class="dv">2</span>*pi*<span class="kw">this</span>.<span class="fu">radius</span>;
+    <span class="kw">return</span> perimeter; 
+}</code></pre>
+<ul>
+<li><em>public</em> : access modifier<br /></li>
+<li><em>double</em> : return type<br /></li>
+<li><em>getPerimeter</em> : name<br /></li>
+<li><p><em>pi</em> : argument/parameter of type double named as <em>pi</em><br /><br><br><br />A method's <strong>signature</strong> is the method name + the parameters. Signature defines how a method can be Overloaded</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">double</span> <span class="fu">getPerimeter</span>(<span class="dt">double</span> pi)</code></pre></li>
+</ul>
+<h2 id="non-returning-methods">Non-returning methods</h2>
+<p><strong>void</strong> methods perform an operation without returning a value<br /><br><br></p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">printPerimeter</span>(<span class="dt">double</span> pi) {
+    <span class="dt">double</span> perimeter = <span class="dv">2</span>*pi*<span class="kw">this</span>.<span class="fu">radius</span>;
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Perimeter is &quot;</span> + perimeter); 
+}</code></pre>
+<h2 id="overloading-methods">Overloading methods</h2>
+<p>Is the ability to have more than one methods with the same name <strong>but</strong> with different parameters. Different in sense of, type, number and order</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/** valid overloaded methods **/</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dummy</span>() {}
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dummy</span>(String message) {} <span class="co">// different number of arguments</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dummy</span>(String message, <span class="dt">int</span> number) {} <span class="co">// different number of arguments</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dummy</span>(<span class="dt">int</span> number) {} <span class="co">// different number of arguments</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dummy</span>(<span class="dt">int</span> number, String message) {} <span class="co">// different order of arguments</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dummy</span>(<span class="dt">float</span> number) {} <span class="co">// different type of arguments</span>
+<span class="kw">public</span> <span class="dt">int</span> <span class="fu">dummy</span>(String message, <span class="dt">double</span> d) { <span class="kw">return</span> <span class="dv">0</span>; } <span class="co">// different return type. The return type does not affect the overloading process</span>
+<span class="kw">private</span> <span class="dt">void</span> <span class="fu">dummy</span>(<span class="dt">int</span>[] array) {} <span class="co">// different type of arguments. Private does not affect the overloading process</span>
+<span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">dummy</span>(<span class="dt">double</span> real) {} <span class="co">// static modifier does no affect the overlaoding process</span>
+<span class="kw">public</span> <span class="dt">final</span> <span class="dt">void</span> <span class="fu">dummy</span>(<span class="dt">float</span> f1, <span class="dt">float</span> f2) {} <span class="co">// final modifier does no affect the overlaoding process</span>
+
+<span class="co">/** invalid overloaded methods **/</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dummy</span>(String text) {} <span class="co">// different argument name but same type</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dummy</span>(String message, <span class="dt">int</span> x) {} <span class="co">// the same as above</span></code></pre>
+<p>In other words, only the <strong>signature</strong> of the method affects its overloading ability</p>
+<h2 id="constructor---a-special-method">Constructor - a special method!</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* default constructor */</span>
+<span class="fu">Circle</span>() {
+    <span class="kw">this</span>.<span class="fu">x</span> = <span class="kw">this</span>.<span class="fu">y</span> = <span class="dv">0</span>; <span class="co">// you can omit this line. x and will be initialized to zero either way. </span>
+    <span class="kw">this</span>.<span class="fu">radius</span> = <span class="dv">3</span>;
+}</code></pre>
+<ul>
+<li><p>Creating an object of type Circle:</p>
+<pre class="sourceCode java"><code class="sourceCode java">    Circle c = <span class="kw">new</span> <span class="fu">Circle</span>();</code></pre></li>
+<li>Constructors should have the same name with the <em>class</em><br /></li>
+<li><p>Constructors inherit the class's access modifier</p></li>
+</ul>
+<h2 id="overloaded-constructor">Overloaded constructor</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Overloaded constructor */</span>
+<span class="fu">Circle</span>(<span class="dt">int</span> x, <span class="dt">int</span> y) {
+    <span class="kw">this</span>.<span class="fu">x</span> = x;
+    <span class="kw">this</span>.<span class="fu">y</span> = y;
+    <span class="kw">this</span>.<span class="fu">radius</span> = <span class="dv">3</span>; <span class="co">//hard coded</span>
+}
+<span class="co">/* Overloaded constructor */</span>
+<span class="fu">Circle</span>(<span class="dt">int</span> x, <span class="dt">int</span> y, <span class="dt">int</span> r) {
+    <span class="kw">this</span>.<span class="fu">x</span> = x;
+    <span class="kw">this</span>.<span class="fu">y</span> = y;
+    <span class="kw">this</span>.<span class="fu">radius</span> = r;
+}</code></pre>
+<p>Creating instances of type Circle:</p>
+<pre class="sourceCode java"><code class="sourceCode java">    Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>();
+    Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">4</span>,<span class="dv">4</span>);
+    Circle c3 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>);</code></pre>
+<h2 id="chaining-constructors">Chaining constructors</h2>
+<ul>
+<li><p>Similarly, a constructor with the <strong>this</strong> call can trigger any other constructor in the class!</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* default constructor */</span>
+<span class="fu">Circle</span>() {
+    <span class="kw">this</span>.<span class="fu">x</span> = <span class="dv">0</span>;
+    <span class="kw">this</span>.<span class="fu">y</span> = <span class="dv">0</span>;
+    <span class="kw">this</span>.<span class="fu">radius</span> = <span class="dv">3</span>;
+}
+<span class="co">/* Overloaded constructor calling the default </span>
+<span class="co">   constructor with the use of super */</span>
+<span class="fu">Circle</span>(<span class="dt">int</span> x, <span class="dt">int</span> y) {
+    <span class="kw">this</span>();
+    <span class="kw">this</span>.<span class="fu">x</span> = x;
+    <span class="kw">this</span>.<span class="fu">y</span> = y;
+}</code></pre>
+<p>Creating instances of type Circle:</p>
+<pre class="sourceCode java"><code class="sourceCode java">    Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">2</span>,<span class="dv">3</span>);</code></pre></li>
+</ul>
+<h2 id="copying-objects">Copying objects</h2>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>);
+Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">10</span>,<span class="dv">4</span>,<span class="dv">10</span>);
+c2 = c1;</code></pre>
+<ul>
+<li>The perimeters of <strong>c1</strong> and <strong>c2</strong> are equal or different?</li>
+</ul>
+<h2 id="memory-allocation">Memory allocation</h2>
+<p><img src=media/memory.svg width=700 height=450 /></br></p>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>);
+Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">10</span>,<span class="dv">4</span>,<span class="dv">10</span>);
+c2 = c1;</code></pre>
+<h2 id="copying-objects-2">Copying objects (2)</h2>
+<pre class="sourceCode java"><code class="sourceCode java">c1.<span class="fu">calculatePerimeter</span>();
+c2.<span class="fu">calculatePerimeter</span>();</code></pre>
+<ul>
+<li><p>Results to:</p>
+<pre class="sourceCode java"><code class="sourceCode java">Perimeter is <span class="fl">18.84</span>
+Perimeter is <span class="fl">18.84</span></code></pre></li>
+</ul>
+<h2 id="copying-objects-3">Copying objects (3)</h2>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">5</span>,<span class="dv">5</span>);
+Circle c2 = c1;
+c2.<span class="fu">setRadius</span>(<span class="dv">10</span>);
+c1.<span class="fu">calculatePerimeter</span>();
+c2.<span class="fu">calculatePerimeter</span>();</code></pre>
+<ul>
+<li>Are the perimeters equal or not?</li>
+</ul>
+<h2 id="copying-objects-4">Copying objects (4)</h2>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">5</span>,<span class="dv">5</span>);
+Circle c2 = c1;
+c2.<span class="fu">setRadius</span>(<span class="dv">10</span>);
+c1.<span class="fu">calculatePerimeter</span>();
+c2.<span class="fu">calculatePerimeter</span>();</code></pre>
+<ul>
+<li><p>Results to:</p>
+<pre class="sourceCode java"><code class="sourceCode java">Perimeter is <span class="fl">18.84</span>
+Perimeter is <span class="fl">18.84</span></code></pre></li>
+</ul>
+<h2 id="copy-constructor">Copy constructor</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Regular Overloaded Constructor */</span>
+<span class="fu">Circle</span>(<span class="dt">int</span> x, <span class="dt">int</span> y, <span class="dt">int</span> r) {
+    <span class="kw">this</span>.<span class="fu">x</span> = x;
+    <span class="kw">this</span>.<span class="fu">y</span> = y;
+    <span class="kw">this</span>.<span class="fu">radius</span> = r;
+}
+
+<span class="co">/* Copy Constructor */</span>
+<span class="kw">public</span> <span class="fu">Circle</span>(Circle original) {
+    <span class="kw">this</span>(original.<span class="fu">x</span>, original.<span class="fu">y</span>, original.<span class="fu">radius</span>);
+}</code></pre>
+<ul>
+<li>Copying/cloning an object process:<br /></li>
+<li>Create a new object of type circle<br /></li>
+<li>Assign the values of the old object to the new<br /></li>
+<li><p>Return the new object</p>
+<pre class="sourceCode java"><code class="sourceCode java">Circle original = <span class="kw">new</span> <span class="fu">Circle</span>(<span class="dv">5</span>,<span class="dv">2</span>);
+Circle copyOfOriginal = <span class="kw">new</span> <span class="fu">Circle</span>(original);</code></pre></li>
+</ul>
+<h2 id="garbage-collector-and-destructor-method">Garbage Collector and Destructor method</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/** Circle destructor */</span>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">finalize</span>() {
+    System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Circle (&quot;</span> + 
+        <span class="kw">this</span>.<span class="fu">x</span> +<span class="st">&quot;,&quot;</span> + <span class="kw">this</span>.<span class="fu">y</span> + <span class="st">&quot;,&quot;</span> + <span class="kw">this</span>.<span class="fu">radius</span> + <span class="st">&quot;) deleted&quot;</span>);
+}</code></pre>
+<ul>
+<li><p>Release the memory and run the <em>garbage collector</em></p>
+<pre class="sourceCode java"><code class="sourceCode java">c = <span class="kw">null</span>;
+System.<span class="fu">gc</span>(); <span class="co">// Garbage Collector call</span></code></pre></li>
+<li><p>Results to</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">Circle</span> (<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">10</span>) deleted</code></pre></li>
+<li><p>The garbage collection is a process that identifies unused object that are no longer referenced by any part of your program and reclaims the allocated memory</p></li>
+</ul>
+<h2 id="static-fields-and-methods">Static fields and methods</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
+    <span class="co">/* counts the number of the created circles */</span>
+    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> count;
+
+    <span class="co">/* Constructor */</span>
+    <span class="fu">Circle</span>() {
+        count += <span class="dv">1</span>; <span class="co">// increase count by one after creating a new circle </span>
+    }
+}</code></pre>
+<ul>
+<li><p><em>Static</em> fields are common for all instances of the class</p>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>();
+Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>();
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c1 count is &quot;</span> + c1.<span class="fu">count</span>); <span class="co">//c1.count gives a warning. Why?</span>
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c2 count is &quot;</span> + Circle.<span class="fu">count</span>);</code></pre></li>
+</ul>
+<h2 id="static-fields-and-methods-2">Static fields and methods (2)</h2>
+<pre class="sourceCode java"><code class="sourceCode java">c1 count is <span class="dv">2</span>
+c2 count is <span class="dv">2</span></code></pre>
+<ul>
+<li><p><em>Static</em> methods can access only static fields (Doesn't apply on Constructors)</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getCount</span>() { <span class="kw">return</span> count; }</code></pre></li>
+<li><p><em>Static</em> methods can be called by other classes only by the name of the class</p>
+<pre class="sourceCode java"><code class="sourceCode java">System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Number of existing circles : &quot;</span> + Circle.<span class="fu">getCount</span>());</code></pre>
+<pre class="sourceCode java"><code class="sourceCode java">Number of existing circles : <span class="dv">2</span></code></pre></li>
+</ul>
+<h2 id="memory-allocation-of-static-fields">Memory allocation of static fields</h2>
+<p><img src=media/memory_static.svg width=300 height=500 /></br></p>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>();
+Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>();</code></pre>
+<h2 id="the-final-modifier">The <em>final</em> modifier</h2>
+<ul>
+<li><p>In our previous Circle class example we add the following field</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* The unique id of a circle */</span>
+<span class="kw">private</span> <span class="dt">final</span> <span class="dt">int</span> id;</code></pre></li>
+<li><p>We are obliged to initialize the field <em>id</em></p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Modified constructor */</span>
+<span class="fu">Circle</span>() {
+    <span class="kw">this</span>.<span class="fu">x</span> = <span class="dv">0</span>;
+    <span class="kw">this</span>.<span class="fu">y</span> = <span class="dv">0</span>;
+    <span class="kw">this</span>.<span class="fu">radius</span> = <span class="dv">3</span>;
+    count += <span class="dv">1</span>;
+    <span class="co">/* we assign the current count as the circle&#39;s id */</span>
+    id = count; 
+}</code></pre></li>
+<li><p><em>final</em> fields cannot change their value/state after their initialization</p></li>
+</ul>
+<h2 id="the-final-modifier-continued">The <em>final</em> modifier (continued)</h2>
+<ul>
+<li>As in the <em>static</em> example, we execute the following commands</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">Circle c1 = <span class="kw">new</span> <span class="fu">Circle</span>();
+Circle c2 = <span class="kw">new</span> <span class="fu">Circle</span>();
+Circle c3 = <span class="kw">new</span> <span class="fu">Circle</span>();
+
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c1 count is &quot;</span> + Circle.<span class="fu">getCount</span>() +  <span class="st">&quot;, id is &quot;</span> + c1.<span class="fu">getId</span>());
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c2 count is &quot;</span> + Circle.<span class="fu">getCount</span>() +  <span class="st">&quot;, id is &quot;</span> + c2.<span class="fu">getId</span>());
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;c3 count is &quot;</span> + Circle.<span class="fu">getCount</span>() +  <span class="st">&quot;, id is &quot;</span> + c3.<span class="fu">getId</span>());</code></pre>
+<ul>
+<li><p>Which result the following output</p>
+<pre class="sourceCode java"><code class="sourceCode java">c1 count is <span class="dv">3</span>, id is <span class="dv">1</span>
+c2 count is <span class="dv">3</span>, id is <span class="dv">2</span>
+c3 count is <span class="dv">3</span>, id is <span class="dv">3</span></code></pre></li>
+</ul>
+<!--
+## The *Utility* class
+```java
+public final class MyUtilities {
+    /* Reads the content of a txt file and store in a list which returns*/
+    public static List<String> readFile (String filepath) {
+        /* ...read file... */
+        return list;
+    }
+
+    /* Stores the content of a list in a txt file */ 
+    public static void writeFile (List<String> list, String filepath) {
+        /* ...store content to file... */
+    }
+}
+```
+* **Utility classes should be used with care**
+ * Include only general functionalities that are common to many other classes 
+-->
+
+
+
+<h2 id="singleton">Singleton</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> DBConnector
+{
+    <span class="co">/* unique instance of the class */</span>
+    <span class="kw">private</span> <span class="dt">static</span> DBConnector unique_db_connection_instnce;
+
+    <span class="co">/* Private constructor of the class */</span>
+    <span class="kw">private</span> <span class="fu">DBConnector</span>()
+    {
+        <span class="kw">... </span>
+    }
+
+    <span class="co">/* method that creates (if not initialized)</span>
+<span class="co">    and returns the unique_db_connection_instnce of the class */</span>
+    <span class="kw">public</span> <span class="dt">static</span>  DBConnector <span class="fu">getInstance</span>()
+    {
+        <span class="kw">if</span> (unique_db_connection_instnce == <span class="kw">null</span>)
+            unique_db_connection_instnce = <span class="kw">new</span> <span class="fu">DBConnector</span>();
+
+        <span class="kw">return</span> unique_db_connection_instnce;
+    }
+
+    <span class="co">/* sample method */</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">connect</span>()
+    {
+        <span class="kw">... </span>
+    }
+}</code></pre>
+<ul>
+<li>Only <strong>one</strong> instance of a Singleton class can exist at a time<br /></li>
+<li>The constructor is <em>private</em></li>
+</ul>
+<h2 id="classes-as-custom-types">Classes as custom types</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Laptop {
+    <span class="co">/* The serial number of the product */</span>
+    <span class="kw">private</span> String serialNumber;
+    <span class="co">/* Custom class representing the central processor unit */</span>
+    <span class="kw">private</span> Cpu cpu;
+    <span class="co">/* Custom class representing the random access memory */</span> 
+    <span class="kw">private</span> Memory memory;
+    <span class="co">/* Custom class representing the Operating system license</span>
+<span class="co">       The license is bound to this Laptop object */</span>
+    <span class="kw">private</span> OSLicense osLicense;
+}</code></pre>
+<ul>
+<li>Custom types behave as normal primitive type fields</li>
+</ul>
+<h2 id="classes-as-custom-types-continued">Classes as custom types (continued)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Laptop {
+    <span class="kw">private</span> String serialNumber;
+    <span class="kw">private</span> Cpu cpu;
+    <span class="kw">private</span> Memory memory;
+    <span class="kw">private</span> OSLicense osLicense;
+
+    <span class="co">/* Constructor */</span>
+    <span class="fu">Laptop</span> () {
+        <span class="kw">this</span>.<span class="fu">serial_number</span> = <span class="st">&quot;XXXX-XXXX-XXXX-XXXX&quot;</span>;
+        <span class="kw">this</span>.<span class="fu">cpu</span> = <span class="kw">new</span> <span class="fu">Cpu</span>();
+        <span class="kw">this</span>.<span class="fu">memory</span> = <span class="kw">new</span> <span class="fu">Memory</span>();
+        <span class="co">//osLicense is not initialized</span>
+    }
+}</code></pre>
+<ul>
+<li>Not initialized objects have the <em>null</em> value</li>
+</ul>
+<h2 id="deep-vs-shallow-copies"><em>Deep</em> vs <em>shallow</em> copies</h2>
+<ul>
+<li>Copying complex objects (that have other non-primitive types as instance variables) can be tricky. If we copy only the top object of the hierarchy we end up having a <strong>shallow copy</strong> of the object, as shown in slide <em>&quot;Memory allocation&quot;</em><br /><br><br /></li>
+<li>In order to have a complete (<strong>deep</strong>) copy of this object, we need to ensure that all objects (in all hierarchies) are also copied properly, with their copy constructors.<br /><br><br /></li>
+<li>Avoid using the <em>clone()</em> method that all objects <em>inherit</em> from their <em>Object</em> superclass if you haven't properly <em>overidden</em> them.</li>
+</ul>
+<h2 id="packages">Packages</h2>
+<!-- ![](media/packages.png) -->
+
+<p><img src=media/packages.png width=400 height=400 /></br></p>
+<ul>
+<li>Groups of related parts (Classes) of a system<br /></li>
+<li>Provide access control to classes between other packages</li>
+</ul>
+<h2 id="relationship-among-classes">Relationship among classes</h2>
+<p><img src=media/laptop_cd_new.png width=660 height=510 /></br></p>
+<h2 id="simple-dependency">Simple dependency</h2>
+<p><img src=media/dependency.png width=700 height=300 /></br></p>
+<ul>
+<li>An instance <em>b</em> of type <em>ClassB</em> is used and exists only in the scope of a method of ClassA</li>
+</ul>
+<h2 id="associationaggregation">Association/Aggregation</h2>
+<p><img src=media/association.png width=700 height=300 /></br></p>
+<ul>
+<li>ClassA holds an instance of ClassB<br /></li>
+<li>The aggregated object <em>b</em> can live even after the destruction of the ClassA's instance</li>
+</ul>
+<!--
+## Aggregation
+<img src=media/aggregation.png width=700 height=300 /></br>
+* ClassA, like in *Association* holds an instance of ClassB
+* The aggregated object *b* can live even after the destruction of the ClassA's instance 
+-->
+
+
+
+<h2 id="composition">Composition</h2>
+<p><img src=media/multiplicity.png width=700 height=300 /></br></p>
+<ul>
+<li>ClassA, like in <em>Association/Aggregation</em> holds an instance of ClassB<br /></li>
+<li>ClassA is responsible for object's <em>b</em> lifecycle and object <em>b</em> should be destroyed upon ojbect's <em>a</em> destruction.</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Thinking in Java (4th Edition) - B. Eckel<br /></li>
+<li>Object Oriented Design - A. Chatzigeorgiou<br /></li>
+<li>Oracle Certified Professional Java SE 8 Programmer Exam 1Z0-809, A Comprehensive OCPJP 8 Certification Guide - S. G. Ganesh, Hari Kiran, Tushar Sharma<br /></li>
+<li>Java Programming - wikibooks (<a href="https://en.wikibooks.org/wiki/Java_Programming">link</a>)<br /></li>
+<li>Java™ Platform, Standard Edition 8 API Specification (<a href="https://docs.oracle.com/javase/8/docs/api/">link</a>)<br /></li>
+<li>Contact details<br /></li>
+<li>email: <script type="text/javascript">
+<!--
+h='&#x61;&#x75;&#x65;&#98;&#46;&#x67;&#114;';a='&#64;';n='&#x61;&#110;&#116;&#x6f;&#110;&#x69;&#x6f;&#x73;&#46;&#x67;&#x6b;&#x6f;&#114;&#116;&#122;&#x69;&#x73;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x61;&#110;&#116;&#x6f;&#110;&#x69;&#x6f;&#x73;&#46;&#x67;&#x6b;&#x6f;&#114;&#116;&#122;&#x69;&#x73;&#32;&#x61;&#116;&#32;&#x61;&#x75;&#x65;&#98;&#32;&#100;&#x6f;&#116;&#32;&#x67;&#114;</noscript><br /></li>
+<li>slack: agkortzis</li>
+</ul>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li><strong>Step 1</strong>: Create a class that represents a circle shape. The class should be named as <em>Circle</em> and include the following three integer fields:<br /></li>
+<li><em>x</em> : the x coordinate<br /></li>
+<li><em>y</em> : the y coordinate<br /></li>
+<li><em>r</em> : the radius<br /><br><br />Choose appropriate access modifiers for the fields so that they cannot be accessed by other classes.</li>
+</ul>
+<h2 id="exercise-1-continued">Exercise 1 (continued)</h2>
+<ul>
+<li><strong>Step 2</strong>: Create methods that provide access and modification (getters and setters) to the <em>x</em>, <em>y</em> and <em>r</em> fields.<br /></li>
+<li>Choose appropriate names that briefly describe the functionality of each method<br /></li>
+<li>Choose appropriately the return type and access modifiers of your methods</li>
+</ul>
+<h2 id="exercise-1-continued-1">Exercise 1 (continued)</h2>
+<ul>
+<li><strong>Step 3</strong>: Create a default <em>constructor</em> that initializes a Circle to x=y=0 and r=5<br /></li>
+<li><strong>Step 3.1</strong>: Create an overloaded <em>constructor</em> that initializes all three instance variables<br /></li>
+<li><strong>Step 4</strong>: Create a method <em>printCircleDetails</em> that prints the details of your circle in the following message<br /> * I'm a circle at point (x,y) with radius r<br />Where <em>x</em>,<em>y</em> and <em>r</em> are the values of the current circle</li>
+</ul>
+<h2 id="exercise-1-continued-2">Exercise 1 (continued)</h2>
+<ul>
+<li><strong>Step 5</strong>: Create a new class named <em>TestCircles</em> in the same package (directory) as your <em>Circle</em> class.<br /></li>
+<li>Create a <em>main</em> method in your <em>TestCircles</em> class. In the <em>main</em> method:<br /></li>
+<li>create a circle object,<br /></li>
+<li>assign values (of your preference) to the object using the setter methods from <em>Step 2</em> and<br /></li>
+<li>print the details of your circle using the <em>printCircleDetails</em> method from <em>Step 3</em><br /><br><br><br /></li>
+<li><strong>Compile and run your program!</strong></li>
+</ul>
+<h2 id="exercise-1-continued-3">Exercise 1 (continued)</h2>
+<ul>
+<li><strong>Step 6</strong>: Create an overloaded constructor which will initialize the x &amp; y instance variables. The r instance variable should be initialized by calling the constructor from <strong>Step 3</strong><br /></li>
+<li>In your <em>main</em> method, create objects using each one of the (now three) available constructors and print (using the <em>print</em> method) your objects</li>
+</ul>
+<h2 id="exercise-1-continued-4">Exercise 1 (continued)</h2>
+<ul>
+<li><strong>Step 7</strong>: Extend the functionality of your class by adding the following two methods:<br /></li>
+<li>the <em>calculateArea</em> which will calculates and returns the area (π*radius*radius, π=3.14) and<br /></li>
+<li>the <em>calculatePerimeter</em> which will calculates and returns the perimeter (2*π*radius, π=3.14)<br /></li>
+<li>Choose the appropriate return types for your methods<br /></li>
+<li>Test the functionality of the two new methods with the Circles that you created earlier in your main method</li>
+</ul>
+<h2 id="exercise-1-continued-5">Exercise 1 (continued)</h2>
+<ul>
+<li><strong>Step 8</strong>: Add to your class a <em>static</em> and <em>final</em> field name <em>pi</em> (for π). Initialize its value upon declaring the field. Then, modify your <em>calculateArea</em> and <em>calculatePerimeter</em> methods of <em>Step 7</em> so that they make use of the new <em>pi</em> field.</li>
+</ul>
+<h2 id="exercise-1-continued-6">Exercise 1 (continued)</h2>
+<ul>
+<li><strong>Step 9</strong>: Create a <em>copy constructor</em> for your <em>Circle</em> class.<br /></li>
+<li>Create two circles where the second one will be a copy of the first one<br /></li>
+<li>Print their details<br /></li>
+<li>Change the values of the first circle and print again their details<br /></li>
+<li>What do you observe? Explain your findings according to the <em>memory allocation</em> in slide #17</li>
+</ul>
+<h2 id="exercise-1-continued-7">Exercise 1 (continued)</h2>
+<ul>
+<li><strong>Step 10</strong>: Create a method name <em>cocentric</em> that checks if two circles share the same <em>centre</em> (co-centric circles). The method should return <em>true</em> if circles are co-centric, or <em>false</em> if circles have different centres.<br /></li>
+<li>What is the return type of the method?<br /></li>
+<li>What type of argument should your method have?</li>
+</ul>
+<h2 id="exercise-1-continued-8">Exercise 1 (continued)</h2>
+<ul>
+<li><strong>Step 11</strong>: Declare a field named <em>numberOfCreatedCircles</em> that is common to all instances of class Circle and counts the number of the created circles. Think carefully of:<br /></li>
+<li>the type of your <em>numberOfCreatedCircles</em> field,<br /></li>
+<li>any special modifiers that might need and,<br /></li>
+<li>the place/places that the value of the field should be incremented</li>
+</ul>
+<h2 id="exercise-2">Exercise 2</h2>
+<ul>
+<li>Create a <em>class diagram</em> (on paper or any other tool) for the relation among the following entities (Each entity is a <em>Class</em>):<br /></li>
+<li>There is a <em>Car</em> that has a <em>CarLicense</em>. The <em>CarLicense</em> cannot exist without a <em>Car</em>.<br /></li>
+<li>There is a <em>Driver</em> that owns (only one) <em>DriversLicense</em>. The <em>DriversLicense</em> cannot exist without a <em>Driver</em>.<br /></li>
+<li>The <em>Driver</em> owns one or more <em>Car</em>s. The <em>Car</em> exists even without a <em>Driver</em>.</li>
+</ul>
+<h2 id="exercise-2-continued">Exercise 2 (continued)</h2>
+<ul>
+<li>Use the correct <em>UML connectors</em> for the above relations among the entities<br /></li>
+<li>Create the skeleton source code for the above classes (no need for fields, constructors or methods) and compile it</li>
+</ul>
+<h2 id="exercise-3">Exercise 3</h2>
+<p>You have the following relations between entities:</p>
+<ul>
+<li>There is a <em>Library</em> that has a collection (single dimension array) of <em>Book</em>s<br /></li>
+<li>Each <em>Book</em> has an <em>Author</em><br /></li>
+<li>The <em>Library</em> is operated by a <em>Librarian</em><br /></li>
+<li>The user can make requests regarding authors' and book availability only by asking the Librarian<br /></li>
+<li>For all of the following classes, additional to the requirements described in the slides, create the <strong>getter and setter methods</strong> (only where is needed) for interacting with their instance variables and any necessary <strong>constructors</strong></li>
+</ul>
+<h2 id="exercise-3-continued">Exercise 3 (continued)</h2>
+<ul>
+<li><strong>Class Author</strong><br /></li>
+<li>Fields:<br /></li>
+<li><strong>name</strong>, of type <em>String</em><br /></li>
+<li>Methods:<br /></li>
+<li><strong>toString</strong>, return type String, returns the name of the author</li>
+</ul>
+<h2 id="exercise-3-continued-1">Exercise 3 (continued)</h2>
+<ul>
+<li><strong>Class Book</strong><br /></li>
+<li>Fields:<br /></li>
+<li><strong>title</strong>, type String,<br /></li>
+<li><strong>author</strong>, type Author,<br /></li>
+<li><strong>isbn</strong>, type String,<br /></li>
+<li><strong>physicalCopies</strong>, type int,<br /></li>
+<li><strong>availableCopies</strong>, type int, and<br /></li>
+<li><strong>timesRented</strong>, type int<br /></li>
+<li><strong>Important</strong> :<br /></li>
+<li><strong>isbn</strong> cannot change after the initialization</li>
+</ul>
+<h2 id="exercise-3-continued-2">Exercise 3 (continued)</h2>
+<ul>
+<li><strong>Class Book</strong><br /></li>
+<li>Methods:<br /></li>
+<li><strong>toString</strong>, return type String. Returns the details of the book including the Author details. The Authors' details should be acquired by the proper <strong>toString</strong> method<br /></li>
+<li><strong>rentPhysicalCopy</strong>, type <em>void</em>. Checks if there is an available copy for renting. If yes, then it prints a message of success. <strong>What fields should be modified upon a successful rental?</strong><br /></li>
+<li><strong>isAvailable</strong>, return type boolean. Checks if there is at least one available physical copy of the book, and<br /></li>
+<li><strong>hasAuthor</strong>, return type boolean. Checks if a given name is the name of this book's author</li>
+</ul>
+<h2 id="exercise-3-continued-3">Exercise 3 (continued)</h2>
+<ul>
+<li><strong>Class Library</strong><br /></li>
+<li>Fields:<br /></li>
+<li><strong>books</strong>, type Book[] (array of <strong>Books</strong>)<br /></li>
+<li>Methods:<br /></li>
+<li><strong>printAvailableBooks</strong>, type <em>void</em>. Prints books that have at least one available physical copy. Hint: Use the <strong>isAvailable</strong> and the <strong>toString</strong> methods from the <strong>Book</strong> class<br /></li>
+<li><strong>printBookDetails</strong> (Searches for a book based on a given title. If the book exists then its details should be printed, otherwise an error message should be displayed)</li>
+</ul>
+<h2 id="exercise-3-continued-4">Exercise 3 (continued)</h2>
+<ul>
+<li><strong>Class Library</strong><br /></li>
+<li>Methods:<br /></li>
+<li><strong>printBooksFromAuthor</strong>, type void. Prints only the books that have an author that matches a given name<br /></li>
+<li><strong>printTheMostPopularBook</strong>, type void. Prints the book with the highest number of the <strong>timesRented</strong> field.</li>
+</ul>
+<h2 id="exercise-3-continued-5">Exercise 3 (continued)</h2>
+<ul>
+<li><strong>Class Librarian</strong><br /></li>
+<li>Fields:<br /></li>
+<li><strong>library</strong>, type <strong>Library</strong>. The library that he manages.<br /></li>
+<li>Methods:<br /></li>
+<li><strong>findMeBooksFromAuthor</strong>, type void. Receives an author name and delegates the request to the library's <strong>printBooksFromAuthor</strong> method<br /></li>
+<li><strong>findMeAvailableBooks</strong>, type void. Delegates the request to the library's <strong>printAvailableBooks</strong> method<br /></li>
+<li><strong>findMeBook</strong>, type void. Receives a book's title and delegates the request to the library's <strong>printBookDetails</strong> method<br /></li>
+<li><strong>findMostPopularBook</strong>, type void. Delegates the request to the library's <strong>printTheMostPopularBook</strong> method</li>
+</ul>
+<h2 id="exercise-3-continued-6">Exercise 3 (continued)</h2>
+<ul>
+<li><p>Create a <strong>TestLibrary</strong> class with a <strong>main</strong> method in which you will execute the following code block:</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/** Create Random authors */</span>
+Author ruth = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Ruth&quot;</span>);
+Author diane = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Diane&quot;</span>);
+Author jacqueline = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Jacqueline&quot;</span>);
+Author rachel = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Rachel&quot;</span>);
+Author joan = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Joan&quot;</span>);
+Author theresa = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Theresa&quot;</span>);
+Author angela = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Angela&quot;</span>);
+Author helen = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Helen&quot;</span>);
+Author lisa = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Lisa&quot;</span>);
+<span class="co">/** Create Random books from the above authors */</span>
+Book book1 = <span class="kw">new</span> Book(<span class="st">&quot;Book1&quot;</span>,ruth,<span class="st">&quot;368777540-2&quot;</span>,<span class="dv">10</span>,<span class="dv">2</span>,<span class="dv">20</span>);
+Book book2 = <span class="kw">new</span> Book(<span class="st">&quot;Book2&quot;</span>,diane,<span class="st">&quot;963099898-2&quot;</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">22</span>);
+Book book3 = <span class="kw">new</span> Book(<span class="st">&quot;Book3&quot;</span>,jacqueline,<span class="st">&quot;005382097-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">23</span>);
+Book book4 = <span class="kw">new</span> Book(<span class="st">&quot;Book4&quot;</span>,rachel,<span class="st">&quot;538310208-2&quot;</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">24</span>);
+Book book5 = <span class="kw">new</span> Book(<span class="st">&quot;Book5&quot;</span>,joan,<span class="st">&quot;562448132-2&quot;</span>,<span class="dv">10</span>,<span class="dv">4</span>,<span class="dv">26</span>);
+Book book6 = <span class="kw">new</span> Book(<span class="st">&quot;Book6&quot;</span>,theresa,<span class="st">&quot;670364563-2&quot;</span>,<span class="dv">10</span>,<span class="dv">2</span>,<span class="dv">21</span>);
+Book book7 = <span class="kw">new</span> Book(<span class="st">&quot;Book7&quot;</span>,angela,<span class="st">&quot;466916869-2&quot;</span>,<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">17</span>);
+Book book8 = <span class="kw">new</span> Book(<span class="st">&quot;Book8&quot;</span>,helen,<span class="st">&quot;764674973-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">15</span>);
+Book book9 = <span class="kw">new</span> Book(<span class="st">&quot;Book9&quot;</span>,lisa,<span class="st">&quot;052469721-2&quot;</span>,<span class="dv">10</span>,<span class="dv">6</span>,<span class="dv">17</span>);
+Book book10 = <span class="kw">new</span> Book(<span class="st">&quot;Book10&quot;</span>,ruth,<span class="st">&quot;609291817-2&quot;</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">13</span>);
+Book book11 = <span class="kw">new</span> Book(<span class="st">&quot;Book11&quot;</span>,diane,<span class="st">&quot;451378028-2&quot;</span>,<span class="dv">10</span>,<span class="dv">8</span>,<span class="dv">12</span>);
+Book book12 = <span class="kw">new</span> Book(<span class="st">&quot;Book12&quot;</span>,jacqueline,<span class="st">&quot;142352773-2&quot;</span>,<span class="dv">10</span>,<span class="dv">6</span>,<span class="dv">20</span>);
+Book book13 = <span class="kw">new</span> Book(<span class="st">&quot;Book13&quot;</span>,rachel,<span class="st">&quot;115135166-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">20</span>);
+Book book14 = <span class="kw">new</span> Book(<span class="st">&quot;Book14&quot;</span>,joan,<span class="st">&quot;631942468-2&quot;</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">20</span>);
+Book book15 = <span class="kw">new</span> Book(<span class="st">&quot;Book15&quot;</span>,theresa,<span class="st">&quot;323662444-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">23</span>);
+Book book16 = <span class="kw">new</span> Book(<span class="st">&quot;Book16&quot;</span>,angela,<span class="st">&quot;121360492-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">12</span>);
+Book book17 = <span class="kw">new</span> Book(<span class="st">&quot;Book17&quot;</span>,helen,<span class="st">&quot;391199302-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">20</span>);
+Book book18 = <span class="kw">new</span> Book(<span class="st">&quot;Book18&quot;</span>,ruth,<span class="st">&quot;549307784-2&quot;</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">20</span>);
+Book book19 = <span class="kw">new</span> Book(<span class="st">&quot;Book19&quot;</span>,ruth,<span class="st">&quot;368777230-2&quot;</span>,<span class="dv">10</span>,<span class="dv">23</span>,<span class="dv">20</span>);
+Book book20 = <span class="kw">new</span> Book(<span class="st">&quot;Book20&quot;</span>,ruth,<span class="st">&quot;793027213-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">20</span>);
+<span class="co">/** Add the books to a Book array*/</span>
+Book[] books = {book1,book2,book3,book4,book5,book6,book7,
+book8,book9,book10,book11,book12,book13,book14,book15,
+book16,book17,book18,book19,book20};<span class="co">/** Assign the book collection to the library */</span>
+Library library = <span class="kw">new</span> <span class="fu">Library</span>(books);
+<span class="co">/** Librarian, theGuyWhoKnowsAlot, undertakes the operation of the library */</span>
+Librarian theGuyWhoKnowsAlot = <span class="kw">new</span> <span class="fu">Librarian</span>(library);
+theGuyWhoKnowsAlot.<span class="fu">findMeAvailableBooks</span>();
+theGuyWhoKnowsAlot.<span class="fu">findMeBook</span>(<span class="st">&quot;Book3&quot;</span>);
+theGuyWhoKnowsAlot.<span class="fu">findMeBooksFromAuthor</span>(<span class="st">&quot;Ruth&quot;</span>);
+theGuyWhoKnowsAlot.<span class="fu">findMostPopularBook</span>();</code></pre></li>
+<li><p><strong>Compare your output to the one in the next slide</strong></p></li>
+</ul>
+<h2 id="exercise-3-end">Exercise 3 (end)</h2>
+<ul>
+<li>The expected output (format can vary between different implementations) after the running the code from the previous slide is:</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">The following books are available at the library <span class="kw">for</span> renting
+Books available <span class="kw">for</span> renting:
+    <span class="dv">1</span>. Book [title=Book1, author=Ruth, isbn=<span class="dv">368777540-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">2</span>, timesRented=<span class="dv">20</span>]
+    <span class="dv">2</span>. Book [title=Book2, author=Diane, isbn=<span class="dv">963099898-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">1</span>, timesRented=<span class="dv">22</span>]
+    <span class="dv">3</span>. Book [title=Book4, author=Rachel, isbn=<span class="dv">538310208-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">3</span>, timesRented=<span class="dv">24</span>]
+    <span class="dv">4</span>. Book [title=Book5, author=Joan, isbn=<span class="dv">562448132-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">4</span>, timesRented=<span class="dv">26</span>]
+    <span class="dv">5</span>. Book [title=Book6, author=Theresa, isbn=<span class="dv">670364563-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">2</span>, timesRented=<span class="dv">21</span>]
+    <span class="dv">6</span>. Book [title=Book7, author=Angela, isbn=<span class="dv">466916869-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">5</span>, timesRented=<span class="dv">17</span>]
+    <span class="dv">7</span>. Book [title=Book9, author=Lisa, isbn=<span class="dv">052469721-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">6</span>, timesRented=<span class="dv">17</span>]
+    <span class="dv">8</span>. Book [title=Book10, author=Ruth, isbn=<span class="dv">609291817-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">3</span>, timesRented=<span class="dv">13</span>]
+    <span class="dv">9</span>. Book [title=Book11, author=Diane, isbn=<span class="dv">451378028-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">8</span>, timesRented=<span class="dv">12</span>]
+    <span class="dv">10</span>. Book [title=Book12, author=Jacqueline, isbn=<span class="dv">142352773-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">6</span>, timesRented=<span class="dv">20</span>]
+    <span class="dv">11</span>. Book [title=Book14, author=Joan, isbn=<span class="dv">631942468-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">3</span>, timesRented=<span class="dv">20</span>]
+    <span class="dv">12</span>. Book [title=Book18, author=Ruth, isbn=<span class="dv">549307784-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">1</span>, timesRented=<span class="dv">20</span>]
+    <span class="dv">13</span>. Book [title=Book19, author=Ruth, isbn=<span class="dv">368777230-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">23</span>, timesRented=<span class="dv">20</span>]
+Book with title= &#39;Book3&#39; found! Details: 
+    Book [title=Book3, author=Jacqueline, isbn=<span class="dv">005382097-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">0</span>, timesRented=<span class="dv">23</span>]
+Book with author= &#39;Ruth&#39; found! Details:
+    Book [title=Book1, author=Ruth, isbn=<span class="dv">368777540-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">2</span>, timesRented=<span class="dv">20</span>]
+Most popular book: 
+    Book [title=Book5, author=Joan, isbn=<span class="dv">562448132-2</span>, physicalCopies=<span class="dv">10</span>, availableCopies=<span class="dv">4</span>, timesRented=<span class="dv">26</span>]
+Book with title:&#39;Book0&#39; not found
+Book with author:&#39;angor&#39; not found</code></pre>
+<h2 id="exercise-4-bonus">Exercise 4 (BONUS!)</h2>
+<ul>
+<li><p>Create a command-line user interface for Exercise 3, providing the user, at least, the following options:<br /> Welcome to the Bootcamp library.<br /> How do you want to proceed?<br /> 1. Show all available books<br /> 2. Search for a book (by book title)<br /> 3. Display books from a specific author<br /> 4. Show me the most popular book<br /> q. Quit<br /> &gt;</p></li>
+<li><p>Create (a fully detailed) <strong>class diagram</strong> for the entities described in exercise 3.</p></li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
