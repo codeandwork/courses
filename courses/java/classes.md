@@ -1,6 +1,6 @@
 ## Defining the term *class*
-* Is a blueprint/recipe that creates objects of specific types
-* Encapsulates data (fields) and behaviour (methods) in a single unit
+* Is a blueprint/recipe/template that creates objects of specific types. Objects are also called *instances* of a class
+* Encapsulates data (fields/variables) and behaviour (methods) in a single unit
 
 
 ## Class representation
@@ -9,7 +9,6 @@
 
 
 ## Porting a 'logical' entity into a class
-<!-- ![](media/circle.png =400x400) -->
 <img src=media/circle.png width=300 height=300 /></br>
 * Circle's attributes:
   * x coordinate
@@ -23,16 +22,18 @@ public class Circle {
 	/* class body */
 }
 ```
-* *Public* means that your class will be visible to classes from other packages
-* Important: Filenames should have the same name with the class
-* Good practice: Class names should begin with a capital letter
-<!-- //TODO say about the brackets (everything should be contained there) -->
+* *Public* is the access modifier of the class. *Public* makes this class visible to classes in  other packages
+* **Important** 
+  * Filenames should have the same name with the class ending with the *.java* extension
+* Good practice: 
+  * Class names should begin with a capital letter and follow the camel-case style
+  * Examples: MyCustomClass, DatabaseConnection
 
 
-## Class fields
+## Instance variables
 ```java
 class Circle {
-	/* Fields are defined here*/
+	/* Instance variables are defined here*/
 	
 	/* Point x coordinate */ 
 	private int x;
@@ -44,7 +45,8 @@ class Circle {
 ```
 * Fields have a type, a name and (optionally) an access modifier
 * Good practice: 
- * Field names should begin with a lower-case letter  
+ * Instance variables' names should begin with a lower-case letter and follow the camel-case style. Example: firstName, lastName, telephoneNumber
+ * Instance variables should have a private access modifier
 
 
 ## Class methods
@@ -68,12 +70,7 @@ class Circle {
 	public int getRadius() { return radius; }
 }
 ```
-* Methods, like fields, have a type, a name and (optionally) an access modifier 
-
-
-## Packages
-<!-- ![](media/packages.png) -->
-<img src=media/packages.png width=500 height=500 /></br>
+* Methods, have a (return) type, a name, (optionally) an access modifier and (optionally) one or more arguments/parameters 
 
 
 ## Access modifiers
@@ -91,15 +88,18 @@ class Circle {
 ```java
 class Circle {
 
-	/* x and y coordinates */
+	/* x and y coordinates and radius */
 	private int x;
 	private int y; 
+	private int radius;
 
 	/* getters and setters methods */
 	public void setX(int x) { this.x = x; }
 	public int getX() { return this.x; }
 	public void setY(int y) { this.y = y; }
 	public int getY() { return this.y; }
+	public void setRadius(int r) { this.radius = r; }
+	public int getRadius() { return radius; }
 }
 ```
 
@@ -115,13 +115,33 @@ System.out.println("Hello, I'm circle (" + p.getX() + "," + p.getY() + ")");
 ```java
 I'm circle (5,3)
 ```
-* And never directly
+* And never directly (this would be possible only if *x* and *y* instance variables had public access
 ```java
 Circle c = new Circle();
 c.x = 5;
 c.y = 3;
 System.out.println("Hello, I'm circle (" + p.x + "," + p.y + ")");
 ``` 
+
+
+## The keyword *this*
+```java
+class Circle {
+
+	/* x and y coordinates and radius */
+	private int x;
+	private int y; 
+	private int radius;
+
+	public void setCoordinates(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+}
+```
+* The keyword **this** refer to the instance variables
+* Good practice:
+ * Always use **this** when you are refering to an instance variable
 
 
 ## Anatomy of a method
@@ -132,24 +152,47 @@ public double getPerimeter(double pi) {
 }
 ```
 * *public* : access modifier
-* *double* : type
+* *double* : return type
 * *getPerimeter* : name
-* *pi* : parameter of type double
+* *pi* : argument/parameter of type double named as *pi*
 <br><br>
-* The following line is the method's **signature**
+A method's **signature** is the method name + the parameters. Signature defines how a method can be Overloaded
 ```java
 public double getPerimeter(double pi)
 ```
 
 
 ## Non-returning methods
-*Void* methods perform an operation without returning a value
+**void** methods perform an operation without returning a value
+<br><br>
 ```java
-public void calculatePerimeter(double pi) {
+public void printPerimeter(double pi) {
 	double perimeter = 2*pi*this.radius;
 	System.out.println("Perimeter is " + perimeter); 
 }
 ```
+
+
+## Overloading methods
+Is the ability to have more than one methods with the same name **but** with different parameters. Different in sense of, type, number and order
+```java
+/** valid overloaded methods **/
+public void dummy() {}
+public void dummy(String message) {} // different number of arguments
+public void dummy(String message, int number) {} // different number of arguments
+public void dummy(int number) {} // different number of arguments
+public void dummy(int number, String message) {} // different order of arguments
+public void dummy(float number) {} // different type of arguments
+public int dummy(String message, double d) { return 0; } // different return type. The return type does not affect the overloading process
+private void dummy(int[] array) {} // different type of arguments. Private does not affect the overloading process
+public static void dummy(double real) {} // static modifier does no affect the overlaoding process
+public final void dummy(float f1, float f2) {} // final modifier does no affect the overlaoding process
+
+/** invalid overloaded methods **/
+public void dummy(String text) {} // different argument name but same type
+public void dummy(String message, int x) {} // the same as above
+```
+In other words, only the **signature** of the method affects its overloading ability
 
 
 ## Constructor - a special method!
@@ -164,9 +207,8 @@ Circle() {
 ```java
 	Circle c = new Circle();
 ```
-* Constructors inherit the class's access modifier
 * Constructors should have the same name with the *class*
-* The keyword **this** is used for the fields of the calling object
+* Constructors inherit the class's access modifier
 
 
 ## Overloaded constructor
@@ -175,15 +217,32 @@ Circle() {
 Circle(int x, int y) {
 	this.x = x;
 	this.y = y;
-	this.radius = 3;
+	this.radius = 3; //hard coded
+}
+/* Overloaded constructor */
+Circle(int x, int y, int r) {
+	this.x = x;
+	this.y = y;
+	this.radius = r;
 }
 ```
-* Creating an object of type Circle:
+Creating instances of type Circle:
 ```java
-	Circle c = new Circle(4,4);
+	Circle c1 = new Circle();
+	Circle c2 = new Circle(4,4);
+	Circle c3 = new Circle(3,4,5);
 ```
-* Similarly, the above constructor with the *super* call!
+
+
+## Chaining constructors
+* Similarly, a constructor with the **this** call can trigger any other constructor in the class!
 ```java
+/* default constructor */
+Circle() {
+	this.x = 0;
+	this.y = 0;
+	this.radius = 3;
+}
 /* Overloaded constructor calling the default 
    constructor with the use of super */
 Circle(int x, int y) {
@@ -192,46 +251,31 @@ Circle(int x, int y) {
 	this.y = y;
 }
 ```
-
-
-## Destructor method
+Creating instances of type Circle:
 ```java
-/** Circle destructor */
-public void finalize() {
-    System.out.println("Circle (" + 
-    	this.x +"," + this.y + "," + this.radius + ") deleted");
-}
+	Circle c2 = new Circle(2,3);
 ```
-* Release the memory and run the *garbage collector*
-```java
-c = null;
-System.gc();
-```
-* Results to
-```java
-Circle (5,5,10) deleted
-```
-* The garbage collection is a process that identifies for unused object, or no longer referenced by any part of your program and reclaims the allocated memory
 
 
 ## Copying objects
 ```java
-Circle c1 = new Circle(5,2);
-Circle c2 = c1;
+Circle c1 = new Circle(5,2,5);
+Circle c2 = new Circle(10,4,10);
+c2 = c1;
 ```
-* What are the perimeters of **c1** and **c2**?
+* The perimeters of **c1** and **c2** are equal or different? 
 
 
 ## Memory allocation
 <img src=media/memory.svg width=700 height=450 /></br>
 ```java
-Circle c1 = new Circle();
-Circle c2 = new Circle();
+Circle c1 = new Circle(5,2,5);
+Circle c2 = new Circle(10,4,10);
 c2 = c1;
 ```
 
 
-## Copying objects
+## Copying objects (2)
 ```java
 c1.calculatePerimeter();
 c2.calculatePerimeter();
@@ -243,7 +287,7 @@ Perimeter is 18.84
 ```
 
 
-## Copying objects
+## Copying objects (3)
 ```java
 Circle c1 = new Circle(5,5);
 Circle c2 = c1;
@@ -254,7 +298,7 @@ c2.calculatePerimeter();
 * Are the perimeters equal or not?
 
 
-## Copying objects
+## Copying objects (4)
 ```java
 Circle c1 = new Circle(5,5);
 Circle c2 = c1;
@@ -271,12 +315,16 @@ Perimeter is 18.84
 
 ## Copy constructor
 ```java
-public Circle copy() {
-	Circle new_circle = new Circle();
-	new_circle.x = this.x;
-	new_circle.y = this.y;
-	new_circle.radius = this.radius;
-	return new_circle;
+/* Regular Overloaded Constructor */
+Circle(int x, int y, int r) {
+	this.x = x;
+	this.y = y;
+	this.radius = r;
+}
+
+/* Copy Constructor */
+public Circle(Circle original) {
+	this(original.x, original.y, original.radius);
 }
 ```
 * Copying/cloning an object process:
@@ -284,9 +332,29 @@ public Circle copy() {
  * Assign the values of the old object to the new
  * Return the new object
 ```java
-Circle c = new Circle(5,2);
-Circle c2 = c.copy();
+Circle original = new Circle(5,2);
+Circle copyOfOriginal = new Circle(original);
 ```
+
+
+## Garbage Collector and Destructor method
+```java
+/** Circle destructor */
+public void finalize() {
+    System.out.println("Circle (" + 
+    	this.x +"," + this.y + "," + this.radius + ") deleted");
+}
+```
+* Release the memory and run the *garbage collector*
+```java
+c = null;
+System.gc(); // Garbage Collector call
+```
+* Results to
+```java
+Circle (5,5,10) deleted
+```
+* The garbage collection is a process that identifies unused object that are no longer referenced by any part of your program and reclaims the allocated memory
 
 
 ## Static fields and methods
@@ -310,19 +378,18 @@ System.out.println("c2 count is " + Circle.count);
 ```
 
 
-## Static fields and methods (continued)
+## Static fields and methods (2)
 ```java
 c1 count is 2
 c2 count is 2
 ```
-* *Static* methods can access only static fields
+* *Static* methods can access only static fields (Doesn't apply on Constructors)
 ```java
 public static int getCount() { return count; }
 ```
 * *Static* methods can be called by other classes only by the name of the class
 ```java
-System.out.println("Number of existing circles : " 
-								+ Circle.getCount());
+System.out.println("Number of existing circles : " + Circle.getCount());
 ```
 ```java
 Number of existing circles : 2
@@ -377,7 +444,7 @@ c2 count is 3, id is 2
 c3 count is 3, id is 3
 ```
 
-
+<!--
 ## The *Utility* class
 ```java
 public final class MyUtilities {
@@ -395,6 +462,7 @@ public final class MyUtilities {
 ```
 * **Utility classes should be used with care**
  * Include only general functionalities that are common to many other classes 
+-->
 
 
 ## Singleton
@@ -435,14 +503,14 @@ class DBConnector
 ```java
 class Laptop {
 	/* The serial number of the product */
-	private String serial_number;
+	private String serialNumber;
 	/* Custom class representing the central processor unit */
 	private Cpu cpu;
 	/* Custom class representing the random access memory */ 
 	private Memory memory;
 	/* Custom class representing the Operating system license
 	   The license is bound to this Laptop object */
-	private OSLicense os_license;
+	private OSLicense osLicense;
 }
 ```
 * Custom types behave as normal primitive type fields 
@@ -451,12 +519,17 @@ class Laptop {
 ## Classes as custom types (continued)
 ```java
 class Laptop {
+	private String serialNumber;
+	private Cpu cpu;
+	private Memory memory;
+	private OSLicense osLicense;
+
 	/* Constructor */
 	Laptop () {
 		this.serial_number = "XXXX-XXXX-XXXX-XXXX";
 		this.cpu = new Cpu();
 		this.memory = new Memory();
-		this.os_licence = new OSLicence(); 
+		//osLicense is not initialized
 	}
 }
 ```
@@ -464,10 +537,18 @@ class Laptop {
 
 
 ## *Deep* vs *shallow* copies
-* Complete (*deep*) copy:
+* Copying complex objects (that have other non-primitive types as instance variables) can be tricky. If we copy only the top object of the hierarchy we end up having a **shallow copy** of the object, as shown in slide *"Memory allocation"*
 <br>
-When copying objects (with the copy constructors) ensure that the custom type field are also copied with their appropriate copy constructor.
-* Otherwise you create a copy only of the top level object and its custom type fields are reused (like in slide "Memory allocation") 
+* In order to have a complete (**deep**) copy of this object, we need to ensure that all objects (in all hierarchies) are also copied properly, with their copy constructors. 
+<br>
+* Avoid using the *clone()* method that all objects *inherit* from their *Object* superclass if you haven't properly *overidden* them. 
+
+
+## Packages
+<!-- ![](media/packages.png) -->
+<img src=media/packages.png width=400 height=400 /></br>
+* Groups of related parts (Classes) of a system
+* Provide access control to classes between other packages
 
 
 ## Relationship among classes
@@ -479,28 +560,34 @@ When copying objects (with the copy constructors) ensure that the custom type fi
 * An instance *b* of type *ClassB* is used and exists only in the scope of a method of ClassA
 
 
-## Association
+## Association/Aggregation
 <img src=media/association.png width=700 height=300 /></br>
 * ClassA holds an instance of ClassB
-* This instance will be destroyed upon ClassA's instance destruction
+* The aggregated object *b* can live even after the destruction of the ClassA's instance
 
-
+<!--
 ## Aggregation
 <img src=media/aggregation.png width=700 height=300 /></br>
 * ClassA, like in *Association* holds an instance of ClassB
 * The aggregated object *b* can live even after the destruction of the ClassA's instance 
+-->
 
 
-## Multiplicity
+## Composition
 <img src=media/multiplicity.png width=700 height=300 /></br>
-* Any object *a* holds multiple objects of type *ClassB*
+* ClassA, like in *Association/Aggregation* holds an instance of ClassB
+* ClassA is responsible for object's *b* lifecycle and object *b* should be destroyed upon ojbect's *a* destruction. 
 
 
 ## References
-* Thinking in Java (4th Edition) - Bruce Eckel
+* Thinking in Java (4th Edition) - B. Eckel
+* Object Oriented Design - A. Chatzigeorgiou
 * Oracle Certified Professional Java SE 8 Programmer Exam 1Z0-809, A Comprehensive OCPJP 8 Certification Guide - S. G. Ganesh, Hari Kiran, Tushar Sharma
 * Java Programming - wikibooks ([link](https://en.wikibooks.org/wiki/Java_Programming))
 * Java™ Platform, Standard Edition 8 API Specification ([link](https://docs.oracle.com/javase/8/docs/api/))
+* Contact details
+ * email: antonios.gkortzis@aueb.gr
+ * slack: agkortzis 
 
 
 ## Exercise 1
@@ -519,8 +606,9 @@ Choose appropriate access modifiers for the fields so that they cannot be access
 
 
 ## Exercise 1 (continued)
-* **Step 3**: Create a *constructor* method that initializes the values of your objects. (you can choose values of your preference). 
-* **Step 4**: Create a method *print* that prints the details of your circle in the following message
+* **Step 3**: Create a default *constructor* that initializes a Circle to x=y=0 and r=5 
+* **Step 3.1**: Create an overloaded *constructor* that initializes all three instance variables
+* **Step 4**: Create a method *printCircleDetails* that prints the details of your circle in the following message
 		* I'm a circle at point (x,y) with radius r
 Where *x*,*y* and *r* are the values of the current circle
 
@@ -529,16 +617,14 @@ Where *x*,*y* and *r* are the values of the current circle
 * **Step 5**: Create a new class named *TestCircles* in the same package (directory) as your *Circle* class.
 * Create a *main* method in your *TestCircles* class. In the *main* method:
  * create a circle object,
- * assigns values (of your preference) to the object using the setter methods from *Step 2* and
- * print the details of your circle using the *print* method from *Step 3*
+ * assign values (of your preference) to the object using the setter methods from *Step 2* and
+ * print the details of your circle using the *printCircleDetails* method from *Step 3*
 <br><br>
-* **Compile and test your program!**
+* **Compile and run your program!**
 
 
 ## Exercise 1 (continued)
-* **Step 6**: Create two overloaded constructors where
- * the first will take two arguments that initialize the fields *x* and *y* and 
- * the second will take arguments that initialize all three *x*, *y* and *r* fields
+* **Step 6**: Create an overloaded constructor which will initialize the x & y instance variables. The r instance variable should be initialized by calling the constructor from **Step 3**
 * In your *main* method, create objects using each one of the (now three) available constructors and print (using the *print* method) your objects
 
 
@@ -546,7 +632,8 @@ Where *x*,*y* and *r* are the values of the current circle
 * **Step 7**: Extend the functionality of your class by adding the following two methods:
  * the *calculateArea* which will calculates and returns the area (π\*radius\*radius, π=3.14) and
  * the *calculatePerimeter* which will calculates and returns the perimeter (2\*π\*radius, π=3.14)
-Choose an appropriate type for your method!
+* Choose the appropriate return types for your methods
+* Test the functionality of the two new methods with the Circles that you created earlier in your main method
 
 
 ## Exercise 1 (continued)
@@ -568,82 +655,92 @@ Choose an appropriate type for your method!
 
 
 ## Exercise 1 (continued)
-* **Step 11**: Declare a field named *number_of_circles* that is common to all instances of class Circle and counts the number of the created circles. Think carefully of:
- * the type of your *number_of_circles* field,
+* **Step 11**: Declare a field named *numberOfCreatedCircles* that is common to all instances of class Circle and counts the number of the created circles. Think carefully of:
+ * the type of your *numberOfCreatedCircles* field,
  * any special modifiers that might need and,
  * the place/places that the value of the field should be incremented  
 
 
 ## Exercise 2
-* Create a *class diagram* (on paper or any other tool) for the relation among the following entities:
+* Create a *class diagram* (on paper or any other tool) for the relation among the following entities (Each entity is a *Class*):
  * There is a *Car* that has a *CarLicense*. The *CarLicense* cannot exist without a *Car*.
- * There is a *Driver* that owns a *DriversLicense*. The *DriversLicense* cannot exist without a *Driver*.
- * The *Driver* owns a *Car*. The *Car* exists even without a *Driver*.
+ * There is a *Driver* that owns (only one) *DriversLicense*. The *DriversLicense* cannot exist without a *Driver*.
+ * The *Driver* owns one or more *Car*s. The *Car* exists even without a *Driver*.
 
 
- ## Exercise 2 (continued)
+## Exercise 2 (continued)
 * Use the correct *UML connectors* for the above relations among the entities
-* Create the skeleton source code for the above classes (no need for fields, constructors or methods)  and compile it
+* Create the skeleton source code for the above classes (no need for fields, constructors or methods) and compile it
 
 
 ## Exercise 3
 You have the following relations between entities:
-* There is a *Library* that has a collection of *Book*s
+* There is a *Library* that has a collection (single dimension array) of *Book*s
 * Each *Book* has an *Author*
 * The *Library* is operated by a *Librarian*
-* The user can make request regarding authors and book availability only by asking the Librarian. No direct contact to the other entities should be attempted!
-* For all of the following classes create the getter and setter methods for interacting with their fields
+* The user can make requests regarding authors' and book availability only by asking the Librarian
+* For all of the following classes, additional to the requirements described in the slides, create the **getter and setter methods** (only where is needed) for interacting with their instance variables and any necessary **constructors** 
 
 
 ## Exercise 3 (continued)
 * **Class Author**
-* Fields: *name* (String)
+* Fields: 
+ * **name**, of type *String*
 * Methods: 
- * *toString* (returns the name of the author in a message) 
+ * **toString**, return type String, returns the name of the author 
 
 
 ## Exercise 3 (continued)
 * **Class Book**
-* Fields: *title* (String), *author* (custom type Author), *isbn* (String), *physical_copies* (int), *available_copies* (int) and *times_rented* (int)
-* *isbn* should not be changed after the initialization
-* Methods: 
- * *toString* (returns the details of the book in printable way. the book author's details should be acquired with the *toString* method from the *Book* class)
- * *rentPhysicalCopy* (checks if there is an available copy for renting. If yes, then it prints a message of success. What fields should be modified upon success??) 
+* Fields: 
+ * **title**, type String, 
+ * **author**, type Author,
+ * **isbn**, type String,
+ * **physicalCopies**, type int,
+ * **availableCopies**, type int, and 
+ * **timesRented**, type int
+* **Important** : 
+ * **isbn** cannot change after the initialization
 
 
 ## Exercise 3 (continued)
 * **Class Book**
 * Methods:
- * *isAvailable* (return true when there is at least one available copy of the book, otherwise false)
- * *hasAuthor* (return true or false if a given name is the name of the book's author)
+ * **toString**, return type String. Returns the details of the book including the Author details. The Authors' details should be acquired by the proper **toString** method
+ * **rentPhysicalCopy**, type *void*. Checks if there is an available copy for renting. If yes, then it prints a message of success. **What fields should be modified upon a successful rental?** 
+ * **isAvailable**, return type boolean. Checks if there is at least one available physical copy of the book, and
+ * **hasAuthor**, return type boolean. Checks if a given name is the name of this book's author
 
 
 ## Exercise 3 (continued)
 * **Class Library**
-* Fields: books (array of *Books*)
+* Fields: 
+ * **books**, type Book[] (array of **Books**)
 * Methods:
- * *printAvailableBooks* (Checks the book collection and prints those that are available. Hint: Use the *isAvailable* and the *toString* methods from the *Book* class
- * *printBookDetails* (Searches for a book based on a given title. If the book exists then its details should be printed, otherwise an error message should be displayed)
+ * **printAvailableBooks**, type *void*. Prints books that have at least one available physical copy. Hint: Use the **isAvailable** and the **toString** methods from the **Book** class
+ * **printBookDetails** (Searches for a book based on a given title. If the book exists then its details should be printed, otherwise an error message should be displayed)
 
 
 ## Exercise 3 (continued)
 * **Class Library**
 * Methods:
- * *printBookFromAuthor* (prints only the books that have an author that matches a given name)
+ * **printBooksFromAuthor**, type void. Prints only the books that have an author that matches a given name
+ * **printTheMostPopularBook**, type void. Prints the book with the highest number of the **timesRented** field.
 
 
 ## Exercise 3 (continued)
 * **Class Librarian**
-* Fields: library (The *Library* that he manages)
+* Fields: 
+ * **library**, type **Library**. The library that he manages. 
 * Methods:
- * *findMeBooksFromAuthor* (Receives an author name and delegates the request to the library's *printBookFromAuthor* method)
- * *findMeAvailableBooks* (Delegates the request to the library's *printAvailableBooks* method)
- * *findMeBook* (Receives a book's title and delegates the request to the library's *printBookDetails* method)
+ * **findMeBooksFromAuthor**, type void. Receives an author name and delegates the request to the library's **printBooksFromAuthor** method
+ * **findMeAvailableBooks**, type void. Delegates the request to the library's **printAvailableBooks** method
+ * **findMeBook**, type void. Receives a book's title and delegates the request to the library's **printBookDetails** method
+ * **findMostPopularBook**, type void. Delegates the request to the library's **printTheMostPopularBook** method 
 
 
 ## Exercise 3 (continued)
-* Create a *TestLibrary* class which will execute the following commands:
-* Test the functionality of your "System" by asking the Librarian to fetch you information!
+* Create a **TestLibrary** class with a **main** method in which you will execute the following code block:
 ```java
 /** Create Random authors */
 Author ruth = new Author("Ruth");
@@ -681,153 +778,44 @@ Book[] books = {book1,book2,book3,book4,book5,book6,book7,
 book8,book9,book10,book11,book12,book13,book14,book15,
 book16,book17,book18,book19,book20};/** Assign the book collection to the library */
 Library library = new Library(books);
-/** Librarian, the_guy_who _knows_a_lot, undertakes the operation of the library */
-Librarian the_guy = new Librarian(library);
-the_guy.findMeAvailableBooks();
-the_guy.findMeBook("Book3");
-the_guy.findMeBooksFromAuthor("Ruth");
+/** Librarian, theGuyWhoKnowsAlot, undertakes the operation of the library */
+Librarian theGuyWhoKnowsAlot = new Librarian(library);
+theGuyWhoKnowsAlot.findMeAvailableBooks();
+theGuyWhoKnowsAlot.findMeBook("Book3");
+theGuyWhoKnowsAlot.findMeBooksFromAuthor("Ruth");
+theGuyWhoKnowsAlot.findMostPopularBook();
 ```
+* **Compare your output to the one in the next slide**
 
 
 ## Exercise 3 (end)
-* The expected output after the running the code from the previous slide is:
+* The expected output (format can vary between different implementations) after the running the code from the previous slide is:
 
 ```java
 The following books are available at the library for renting
-1. Book "Book1"
-	isbn: 368777540-2
-	author name: Ruth
-	available copies: 2
-	physical copies: 10
-	times rented: 20
+Books available for renting:
+	1. Book [title=Book1, author=Ruth, isbn=368777540-2, physicalCopies=10, availableCopies=2, timesRented=20]
+	2. Book [title=Book2, author=Diane, isbn=963099898-2, physicalCopies=10, availableCopies=1, timesRented=22]
+	3. Book [title=Book4, author=Rachel, isbn=538310208-2, physicalCopies=10, availableCopies=3, timesRented=24]
+	4. Book [title=Book5, author=Joan, isbn=562448132-2, physicalCopies=10, availableCopies=4, timesRented=26]
+	5. Book [title=Book6, author=Theresa, isbn=670364563-2, physicalCopies=10, availableCopies=2, timesRented=21]
+	6. Book [title=Book7, author=Angela, isbn=466916869-2, physicalCopies=10, availableCopies=5, timesRented=17]
+	7. Book [title=Book9, author=Lisa, isbn=052469721-2, physicalCopies=10, availableCopies=6, timesRented=17]
+	8. Book [title=Book10, author=Ruth, isbn=609291817-2, physicalCopies=10, availableCopies=3, timesRented=13]
+	9. Book [title=Book11, author=Diane, isbn=451378028-2, physicalCopies=10, availableCopies=8, timesRented=12]
+	10. Book [title=Book12, author=Jacqueline, isbn=142352773-2, physicalCopies=10, availableCopies=6, timesRented=20]
+	11. Book [title=Book14, author=Joan, isbn=631942468-2, physicalCopies=10, availableCopies=3, timesRented=20]
+	12. Book [title=Book18, author=Ruth, isbn=549307784-2, physicalCopies=10, availableCopies=1, timesRented=20]
+	13. Book [title=Book19, author=Ruth, isbn=368777230-2, physicalCopies=10, availableCopies=23, timesRented=20]
+Book with title= 'Book3' found! Details: 
+	Book [title=Book3, author=Jacqueline, isbn=005382097-2, physicalCopies=10, availableCopies=0, timesRented=23]
+Book with author= 'Ruth' found! Details:
+	Book [title=Book1, author=Ruth, isbn=368777540-2, physicalCopies=10, availableCopies=2, timesRented=20]
+Most popular book: 
+	Book [title=Book5, author=Joan, isbn=562448132-2, physicalCopies=10, availableCopies=4, timesRented=26]
+Book with title:'Book0' not found
+Book with author:'angor' not found
 
-2. Book "Book2"
-	isbn: 963099898-2
-	author name: Diane
-	available copies: 1
-	physical copies: 10
-	times rented: 22
-
-3. Book "Book4"
-	isbn: 538310208-2
-	author name: Rachel
-	available copies: 3
-	physical copies: 10
-	times rented: 24
-
-4. Book "Book5"
-	isbn: 562448132-2
-	author name: Joan
-	available copies: 4
-	physical copies: 10
-	times rented: 26
-
-5. Book "Book6"
-	isbn: 670364563-2
-	author name: Theresa
-	available copies: 2
-	physical copies: 10
-	times rented: 21
-
-6. Book "Book7"
-	isbn: 466916869-2
-	author name: Angela
-	available copies: 5
-	physical copies: 10
-	times rented: 17
-
-7. Book "Book9"
-	isbn: 052469721-2
-	author name: Lisa
-	available copies: 6
-	physical copies: 10
-	times rented: 17
-
-8. Book "Book10"
-	isbn: 609291817-2
-	author name: Ruth
-	available copies: 3
-	physical copies: 10
-	times rented: 13
-
-9. Book "Book11"
-	isbn: 451378028-2
-	author name: Diane
-	available copies: 8
-	physical copies: 10
-	times rented: 12
-
-10. Book "Book12"
-	isbn: 142352773-2
-	author name: Jacqueline
-	available copies: 6
-	physical copies: 10
-	times rented: 20
-
-11. Book "Book14"
-	isbn: 631942468-2
-	author name: Joan
-	available copies: 3
-	physical copies: 10
-	times rented: 20
-
-12. Book "Book18"
-	isbn: 549307784-2
-	author name: Ruth
-	available copies: 1
-	physical copies: 10
-	times rented: 20
-
-13. Book "Book19"
-	isbn: 368777230-2
-	author name: Ruth
-	available copies: 23
-	physical copies: 10
-	times rented: 20
-
-Book found in the library!
-Book "Book3"
-	isbn: 005382097-2
-	author name: Jacqueline
-	available copies: 0
-	physical copies: 10
-	times rented: 23
-
-Books by author "Ruth":
-1. Book "Book1"
-	isbn: 368777540-2
-	author name: Ruth
-	available copies: 2
-	physical copies: 10
-	times rented: 20
-
-2. Book "Book10"
-	isbn: 609291817-2
-	author name: Ruth
-	available copies: 3
-	physical copies: 10
-	times rented: 13
-
-3. Book "Book18"
-	isbn: 549307784-2
-	author name: Ruth
-	available copies: 1
-	physical copies: 10
-	times rented: 20
-
-4. Book "Book19"
-	isbn: 368777230-2
-	author name: Ruth
-	available copies: 23
-	physical copies: 10
-	times rented: 20
-
-5. Book "Book20"
-	isbn: 793027213-2
-	author name: Ruth
-	available copies: 0
-	physical copies: 10
-	times rented: 20
 ```
 
 
@@ -838,5 +826,8 @@ Books by author "Ruth":
 		1. Show all available books
 		2. Search for a book (by book title)
 		3. Display books from a specific author
+		4. Show me the most popular book
 		q. Quit
 		> 
+
+* Create (a fully detailed) **class diagram** for the entities described in exercise 3. 
