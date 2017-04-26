@@ -154,9 +154,9 @@ public double getPerimeter(double pi) {
 * *public* : access modifier
 * *double* : return type
 * *getPerimeter* : name
-* *pi* : parameter of type double named as *pi*
+* *pi* : argument/parameter of type double named as *pi*
 <br><br>
-The following line is the method's **signature**
+A method's **signature** is the method name + the parameters. Signature defines how a method can be Overloaded
 ```java
 public double getPerimeter(double pi)
 ```
@@ -171,6 +171,28 @@ public void printPerimeter(double pi) {
 	System.out.println("Perimeter is " + perimeter); 
 }
 ```
+
+
+## Overloading methods
+Is the ability to have more than one methods with the same name **but** with different parameters. Different in sense of, type, number and order
+```java
+/** valid overloaded methods **/
+public void dummy() {}
+public void dummy(String message) {} // different number of arguments
+public void dummy(String message, int number) {} // different number of arguments
+public void dummy(int number) {} // different number of arguments
+public void dummy(int number, String message) {} // different order of arguments
+public void dummy(float number) {} // different type of arguments
+public int dummy(String message, double d) { return 0; } // different return type. The return type does not affect the overloading process
+private void dummy(int[] array) {} // different type of arguments. Private does not affect the overloading process
+public static void dummy(double real) {} // static modifier does no affect the overlaoding process
+public final void dummy(float f1, float f2) {} // final modifier does no affect the overlaoding process
+
+/** invalid overloaded methods **/
+public void dummy(String text) {} // different argument name but same type
+public void dummy(String message, int x) {} // the same as above
+```
+In other words, only the **signature** of the method affects its overloading ability
 
 
 ## Constructor - a special method!
@@ -554,7 +576,7 @@ class Laptop {
 ## Composition
 <img src=media/multiplicity.png width=700 height=300 /></br>
 * ClassA, like in *Association/Aggregation* holds an instance of ClassB
-* The aggregated object *b* can live even after the destruction of the ClassA's instance 
+* ClassA is responsible for object's *b* lifecycle and object *b* should be destroyed upon ojbect's *a* destruction. 
 
 
 ## References
