@@ -236,23 +236,26 @@
 <li>Fields declared as final are constant and their values cannot change</li>
 </ul>
 <h2 id="class-methods-fields---example">Class methods fields - Example</h2>
-<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="kw">class</span> FindDay {
-        <span class="kw">public</span> <span class="dt">static</span> String <span class="fu">weekDayName</span>(<span class="dt">int</span> weekNumber) {
-                <span class="kw">switch</span> (weekNumber) {
-                    <span class="kw">case</span> Calendar.<span class="fu">MONDAY</span>: <span class="kw">return</span> <span class="st">&quot;Monday&quot;</span>;
-                    <span class="kw">case</span> Calendar.<span class="fu">TUESDAY</span>: <span class="kw">return</span> <span class="st">&quot;Tuesday&quot;</span>;
-                    <span class="kw">case</span> Calendar.<span class="fu">WEDNESDAY</span>: <span class="kw">return</span> <span class="st">&quot;Wednesday&quot;</span>;
-                    <span class="kw">case</span> Calendar.<span class="fu">THURSDAY</span>: <span class="kw">return</span> <span class="st">&quot;Thursday&quot;</span>;
-                    <span class="kw">case</span> Calendar.<span class="fu">FRIDAY</span>: <span class="kw">return</span> <span class="st">&quot;Friday&quot;</span>;
-                    <span class="kw">case</span> Calendar.<span class="fu">SATURDAY</span>: <span class="kw">return</span> <span class="st">&quot;Saturday&quot;</span>;
-                    <span class="kw">case</span> Calendar.<span class="fu">SUNDAY</span>: <span class="kw">return</span> <span class="st">&quot;Sunday&quot;</span>;
-    }
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.Calendar;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> FindDay {
+  <span class="kw">public</span> <span class="dt">static</span> String <span class="fu">weekDayName</span>(<span class="dt">int</span> weekNumber) {
+    <span class="kw">switch</span> (weekNumber) {
+      <span class="kw">case</span> Calendar.<span class="fu">MONDAY</span>: <span class="kw">return</span> <span class="st">&quot;Monday&quot;</span>;
+      <span class="kw">case</span> Calendar.<span class="fu">TUESDAY</span>: <span class="kw">return</span> <span class="st">&quot;Tuesday&quot;</span>;
+      <span class="kw">case</span> Calendar.<span class="fu">WEDNESDAY</span>: <span class="kw">return</span> <span class="st">&quot;Wednesday&quot;</span>;
+      <span class="kw">case</span> Calendar.<span class="fu">THURSDAY</span>: <span class="kw">return</span> <span class="st">&quot;Thursday&quot;</span>;
+      <span class="kw">case</span> Calendar.<span class="fu">FRIDAY</span>: <span class="kw">return</span> <span class="st">&quot;Friday&quot;</span>;
+      <span class="kw">case</span> Calendar.<span class="fu">SATURDAY</span>: <span class="kw">return</span> <span class="st">&quot;Saturday&quot;</span>;
+      <span class="kw">case</span> Calendar.<span class="fu">SUNDAY</span>: <span class="kw">return</span> <span class="st">&quot;Sunday&quot;</span>;
+      <span class="kw">default</span>: <span class="kw">return</span> <span class="st">&quot;Invalid day&quot;</span>;
   }
+}
 
   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) <span class="kw">throws</span> Exception {
     FindDay today = <span class="kw">new</span> <span class="fu">FindDay</span>();
     System.<span class="fu">out</span>.<span class="fu">println</span>(FindDay.<span class="fu">weekDayName</span>(<span class="dv">4</span>));
-}
+  }
 }</code></pre>
 <h2 id="methods-for-all-objects">Methods for all objects</h2>
 <ul>

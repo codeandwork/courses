@@ -269,23 +269,26 @@
 
 ## Class methods fields - Example 
 ```java
-	public class FindDay {
- 		public static String weekDayName(int weekNumber) {
-    			switch (weekNumber) {
-    				case Calendar.MONDAY: return "Monday";
-    				case Calendar.TUESDAY: return "Tuesday";
-    				case Calendar.WEDNESDAY: return "Wednesday";
-    				case Calendar.THURSDAY: return "Thursday";
-    				case Calendar.FRIDAY: return "Friday";
-    				case Calendar.SATURDAY: return "Saturday";
-    				case Calendar.SUNDAY: return "Sunday";
-    }
+import java.util.Calendar;
+
+public class FindDay {
+  public static String weekDayName(int weekNumber) {
+    switch (weekNumber) {
+      case Calendar.MONDAY: return "Monday";
+      case Calendar.TUESDAY: return "Tuesday";
+      case Calendar.WEDNESDAY: return "Wednesday";
+      case Calendar.THURSDAY: return "Thursday";
+      case Calendar.FRIDAY: return "Friday";
+      case Calendar.SATURDAY: return "Saturday";
+      case Calendar.SUNDAY: return "Sunday";
+      default: return "Invalid day";
   }
+}
 
   public static void main(String args[]) throws Exception {
-  	FindDay today = new FindDay();
-	System.out.println(FindDay.weekDayName(4));
-}
+    FindDay today = new FindDay();
+    System.out.println(FindDay.weekDayName(4));
+  }
 }
 ```
 
