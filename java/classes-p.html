@@ -277,7 +277,7 @@ Circle() {
 	this.radius = 3;
 }
 /* Overloaded constructor calling the default 
-   constructor with the use of super */
+   constructor with the use of this */
 Circle(int x, int y) {
 	this();
 	this.x = x;
@@ -394,7 +394,7 @@ Circle (5,5,10) deleted
 ```java
 class Circle {
 	/* counts the number of the created circles */
-	private static int count;
+	public static int count;
 
 	/* Constructor */
 	Circle() {
@@ -416,7 +416,7 @@ System.out.println("c2 count is " + Circle.count);
 c1 count is 2
 c2 count is 2
 ```
-* *Static* methods can access only static fields (Doesn't apply on Constructors)
+* *Static* methods can access only static fields (Doesn't apply on Constructors) If *count* was private we would need a *get* method to access it as follows
 ```java
 public static int getCount() { return count; }
 ```
@@ -585,7 +585,7 @@ class Laptop {
 
 
 ## Relationship among classes
-<img src=media/laptop_cd_new.png width=660 height=510 /></br>
+<img src=media/laptop_class_diagram.png width=660 height=510 /></br>
 
 
 ## Simple dependency

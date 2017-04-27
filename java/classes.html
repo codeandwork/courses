@@ -231,7 +231,7 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="
     <span class="kw">this</span>.<span class="fu">radius</span> = <span class="dv">3</span>;
 }
 <span class="co">/* Overloaded constructor calling the default </span>
-<span class="co">   constructor with the use of super */</span>
+<span class="co">   constructor with the use of this */</span>
 <span class="fu">Circle</span>(<span class="dt">int</span> x, <span class="dt">int</span> y) {
     <span class="kw">this</span>();
     <span class="kw">this</span>.<span class="fu">x</span> = x;
@@ -317,7 +317,7 @@ System.<span class="fu">gc</span>(); <span class="co">// Garbage Collector call<
 <h2 id="static-fields-and-methods">Static fields and methods</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
     <span class="co">/* counts the number of the created circles */</span>
-    <span class="kw">private</span> <span class="dt">static</span> <span class="dt">int</span> count;
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> count;
 
     <span class="co">/* Constructor */</span>
     <span class="fu">Circle</span>() {
@@ -335,7 +335,7 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="
 <pre class="sourceCode java"><code class="sourceCode java">c1 count is <span class="dv">2</span>
 c2 count is <span class="dv">2</span></code></pre>
 <ul>
-<li><p><em>Static</em> methods can access only static fields (Doesn't apply on Constructors)</p>
+<li><p><em>Static</em> methods can access only static fields (Doesn't apply on Constructors) If <em>count</em> was private we would need a <em>get</em> method to access it as follows</p>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">static</span> <span class="dt">int</span> <span class="fu">getCount</span>() { <span class="kw">return</span> count; }</code></pre></li>
 <li><p><em>Static</em> methods can be called by other classes only by the name of the class</p>
 <pre class="sourceCode java"><code class="sourceCode java">System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Number of existing circles : &quot;</span> + Circle.<span class="fu">getCount</span>());</code></pre>
@@ -481,7 +481,7 @@ public final class MyUtilities {
 <li>Provide access control to classes between other packages</li>
 </ul>
 <h2 id="relationship-among-classes">Relationship among classes</h2>
-<p><img src=media/laptop_cd_new.png width=660 height=510 /></br></p>
+<p><img src=media/laptop_class_diagram.png width=660 height=510 /></br></p>
 <h2 id="simple-dependency">Simple dependency</h2>
 <p><img src=media/dependency.png width=700 height=300 /></br></p>
 <ul>
