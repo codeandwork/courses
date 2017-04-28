@@ -57,7 +57,7 @@ Hello bootcamp! Winter is coming...
  * Mutable and synchronized 
  * Multiple threads can access it and modify it without any *side effects* 
  * Slow process. Many *locking* and *unlocking* actions will take place at the cpu
- * Stored in the *heap*
+<!-- * Stored in the *heap* -->
 
 
 ## Bypassing immutability (continued)
@@ -93,7 +93,7 @@ buff.toString();
 ```
 
 
-## Immutable vs mutable operations - comparison
+## Immutable vs Mutable operations - time comparison
 Measuring the separate execution of each solution above resulted to:
  	* 78.5 millisecond using the += operand
  	*  3.7 millisecond using StringBuffer
@@ -119,22 +119,23 @@ Measuring the separate execution of each solution above resulted to:
 
 ## *Strings* as arrays - index 
 ```java
-//our test String phrase
-String starks_quote = "Winter is coming...";
+// our test String phrase
+String starksQuote = "Winter is coming...";
 
-//transforming a String to array of chars and printing it
-char[] char_array_from_string = starks_quote.toCharArray();
+// transforming a String to array of chars and printing it
+char[] char_array_from_string = starksQuote.toCharArray();
 System.out.println(Arrays.toString(char_array_from_string));
-//getting the first word of the phrase
-String first_word = starks_quote.substring(0, starks_quote.indexOf(' '));
+// getting the first word of the phrase
+String first_word = starksQuote.substring(0, starksQuote.indexOf(' '));
 System.out.println(first_word);
-//checking if our phrase contains the String "sun"
-boolean match = starks_quote.contains("sun");
+// checking if our phrase contains the String "sun"
+boolean match = starksQuote.contains("sun");
 System.out.println(match);
-//getting the last word of the phrase
-String last_word = starks_quote.substring(starks_quote.lastIndexOf(' ') + 1, starks_quote.length());
+// getting the last word of the phrase
+String last_word = starksQuote.substring(starksQuote.lastIndexOf(' ') + 1, starksQuote.length());
 System.out.println(last_word);
 ```
+The output is the following:
 ```java
 [W, i, n, t, e, r,  , i, s,  , c, o, m, i, n, g, ., ., .]
 Winter
@@ -144,16 +145,20 @@ coming...
 
 
 ## The *Stack* data structure
-* *Push-down stack*, in one of the most important *abstract data types* that 
+* *Stack* (or *Push-down stack*), in one of the most important *abstract data types* that 
 * Offers two functionalities: 
- * add (*push*) and
- * remove(*pop*)  
+ * *push* (add) and
+ * *pop* (remove)  
 * Represents a last-in-first-out (lifo) model
 * Newer additions have priority in being served!
+* Only the last entered element can be extracted
 
 
-## *Stack* (continued)
+## *Stack* visualisation
 <img src=media/Stack.svg width=800 height=500 /></br>
+
+
+## *Stack* example
 
 
 ## The *Queue* data structure
@@ -185,6 +190,7 @@ coming...
 
 
 ## CircleList, a linked-list example
+<!-- TODO change to Student example -->
 ```java
 class Circle {
 	/* Linked-list nodes should have a field of their own
@@ -464,7 +470,6 @@ public class BankAccountTransactionList {
 		}
 		System.out.println("==============================================");
 	}
-	
 }
 
 ```
@@ -625,7 +630,6 @@ public class BankAccountTransactionList {
 			// the new_transaction to the "next" of this element.
 			current_transaction.setNext(new_transaction);
 		}
-		
 	}
 	
 	/* Adds a new element at a specific position (index) of the list */
@@ -661,7 +665,6 @@ public class BankAccountTransactionList {
 			// assign the temp element as the next of the new_transaction
 			new_transaction.setNext(temp);
 		}
-		
 	}
 	
 	/* Removes the last element of the bankAccountTransactions Linked-list. */
