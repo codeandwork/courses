@@ -811,6 +811,14 @@ Book with title= 'Book3' found! Details:
 	Book [title=Book3, author=Jacqueline, isbn=005382097-2, physicalCopies=10, availableCopies=0, timesRented=23]
 Book with author= 'Ruth' found! Details:
 	Book [title=Book1, author=Ruth, isbn=368777540-2, physicalCopies=10, availableCopies=2, timesRented=20]
+Book with author= 'Ruth' found! Details:
+	Book [title=Book10, author=Ruth, isbn=609291817-2, physicalCopies=10, availableCopies=3, timesRented=13]
+Book with author= 'Ruth' found! Details:
+	Book [title=Book18, author=Ruth, isbn=549307784-2, physicalCopies=10, availableCopies=1, timesRented=20]
+Book with author= 'Ruth' found! Details:
+	Book [title=Book19, author=Ruth, isbn=368777230-2, physicalCopies=10, availableCopies=23, timesRented=20]
+Book with author= 'Ruth' found! Details:
+	Book [title=Book20, author=Ruth, isbn=793027213-2, physicalCopies=10, availableCopies=0, timesRented=20]
 Most popular book: 
 	Book [title=Book5, author=Joan, isbn=562448132-2, physicalCopies=10, availableCopies=4, timesRented=26]
 Book with title:'Book0' not found
