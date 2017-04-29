@@ -31,14 +31,14 @@
 ```
 
 
-## Introduction to *Strings*
-* A group of alphanumeric characters in a common entity called *String*
-* All *Strings* in java are created by the *String* class
-* You can concatenate *Strings* by using the **+** operator
+## Introduction to the *String* class
+* A sequence/group of alphanumeric characters 
+* The Java platform provides the **String** class to create and manipulate strings.
 * *String* objects are **immutable** -- they cannot change their state after construction
 
 
 ## Concatenating *Strings*
+* You can concatenate strings by using the **+** operator
 ```java
 String word = "Hello bootcamp!";
 word = word + " Winter is coming...";
@@ -50,22 +50,16 @@ Hello bootcamp! Winter is coming...
 ```
 
 
-## Bypassing immutability
-* Use the *StringBuffer* or *StringBuilder* following *Java* classes for creating, building and concatenating strings
-<br><br>
-* *StringBuffer*
- * Mutable and synchronized 
- * Multiple threads can access it and modify it without any *side effects* 
- * Slow process. Many *locking* and *unlocking* actions will take place at the cpu
-<!-- * Stored in the *heap* -->
+## StringBuffer
+* *Mutable* - can be modified after creation 
+* *Synchronized* - multiple threads can access it and modify it without any *side effects* 
+* Relatively slow process. Many *locking* and *unlocking* actions will take place at the cpu
 
 
-## Bypassing immutability (continued)
-* *StringBuilder*
- * Mutable but not synchronized
- * Accessing it and modifying it by more than one threads can have unexpected results! 
- * Much faster than the *StringBuffer* class
- * Stored in the *heap*
+## StringBuilder
+* *Mutable* - can be modified after creation
+* *Not synchronized* - accessing it and modifying it by more than one threads can produce unexpected results! 
+* Much faster than the *StringBuffer* class
 
 
 ## Immutable vs mutable operations - example
@@ -100,7 +94,7 @@ Measuring the separate execution of each solution above resulted to:
  	*  1.4 millisecond using StringBuilder
 
 
-## Creating *Strings*
+## Available *String* Constructors 
 * Java offers, among others, the following *constructors*
  * *String()*
  * *String(char[] value)*
@@ -109,8 +103,8 @@ Measuring the separate execution of each solution above resulted to:
  * *String(StringBuilder builder)*
 
 
-## *Strings* as arrays
-* Class *String* offers, among others, the following methods for acquiring information from a *String* object from its *index*<br>
+## Strings as arrays
+* Class *String* offers, among others, the following methods (only signature's are presented) for acquiring information from a *String* object using its *index*<br>
  * *String substring(int beginIndex)*
  * *String substring(int beginIndex, int endIndex)*
  * *char charAt(int index)*
@@ -120,106 +114,31 @@ Measuring the separate execution of each solution above resulted to:
 ## *Strings* as arrays - index 
 ```java
 // our test String phrase
-String starksQuote = "Winter is coming...";
+String message = "Winter is coming...";
 
-// transforming a String to array of chars and printing it
-char[] char_array_from_string = starksQuote.toCharArray();
-System.out.println(Arrays.toString(char_array_from_string));
+// transform a String to a char[] and print it
+char[] charArray = message.toCharArray();
+for(int i=0; i<charArray.length; i++)
+    System.out.print(charArray[i] + ", ");
+
 // getting the first word of the phrase
-String first_word = starksQuote.substring(0, starksQuote.indexOf(' '));
-System.out.println(first_word);
+String firstWord = message.substring(0, message.indexOf(' '));
+System.out.println("First word: " + firstWord);
+
 // checking if our phrase contains the String "sun"
-boolean match = starksQuote.contains("sun");
-System.out.println(match);
+boolean match = message.contains("sun");
+System.out.println("Contains 'sun': " + match);
+
 // getting the last word of the phrase
-String last_word = starksQuote.substring(starksQuote.lastIndexOf(' ') + 1, starksQuote.length());
-System.out.println(last_word);
+String lastWord = message.substring(message.lastIndexOf(' ') + 1, message.length());
+System.out.println("Last word: " + lastWord);
 ```
-The output is the following:
+The output of the aforementioned 4 prints is the following:
 ```java
 [W, i, n, t, e, r,  , i, s,  , c, o, m, i, n, g, ., ., .]
-Winter
-false
-coming...
-```
-
-
-## The *Stack* data structure
-* *Stack* (or *Push-down stack*), in one of the most important *abstract data types* that 
-* Offers two functionalities: 
- * *push* (add) and
- * *pop* (remove)  
-* Represents a last-in-first-out (lifo) model
-* Newer additions have priority in being served!
-* Only the last entered element can be extracted
-
-
-## *Stack* visualisation
-<img src=media/Stack.svg width=800 height=500 /></br>
-
-
-## *Stack* example
-
-
-## The *Queue* data structure
-* The *Queue* interface defines a linear collection that supports element insertion and removal at both ends 
-* Represents a first-in-first-out (fifo) model
-* Older additions will be served first 
-
-
-## The *Queue* data structure
-<img src=media/Queue.svg width=800 height=500 /></br>
-
-
-## The *List* data structure
-* Is an ordered collection (sequence) of objects
-* User have complete control of the insertion and removal of an element in the list
-* The most common implementation of the List model are the *Linked-list* the and *ArrayList*
-
-
-## The *Linked-list* data structure
-<img src=media/Lists.svg width=800 height=500 /></br>
-
-
-## The *Linked-list* data structure
-<img src=media/Lists2.svg width=800 height=500 /></br>
-
-
-## The *Linked-list* data structure
-<img src=media/Lists3.svg width=800 height=500 /></br>
-
-
-## CircleList, a linked-list example
-<!-- TODO change to Student example -->
-```java
-class Circle {
-	/* Linked-list nodes should have a field of their own
-	type showing the next element in the list */
-	private Circle next;
-
-	Circle(){ this.next = null; }
-	public void setNext (Circle c) { this.next = c; }
-	public Circle getNext () { return this.next; }
-}
-
-public class CircleList {
-	private Circle first_element;
-	
-	CircleList() { this.first_element = null; }
-	
-	public void addElement(Circle c) {
-		if(this.first_element == null) {
-			this.first_element = c; 
-		} else {
-			Circle current_circle = this.first_element;
-			while (current_circle.getNext() != null) {
-				current_circle = current_circle.getNext();
-			}
-			current_circle.setNext(c);
-		}
-	}
-
-}
+First word: Winter
+Contains 'sun': false
+Last word: coming...
 ```
 
 
@@ -240,7 +159,71 @@ public class CircleList {
 <img src=media/javaCollectionFramework.svg width=800 height=500 /></br>
 
 
-## *Vector* vs other *List* implementations
+## The *List* data structure
+* Is an ordered collection (sequence) of objects
+* User have complete control of the insertion and removal of an element in the list
+* The most common implementation of the List model are the *Linked-list* the and *ArrayList*. 
+
+
+## The ArrayList
+* *Arraylist* is a class which implements List interface
+* *ArrayList* can dynamically grow and shrink according to the needs
+* Code example:
+* Not synchronised!
+* Use *ensureCapacity(int minCapacity)* in case of initially adding many elements and you want to avoid the incremental size increase
+```java
+// class declaration according to Oracle
+public class ArrayList<E> extends AbstractList<E> implements List<E>, .... {
+    // ...
+}
+```
+
+
+## The ArrayList (Code example)
+```java
+import java.util.ArrayList;
+
+public class ArrayListDemo {
+
+    public static void main(String[] args) {
+        // ArrayList declaration and initialization
+        ArrayList<Integer> myList = new ArrayList<>();
+        
+        // add elements at the end of the list
+        myList.add(1);
+        myList.add(2);
+        myList.add(4);
+        System.out.println(myList);
+        
+        // add an element in a specific position
+        myList.add(2, 3);
+        System.out.println(myList);
+        
+        // check if the list contains a number
+        System.out.println("List contains 2? " + myList.contains(2) + "\n"
+                            + "List contains 0? " + myList.contains(0));
+        
+        // ensures that the internal array will have 1000 elements capacity
+        myList.ensureCapacity(1000);
+        
+        // remove all elements from the list
+        myList.clear();
+        System.out.println(myList);
+    }
+
+}
+```
+with output
+```
+    [1, 2, 4]
+    [1, 2, 3, 4]
+    List contains 2? true
+    List contains 0? false
+    []
+```
+
+
+## *Vector* vs *ArrayList*
 * Almost equivalent data structures
  * *Vector* is synchronized when
  * *List* is not synchronized
@@ -249,27 +232,137 @@ public class CircleList {
  * *List* increases its size by 50%
 
 
-## The *Stack* java class
-* *Stack* implements the *Collection* interface and thus, defines the following methods:
-* *boolean Empty()* - returns true if stack is empty
-* *E push(E item)* - adds a new object of type *E* at the top of the stack
-* *E pop()* - removes and returns the top object from the stack
-* *E peek()* - returns the top object from the stack  
-* Java implements Stack
+## The *Linked-list* Java class
+* Each element (**node**) of a list is comprising of two items
+ * the data and 
+ * a reference to the next node. 
+* The last node has a reference to null
+* The entry point into a linked list is called the head of the list
 ```java
-public class Stack<E> { ... }
+// class declaration according to Oracle
+public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Queue<E>, .... {
+    // ...
+}
 ```
-* *E* can be replaced by the type of your preferred object 
 
 
-## The *Queue* java interface
+## The *Linked-list* data structure
+<img src=media/Lists.svg width=800 height=500 /></br>
+
+
+## The *Linked-list* data structure
+<img src=media/Lists2.svg width=800 height=500 /></br>
+
+
+## The *Linked-list* data structure
+<img src=media/Lists3.svg width=800 height=500 /></br>
+
+
+## CircleList, a linked-list example
+<!-- TODO change to Student example -->
+```java
+class Circle {
+    /* Linked-list nodes should have a field of their own
+    type showing the next element in the list */
+    private Circle next;
+
+    Circle(){ this.next = null; }
+    public void setNext (Circle c) { this.next = c; }
+    public Circle getNext () { return this.next; }
+
+    /*
+    * Here follows the code of the original Circle class 
+    * as presented in the Creating Classes session
+    */
+}
+
+public class CircleList {
+    private Circle first_element;
+    
+    CircleList() { this.first_element = null; }
+    
+    public void addElement(Circle c) {
+        if(this.first_element == null) {
+            this.first_element = c; 
+        } else {
+            Circle current_circle = this.first_element;
+            while (current_circle.getNext() != null) {
+                current_circle = current_circle.getNext();
+            }
+            current_circle.setNext(c);
+        }
+    }
+
+}
+```
+
+
+## The *Stack* data structure
+* *Stack* (or *Push-down stack*), in one of the most important *abstract data types* that 
+* Offers two functionalities: 
+ * *push* (add) and
+ * *pop* (remove)  
+* Represents a last-in-first-out (lifo) model
+* Newer additions have priority in being served!
+* Only the last entered element can be extracted
+* [*Deque*](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html) provides similar but enriched functionality
+```java
+// The Stack class, as defined by Oracle
+public class Stack<E> extends Vector<E> implements List<E>, ... { 
+    // ... 
+}
+```
+
+
+## *Stack* visualisation
+<img src=media/Stack.svg width=800 height=500 /></br>
+
+
+## *Stack* (Code example)
+```java
+import java.util.Stack;
+
+public class StackDemo {
+
+    public static void main(String[] args) {
+        // Stack declarations and initialization
+        Stack<Integer> stack = new Stack<>();
+        
+        // add elements at the top of the stack
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        stack.push(4);
+        System.out.println(stack);
+        
+        // check the first element
+        int top = stack.peek();
+        System.out.println("top element: " + top);
+        
+        // remove and hold the first element
+        int first = stack.pop();
+        System.out.println("popped element: " + first + "\n" + stack);
+        
+        // check the first element
+        top = stack.peek();
+        System.out.println("top element: " + top);
+    }
+
+}
+```
+
+
+## The *Queue* data structure
 * The *Queue* interface defines a linear collection that supports element insertion and removal at both ends 
 * Represents a first-in-first-out (fifo) model
+* Older additions will be served first 
 ```java
 public interface Queue<E> extends Collection<E> { ... }
 ```
-* It extends the *Collection* interface
-* *Queues* provide additional insertion, extraction, and inspection operations
+
+
+## The *Queue* data structure
+<img src=media/Queue.svg width=800 height=500 /></br>
 
 
 ## The *Queue* interface (continued)
@@ -278,41 +371,6 @@ public interface Queue<E> extends Collection<E> { ... }
  * (extraction) remove() or poll()
  * (inspection) element() or peek()
 * The first method of each operation throws an exception upon failure and the second returns a special value
-
-
-## *Queue* interface "extensions"
-* *Dequeue* stands short for the *double ended queue*
- * Allows access to both ends of the queue
-* *BlockingQueue* operations that wait for the queue to become non-empty when retrieving an element, and
- * wait for space to become available in the queue when storing an element if there is none
-
-
-## The *Linked-list* Java class
-```java
-public class LinkedList<E>
-extends AbstractSequentialList<E>
-implements List<E>, Deque<E>, Cloneable, Serializable { ... }
-```
-* Java implements the link-list as a *double-linked*
-* Each node hold a reference to its previous and next node
-* It can be traversed from both sides
-* It's not synchronised! In order to be synchronized it should be wrapped in a synchronised object or by applying the following:
-```java
-List list = Collections.synchronizedList(new LinkedList(...));
-```
-
-
-## *ArrayList*, a list variation
-* The most commonly used implementation of the *List* interface
-* Using an Array at the background
-* Inherits all characteristics that *Lists* have
-* Not synchronised! The same principle as in linked-list should be applied
-* Use *ensureCapacity(int minCapacity)* in case of initially adding many elements and you want to avoid the incremental size increase
-```java
-public class ArrayList<E>
-extends AbstractList<E>
-implements List<E>, RandomAccess, Cloneable, Serializable { ... }
-```
 
 
 ## Code Examples of the presented linear data structures
@@ -334,7 +392,7 @@ the aforementioned scenario (and specifically the class *BankAccountTransactionL
 ## The *ArrayList* solution
 ```java
 /***
- * This class represent a transaction (transfer of money)
+ * This class represents a transaction (transfer of money)
  * of a bank account. The 2 fields are just dummy fields since this 
  * example serves only demonstrating reasons for adding and removing 
  * objects in a list. 
@@ -395,8 +453,7 @@ public class BankAccountTransactionList {
 	 * is performed in the constructor. */
 	private ArrayList<BankAccountTransaction> bankAccountTransactions;
 
-	/* The default constructor. or safety reasons (avoid NullPointerException) 
-	 * we have to initialize the bankAccountTransactions object. */
+	/* The default constructor */
 	public BankAccountTransactionList() {
 		this.bankAccountTransactions = new ArrayList<>();
 	}
@@ -823,7 +880,7 @@ public class TestBankAccoutTransList_LinkedList {
 
 ## The *Queue* solution
 * A Queue solution is not provided in source for one simple reason: Its implementation is almost identical to the previously presented Linked-list! 
-* Can you guess how, by slightly changing the Linked-list source code you can come up with a Queue?
+* Can you guess how, by slightly changing the Linked-list source code, you can come up with a Queue?
 (SPOILER ALERT:The answer comes to the next slide!)
 
 
@@ -841,6 +898,13 @@ public void dequeue() {
 You end up having Queue! Only the *element()* method that return the first element (without removing it) but the Getter of the "first" field does the same.
 
 
+## Adding *Synchronization* feature
+* Collections that are not synchronised can be now wrapped in another synchronised object or by applying the following:
+```java
+List list = Collections.synchronizedList(new LinkedList(...));
+```
+
+
 ## References
 * Algorithms in Java, Part 1-4 (3rd Edition), R. Sedgewick, Princeton University
 * Thinking in Java (4th Edition) - Bruce Eckel
@@ -851,108 +915,92 @@ You end up having Queue! Only the *element()* method that return the first eleme
 
 
 ## Exercise 1 (Arrays)
-* Given an array of type int as the following: 
+* Create a method **findMinAndPositions** that finds the min value of a given array of Integers and also prints its positions.
 ```java
-int[] array = {1, 3, 1, 2, 5, 6, 6, 8, 9, 12, 1, 13, 3, 1};
+public static void main(String[] args) {
+    int[] array = {1, 3, 1, 2, 5, 6, 6, 8, 9, 12, 1, 13, 3, 1};
+    findMinAndPositions(array);
+}
 ```
-* Can you create a for loop that finds the min value and also prints its positions?
 * The results should be similar to the following:
-```java
-Min is 1 in positions: 0, 2, 10, 13
+```
+    Min is 1 in positions: 0, 2, 10, 13
 ```
 * Can you use **only one** *for* loop for solving the exercise?
 
 
 ## Exercise 2 (Strings and Arrays)
-Create a class *CaesarsCipher* with two methods:
-* *String cipher(String message)* - shifts all characters of a string by a predefined number
-* *String decipher(String cipher_text)* - shifts all characters of the String created by the *cipher* method by the predefined number (to the opposite direction of *cipher*)
-* The number of shifts should be an attribute of class *CaesarsCipher* with the necessary *set* method
+*CaesarsCipher* is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet. [link](https://en.wikipedia.org/wiki/Caesar_cipher)
+<img src=media/caecars_cipher.png width=600 height=250 /></br>
+
+
+## Exercise 2 (continued)
+Create a class *CaesarsCipher* that performs the ciphering/deciphering on plain text as described by the Ceacar's cipher. This class should have the following two methods:
+* ** String cipher(String message, int numOfShifts)** - ciphers and returns the given message (with the given numOfShifts) 
+* **String decipher(String cipherText, int numOfShifts)** - deciphers and returns the given message (with the given numOfShifts) 
 * Create a *TestCaesar* class and test the functionality of your *CaesarsCipher* class
 
 
 ## Exercise 3 (Collections)
 * The goal of this Exercise is to modify the code of our *Library* project, so that more Authors and Books can be added dynamically during runtime! 
-* Also, to provide additional functionality to the already existing functionalities of the *Library* project, by using dynamically allocated data structures
-* Use the following code(next slide) to build the skeleton for Exercise 3 of the **Creating classes** bootcamp session. You can work on your own code if you prefer! Each class should be moved in each own *.java* file
+* Also, to provide additional functionality (like book transactions)
+* The following [code //TODO](link here) is the skeleton code for Exercise 3 of the **Creating classes** session. You can work on your own code if you prefer! Work on a copy of your *Library* project,  do not **modify** the original project. 
 
 
-## Exercise 3 (Collections)
-You can find the code base in the following ([link](https://drive.google.com/open?id=0B9pJuOee0VNcSFl2OV9oN004RTA))
-
-
-## Exercise 3
+## Exercise 3 (continued)
 * **AuthorList**
-* On your Library project add a class *AuthorList* that represents a *List* data structure that stores *Author* objects. 
-* A field of *AuthorList* type should be included in your *Library* class also. Library is now responsible for accessing and modifying the author list. 
-* The *List* can be implemented internally by using the *ArrayList* data structure that is provided by the Java Collections Framework and using it like the following: 
-```java
-ArrayList<Author> authors;
-```
+* On your Library project add a class *AuthorList* that represents a *List*  that stores *Author* objects. 
+* Aν instance variable of type *AuthorList* should be included in your *Library* class also. Library is now responsible for accessing and modifying the author list. 
+* The *AuthorList* can be implemented internally (wrap inside) by using the *ArrayList* data structure, provided by the Java Collections Framework.
 
 
 ## Exercise 3 (continued)
 * **AuthorList** should implement methods that provide at least the following functionality: 
- * getter and setters,
- * a Constructor that can fill the List with an Array of Authors,
+ * a Constructor that can initialize and populate the List from a given array of authors (AuthorList(Author authorsArray[]){...}),
  * add an author,
  * remove an author,
  * find an author,
  * print the number of authors,
  * search if author exists,
- * any other method of your preference!
+ * or (optionally) any other method of your preference!
 
 
 ## Exercise 3 (continued)
 * **BookList** 
 * Create a class *BookList* that represents a *List* data structure that stores *Book* objects
-* BookList should be implemented as a **custom** *Linked-list* type of *List*. Do not use the *linked-list* class that java offers.
-* All functionalities related to books that were performed by the *Library* should now delegated to the *BookList*. Modify the code of your *Library* accordingly 
+* An instance variable of type *BookList* should be included in your *Library* class also (replace the Book[] array from the previous implementation, if exists). 
+* The *BookList* can be implemented internally (wrap inside) by using the *LinkedList* data structure, provided by the Java Collections Framework.
+* Modify any code necessary in *Library* in order to operate with LinkedList and use the *BookList*s functionalities
 
 
 ## Exercise 3 (continued)
-* **BookList** should have only one field. An object of type Book that represents the first element of the linked-list.
-* Along with the requirements regarding the *BookList* class that were mentioned in the previous slide, also provide your class with the following functionalities:
- * A Constructor that can fill the list from an Array of Book objects, just like in *AuthorList* 
+* *BookList* should offer the following functionalities: 
+ * addBook(Book newBook) - adds a new book at the end of the list (only if the book doesn't exist)
+ * removeBook(String title) - removes a book, if exists
+ * getBook(String title) - returns a book or null if it doesn't exist
 
 
 ## Exercise 3 (continued)
-* On Exercise 3 (from the Creating Classes session) modify all necessary methods that are searching for *Authors* or *Books* so that they can find matches even if the given search_words are in lowercase format.
-* Make use of the *to Lowercase()* method of the *String* class
-
-
-## Exercise 3 (continued)
-* Create a class named *Transaction* that stores information related to the renting and returning a book operations.
+* Create a class named *Transaction* that stores information related to the renting and returning a book, operations.
 * Your class should have keep the following information
  * The book for which the transaction is being performed 
  * The date of requesting the current transaction
  * The date of serving of the current transaction
- * The user_id of the library member requesting or return the book
- * A global counter that keeps the counter
- * A unique identifier that takes the current count value 
-
-
-## Exercise 3 (continued)
-* **Transaction**
+ * A counter that stores how many *Transactions* have been made
+ * A unique identifier (that cannot be changed afte initialization) for each *Transaction* created 
 * It should provide an overloaded Constructor and a setServedDate() method that updates the relevant field
 
 
 ## Exercise 3 (continued)
-* Create two more classes that extend the above class with names *BookRental* and *BookReturn*
- * *BookRental* should print (overwrite the toString() method) the Transactions' starting with "Book rental"
- * *BookReturn* should print (overwrite the toString() method)the Transactions' starting with "Book return"
-
-
-## Exercise 3 (continued)
-* Create a *TransactionQueue* class that serves as a data structure for storing *Transactions* that have been validated but not yet executed. The *TransactionQueue* should be implemented by a data-structure of your preference (array, ArrayList, Linked-list) but should provide only the methods of a Queue.   
-* A *TransactionQueue* field should be introduced in your *Library* class 
- * When a returnBook() or rentBook() operation is successful in your system you should create a *Transaction* (*BookRental* or *BookReturn* according to the current operation) and add it to the Queue
-
-
-## Exercise 3 (continued)
-* Create a *TransactionHistory* class that represents a list data structure. This list should store all executed *Transactions* in your system
+* Create a *TransactionQueue* class that serves as a Queue data structure for storing *Transactions* that are pending to be executed. The *TransactionQueue* should be implemented by a data-structure of your preference (simple arrays, ArrayList, Linked-list) but should provide only the methods of a Queue
 * A field of type *TransactionHistory* should be introduced in your *Library* class
-* Create a method *executePendingTransactions()* in your *Library* class. When this method is called by the *Librarian* it should virtually (no actual effect) execute each one of the stored pending transactions in the *TransactionQueue* of the Library.
+* Every time that a book is requested, a Transaction should be created and stored in the Queue. 
+
+
+## Exercise 3 (continued)
+* Create a *TransactionHistory* class that represents a List data structure that stores executed *Transactions*.
+* A field of type *TransactionHistory* should be introduced in your *Library* class
+* Create a method *executePendingTransactions()* in your *Library* class. When this method is called by the *Librarian* it should virtually (no actual effect) execute each one of the stored pending transactions in the *TransactionQueue* of the Library and print an indicative message for each executed transaction.
 * Every executed *Transaction* should be moved in the *TransactionHistory* list of the *Library* class. 
 
 
@@ -1027,16 +1075,16 @@ ArrayList<Author> authors;
 ```
 
 
-## Exercise 3 (finale!) 
+## Exercise 3 
+* Extend the command-line User Interface to include all newly added functionalities! (add book, remove book, execute transactions) 
+
+
+<!--## Exercise 3 (finale!) 
 * Further extend the functionality of your system by adding the *User* and the *UserList* entities. 
 * A *User* is a person registered to the *Library*
 * The *UserList* is a list that holds all registered *Users*
 * Introduce all necessary fields and methods in class
-* The type of the data structure that should be used for the *UserList* is a linked-list
-
-
-## Exercise 3 (grand-finale!)
-* Create a User-Interface (or extend your old one) to include all newly added functionalities! 
+* The type of the data structure that should be used for the *UserList* is a linked-list -->
 
 
 ## Exercise 4 
