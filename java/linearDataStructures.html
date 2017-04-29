@@ -53,7 +53,7 @@
 </ul>
 <h2 id="arrays">Arrays</h2>
 <ul>
-<li>A group of similar objects<br /></li>
+<li>A group of objects of the same type<br /></li>
 <li>Predefined (static) size<br /></li>
 <li>Can access/modify any element of the array<br /></li>
 <li><p>Array examples: <br></p>
@@ -61,35 +61,32 @@
     <span class="dt">char</span>[] word = {&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;};
     <span class="dt">int</span>[][] 2darray = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">3</span>][<span class="dv">3</span>];</code></pre></li>
 </ul>
-<h2 id="introduction-to-strings">Introduction to <em>Strings</em></h2>
+<h2 id="introduction-to-the-string-class">Introduction to the <em>String</em> class</h2>
 <ul>
-<li>A group of alphanumeric characters in a common entity called <em>String</em><br /></li>
-<li>All <em>Strings</em> in java are created by the <em>String</em> class<br /></li>
-<li>You can concatenate <em>Strings</em> by using the <strong>+</strong> operator<br /></li>
+<li>A sequence/group of alphanumeric characters<br /></li>
+<li>The Java platform provides the <strong>String</strong> class <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">link to API</a> to create and manipulate strings.<br /></li>
 <li><em>String</em> objects are <strong>immutable</strong> -- they cannot change their state after construction</li>
 </ul>
 <h2 id="concatenating-strings">Concatenating <em>Strings</em></h2>
+<ul>
+<li><p>You can concatenate strings by using the <strong>+</strong> operator</p>
 <pre class="sourceCode java"><code class="sourceCode java">String word = <span class="st">&quot;Hello bootcamp!&quot;</span>;
 word = word + <span class="st">&quot; Winter is coming...&quot;</span>;
 System.<span class="fu">out</span>.<span class="fu">println</span>(word);</code></pre>
 <p>Results to:</p>
-<pre class="sourceCode java"><code class="sourceCode java">Hello bootcamp! Winter is coming...</code></pre>
-<h2 id="bypassing-immutability">Bypassing immutability</h2>
-<ul>
-<li>Use the <em>StringBuffer</em> or <em>StringBuilder</em> following <em>Java</em> classes for creating, building and concatenating strings<br /><br><br><br /></li>
-<li><em>StringBuffer</em><br /></li>
-<li>Mutable and synchronized<br /></li>
-<li>Multiple threads can access it and modify it without any <em>side effects</em><br /></li>
-<li>Slow process. Many <em>locking</em> and <em>unlocking</em> actions will take place at the cpu<br /></li>
-<li>Stored in the <em>heap</em></li>
+<pre class="sourceCode java"><code class="sourceCode java">Hello bootcamp! Winter is coming...</code></pre></li>
 </ul>
-<h2 id="bypassing-immutability-continued">Bypassing immutability (continued)</h2>
+<h2 id="stringbuffer">StringBuffer</h2>
 <ul>
-<li><em>StringBuilder</em><br /></li>
-<li>Mutable but not synchronized<br /></li>
-<li>Accessing it and modifying it by more than one threads can have unexpected results!<br /></li>
-<li>Much faster than the <em>StringBuffer</em> class<br /></li>
-<li>Stored in the <em>heap</em></li>
+<li><em>Mutable</em> - can be modified after creation<br /></li>
+<li><em>Synchronized</em> - multiple threads can access it and modify it without any <em>side effects</em><br /></li>
+<li>Relatively slow process. Many <em>locking</em> and <em>unlocking</em> actions will take place at the cpu</li>
+</ul>
+<h2 id="stringbuilder">StringBuilder</h2>
+<ul>
+<li><em>Mutable</em> - can be modified after creation<br /></li>
+<li><em>Not synchronized</em> - accessing it and modifying it by more than one threads can produce unexpected results!<br /></li>
+<li>Much faster than the <em>StringBuffer</em> class</li>
 </ul>
 <h2 id="immutable-vs-mutable-operations---example">Immutable vs mutable operations - example</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Simple String example */</span>
@@ -112,9 +109,12 @@ StringBuffer buff = <span class="kw">new</span> StringBuffer();
     buff.<span class="fu">append</span>(i);
 }
 buff.<span class="fu">toString</span>();</code></pre>
-<h2 id="immutable-vs-mutable-operations---comparison">Immutable vs mutable operations - comparison</h2>
-<p>Measuring the separate execution of each solution above resulted to:<br /> * 78.5 millisecond using the += operand<br /> * 3.7 millisecond using StringBuffer<br /> * 1.4 millisecond using StringBuilder</p>
-<h2 id="creating-strings">Creating <em>Strings</em></h2>
+<h2 id="immutable-vs-mutable-operations---time-comparison">Immutable vs Mutable operations - time comparison</h2>
+<p>Measuring the separate execution of each solution above resulted to:</p>
+<pre><code>    * 78.5 millisecond using the += operand
+    *  3.7 millisecond using StringBuffer
+    *  1.4 millisecond using StringBuilder</code></pre>
+<h2 id="available-string-constructors">Available <em>String</em> Constructors</h2>
 <ul>
 <li>Java offers, among others, the following <em>constructors</em><br /></li>
 <li><em>String()</em><br /></li>
@@ -123,58 +123,130 @@ buff.<span class="fu">toString</span>();</code></pre>
 <li><em>String(String original)</em><br /></li>
 <li><em>String(StringBuilder builder)</em></li>
 </ul>
-<h2 id="strings-as-arrays"><em>Strings</em> as arrays</h2>
+<h2 id="strings-as-arrays">Strings as arrays</h2>
 <ul>
-<li>Class <em>String</em> offers, among others, the following methods for acquiring information from a <em>String</em> object from its <em>index</em><br><br /></li>
+<li>Class <em>String</em> offers, among others, the following methods (only signature's are presented) for acquiring one or more elements from an object using its <em>index</em><br><br /></li>
 <li><em>String substring(int beginIndex)</em><br /></li>
 <li><em>String substring(int beginIndex, int endIndex)</em><br /></li>
 <li><em>char charAt(int index)</em><br /></li>
 <li><em>String concat(String string2)</em></li>
 </ul>
 <h2 id="strings-as-arrays---index"><em>Strings</em> as arrays - index</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="co">//our test String phrase</span>
-String starks_quote = <span class="st">&quot;Winter is coming...&quot;</span>;
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// our test String phrase</span>
+String message = <span class="st">&quot;Winter is coming...&quot;</span>;
 
-<span class="co">//transforming a String to array of chars and printing it</span>
-<span class="dt">char</span>[] char_array_from_string = starks_quote.<span class="fu">toCharArray</span>();
-System.<span class="fu">out</span>.<span class="fu">println</span>(Arrays.<span class="fu">toString</span>(char_array_from_string));
-<span class="co">//getting the first word of the phrase</span>
-String first_word = starks_quote.<span class="fu">substring</span>(<span class="dv">0</span>, starks_quote.<span class="fu">indexOf</span>(&#39; &#39;));
-System.<span class="fu">out</span>.<span class="fu">println</span>(first_word);
-<span class="co">//checking if our phrase contains the String &quot;sun&quot;</span>
-<span class="dt">boolean</span> match = starks_quote.<span class="fu">contains</span>(<span class="st">&quot;sun&quot;</span>);
-System.<span class="fu">out</span>.<span class="fu">println</span>(match);
-<span class="co">//getting the last word of the phrase</span>
-String last_word = starks_quote.<span class="fu">substring</span>(starks_quote.<span class="fu">lastIndexOf</span>(&#39; &#39;) + <span class="dv">1</span>, starks_quote.<span class="fu">length</span>());
-System.<span class="fu">out</span>.<span class="fu">println</span>(last_word);</code></pre>
+<span class="co">// transform a String to a char[] and print it</span>
+<span class="dt">char</span>[] charArray = message.<span class="fu">toCharArray</span>();
+<span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;charArray.<span class="fu">length</span>; i++)
+    System.<span class="fu">out</span>.<span class="fu">print</span>(charArray[i] + <span class="st">&quot;, &quot;</span>);
+
+<span class="co">// getting the first word of the phrase</span>
+String firstWord = message.<span class="fu">substring</span>(<span class="dv">0</span>, message.<span class="fu">indexOf</span>(&#39; &#39;));
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;First word: &quot;</span> + firstWord);
+
+<span class="co">// checking if our phrase contains the String &quot;sun&quot;</span>
+<span class="dt">boolean</span> match = message.<span class="fu">contains</span>(<span class="st">&quot;sun&quot;</span>);
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Contains &#39;sun&#39;: &quot;</span> + match);
+
+<span class="co">// getting the last word of the phrase</span>
+String lastWord = message.<span class="fu">substring</span>(message.<span class="fu">lastIndexOf</span>(&#39; &#39;) + <span class="dv">1</span>, message.<span class="fu">length</span>());
+System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Last word: &quot;</span> + lastWord);</code></pre>
+<p>The output of the aforementioned 4 prints is the following:</p>
 <pre class="sourceCode java"><code class="sourceCode java">[W, i, n, t, e, r,  , i, s,  , c, o, m, i, n, g, ., ., .]
-Winter
-<span class="kw">false</span>
-coming...</code></pre>
-<h2 id="the-stack-data-structure">The <em>Stack</em> data structure</h2>
+First word: Winter
+Contains &#39;sun&#39;: <span class="kw">false</span>
+Last word: coming...</code></pre>
+<h2 id="java-collections-framework"><em>Java Collections Framework</em></h2>
 <ul>
-<li><em>Push-down stack</em>, in one of the most important <em>abstract data types</em> that<br /></li>
-<li>Offers two functionalities:<br /></li>
-<li>add (<em>push</em>) and<br /></li>
-<li>remove(<em>pop</em>)<br /></li>
-<li>Represents a last-in-first-out (lifo) model<br /></li>
-<li>Newer additions have priority in being served!</li>
+<li>A collection framework supports the consistent and coherent representation and handling of <em>Collections</em> regardless of their implementation<br /></li>
+<li>It's a set of <em>interfaces</em> that depicts the basic functionalities that any <em>Collection</em> should offer</li>
 </ul>
-<h2 id="stack-continued"><em>Stack</em> (continued)</h2>
-<p><img src=media/Stack.svg width=800 height=500 /></br></p>
-<h2 id="the-queue-data-structure">The <em>Queue</em> data structure</h2>
+<h2 id="java-collections-framework-1"><em>Java Collections Framework</em></h2>
 <ul>
-<li>The <em>Queue</em> interface defines a linear collection that supports element insertion and removal at both ends<br /></li>
-<li>Represents a first-in-first-out (fifo) model<br /></li>
-<li>Older additions will be served first</li>
+<li>Reduces the development time and cost<br /></li>
+<li>Switch between implementations<br /></li>
+<li>Easier to use (common for all implementations)<br /></li>
+<li>Easier to develop libraries<br /></li>
+<li>Promotes code <em>re-usability</em></li>
 </ul>
-<h2 id="the-queue-data-structure-1">The <em>Queue</em> data structure</h2>
-<p><img src=media/Queue.svg width=800 height=500 /></br></p>
+<h2 id="java-collections-framework-2"><em>Java Collections Framework</em></h2>
+<p><img src=media/javaCollectionFramework.svg width=800 height=500 /></br></p>
 <h2 id="the-list-data-structure">The <em>List</em> data structure</h2>
 <ul>
 <li>Is an ordered collection (sequence) of objects<br /></li>
+<li>It can dynamically modify its size<br /></li>
 <li>User have complete control of the insertion and removal of an element in the list<br /></li>
-<li>The most common implementation of the List model are the <em>Linked-list</em> the and <em>ArrayList</em></li>
+<li>The most common implementation of the List model are the <em>Linked-list</em> the and <em>ArrayList</em>.</li>
+</ul>
+<h2 id="the-arraylist">The ArrayList</h2>
+<ul>
+<li><em>Arraylist</em> is a class which implements the <em>List</em> interface<br /></li>
+<li><em>ArrayList</em> can dynamically grow and shrink according to the needs<br /></li>
+<li>Not synchronised!<br /></li>
+<li><p>Use <em>ensureCapacity(int minCapacity)</em> in case of initially adding many elements and you want to avoid the incremental size increase</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// class declaration according to Oracle</span>
+<span class="kw">public</span> <span class="kw">class</span> ArrayList&lt;E&gt; <span class="kw">extends</span> AbstractList&lt;E&gt; <span class="kw">implements</span> List&lt;E&gt;, .<span class="kw">... </span>{
+    <span class="co">// ...</span>
+}</code></pre></li>
+</ul>
+<h2 id="the-arraylist-code-example">The ArrayList (Code example)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.ArrayList;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> ArrayListDemo {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        <span class="co">// ArrayList declaration and initialization</span>
+        ArrayList&lt;Integer&gt; myList = <span class="kw">new</span> ArrayList&lt;&gt;();
+        
+        <span class="co">// add elements at the end of the list</span>
+        myList.<span class="fu">add</span>(<span class="dv">1</span>);
+        myList.<span class="fu">add</span>(<span class="dv">2</span>);
+        myList.<span class="fu">add</span>(<span class="dv">4</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(myList);
+        
+        <span class="co">// add an element in a specific position</span>
+        myList.<span class="fu">add</span>(<span class="dv">2</span>, <span class="dv">3</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(myList);
+        
+        <span class="co">// check if the list contains a number</span>
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;List contains 2? &quot;</span> + myList.<span class="fu">contains</span>(<span class="dv">2</span>) + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>
+                            + <span class="st">&quot;List contains 0? &quot;</span> + myList.<span class="fu">contains</span>(<span class="dv">0</span>));
+        
+        <span class="co">// ensures that the internal array will have 1000 elements capacity</span>
+        myList.<span class="fu">ensureCapacity</span>(<span class="dv">1000</span>);
+        
+        <span class="co">// remove all elements from the list</span>
+        myList.<span class="fu">clear</span>();
+        System.<span class="fu">out</span>.<span class="fu">println</span>(myList);
+    }
+
+}</code></pre>
+<p>with output</p>
+<pre><code>    [1, 2, 4]
+    [1, 2, 3, 4]
+    List contains 2? true
+    List contains 0? false
+    []</code></pre>
+<h2 id="vector-vs-arraylist"><em>Vector</em> vs <em>ArrayList</em></h2>
+<ul>
+<li>Almost equivalent data structures<br /></li>
+<li><em>Vector</em> is synchronized when<br /></li>
+<li><em>List</em> is not synchronized<br /></li>
+<li>If run out of space:<br /></li>
+<li><em>Vector</em> doubles its size, when<br /></li>
+<li><em>List</em> increases its size by 50%</li>
+</ul>
+<h2 id="the-linked-list-java-class">The <em>Linked-list</em> Java class</h2>
+<ul>
+<li>Each element (<strong>node</strong>) of a list is comprising of two items<br /></li>
+<li>the data and<br /></li>
+<li>a reference to the next node.<br /></li>
+<li>The last node has a reference to null<br /></li>
+<li><p>The entry point into a linked list is called the head of the list</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// class declaration according to Oracle</span>
+<span class="kw">public</span> <span class="kw">class</span> LinkedList&lt;E&gt; <span class="kw">extends</span> AbstractSequentialList&lt;E&gt; <span class="kw">implements</span> List&lt;E&gt;, Queue&lt;E&gt;, .<span class="kw">... </span>{
+    <span class="co">// ...</span>
+}</code></pre></li>
 </ul>
 <h2 id="the-linked-list-data-structure">The <em>Linked-list</em> data structure</h2>
 <p><img src=media/Lists.svg width=800 height=500 /></br></p>
@@ -184,13 +256,18 @@ coming...</code></pre>
 <p><img src=media/Lists3.svg width=800 height=500 /></br></p>
 <h2 id="circlelist-a-linked-list-example">CircleList, a linked-list example</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
-    <span class="co">/* Linked-list nodes should have a field of their own</span>
+    <span class="co">/* Linked-list nodes should have a reference of their own</span>
 <span class="co">    type showing the next element in the list */</span>
     <span class="kw">private</span> Circle next;
 
     <span class="fu">Circle</span>(){ <span class="kw">this</span>.<span class="fu">next</span> = <span class="kw">null</span>; }
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setNext</span> (Circle c) { <span class="kw">this</span>.<span class="fu">next</span> = c; }
     <span class="kw">public</span> Circle <span class="fu">getNext</span> () { <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">next</span>; }
+
+    <span class="co">/*</span>
+<span class="co">    * Here follows the code of the original Circle class </span>
+<span class="co">    * as presented in the Creating Classes session</span>
+<span class="co">    */</span>
 }
 
 <span class="kw">public</span> <span class="kw">class</span> CircleList {
@@ -211,49 +288,62 @@ coming...</code></pre>
     }
 
 }</code></pre>
-<h2 id="java-collections-framework"><em>Java Collections Framework</em></h2>
+<h2 id="the-stack-data-structure">The <em>Stack</em> data structure</h2>
 <ul>
-<li>A collection framework supports the consistent and coherent representation and handling of <em>Collections</em> regardless of their implementation<br /></li>
-<li>It's a set of <em>interfaces</em> that depicts the basic functionalities that any <em>Collection</em> should offer</li>
+<li><em>Stack</em> (or <em>Push-down stack</em>), in one of the most important <em>abstract data types</em> that<br /></li>
+<li>Offers two functionalities:<br /></li>
+<li><em>push</em> (add) and<br /></li>
+<li><em>pop</em> (remove)<br /></li>
+<li>Represents a last-in-first-out (lifo) model<br /></li>
+<li>Newer additions have priority in being served!<br /></li>
+<li>Only the last entered element can be extracted<br /></li>
+<li><p><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html"><em>Deque</em></a> provides similar but enriched functionality</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="co">// The Stack class, as defined by Oracle</span>
+<span class="kw">public</span> <span class="kw">class</span> Stack&lt;E&gt; <span class="kw">extends</span> Vector&lt;E&gt; <span class="kw">implements</span> List&lt;E&gt;, <span class="kw">... </span>{ 
+    <span class="co">// ... </span>
+}</code></pre></li>
 </ul>
-<h2 id="java-collections-framework-1"><em>Java Collections Framework</em></h2>
-<ul>
-<li>Reduces the development time and cost<br /></li>
-<li>Switch between implementations<br /></li>
-<li>Easier to use (common for all implementations)<br /></li>
-<li>Easier to develop libraries<br /></li>
-<li>Promotes code <em>re-usability</em></li>
-</ul>
-<h2 id="java-collections-framework-2"><em>Java Collections Framework</em></h2>
-<p><img src=media/javaCollectionFramework.svg width=800 height=500 /></br></p>
-<h2 id="vector-vs-other-list-implementations"><em>Vector</em> vs other <em>List</em> implementations</h2>
-<ul>
-<li>Almost equivalent data structures<br /></li>
-<li><em>Vector</em> is synchronized when<br /></li>
-<li><em>List</em> is not synchronized<br /></li>
-<li>If run out of space:<br /></li>
-<li><em>Vector</em> doubles its size, when<br /></li>
-<li><em>List</em> increases its size by 50%</li>
-</ul>
-<h2 id="the-stack-java-class">The <em>Stack</em> java class</h2>
-<ul>
-<li><em>Stack</em> implements the <em>Collection</em> interface and thus, defines the following methods:<br /></li>
-<li><em>boolean Empty()</em> - returns true if stack is empty<br /></li>
-<li><em>E push(E item)</em> - adds a new object of type <em>E</em> at the top of the stack<br /></li>
-<li><em>E pop()</em> - removes and returns the top object from the stack<br /></li>
-<li><em>E peek()</em> - returns the top object from the stack<br /></li>
-<li><p>Java implements Stack</p>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Stack&lt;E&gt; { <span class="kw">... </span>}</code></pre></li>
-<li><p><em>E</em> can be replaced by the type of your preferred object</p></li>
-</ul>
-<h2 id="the-queue-java-interface">The <em>Queue</em> java interface</h2>
+<h2 id="stack-visualisation"><em>Stack</em> visualisation</h2>
+<p><img src=media/Stack.svg width=800 height=500 /></br></p>
+<h2 id="stack-code-example"><em>Stack</em> (Code example)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.Stack;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> StackDemo {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        <span class="co">// Stack declarations and initialization</span>
+        Stack&lt;Integer&gt; stack = <span class="kw">new</span> Stack&lt;&gt;();
+        
+        <span class="co">// add elements at the top of the stack</span>
+        stack.<span class="fu">push</span>(<span class="dv">1</span>);
+        stack.<span class="fu">push</span>(<span class="dv">2</span>);
+        stack.<span class="fu">push</span>(<span class="dv">3</span>);
+        stack.<span class="fu">push</span>(<span class="dv">4</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(stack);
+        
+        <span class="co">// check the first element</span>
+        <span class="dt">int</span> top = stack.<span class="fu">peek</span>();
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;top element: &quot;</span> + top);
+        
+        <span class="co">// remove and hold the first element</span>
+        <span class="dt">int</span> first = stack.<span class="fu">pop</span>();
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;popped element: &quot;</span> + first + <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span> + stack);
+        
+        <span class="co">// check the first element</span>
+        top = stack.<span class="fu">peek</span>();
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;top element: &quot;</span> + top);
+    }
+
+}</code></pre>
+<h2 id="the-queue-data-structure">The <em>Queue</em> data structure</h2>
 <ul>
 <li>The <em>Queue</em> interface defines a linear collection that supports element insertion and removal at both ends<br /></li>
-<li><p>Represents a first-in-first-out (fifo) model</p>
+<li>Represents a first-in-first-out (fifo) model<br /></li>
+<li><p>Older additions will be served first</p>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">interface</span> Queue&lt;E&gt; <span class="kw">extends</span> Collection&lt;E&gt; { <span class="kw">... </span>}</code></pre></li>
-<li>It extends the <em>Collection</em> interface<br /></li>
-<li><p><em>Queues</em> provide additional insertion, extraction, and inspection operations</p></li>
 </ul>
+<h2 id="the-queue-data-structure-1">The <em>Queue</em> data structure</h2>
+<p><img src=media/Queue.svg width=800 height=500 /></br></p>
 <h2 id="the-queue-interface-continued">The <em>Queue</em> interface (continued)</h2>
 <ul>
 <li>It uses two methods for each one of the three aforementioned operations<br /></li>
@@ -262,540 +352,10 @@ coming...</code></pre>
 <li>(inspection) element() or peek()<br /></li>
 <li>The first method of each operation throws an exception upon failure and the second returns a special value</li>
 </ul>
-<h2 id="queue-interface-extensions"><em>Queue</em> interface &quot;extensions&quot;</h2>
+<h2 id="adding-synchronization-feature">Adding <em>Synchronization</em> feature</h2>
 <ul>
-<li><em>Dequeue</em> stands short for the <em>double ended queue</em><br /></li>
-<li>Allows access to both ends of the queue<br /></li>
-<li><em>BlockingQueue</em> operations that wait for the queue to become non-empty when retrieving an element, and<br /></li>
-<li>wait for space to become available in the queue when storing an element if there is none</li>
-</ul>
-<h2 id="the-linked-list-java-class">The <em>Linked-list</em> Java class</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> LinkedList&lt;E&gt;
-<span class="kw">extends</span> AbstractSequentialList&lt;E&gt;
-<span class="kw">implements</span> List&lt;E&gt;, Deque&lt;E&gt;, Cloneable, Serializable { <span class="kw">... </span>}</code></pre>
-<ul>
-<li>Java implements the link-list as a <em>double-linked</em><br /></li>
-<li>Each node hold a reference to its previous and next node<br /></li>
-<li>It can be traversed from both sides<br /></li>
-<li><p>It's not synchronised! In order to be synchronized it should be wrapped in a synchronised object or by applying the following:</p>
+<li><p>Collections that are not synchronised can be now wrapped in another synchronised object or by applying the following:</p>
 <pre class="sourceCode java"><code class="sourceCode java">List list = Collections.<span class="fu">synchronizedList</span>(<span class="kw">new</span> LinkedList(...));</code></pre></li>
-</ul>
-<h2 id="arraylist-a-list-variation"><em>ArrayList</em>, a list variation</h2>
-<ul>
-<li>The most commonly used implementation of the <em>List</em> interface<br /></li>
-<li>Using an Array at the background<br /></li>
-<li>Inherits all characteristics that <em>Lists</em> have<br /></li>
-<li>Not synchronised! The same principle as in linked-list should be applied<br /></li>
-<li><p>Use <em>ensureCapacity(int minCapacity)</em> in case of initially adding many elements and you want to avoid the incremental size increase</p>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ArrayList&lt;E&gt;
-<span class="kw">extends</span> AbstractList&lt;E&gt;
-<span class="kw">implements</span> List&lt;E&gt;, RandomAccess, Cloneable, Serializable { <span class="kw">... </span>}</code></pre></li>
-</ul>
-<h2 id="code-examples-of-the-presented-linear-data-structures">Code Examples of the presented linear data structures</h2>
-<ul>
-<li>The following slides present implementations of the sipmlified example that follows.<br />We need a List that stores the transactions that are executed for a BankAccount.<br />Only two entities exist in our scenario:<br /></li>
-<li>the <em>BankAccountTransaction</em> that represents the entity of the Transaction, and<br /></li>
-<li>the <em>BankAccountTransactionList</em> that represents a List that stores Transactions.</li>
-</ul>
-<h2 id="code-examples-of-the-presented-linear-data-structures-1">Code Examples of the presented linear data structures</h2>
-<ul>
-<li>For better understanding the difference between the linear data structures presented earlier,<br />the aforementioned scenario (and specifically the class <em>BankAccountTransactionList</em>) is implemented in two different ways:<br /></li>
-<li>with an <em>ArrayList</em> (as provided by Java),<br /></li>
-<li>with a <em>Linked-list</em> (custom made and not the one provided by Java), and<br /></li>
-<li>(not implemented) as a <em>Queue</em> (again, custom made and not the one provided by Java). For the Queue check the slide <strong>The Queue solution</strong></li>
-</ul>
-<h2 id="the-arraylist-solution">The <em>ArrayList</em> solution</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/***</span>
-<span class="co"> * This class represent a transaction (transfer of money)</span>
-<span class="co"> * of a bank account. The 2 fields are just dummy fields since this </span>
-<span class="co"> * example serves only demonstrating reasons for adding and removing </span>
-<span class="co"> * objects in a list. </span>
-<span class="co"> * </span><span class="kw">@author </span><span class="co">angor</span>
-<span class="co"> */</span>
-<span class="kw">public</span> <span class="kw">class</span> BankAccountTransaction {
-    <span class="co">/* amount of money of the transaction */</span>
-    <span class="kw">private</span> <span class="dt">int</span> amount_of_money;
-    <span class="co">/* The type of transaction (&quot;incoming&quot; or &quot;outgoing&quot;) */</span>
-    <span class="kw">private</span> String transaction_type;
-    
-    <span class="co">/* Overloaded constructor with 2 arguments */</span>
-    <span class="fu">BankAccountTransaction</span>(<span class="dt">int</span> amount_of_money, String transaction_type) {
-        <span class="kw">this</span>.<span class="fu">amount_of_money</span> = amount_of_money;
-        <span class="kw">this</span>.<span class="fu">transaction_type</span> = transaction_type;
-    }
-
-    <span class="co">/* Getters and Setter methods */</span>
-    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getAmount_of_money</span>() {
-        <span class="kw">return</span> amount_of_money;
-    }
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setAmount_of_money</span>(<span class="dt">int</span> amount_of_money) {
-        <span class="kw">this</span>.<span class="fu">amount_of_money</span> = amount_of_money;
-    }
-    <span class="kw">public</span> String <span class="fu">getTransaction_type</span>() {
-        <span class="kw">return</span> transaction_type;
-    }
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setTransaction_type</span>(String transaction_type) {
-        <span class="kw">this</span>.<span class="fu">transaction_type</span> = transaction_type;
-    }
-
-    <span class="co">/* Returns a string with the field values of the class */</span>
-    <span class="fu">@Override</span>
-    <span class="kw">public</span> String <span class="fu">toString</span>() {
-        <span class="kw">return</span> <span class="st">&quot;BankAccountTransaction [amount_of_money=&quot;</span> + amount_of_money
-                + <span class="st">&quot;, transaction_type=&quot;</span> + transaction_type + <span class="st">&quot;]&quot;</span>;
-    }   
-
-}</code></pre>
-<ul>
-<li>The source code above implements the <em>BankAccountTransaction</em> class</li>
-</ul>
-<h2 id="the-arraylist-solution-continued">The <em>ArrayList</em> solution (continued)</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.ArrayList;</span>
-
-<span class="co">/***</span>
-<span class="co"> * This class represents a list of a bank accounts&#39; transactions.</span>
-<span class="co"> * For storing the Transactions we use an ArrayList provided by the </span>
-<span class="co"> * Java Collections Framework </span>
-<span class="co"> * (http://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)</span>
-<span class="co"> */</span>
-<span class="kw">public</span> <span class="kw">class</span> BankAccountTransactionList {
-    <span class="co">/* An ArrayList that stores BankAccountTransaction objects.</span>
-<span class="co">     * You only declare it here as a class field. The initialization </span>
-<span class="co">     * is performed in the constructor. */</span>
-    <span class="kw">private</span> ArrayList&lt;BankAccountTransaction&gt; bankAccountTransactions;
-
-    <span class="co">/* The default constructor. or safety reasons (avoid NullPointerException) </span>
-<span class="co">     * we have to initialize the bankAccountTransactions object. */</span>
-    <span class="kw">public</span> <span class="fu">BankAccountTransactionList</span>() {
-        <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span> = <span class="kw">new</span> ArrayList&lt;&gt;();
-    }
-    
-    <span class="co">/* An overloaded constructor that initializes the BankAccountTransaction</span>
-<span class="co">     * field of your class with a transaction_arraylist that received as </span>
-<span class="co">     * an argument */</span>
-    <span class="fu">BankAccountTransactionList</span>(ArrayList&lt;BankAccountTransaction&gt; transaction_arraylist) {
-        <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span> = transaction_arraylist;
-    }
-    
-    <span class="co">/* Getter and Setter methods */</span>
-    <span class="kw">public</span> ArrayList&lt;BankAccountTransaction&gt; <span class="fu">getTransaction_arraylist</span>() {
-        <span class="kw">return</span> bankAccountTransactions;
-    }
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setTransaction_arraylist</span>(
-            ArrayList&lt;BankAccountTransaction&gt; transaction_arraylist) {
-        <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span> = transaction_arraylist;
-    }
-    
-    <span class="co">/* Adds a new transaction at the last position of the </span>
-<span class="co">     * bankAccountTransactions ArrayList object. The object </span>
-<span class="co">     * should be added in the ArrayList, and this happens by </span>
-<span class="co">     * calling the add(Element e) method of the ArrayList class */</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(BankAccountTransaction new_transaction) {
-        <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">add</span>(new_transaction);
-    }
-    
-    <span class="co">/* Adds a new transaction at the position (of the index argument) of the </span>
-<span class="co">     * bankAccountTransactions ArrayList object. The object </span>
-<span class="co">     * should be added in the ArrayList, and this happens by </span>
-<span class="co">     * calling the add(Element e) method of the ArrayList class */</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(<span class="dt">int</span> index, BankAccountTransaction new_transaction) {
-        <span class="co">// This check exists in order to avoid the case that you try to remove an</span>
-        <span class="co">// element in a position out_of_bounds of your list. out_of_bounds</span>
-        <span class="co">// can happen at the left and the right of your list.</span>
-        <span class="kw">if</span>(index &gt; -<span class="dv">1</span> &amp;&amp; index &lt; <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>()) {
-            <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">add</span>(index, new_transaction);
-        } <span class="kw">else</span>
-            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Index &quot;</span> + index + <span class="st">&quot; out of bounds &quot;</span> + <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>());
-    }
-    
-    <span class="co">/* Removes an element at position &quot;index&quot; of the bankAccountTransactions ArrayList. </span>
-<span class="co">     * This happens when your ArrayList object calls the remove(int index) </span>
-<span class="co">     * method of the ArrayList class */</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">remove</span>(<span class="dt">int</span> index) {
-        <span class="co">// This check exists in order to avoid the case that you try to remove an</span>
-        <span class="co">// element in a position out_of_bounds of your list. out_of_bounds</span>
-        <span class="co">// can happen at the left and the right of your list.</span>
-        <span class="kw">if</span>(index &gt; -<span class="dv">1</span> &amp;&amp; index &lt; <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>()) {
-            <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">remove</span>(index);
-        }
-    }
-    
-    <span class="co">/* Returns the number of the stored Transactions </span>
-<span class="co">     * This number is the size of the bankAccountTransactions list.</span>
-<span class="co">     * you can get the size by calling the size() method of the ArrayList </span>
-<span class="co">     * class from your bankAccountTransactions object. */</span>
-    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getNumberOfStoredTransactions</span>() {
-        <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>();
-    }
-    
-    <span class="co">/* prints all stored BankAccountTransaction */</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">print</span>() {
-        <span class="co">// Your ArrayList object bankAccountTransactions gets its size</span>
-        <span class="co">// by calling the size() method of the ArrayList class.</span>
-        <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">size</span>(); i++){
-            <span class="co">// The way (i+1) + &quot;. &quot; that your printing statement starts </span>
-            <span class="co">// exists only for aesthetic reasons!</span>
-            System.<span class="fu">out</span>.<span class="fu">println</span>((i<span class="dv">+1</span>) + <span class="st">&quot;. &quot;</span> + <span class="kw">this</span>.<span class="fu">bankAccountTransactions</span>.<span class="fu">get</span>(i));
-        }
-        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;==============================================&quot;</span>);
-    }
-    
-}</code></pre>
-<ul>
-<li>The source code above implements the BankAccountTransactionList class</li>
-</ul>
-<h2 id="the-arraylist-solution-continued-1">The <em>ArrayList</em> solution (continued)</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* This class exists in order to test the </span>
-<span class="co"> * functionalities of the BankAccountTransactionList</span>
-<span class="co"> * as implemented with an ArrayList (provided by the </span>
-<span class="co"> * Java Collection Framework</span>
-<span class="co"> */</span>
-<span class="kw">public</span> <span class="kw">class</span> TestBankAccoutTransList_ArrayList {
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
-        <span class="co">/* Declare and initialize (by calling the default constructor </span>
-<span class="co">         * a BankAccountTransactionList object with name transactions_list </span>
-<span class="co">         * Your list is currently empty */</span>
-        BankAccountTransactionList transactions_list = <span class="kw">new</span> <span class="fu">BankAccountTransactionList</span>();
-        <span class="co">/* Create some dummy BankAccountTransaction to be added in the list above */</span>
-        BankAccountTransaction transaction1 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">300</span>, <span class="st">&quot;incoming&quot;</span>);
-        BankAccountTransaction transaction2 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">400</span>, <span class="st">&quot;outgoing&quot;</span>);
-        BankAccountTransaction transaction3 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">700</span>, <span class="st">&quot;incoming&quot;</span>);
-        BankAccountTransaction transaction4 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">1000</span>, <span class="st">&quot;outgoing&quot;</span>);
-        BankAccountTransaction transaction5 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">500</span>, <span class="st">&quot;incoming&quot;</span>);
-
-        <span class="co">/* Adding the transactions to the list. Note that most of the transactions are </span>
-<span class="co">         * not added at the end of the list. What is the expected order? */</span>
-        transactions_list.<span class="fu">add</span>(transaction1);
-        transactions_list.<span class="fu">add</span>(<span class="dv">0</span>,transaction2);
-        transactions_list.<span class="fu">add</span>(<span class="dv">1</span>,transaction3);
-        transactions_list.<span class="fu">add</span>(transaction4);
-        transactions_list.<span class="fu">add</span>(<span class="dv">1</span>,transaction5);
-        <span class="co">/* Print the stored transactions */</span>
-        transactions_list.<span class="fu">print</span>();
-        
-        <span class="co">/* Delete some (first and last) transactions */</span>
-        transactions_list.<span class="fu">remove</span>(<span class="dv">0</span>);
-        transactions_list.<span class="fu">remove</span>(transactions_list.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>);
-        <span class="co">/* Print the stored transactions */</span>
-        transactions_list.<span class="fu">print</span>();
-    }
-}</code></pre>
-<ul>
-<li>This, finally, is the <em>TestBankAccoutTransList_ArrayList</em> class that exists only to demonstrate the functionalities of the <em>BankAccountTransactionList</em></li>
-</ul>
-<h2 id="linked-list-solution"><em>Linked-List</em> solution</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/***</span>
-<span class="co"> * This class represent a transaction (transfer of money)</span>
-<span class="co"> * of a bank account. The 2 fields are just dummy fields since this </span>
-<span class="co"> * example serves only demonstrating reasons for adding and removing </span>
-<span class="co"> * objects in a list. The 3rd (next) field of type BankAccountTransaction</span>
-<span class="co"> * serves as a reference to the next element of a linked-list.</span>
-<span class="co"> * </span><span class="kw">@author </span><span class="co">angor</span>
-<span class="co"> */</span>
-<span class="kw">public</span> <span class="kw">class</span> BankAccountTransaction {
-    <span class="co">/* amount of money of the transaction */</span>
-    <span class="kw">private</span> <span class="dt">int</span> amount_of_money;
-    <span class="co">/* The type of transaction (&quot;incoming&quot; or &quot;outgoing&quot;) */</span>
-    <span class="kw">private</span> String transaction_type;
-    <span class="co">/* A field of type BankAccountTransaction that keeps a reference </span>
-<span class="co">     * to the next BankAccountTransaction. This field is created in order </span>
-<span class="co">     * to make the BankAccountTransaction class behave as a &quot;node&quot; in </span>
-<span class="co">     * a Linked-list */</span>
-    <span class="kw">private</span> BankAccountTransaction next;
-    
-    <span class="co">/* Overloaded constructor with 2 arguments */</span>
-    <span class="fu">BankAccountTransaction</span>(<span class="dt">int</span> amount_of_money, String transaction_type) {
-        <span class="kw">this</span>.<span class="fu">amount_of_money</span> = amount_of_money;
-        <span class="kw">this</span>.<span class="fu">transaction_type</span> = transaction_type;
-        <span class="co">/* You can ommit the following initialization since </span>
-<span class="co">         * this.next is, by default initialized as &quot;null&quot; */</span>
-        <span class="kw">this</span>.<span class="fu">next</span> = <span class="kw">null</span>;
-    }
-
-    <span class="co">/* Getters and Setter methods */</span>
-    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getAmount_of_money</span>() {
-        <span class="kw">return</span> amount_of_money;
-    }
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setAmount_of_money</span>(<span class="dt">int</span> amount_of_money) {
-        <span class="kw">this</span>.<span class="fu">amount_of_money</span> = amount_of_money;
-    }
-    <span class="kw">public</span> String <span class="fu">getTransaction_type</span>() {
-        <span class="kw">return</span> transaction_type;
-    }
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setTransaction_type</span>(String transaction_type) {
-        <span class="kw">this</span>.<span class="fu">transaction_type</span> = transaction_type;
-    }
-    
-    <span class="co">/* Getter and Setter for the newly introduce &quot;next&quot; field</span>
-<span class="co">     * These methods are going to be used by the Linked-list */</span>
-    <span class="kw">public</span> BankAccountTransaction <span class="fu">getNext</span>() {
-        <span class="kw">return</span> next;
-    }
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">setNext</span>(BankAccountTransaction next) {
-        <span class="kw">this</span>.<span class="fu">next</span> = next;
-    }
-
-    <span class="co">/* Returns a string with the field values of the class */</span>
-    <span class="fu">@Override</span>
-    <span class="kw">public</span> String <span class="fu">toString</span>() {
-        <span class="kw">return</span> <span class="st">&quot;BankAccountTransaction [amount_of_money=&quot;</span> + amount_of_money
-                + <span class="st">&quot;, transaction_type=&quot;</span> + transaction_type + <span class="st">&quot;]&quot;</span>;
-    }   
-
-}</code></pre>
-<ul>
-<li>The source code above implements the BankAccountTransaction class. For the needs of the Linked-list the <em>next</em> field is also added that shows to the next element of the list.</li>
-</ul>
-<h2 id="linked-list-solution-continued"><em>Linked-List</em> solution (continued)</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.ArrayList;</span>
-
-<span class="co">/***</span>
-<span class="co"> * This class represents a list of a bank accounts&#39; transactions.</span>
-<span class="co"> * For storing the Transactions we implement the BankAccountTransactionList</span>
-<span class="co"> * class a LinkedList. </span>
-<span class="co"> */</span>
-<span class="kw">public</span> <span class="kw">class</span> BankAccountTransactionList {
-    <span class="co">/* Represents the first element of the Linked-list. It&#39;s the only that needs</span>
-<span class="co">     * to be stored in the class. All the rest can be found by traversing the list </span>
-<span class="co">     * using first as your starting point. */</span>
-    <span class="kw">private</span> BankAccountTransaction first;
-
-    <span class="co">/* The default constructor. or safety reasons (avoid NullPointerException) </span>
-<span class="co">     * we have to initialize the bankAccountTransactions object. */</span>
-    <span class="kw">public</span> <span class="fu">BankAccountTransactionList</span>() {
-        <span class="co">/* You can ommit the following initialization since </span>
-<span class="co">         * this.next is, by default initialized as &quot;null&quot; */</span>
-        <span class="kw">this</span>.<span class="fu">first</span> = <span class="kw">null</span>;
-    }
-    
-
-    <span class="co">/* Adds a new transaction at the last position of the </span>
-<span class="co">     * bankAccountTransactions Linked-list. */</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(BankAccountTransaction new_transaction) {
-        <span class="co">// if the first element is &quot;null&quot; then we only need to assign the </span>
-        <span class="co">// new_transaction to the first element. No actions need to be performed</span>
-        <span class="co">// and thus, we exit the method by using a return statement. </span>
-        <span class="co">// (yes, return in a void method!)</span>
-        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
-            <span class="kw">this</span>.<span class="fu">first</span> = new_transaction;
-        <span class="co">// if the check statement above is false, it means that at least one</span>
-        <span class="co">// element already exists in our list. in that case we need to traverse</span>
-        <span class="co">// the list until we find an element that has his &quot;next&quot; reference </span>
-        <span class="co">// showing to &quot;null&quot;, that means this element is the last in the list.</span>
-        } <span class="kw">else</span> {
-            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
-            <span class="kw">while</span> (current_transaction.<span class="fu">getNext</span>() != <span class="kw">null</span>) {
-                current_transaction = current_transaction.<span class="fu">getNext</span>();
-            }
-            <span class="co">// After finding the last element of the list we only need to assign </span>
-            <span class="co">// the new_transaction to the &quot;next&quot; of this element.</span>
-            current_transaction.<span class="fu">setNext</span>(new_transaction);
-        }
-        
-    }
-    
-    <span class="co">/* Adds a new element at a specific position (index) of the list */</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(<span class="dt">int</span> index, BankAccountTransaction new_transaction) {
-        <span class="co">// This check exists in order to avoid the case that you try to remove an</span>
-        <span class="co">// element in a position out_of_bounds of your list. out_of_bounds</span>
-        <span class="co">// can happen at the left and the right of your list.</span>
-        <span class="kw">if</span>(index &lt; <span class="dv">0</span> || index &gt; <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>()) {
-            <span class="kw">return</span>;
-        <span class="co">// If you try to add at the beginning   </span>
-        <span class="co">// keep the current first in a temp object</span>
-        <span class="co">// set the new_transaction as first</span>
-        <span class="co">// set the &quot;next&quot; of the new first as the old first!</span>
-        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="dv">0</span>) {
-            BankAccountTransaction temp = <span class="kw">this</span>.<span class="fu">first</span>;
-            <span class="kw">this</span>.<span class="fu">first</span> = new_transaction;
-            <span class="kw">this</span>.<span class="fu">first</span>.<span class="fu">setNext</span>(temp);
-        <span class="co">// if you try to add at the end of the list</span>
-        <span class="co">// it behaves as a normal add and thus, it calls the simple add() method </span>
-        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>()) {
-            <span class="kw">this</span>.<span class="fu">add</span>(new_transaction);
-        <span class="co">// In any other case you need to traverse the list for as many times as</span>
-        <span class="co">// is requested (by index) and retrieve the element at that position.</span>
-        } <span class="kw">else</span> {
-            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
-            <span class="kw">for</span> (<span class="dt">int</span> counter = <span class="dv">1</span>; counter &lt; index - <span class="dv">1</span>; counter++) {
-                current_transaction = current_transaction.<span class="fu">getNext</span>();
-            }
-            <span class="co">// Store the &quot;next&quot; of the current element in a temp object</span>
-            BankAccountTransaction temp = current_transaction.<span class="fu">getNext</span>();
-            <span class="co">// assign the new_transaction as &quot;next&quot; to the current element</span>
-            current_transaction.<span class="fu">setNext</span>(new_transaction);
-            <span class="co">// assign the temp element as the next of the new_transaction</span>
-            new_transaction.<span class="fu">setNext</span>(temp);
-        }
-        
-    }
-    
-    <span class="co">/* Removes the last element of the bankAccountTransactions Linked-list. */</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">remove</span>() {
-        <span class="co">// if the first element is &quot;null&quot; then no actions need to be performed</span>
-        <span class="co">// and thus, we exit the method by using a return statement. </span>
-        <span class="co">// (yes, return in a void method!)</span>
-        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
-            <span class="kw">return</span>;
-        <span class="co">// If the first element exists but has no next it means that we just need </span>
-        <span class="co">// to set the first as null. We then, exit the method.</span>
-        } <span class="kw">else</span> <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span>.<span class="fu">getNext</span>() == <span class="kw">null</span>) {
-            <span class="kw">this</span>.<span class="fu">first</span> = <span class="kw">null</span>;
-            <span class="kw">return</span>;
-        <span class="co">// if the check statements above are false, it means that at least two</span>
-        <span class="co">// elements already exists in our list. in that case we need to traverse</span>
-        <span class="co">// the list until we find an element that has his &quot;next&quot;.&quot;next&quot; reference </span>
-        <span class="co">// showing to &quot;null&quot;, that means this element is the previous to the last in the list.</span>
-        } <span class="kw">else</span> {
-            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
-            <span class="kw">while</span> (current_transaction.<span class="fu">getNext</span>().<span class="fu">getNext</span>() != <span class="kw">null</span>) {
-                current_transaction = current_transaction.<span class="fu">getNext</span>();
-            }
-            <span class="co">// After finding the previous to the last element of the list we only need to </span>
-            <span class="co">// set its &quot;next&quot; as &quot;null&quot;</span>
-            current_transaction.<span class="fu">setNext</span>(<span class="kw">null</span>);
-        }
-    }
-    
-    <span class="co">/* removes an element at a specific position (index) of the list */</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">remove</span>(<span class="dt">int</span> index) {
-        <span class="co">// This check exists in order to avoid the case that you try to remove an</span>
-        <span class="co">// element in a position out_of_bounds of your list. out_of_bounds</span>
-        <span class="co">// can happen at the left and the right of your list.</span>
-        <span class="kw">if</span>(index &lt; <span class="dv">0</span> || index &gt; <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>) {
-            <span class="kw">return</span>;
-        <span class="co">// If you try to remove the element at the beginning    </span>
-        <span class="co">// you just need to set the &quot;next&quot; of the first element as </span>
-        <span class="co">// the first element</span>
-        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="dv">0</span>) {
-            <span class="kw">this</span>.<span class="fu">first</span> = <span class="kw">this</span>.<span class="fu">first</span>.<span class="fu">getNext</span>();
-        <span class="co">// if you try to remove the element at the end of the list</span>
-        <span class="co">// it behaves as a normal remove and thus, it calls the simple remove() method </span>
-        } <span class="kw">else</span> <span class="kw">if</span> (index == <span class="kw">this</span>.<span class="fu">getNumberOfStoredTransactions</span>() - <span class="dv">1</span>) {
-            <span class="kw">this</span>.<span class="fu">remove</span>();
-        <span class="co">// In any other case you need to traverse the list for as many times as</span>
-        <span class="co">// is requested (by index) and retrieve the element at that position.</span>
-        } <span class="kw">else</span> {
-            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
-            <span class="kw">for</span> (<span class="dt">int</span> counter = <span class="dv">1</span>; counter &lt; index; counter++) {
-                current_transaction = current_transaction.<span class="fu">getNext</span>();
-            }
-            <span class="co">// assign the &quot;next&quot;.&quot;next&quot; of your current_transaction as </span>
-            <span class="co">// &quot;next&quot;. That way. you simply bypass the next element</span>
-            current_transaction.<span class="fu">setNext</span>(current_transaction.<span class="fu">getNext</span>().<span class="fu">getNext</span>());
-        }
-        
-    }
-    
-    <span class="co">/* Returns the number of the stored Transactions </span>
-<span class="co">     * We need to traverse the list in order to count the elements */</span>
-    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">getNumberOfStoredTransactions</span>() {
-        <span class="co">// if the first element is &quot;null&quot; then the size is 0. </span>
-        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
-            <span class="kw">return</span> <span class="dv">0</span>;
-        <span class="co">// if the check statement above is false, it means that at least one</span>
-        <span class="co">// element already exists in our list. in that case we need to traverse</span>
-        <span class="co">// the list until we find an element that has his &quot;next&quot; reference </span>
-        <span class="co">// showing to &quot;null&quot;, that means this element is the last in the list.</span>
-        } <span class="kw">else</span> {
-            <span class="co">// declare and initialize counter to 1 since the first element &quot;exists&quot; </span>
-            <span class="co">// (is not &quot;null&quot;)</span>
-            <span class="dt">int</span> counter = <span class="dv">1</span>;
-            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
-            <span class="kw">while</span> (current_transaction.<span class="fu">getNext</span>() != <span class="kw">null</span>) {
-                current_transaction = current_transaction.<span class="fu">getNext</span>();
-                <span class="co">// increase counter by one for each existing element</span>
-                counter += <span class="dv">1</span>;
-            }
-            <span class="kw">return</span> counter;
-        }
-    }
-    
-    <span class="co">/* prints all stored BankAccountTransaction */</span>
-    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">print</span>() {
-        <span class="co">// if the first element is &quot;null&quot; then the list is empty and there is nothing to print. </span>
-        <span class="co">// No further actions need to be performed and thus, we exit the method by using </span>
-        <span class="co">// a return statement. (yes, return in a void method!)</span>
-        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">first</span> == <span class="kw">null</span>) {
-            <span class="kw">return</span>;
-        <span class="co">// if the check statement above is false, it means that at least one</span>
-        <span class="co">// element already exists in our list. in that case we need to traverse</span>
-        <span class="co">// the list until we find an element that has his &quot;next&quot; reference </span>
-        <span class="co">// showing to &quot;null&quot;, that means this element is the last in the list.</span>
-        } <span class="kw">else</span> {
-            <span class="dt">int</span> counter = <span class="dv">1</span>;
-            BankAccountTransaction current_transaction = <span class="kw">this</span>.<span class="fu">first</span>;
-            <span class="co">// Note that in this method, our while loop is executed for </span>
-            <span class="co">// as long as current_transaction is not &quot;null&quot; and not like in the previous cases</span>
-            <span class="co">// (where the .getNext() != null)</span>
-            <span class="kw">while</span> (current_transaction != <span class="kw">null</span>) {
-                System.<span class="fu">out</span>.<span class="fu">println</span>((counter++) + <span class="st">&quot;. &quot;</span> + current_transaction.<span class="fu">toString</span>());
-                current_transaction = current_transaction.<span class="fu">getNext</span>();
-                <span class="co">// increase counter by one for each existing element</span>
-            }
-            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;==============================================&quot;</span>);
-        }
-    }
-    
-}</code></pre>
-<ul>
-<li>The source code above implements the BankAccountTransactionList which is a linked-list!</li>
-</ul>
-<h2 id="linked-list-solution-continued-1"><em>Linked-List</em> solution (continued)</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* This class exists in order to test the </span>
-<span class="co"> * functionalities of the BankAccountTransactionList</span>
-<span class="co"> * implemented as a Linked-list</span>
-<span class="co"> */</span>
-<span class="kw">public</span> <span class="kw">class</span> TestBankAccoutTransList_LinkedList {
-    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
-        <span class="co">/* Declare and initialize (by calling the default constructor </span>
-<span class="co">         * a BankAccountTransactionList object with name transactions_list </span>
-<span class="co">         * Your list is currently empty */</span>
-        BankAccountTransactionList transactions_list = <span class="kw">new</span> <span class="fu">BankAccountTransactionList</span>();
-        <span class="co">/* Create some dummy BankAccountTransaction to be added in the list above */</span>
-        BankAccountTransaction transaction1 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">300</span>, <span class="st">&quot;incoming&quot;</span>);
-        BankAccountTransaction transaction2 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">400</span>, <span class="st">&quot;outgoing&quot;</span>);
-        BankAccountTransaction transaction3 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">700</span>, <span class="st">&quot;incoming&quot;</span>);
-        BankAccountTransaction transaction4 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">1000</span>, <span class="st">&quot;outgoing&quot;</span>);
-        BankAccountTransaction transaction5 = <span class="kw">new</span> <span class="fu">BankAccountTransaction</span>(<span class="dv">500</span>, <span class="st">&quot;incoming&quot;</span>);
-
-        <span class="co">/* Adding the transactions to the list. Note that most of the transactions are </span>
-<span class="co">         * not added at the end of the list. What is the expected order? */</span>
-        transactions_list.<span class="fu">add</span>(transaction1);
-        transactions_list.<span class="fu">add</span>(<span class="dv">0</span>,transaction2);
-        transactions_list.<span class="fu">add</span>(transaction3);
-        transactions_list.<span class="fu">add</span>(<span class="dv">1</span>,transaction4);
-        transactions_list.<span class="fu">add</span>(<span class="dv">2</span>,transaction5);
-        <span class="co">/* Print the stored transactions */</span>
-        transactions_list.<span class="fu">print</span>();
-        
-        <span class="co">/* Delete some (first and last) transactions */</span>
-        transactions_list.<span class="fu">remove</span>(<span class="dv">0</span>); <span class="co">// remove the first</span>
-        transactions_list.<span class="fu">remove</span>(<span class="dv">1</span>); <span class="co">// remove at index 1</span>
-        transactions_list.<span class="fu">remove</span>(transactions_list.<span class="fu">getNumberOfStoredTransactions</span>()-<span class="dv">1</span>); <span class="co">//remove the last</span>
-        <span class="co">/* Print again the stored transactions */</span>
-        transactions_list.<span class="fu">print</span>();
-    }
-}</code></pre>
-<ul>
-<li>This, finally, is the <em>TestBankAccoutTransList_LinkedList</em> class that exists only to demonstrate the functionalities of the <em>BankAccountTransactionList</em> implemented as a linked-list</li>
-</ul>
-<h2 id="the-queue-solution">The <em>Queue</em> solution</h2>
-<ul>
-<li>A Queue solution is not provided in source for one simple reason: Its implementation is almost identical to the previously presented Linked-list!<br /></li>
-<li>Can you guess how, by slightly changing the Linked-list source code you can come up with a Queue?<br />(SPOILER ALERT:The answer comes to the next slide!)</li>
-</ul>
-<h2 id="the-queue-solution-continued">The <em>Queue</em> solution (continued)</h2>
-<ul>
-<li>Remove the methods:<br /></li>
-<li><em>add(int index, Element e)</em> and <em>remove()</em><br /></li>
-<li>and apply the following one change and one addition:<br /></li>
-<li><p><em>add(Element e)</em> - should be renamed to <em>enqueue(Element e)</em> and create a <em>dequeue()</em> as follows:</p>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Always removes the first element */</span>
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">dequeue</span>() {
-    <span class="kw">this</span>.<span class="fu">remove</span>(<span class="dv">0</span>);
-}</code></pre>
-<p>You end up having Queue! Only the <em>element()</em> method that return the first element (without removing it) but the Getter of the &quot;first&quot; field does the same.</p></li>
 </ul>
 <h2 id="references">References</h2>
 <ul>
@@ -806,186 +366,184 @@ coming...</code></pre>
 <li>Java Programming - wikibooks (<a href="https://en.wikibooks.org/wiki/Java_Programming">link</a>)<br /></li>
 <li>Java™ Platform, Standard Edition 8 API Specification (<a href="https://docs.oracle.com/javase/8/docs/api/">link</a>)</li>
 </ul>
-<h2 id="exercise-1-arrays">Exercise 1 (Arrays)</h2>
+<h2 id="exercise-1-strings-and-arrays">Exercise 1 (Strings and Arrays)</h2>
+<p><em>CaesarsCipher</em> is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet <a href="https://en.wikipedia.org/wiki/Caesar_cipher">link</a>.<br /><img src=media/caecars_cipher.png width=600 height=250 /></br></p>
+<h2 id="exercise-1-continued">Exercise 1 (continued)</h2>
 <ul>
-<li><p>Given an array of type int as the following:</p>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="dt">int</span>[] array = {<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">13</span>, <span class="dv">3</span>, <span class="dv">1</span>};</code></pre></li>
-<li>Can you create a for loop that finds the min value and also prints its positions?<br /></li>
-<li><p>The results should be similar to the following:</p>
-<pre class="sourceCode java"><code class="sourceCode java">Min is <span class="dv">1</span> in positions: <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">13</span></code></pre></li>
-<li><p>Can you use <strong>only one</strong> <em>for</em> loop for solving the exercise?</p></li>
-</ul>
-<h2 id="exercise-2-strings-and-arrays">Exercise 2 (Strings and Arrays)</h2>
-<p>Create a class <em>CaesarsCipher</em> with two methods:</p>
-<ul>
-<li><em>String cipher(String message)</em> - shifts all characters of a string by a predefined number<br /></li>
-<li><em>String decipher(String cipher_text)</em> - shifts all characters of the String created by the <em>cipher</em> method by the predefined number (to the opposite direction of <em>cipher</em>)<br /></li>
-<li>The number of shifts should be an attribute of class <em>CaesarsCipher</em> with the necessary <em>set</em> method<br /></li>
+<li>Create a class <em>CaesarsCipher</em> that performs the ciphering/deciphering on plain text as described by the Ceacar's cipher. This class should have the following two methods:<br /></li>
+<li><strong>String cipher(String message, int numOfShifts)</strong> - ciphers and returns the given message (with the given numOfShifts)<br /></li>
+<li><strong>String decipher(String cipherText, int numOfShifts)</strong> - deciphers and returns the given message (with the given numOfShifts)<br /></li>
 <li>Create a <em>TestCaesar</em> class and test the functionality of your <em>CaesarsCipher</em> class</li>
 </ul>
-<h2 id="exercise-3-collections">Exercise 3 (Collections)</h2>
+<h2 id="exercise-2---collections">Exercise 2 - Collections</h2>
 <ul>
-<li>The goal of this Exercise is to modify the code of our <em>Library</em> project, so that more Authors and Books can be added dynamically during runtime!<br /></li>
-<li>Also, to provide additional functionality to the already existing functionalities of the <em>Library</em> project, by using dynamically allocated data structures<br /></li>
-<li>Use the following code(next slide) to build the skeleton for Exercise 3 of the <strong>Creating classes</strong> bootcamp session. You can work on your own code if you prefer! Each class should be moved in each own <em>.java</em> file</li>
+<li>Write a method the takes a Stack of Integers and returns a reversed Stack<br /></li>
+<li>Given the following method:</li>
 </ul>
-<h2 id="exercise-3-collections-1">Exercise 3 (Collections)</h2>
-<p>You can find the code base in the following (<a href="https://drive.google.com/open?id=0B9pJuOee0VNcSFl2OV9oN004RTA">link</a>)</p>
-<h2 id="exercise-3">Exercise 3</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ReverseStack {
+
+    <span class="kw">public</span> <span class="dt">static</span> Stack&lt;Integer&gt; <span class="fu">reverse</span>(Stack&lt;Integer&gt; initial) {
+        <span class="co">// fill-in your code here</span>
+    }
+    
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+        Stack&lt;Integer&gt; myStack = <span class="kw">new</span> Stack&lt;&gt;();
+        myStack.<span class="fu">addAll</span>(Arrays.<span class="fu">asList</span>(<span class="kw">new</span> Integer[]{<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>}));
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;initial stack: &quot;</span> + myStack);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;reversed stack: &quot;</span> + <span class="fu">reverse</span>(myStack));
+    }
+}</code></pre>
+<p>The output is</p>
+<pre><code>    initial stack: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    reversed stack: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]</code></pre>
+<h2 id="exercise-3---collections">Exercise 3 - Collections</h2>
 <ul>
-<li><strong>AuthorList</strong><br /></li>
-<li>On your Library project add a class <em>AuthorList</em> that represents a <em>List</em> data structure that stores <em>Author</em> objects.<br /></li>
-<li>A field of <em>AuthorList</em> type should be included in your <em>Library</em> class also. Library is now responsible for accessing and modifying the author list.<br /></li>
-<li><p>The <em>List</em> can be implemented internally by using the <em>ArrayList</em> data structure that is provided by the Java Collections Framework and using it like the following:</p>
-<pre class="sourceCode java"><code class="sourceCode java">ArrayList&lt;Author&gt; authors;</code></pre></li>
+<li>The goal of this Exercise is to modify the code of our <em>Library</em> project, so that more Authors and Books can be added dynamically during runtime! Also, to provide additional functionality (like add/remove books, store transactions, etc)<br /></li>
+<li>The following <a href="https://drive.google.com/open?id=0B9pJuOee0VNcT0R3bTBDZkZzbVk">code</a> is the code base of Exercise 3 from the <strong>Creating classes</strong> session. You can work on your own code if you prefer.<br /></li>
+<li><strong>Important</strong> Work on a copy of your <em>Library</em> project, do not <strong>modify</strong> the original project.</li>
 </ul>
 <h2 id="exercise-3-continued">Exercise 3 (continued)</h2>
 <ul>
-<li><strong>AuthorList</strong> should implement methods that provide at least the following functionality:<br /></li>
-<li>getter and setters,<br /></li>
-<li>a Constructor that can fill the List with an Array of Authors,<br /></li>
-<li>add an author,<br /></li>
-<li>remove an author,<br /></li>
-<li>find an author,<br /></li>
-<li>print the number of authors,<br /></li>
-<li>search if author exists,<br /></li>
-<li>any other method of your preference!</li>
+<li>Create a class named <strong>AuthorList</strong> that represents a <em>List</em> that stores <em>Author</em> objects.<br /></li>
+<li>Aν instance variable of type <em>AuthorList</em> should be included in your <em>Book</em> class. From now on, each book can have more than one authors.<br /></li>
+<li>The <em>AuthorList</em> can be implemented internally (wrap inside) by using the <em>ArrayList</em> data structure, provided by the Java Collections Framework.</li>
 </ul>
 <h2 id="exercise-3-continued-1">Exercise 3 (continued)</h2>
 <ul>
-<li><strong>BookList</strong><br /></li>
-<li>Create a class <em>BookList</em> that represents a <em>List</em> data structure that stores <em>Book</em> objects<br /></li>
-<li>BookList should be implemented as a <strong>custom</strong> <em>Linked-list</em> type of <em>List</em>. Do not use the <em>linked-list</em> class that java offers.<br /></li>
-<li>All functionalities related to books that were performed by the <em>Library</em> should now delegated to the <em>BookList</em>. Modify the code of your <em>Library</em> accordingly</li>
+<li><em>AuthorList</em> should implement methods that provide at least the following functionality:<br /></li>
+<li>a Constructor that can initialize and populate the List from a given array of authors (AuthorList(Author authorsArray[]){...}),<br /></li>
+<li>add an author, (only if he doesn't already exists,<br /></li>
+<li>check if author exists,<br /></li>
+<li>a toString method that returns a String with all names,<br /></li>
+<li>and (optionally) any other method of your preference!</li>
 </ul>
 <h2 id="exercise-3-continued-2">Exercise 3 (continued)</h2>
 <ul>
-<li><strong>BookList</strong> should have only one field. An object of type Book that represents the first element of the linked-list.<br /></li>
-<li>Along with the requirements regarding the <em>BookList</em> class that were mentioned in the previous slide, also provide your class with the following functionalities:<br /></li>
-<li>A Constructor that can fill the list from an Array of Book objects, just like in <em>AuthorList</em></li>
+<li>Create a class <strong>BookList</strong> that represents a <em>List</em> data structure that stores <em>Book</em> objects<br /></li>
+<li>An instance variable of type <em>BookList</em> should be included in your <em>Library</em> class also (replace the Book[] array from the previous implementation, if exists).<br /></li>
+<li>The <em>BookList</em> can be implemented internally (wrap inside) by using the <em>LinkedList</em> data structure, provided by the Java Collections Framework.<br /></li>
+<li>Modify any code necessary in <em>Library</em> in order to delegate operation to the <em>BookList</em>s functionalities when needed</li>
 </ul>
 <h2 id="exercise-3-continued-3">Exercise 3 (continued)</h2>
 <ul>
-<li>On Exercise 3 (from the Creating Classes session) modify all necessary methods that are searching for <em>Authors</em> or <em>Books</em> so that they can find matches even if the given search_words are in lowercase format.<br /></li>
-<li>Make use of the <em>to Lowercase()</em> method of the <em>String</em> class</li>
+<li><em>BookList</em> should offer the following functionalities:<br /></li>
+<li>exists(String title) - returns true or false if the book exists in the list<br /></li>
+<li>add book(Book newBook) - adds a new book at the end of the list (only if the book doesn't exist)<br /></li>
+<li>remove book - removes a book with a given title, if exists<br /></li>
+<li>And also provide the following methods (previously <em>Library</em>'s responsibilities)<br /></li>
+<li><strong>printAvailableBooks</strong><br /></li>
+<li><strong>printBookDetails</strong><br /></li>
+<li><strong>printBooksFromAuthor</strong><br /></li>
+<li><strong>printTheMostPopularBook</strong></li>
 </ul>
 <h2 id="exercise-3-continued-4">Exercise 3 (continued)</h2>
 <ul>
-<li>Create a class named <em>Transaction</em> that stores information related to the renting and returning a book operations.<br /></li>
+<li>Create a class named <em>Transaction</em> that stores information related to the &quot;renting a book&quot;, operation.<br /></li>
 <li>Your class should have keep the following information<br /></li>
 <li>The book for which the transaction is being performed<br /></li>
 <li>The date of requesting the current transaction<br /></li>
 <li>The date of serving of the current transaction<br /></li>
-<li>The user_id of the library member requesting or return the book<br /></li>
-<li>A global counter that keeps the counter<br /></li>
-<li>A unique identifier that takes the current count value</li>
+<li>A counter that stores how many <em>Transactions</em> have been made<br /></li>
+<li>A unique identifier (that cannot be changed afte initialization) for each <em>Transaction</em> created<br /></li>
+<li>It should provide an overloaded Constructor and a setServedDate() method that updates the relevant instance variable</li>
 </ul>
 <h2 id="exercise-3-continued-5">Exercise 3 (continued)</h2>
 <ul>
-<li><strong>Transaction</strong><br /></li>
-<li>It should provide an overloaded Constructor and a setServedDate() method that updates the relevant field</li>
+<li>Create a <em>TransactionQueue</em> class that serves as a Queue data structure for storing <em>Transactions</em> that are pending to be executed. The <em>TransactionQueue</em> should be implemented by a data-structure of your preference (simple arrays, ArrayList, Linked-list) but should provide only the methods of a Queue<br /></li>
+<li>An instance variable of type <em>TransactionQueue</em> should be introduced in your <em>Librarian</em> class since a librarian is responsible for serving the requests<br /></li>
+<li>Every time that a book is requested, a Transaction should be created and stored in the Queue.</li>
 </ul>
 <h2 id="exercise-3-continued-6">Exercise 3 (continued)</h2>
 <ul>
-<li>Create two more classes that extend the above class with names <em>BookRental</em> and <em>BookReturn</em><br /></li>
-<li><em>BookRental</em> should print (overwrite the toString() method) the Transactions' starting with &quot;Book rental&quot;<br /></li>
-<li><em>BookReturn</em> should print (overwrite the toString() method)the Transactions' starting with &quot;Book return&quot;</li>
+<li>Create a <em>TransactionHistory</em> class that represents a List data structure that stores executed <em>Transactions</em>.<br /></li>
+<li>A field of type <em>TransactionHistory</em> should be introduced in your <em>Library</em> class<br /></li>
+<li>Create a method <em>executePendingTransactions()</em> in your <em>Library</em> class. When this method is called by the <em>Librarian</em> it should virtually (no actual effect) execute each one of the stored pending transactions in the <em>TransactionQueue</em> of the Library and print an indicative message for each executed transaction.<br /></li>
+<li>Every executed <em>Transaction</em> should be moved in the <em>TransactionHistory</em> list of the <em>Library</em> class.<br /></li>
+<li>Add a method that prints all pending transactions in the <em>Library</em> class</li>
 </ul>
 <h2 id="exercise-3-continued-7">Exercise 3 (continued)</h2>
 <ul>
-<li>Create a <em>TransactionQueue</em> class that serves as a data structure for storing <em>Transactions</em> that have been validated but not yet executed. The <em>TransactionQueue</em> should be implemented by a data-structure of your preference (array, ArrayList, Linked-list) but should provide only the methods of a Queue.<br /></li>
-<li>A <em>TransactionQueue</em> field should be introduced in your <em>Library</em> class<br /></li>
-<li>When a returnBook() or rentBook() operation is successful in your system you should create a <em>Transaction</em> (<em>BookRental</em> or <em>BookReturn</em> according to the current operation) and add it to the Queue</li>
+<li>Give the <em>Librarian</em> the ability to perform the <em>rentPhysicalCopy</em> functionality. The librarian should retrieve the book (through the Library), create the necessary transaction and store it to his pendiong queue.<br /></li>
+<li>Extend the command-line User Interface to include all newly added functionalities! (add book, remove book, execute transactions)</li>
 </ul>
 <h2 id="exercise-3-continued-8">Exercise 3 (continued)</h2>
 <ul>
-<li>Create a <em>TransactionHistory</em> class that represents a list data structure. This list should store all executed <em>Transactions</em> in your system<br /></li>
-<li>A field of type <em>TransactionHistory</em> should be introduced in your <em>Library</em> class<br /></li>
-<li>Create a method <em>executePendingTransactions()</em> in your <em>Library</em> class. When this method is called by the <em>Librarian</em> it should virtually (no actual effect) execute each one of the stored pending transactions in the <em>TransactionQueue</em> of the Library.<br /></li>
-<li>Every executed <em>Transaction</em> should be moved in the <em>TransactionHistory</em> list of the <em>Library</em> class.</li>
-</ul>
-<h2 id="exercise-3-continued-9">Exercise 3 (continued)</h2>
-<ul>
 <li><p>Create a <em>TestLibrary</em> class and a main method in the class. In the main method execute the following code:</p>
-<pre class="sourceCode java"><code class="sourceCode java">    <span class="co">/** Create Random authors */</span>
-    Author ruth = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Ruth&quot;</span>);
-    Author diane = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Diane&quot;</span>);
-    Author jacqueline = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Jacqueline&quot;</span>);
-    Author rachel = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Rachel&quot;</span>);
-    Author joan = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Joan&quot;</span>);
-    Author theresa = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Theresa&quot;</span>);
-    Author angela = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Angela&quot;</span>);
-    Author helen = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Helen&quot;</span>);
-    Author lisa = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Lisa&quot;</span>);
-    Author[] authorsarray = {ruth, diane, jacqueline, rachel, joan, theresa, 
-            angela, helen, lisa};
-    AuthorList authors = <span class="kw">new</span> <span class="fu">AuthorList</span>(authorsarray);
-    <span class="co">/** Create Random books from the above authors */</span>
-    Book book1 = <span class="kw">new</span> Book(<span class="st">&quot;Book1&quot;</span>,ruth,<span class="st">&quot;368777540-2&quot;</span>,<span class="dv">10</span>,<span class="dv">2</span>,<span class="dv">20</span>);
-    Book book2 = <span class="kw">new</span> Book(<span class="st">&quot;Book2&quot;</span>,diane,<span class="st">&quot;963099898-2&quot;</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">22</span>);
-    Book book3 = <span class="kw">new</span> Book(<span class="st">&quot;Book3&quot;</span>,jacqueline,<span class="st">&quot;005382097-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">23</span>);
-    Book book4 = <span class="kw">new</span> Book(<span class="st">&quot;Book4&quot;</span>,rachel,<span class="st">&quot;538310208-2&quot;</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">24</span>);
-    Book book5 = <span class="kw">new</span> Book(<span class="st">&quot;Book5&quot;</span>,joan,<span class="st">&quot;562448132-2&quot;</span>,<span class="dv">10</span>,<span class="dv">4</span>,<span class="dv">26</span>);
-    Book book6 = <span class="kw">new</span> Book(<span class="st">&quot;Book6&quot;</span>,theresa,<span class="st">&quot;670364563-2&quot;</span>,<span class="dv">10</span>,<span class="dv">2</span>,<span class="dv">21</span>);
-    Book book7 = <span class="kw">new</span> Book(<span class="st">&quot;Book7&quot;</span>,angela,<span class="st">&quot;466916869-2&quot;</span>,<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">17</span>);
-    Book book8 = <span class="kw">new</span> Book(<span class="st">&quot;Book8&quot;</span>,helen,<span class="st">&quot;764674973-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">15</span>);
-    Book book9 = <span class="kw">new</span> Book(<span class="st">&quot;Book9&quot;</span>,lisa,<span class="st">&quot;052469721-2&quot;</span>,<span class="dv">10</span>,<span class="dv">6</span>,<span class="dv">17</span>);
-    Book book10 = <span class="kw">new</span> Book(<span class="st">&quot;Book10&quot;</span>,ruth,<span class="st">&quot;609291817-2&quot;</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">13</span>);
-    Book book11 = <span class="kw">new</span> Book(<span class="st">&quot;Book11&quot;</span>,diane,<span class="st">&quot;451378028-2&quot;</span>,<span class="dv">10</span>,<span class="dv">8</span>,<span class="dv">12</span>);
-    Book book12 = <span class="kw">new</span> Book(<span class="st">&quot;Book12&quot;</span>,jacqueline,<span class="st">&quot;142352773-2&quot;</span>,<span class="dv">10</span>,<span class="dv">6</span>,<span class="dv">20</span>);
-    Book book13 = <span class="kw">new</span> Book(<span class="st">&quot;Book13&quot;</span>,rachel,<span class="st">&quot;115135166-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">20</span>);
-    Book book14 = <span class="kw">new</span> Book(<span class="st">&quot;Book14&quot;</span>,joan,<span class="st">&quot;631942468-2&quot;</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">20</span>);
-    Book book15 = <span class="kw">new</span> Book(<span class="st">&quot;Book15&quot;</span>,theresa,<span class="st">&quot;323662444-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">23</span>);
-    Book book16 = <span class="kw">new</span> Book(<span class="st">&quot;Book16&quot;</span>,angela,<span class="st">&quot;121360492-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">12</span>);
-    Book book17 = <span class="kw">new</span> Book(<span class="st">&quot;Book17&quot;</span>,helen,<span class="st">&quot;391199302-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">20</span>);
-    Book book18 = <span class="kw">new</span> Book(<span class="st">&quot;Book18&quot;</span>,ruth,<span class="st">&quot;549307784-2&quot;</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">20</span>);
-    Book book19 = <span class="kw">new</span> Book(<span class="st">&quot;Book19&quot;</span>,ruth,<span class="st">&quot;368777230-2&quot;</span>,<span class="dv">10</span>,<span class="dv">23</span>,<span class="dv">20</span>);
-    Book book20 = <span class="kw">new</span> Book(<span class="st">&quot;Book20&quot;</span>,ruth,<span class="st">&quot;793027213-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">20</span>);
-    <span class="co">/** Add the books to a Book array*/</span>
-    Book[] books = {book1,book2,book3,book4,book5,book6,book7,
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+    <span class="co">/** Create Random authors */</span>
+        Author ruth = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Ruth&quot;</span>);
+        Author diane = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Diane&quot;</span>);
+        Author jacqueline = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Jacqueline&quot;</span>);
+        Author rachel = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Rachel&quot;</span>);
+        Author joan = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Joan&quot;</span>);
+        Author theresa = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Theresa&quot;</span>);
+        Author angela = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Angela&quot;</span>);
+        Author helen = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Helen&quot;</span>);
+        Author lisa = <span class="kw">new</span> <span class="fu">Author</span>(<span class="st">&quot;Lisa&quot;</span>);
+
+    <span class="co">/** Create books with from the existing authors */</span>
+    Book book1 = <span class="kw">new</span> Book(<span class="st">&quot;Book1&quot;</span>,<span class="kw">new</span> Author[]{ruth, joan},<span class="st">&quot;368777540-2&quot;</span>,<span class="dv">10</span>,<span class="dv">2</span>,<span class="dv">20</span>);
+    Book book2 = <span class="kw">new</span> Book(<span class="st">&quot;Book2&quot;</span>,<span class="kw">new</span> Author[]{ruth},<span class="st">&quot;963099898-2&quot;</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">22</span>);
+    Book book3 = <span class="kw">new</span> Book(<span class="st">&quot;Book3&quot;</span>,<span class="kw">new</span> Author[]{jacqueline, rachel},<span class="st">&quot;005382097-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">23</span>);
+    Book book4 = <span class="kw">new</span> Book(<span class="st">&quot;Book4&quot;</span>,<span class="kw">new</span> Author[]{theresa, angela},<span class="st">&quot;538310208-2&quot;</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">24</span>);
+    Book book5 = <span class="kw">new</span> Book(<span class="st">&quot;Book5&quot;</span>,<span class="kw">new</span> Author[]{lisa},<span class="st">&quot;562448132-2&quot;</span>,<span class="dv">10</span>,<span class="dv">4</span>,<span class="dv">26</span>);
+    Book book6 = <span class="kw">new</span> Book(<span class="st">&quot;Book6&quot;</span>,<span class="kw">new</span> Author[]{helen},<span class="st">&quot;670364563-2&quot;</span>,<span class="dv">10</span>,<span class="dv">2</span>,<span class="dv">21</span>);
+    Book book7 = <span class="kw">new</span> Book(<span class="st">&quot;Book7&quot;</span>,<span class="kw">new</span> Author[]{diane, jacqueline},<span class="st">&quot;466916869-2&quot;</span>,<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">17</span>);
+    Book book8 = <span class="kw">new</span> Book(<span class="st">&quot;Book8&quot;</span>,<span class="kw">new</span> Author[]{angela, rachel},<span class="st">&quot;764674973-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">15</span>);
+    Book book9 = <span class="kw">new</span> Book(<span class="st">&quot;Book9&quot;</span>,<span class="kw">new</span> Author[]{theresa, jacqueline},<span class="st">&quot;052469721-2&quot;</span>,<span class="dv">10</span>,<span class="dv">6</span>,<span class="dv">17</span>);
+    Book book10 = <span class="kw">new</span> Book(<span class="st">&quot;Book10&quot;</span>,<span class="kw">new</span> Author[]{angela},<span class="st">&quot;609291817-2&quot;</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">13</span>);
+    Book book11 = <span class="kw">new</span> Book(<span class="st">&quot;Book11&quot;</span>,<span class="kw">new</span> Author[]{lisa, ruth},<span class="st">&quot;451378028-2&quot;</span>,<span class="dv">10</span>,<span class="dv">8</span>,<span class="dv">12</span>);
+    Book book12 = <span class="kw">new</span> Book(<span class="st">&quot;Book12&quot;</span>,<span class="kw">new</span> Author[]{theresa},<span class="st">&quot;142352773-2&quot;</span>,<span class="dv">10</span>,<span class="dv">6</span>,<span class="dv">20</span>);
+    Book book13 = <span class="kw">new</span> Book(<span class="st">&quot;Book13&quot;</span>,<span class="kw">new</span> Author[]{lisa, rachel},<span class="st">&quot;115135166-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">20</span>);
+    Book book14 = <span class="kw">new</span> Book(<span class="st">&quot;Book14&quot;</span>,<span class="kw">new</span> Author[]{helen},<span class="st">&quot;631942468-2&quot;</span>,<span class="dv">10</span>,<span class="dv">3</span>,<span class="dv">20</span>);
+    Book book15 = <span class="kw">new</span> Book(<span class="st">&quot;Book15&quot;</span>,<span class="kw">new</span> Author[]{angela, helen},<span class="st">&quot;323662444-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">23</span>);
+    Book book16 = <span class="kw">new</span> Book(<span class="st">&quot;Book16&quot;</span>,<span class="kw">new</span> Author[]{rachel},<span class="st">&quot;121360492-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">12</span>);
+    Book book17 = <span class="kw">new</span> Book(<span class="st">&quot;Book17&quot;</span>,<span class="kw">new</span> Author[]{theresa, jacqueline, angela},<span class="st">&quot;391199302-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">20</span>);
+    Book book18 = <span class="kw">new</span> Book(<span class="st">&quot;Book18&quot;</span>,<span class="kw">new</span> Author[]{angela,lisa},<span class="st">&quot;549307784-2&quot;</span>,<span class="dv">10</span>,<span class="dv">1</span>,<span class="dv">20</span>);
+    Book book19 = <span class="kw">new</span> Book(<span class="st">&quot;Book19&quot;</span>,<span class="kw">new</span> Author[]{theresa, helen},<span class="st">&quot;368777230-2&quot;</span>,<span class="dv">10</span>,<span class="dv">23</span>,<span class="dv">20</span>);
+    Book book20 = <span class="kw">new</span> Book(<span class="st">&quot;Book20&quot;</span>,<span class="kw">new</span> Author[]{ruth},<span class="st">&quot;793027213-2&quot;</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">20</span>);
+
+    <span class="co">/** Create the BookList from the books array above **/</span>
+    BookList books = <span class="kw">new</span> <span class="fu">BookList</span>( <span class="kw">new</span> Book[]{book1,book2,book3,book4,book5,book6,book7,
             book8,book9,book10,book11,book12,book13,book14,book15,
-            book16,book17,book18,book19,book20};
-    BookList booklist = <span class="kw">new</span> <span class="fu">BookList</span>(books);
+            book16,book17,book18,book19,book20} );
     <span class="co">/** Assign the book collection to the library */</span>
-    Library library = <span class="kw">new</span> <span class="fu">Library</span>(booklist, authors);
-    <span class="co">/** Librarian the_guy_who _knows_a_lot undertakes the operation of the library */</span>
-    Librarian the_guy = <span class="kw">new</span> <span class="fu">Librarian</span>(library);
+    Library library = <span class="kw">new</span> <span class="fu">Library</span>(books);
+    <span class="co">/* A librarian undertakes the operation of the library */</span>
+    Librarian librarian = <span class="kw">new</span> <span class="fu">Librarian</span>(library);
+    librarian.<span class="fu">findMeAvailableBooks</span>();
+    librarian.<span class="fu">findMeBook</span>(<span class="st">&quot;Book3&quot;</span>);
+    librarian.<span class="fu">findMeBooksFromAuthor</span>(<span class="st">&quot;Ruth&quot;</span>);
+    librarian.<span class="fu">findMostPopularBook</span>();
+    <span class="co">// Not existing cases</span>
+    librarian.<span class="fu">findMeBook</span>(<span class="st">&quot;Book0&quot;</span>);
+    librarian.<span class="fu">findMeBooksFromAuthor</span>(<span class="st">&quot;angor&quot;</span>);
+    <span class="co">// Make some transactions</span>
+    librarian.<span class="fu">rentPhysicalCopy</span>(<span class="st">&quot;Book1&quot;</span>);
+    librarian.<span class="fu">rentPhysicalCopy</span>(<span class="st">&quot;Book2&quot;</span>);
+    librarian.<span class="fu">rentPhysicalCopy</span>(<span class="st">&quot;Book2&quot;</span>); <span class="co">// no available copies left</span>
+    <span class="co">// execute transactions</span>
+    librarian.<span class="fu">executePendingTransactions</span>();
+    librarian.<span class="fu">executePendingTransactions</span>(); <span class="co">// no pending trans left</span>
+    <span class="co">// print transactions history</span>
+    librarian.<span class="fu">printTransactionHistory</span>();
 
-<span class="co">/* Testing if the initialization of Library works correctly! */</span>
-the_guy.<span class="fu">findMeAvailableBooks</span>();
-the_guy.<span class="fu">findMeBook</span>(<span class="st">&quot;Book3&quot;</span>);
-the_guy.<span class="fu">findMeBooksFromAuthor</span>(<span class="st">&quot;Ruth&quot;</span>);
-
-<span class="co">/* Search an author and return his instance if exists */</span>
-String author_name_to_find = <span class="st">&quot;Ruth&quot;</span>;
-Author author = the_guy.<span class="fu">getAuthor</span>(<span class="st">&quot;Ruth&quot;</span>);
-<span class="kw">if</span>(author != <span class="kw">null</span>) System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;I found author &quot;</span> + author.<span class="fu">getName</span>());
-<span class="kw">else</span> System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Author &quot;</span> + author_name_to_find + <span class="st">&quot; not found in the list.&quot;</span>);
-<span class="co">/* Add a new book to the library&#39;s booklist */</span>
-the_guy.<span class="fu">addNewBookToLibrary</span>(<span class="st">&quot;New Book!&quot;</span>, author, <span class="st">&quot;11111111-66&quot;</span>, <span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">0</span>);
-<span class="co">/* Test if the new book is available */</span>
-the_guy.<span class="fu">findMeBooksFromAuthor</span>(<span class="st">&quot;Ruth&quot;</span>);
-<span class="co">/* Testing renting, returning and transaction printing */</span>
-the_guy.<span class="fu">findMeBook</span>(<span class="st">&quot;New Book!&quot;</span>);
-the_guy.<span class="fu">rentBook</span>(<span class="st">&quot;New Book!&quot;</span>, <span class="st">&quot;antonis&quot;</span>);
-the_guy.<span class="fu">findMeBook</span>(<span class="st">&quot;New Book!&quot;</span>);
-the_guy.<span class="fu">findMeBook</span>(<span class="st">&quot;Book3&quot;</span>);
-the_guy.<span class="fu">returnBook</span>(<span class="st">&quot;Book3&quot;</span>, <span class="st">&quot;alice&quot;</span>);
-the_guy.<span class="fu">printPendingTransactions</span>();</code></pre></li>
+    <span class="co">// Show menu options</span>
+    librarian.<span class="fu">showOptions</span>();
+}</code></pre></li>
 </ul>
-<h2 id="exercise-3-finale">Exercise 3 (finale!)</h2>
+<h2 id="exercise-3-arrays">Exercise 3 (Arrays)</h2>
 <ul>
-<li>Further extend the functionality of your system by adding the <em>User</em> and the <em>UserList</em> entities.<br /></li>
-<li>A <em>User</em> is a person registered to the <em>Library</em><br /></li>
-<li>The <em>UserList</em> is a list that holds all registered <em>Users</em><br /></li>
-<li>Introduce all necessary fields and methods in class<br /></li>
-<li>The type of the data structure that should be used for the <em>UserList</em> is a linked-list</li>
+<li><p>Create a method <strong>findMinAndPositions</strong> that finds the min value of a given array of Integers and also prints its positions.</p>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+    <span class="dt">int</span>[] array = {<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">13</span>, <span class="dv">3</span>, <span class="dv">1</span>};
+    <span class="fu">findMinAndPositions</span>(array);
+}</code></pre></li>
+<li><p>The results should be similar to the following:</p>
+<pre><code>    Min is 1 in positions: 0, 2, 10, 13</code></pre></li>
+<li><p>Can you use <strong>only one</strong> <em>for</em> loop for solving the exercise?</p></li>
 </ul>
-<h2 id="exercise-3-grand-finale">Exercise 3 (grand-finale!)</h2>
-<ul>
-<li>Create a User-Interface (or extend your old one) to include all newly added functionalities!</li>
-</ul>
-<h2 id="exercise-4">Exercise 4</h2>
+<h2 id="exercise-4-strings-arrays">Exercise 4 (Strings, Arrays)</h2>
 <ul>
 <li>Create a Java program that checks if a given word is a <em>palindrome</em>. Palindrome words are the words that can be read backwards. (example: madam)</li>
 </ul>
