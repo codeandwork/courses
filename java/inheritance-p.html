@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Inheritance</title>
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../../reveal.js/css/print/pdf.css' : '../../reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n\n">
+					<script type="text/template">
+### Coding Bootcamp
+
+## Inheritance
+
+
+## Heading*
+* Bullet 1
+* Bullet 2
+* ...
+
+
+## Sample picture
+<img src=media/AbstractFactory.png width=650 height=400 /></br>
+<!-- * //TODO image from c++ book pg.241 -->
+
+
+## Sample code
+```java
+import java.util.Scanner;
+import java.lang.*;
+
+public class Tin2{
+public static void main (String[] args){
+
+    int [] tin = new int[9];  //array tin 9 digits
+    int i, j;
+    int sum = 0;
+
+        Scanner a= new Scanner(System.in);
+        System.out.println("Enter Tax Identification Number: "); // user input
+
+             for (i = tin.length-1; i >= 0; i--){
+            tin[i] = a.nextInt();      // input reverse into array tin
+
+            }
+            System.out.println(sum);
+            for (j = 1; j <= tin.length-1; j++) {
+
+            sum += tin[j]*Math.pow(2,j);
+             System.out.println("Meriko sum="+sum);
+
+            }
+            System.out.println(sum);
+
+                sum %= 11;
+                System.out.println(sum);
+                sum %= 10;
+                System.out.println(sum);
+
+            if(sum==tin[0])
+                System.out.println("Tax Identification Number valid.");
+            else
+                System.out.println("Tax Identification Number not valid.");
+    }
+}
+}
+```
+
+					</script>
+				</section>
+				<section>
+				<h2>License</h2>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				// Vertical centering of slides
+				center: false,
+				// Push each slide change to the browser history
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: '../reveal.js/plugin/markdown/marked.js' },
+					{ src: '../reveal.js/plugin/markdown/markdown.js' },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+
+			Reveal.configure({
+                          keyboard: {
+                            38: 'prev', // go to the previous slide when the Doosl up key is pressed
+                            40: 'next'  // go to the next slide when the Doosl down key is pressed
+                          }
+                        });
+		</script>
+	</body>
+</html>

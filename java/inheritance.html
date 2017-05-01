@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Inheritance</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-inheritance">Coding Bootcamp: Inheritance</h1>
+<h2 id="heading">Heading*</h2>
+<ul>
+<li>Bullet 1<br /></li>
+<li>Bullet 2<br /></li>
+<li>...</li>
+</ul>
+<h2 id="sample-picture">Sample picture</h2>
+<p><img src=media/AbstractFactory.png width=650 height=400 /></br><br /><!-- * //TODO image from c++ book pg.241 --></p>
+<h2 id="sample-code">Sample code</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.Scanner;</span>
+<span class="kw">import java.lang.*;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Tin2{
+<span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span> (String[] args){
+
+    <span class="dt">int</span> [] tin = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">9</span>];  <span class="co">//array tin 9 digits</span>
+    <span class="dt">int</span> i, j;
+    <span class="dt">int</span> sum = <span class="dv">0</span>;
+
+        Scanner a= <span class="kw">new</span> Scanner(System.<span class="fu">in</span>);
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Enter Tax Identification Number: &quot;</span>); <span class="co">// user input</span>
+
+             <span class="kw">for</span> (i = tin.<span class="fu">length</span><span class="dv">-1</span>; i &gt;= <span class="dv">0</span>; i--){
+            tin[i] = a.<span class="fu">nextInt</span>();      <span class="co">// input reverse into array tin</span>
+
+            }
+            System.<span class="fu">out</span>.<span class="fu">println</span>(sum);
+            <span class="kw">for</span> (j = <span class="dv">1</span>; j &lt;= tin.<span class="fu">length</span><span class="dv">-1</span>; j++) {
+
+            sum += tin[j]*Math.<span class="fu">pow</span>(<span class="dv">2</span>,j);
+             System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Meriko sum=&quot;</span>+sum);
+
+            }
+            System.<span class="fu">out</span>.<span class="fu">println</span>(sum);
+
+                sum %= <span class="dv">11</span>;
+                System.<span class="fu">out</span>.<span class="fu">println</span>(sum);
+                sum %= <span class="dv">10</span>;
+                System.<span class="fu">out</span>.<span class="fu">println</span>(sum);
+
+            <span class="kw">if</span>(sum==tin[<span class="dv">0</span>])
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Tax Identification Number valid.&quot;</span>);
+            <span class="kw">else</span>
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Tax Identification Number not valid.&quot;</span>);
+    }
+}
+}</code></pre>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
