@@ -37,6 +37,67 @@ if (ammount < 0) {
 ![](media/exceptions.png)
 
 
+## Example of Checked Exception
+
+```java
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+public  class testClass {
+
+	public static void main(String args[])  {		
+	      File file = new File("E://file.txt");
+	      try {
+			FileReader fr = new FileReader(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	   }
+}
+```
+
+
+## Example of Unchecked Exception
+
+```java
+	import java.io.*;
+	
+	public calss ExcepTest {
+		public static void main(String[] args) {
+			try {
+				int a[] = new int[2];
+				System.out.println("Access elements three:" + a[3]);
+			} catch(ArrayIndexOutOfBoundsException e) {
+				System.out.println("Exception thrown :" +e);
+			}
+			System.out.println("Out of the block");
+		}
+	}
+```
+
+## Using finally
+
+```java
+public class ExcepTest {
+
+   public static void main(String args[]) {
+      int a[] = new int[2];
+      try {
+         System.out.println("Access element three :" + a[3]);
+      }catch(ArrayIndexOutOfBoundsException e) {
+         System.out.println("Exception thrown  :" + e);
+      }finally {
+         a[0] = 6;
+         System.out.println("First element value: " + a[0]);
+         System.out.println("The finally statement is executed");
+      }
+   }
+}
+```
+
+
 ## What is a stack trace?
 
 * A stack trace is the result of a crashes application
