@@ -56,6 +56,53 @@
 </ul>
 <h2 id="exception-types">Exception Types</h2>
 <p><img src="media/exceptions.png" /></p>
+<h2 id="example-of-checked-exception">Example of Checked Exception</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.io.File;</span>
+<span class="kw">import java.io.FileNotFoundException;</span>
+<span class="kw">import java.io.FileReader;</span>
+
+<span class="kw">public</span>  <span class="kw">class</span> testClass {
+
+    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[])  {       
+          File file = <span class="kw">new</span> File(<span class="st">&quot;E://file.txt&quot;</span>);
+          <span class="kw">try</span> {
+            FileReader fr = <span class="kw">new</span> FileReader(file);
+        } <span class="kw">catch</span> (FileNotFoundException e) {
+            <span class="co">// TODO Auto-generated catch block</span>
+            e.<span class="fu">printStackTrace</span>();
+        } 
+       }
+}</code></pre>
+<h2 id="example-of-unchecked-exception">Example of Unchecked Exception</h2>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">import java.io.*;</span>
+    
+    <span class="kw">public</span> calss ExcepTest {
+        <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+            <span class="kw">try</span> {
+                <span class="dt">int</span> a[] = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">2</span>];
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Access elements three:&quot;</span> + a[<span class="dv">3</span>]);
+            } <span class="kw">catch</span>(ArrayIndexOutOfBoundsException e) {
+                System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception thrown :&quot;</span> +e);
+            }
+            System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Out of the block&quot;</span>);
+        }
+    }</code></pre>
+<h2 id="using-finally">Using finally</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> ExcepTest {
+
+   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+      <span class="dt">int</span> a[] = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">2</span>];
+      <span class="kw">try</span> {
+         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Access element three :&quot;</span> + a[<span class="dv">3</span>]);
+      }<span class="kw">catch</span>(ArrayIndexOutOfBoundsException e) {
+         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Exception thrown  :&quot;</span> + e);
+      }<span class="kw">finally</span> {
+         a[<span class="dv">0</span>] = <span class="dv">6</span>;
+         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;First element value: &quot;</span> + a[<span class="dv">0</span>]);
+         System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;The finally statement is executed&quot;</span>);
+      }
+   }
+}</code></pre>
 <h2 id="what-is-a-stack-trace">What is a stack trace?</h2>
 <ul>
 <li>A stack trace is the result of a crashes application<br />and it can inform programs about the cause of the crash.<br /></li>
