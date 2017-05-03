@@ -521,9 +521,9 @@ The output is
 ## Exercise 3 (continued)
 * Create a *TransactionHistory* class that represents a List data structure that stores executed *Transactions*.
 * A field of type *TransactionHistory* should be introduced in your *Library* class
-* Create a method *executePendingTransactions()* in your *Library* class. When this method is called by the *Librarian* it should virtually (no actual effect) execute each one of the stored pending transactions in the *TransactionQueue* of the Library and print an indicative message for each executed transaction.
-* Every executed *Transaction* should be moved in the *TransactionHistory* list of the *Library* class. 
-* Add a method that prints all pending transactions in the *Library* class
+* Create a method *executePendingTransactions()* in your *Librarian* class. When this method is called by the *Librarian* it should execute one by one all stored pending transactions and print an indicative message for each executed transaction.
+* Every executed *Transaction* should be removed from the pending transactions list and moved in the transaction history list of the *Library* class. 
+* Add a method that prints all pending transactions in the *Librarian* class and all a method that prints the transaction history in the *Library*
 
 
 ## Exercise 3 (continued)
@@ -599,7 +599,11 @@ The output is
 ```
 
 
-## Exercise 3 (Arrays)
+## Exercise 4 (Strings, Arrays)
+* Create a Java program that checks if a given word is a *palindrome*. Palindrome words are the words that can be read backwards. (example: madam) 
+
+
+## Exercise 5 (Arrays)
 * Create a method **findMinAndPositions** that finds the min value of a given array of Integers and also prints its positions.
 ```java
 public static void main(String[] args) {
@@ -612,10 +616,6 @@ public static void main(String[] args) {
     Min is 1 in positions: 0, 2, 10, 13
 ```
 * Can you use **only one** *for* loop for solving the exercise?
-
-
-## Exercise 4 (Strings, Arrays)
-* Create a Java program that checks if a given word is a *palindrome*. Palindrome words are the words that can be read backwards. (example: madam) 
 
 					</script>
 				</section>
