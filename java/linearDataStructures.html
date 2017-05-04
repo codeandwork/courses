@@ -34,11 +34,11 @@
 <ul>
 <li>Define the linear data structure<br /></li>
 <li>Learn the characteristics of the linear data structures<br /></li>
-<li>Learn when to use them, according to your needs</li>
+<li>Learn when and how to use them, according to your needs</li>
 </ul>
 <h2 id="linear-data-structures">Linear data structures</h2>
 <ul>
-<li>Data structure whose element(objects) are ordered in a way so that:<br /></li>
+<li>Data structure whose element(objects) are sequential and ordered in a way so that:<br /></li>
 <li>there is only one <em>first element</em> and has only one <em>next element</em>,<br /></li>
 <li>there is only one <em>last element</em> and has only one <em>previous element</em>, while<br /></li>
 <li>all other elements have a <em>next</em> and a <em>previous</em> element</li>
@@ -53,7 +53,7 @@
 </ul>
 <h2 id="arrays">Arrays</h2>
 <ul>
-<li>A group of objects of the same type<br /></li>
+<li>A sequential group of objects of the same type<br /></li>
 <li>Predefined (static) size<br /></li>
 <li>Can access/modify any element of the array<br /></li>
 <li><p>Array examples: <br></p>
@@ -64,8 +64,8 @@
 <h2 id="introduction-to-the-string-class">Introduction to the <em>String</em> class</h2>
 <ul>
 <li>A sequence/group of alphanumeric characters<br /></li>
-<li>The Java platform provides the <strong>String</strong> class <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">link to API</a> to create and manipulate strings.<br /></li>
-<li><em>String</em> objects are <strong>immutable</strong> -- they cannot change their state after construction</li>
+<li>The Java platform provides the <strong>String</strong> class <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">link to API</a> to create and manipulate strings<br /></li>
+<li><em>String</em> objects are <strong>immutable</strong> - they cannot change their state after construction</li>
 </ul>
 <h2 id="concatenating-strings">Concatenating <em>Strings</em></h2>
 <ul>
@@ -80,15 +80,26 @@ System.<span class="fu">out</span>.<span class="fu">println</span>(word);</code>
 <ul>
 <li><em>Mutable</em> - can be modified after creation<br /></li>
 <li><em>Synchronized</em> - multiple threads can access it and modify it without any <em>side effects</em><br /></li>
-<li>Relatively slow process. Many <em>locking</em> and <em>unlocking</em> actions will take place at the cpu</li>
+<li>Relatively slow process. Many <em>locking</em> and <em>unlocking</em> actions will take place<br /></li>
+<li><p>Code example:</p>
+<pre class="sourceCode java"><code class="sourceCode java">    StringBuffer sb = <span class="kw">new</span> StringBuffer();
+    sb.<span class="fu">append</span>(<span class="st">&quot;Hello&quot;</span>).<span class="fu">append</span>(<span class="st">&quot; StringBuffer!&quot;</span>);
+    System.<span class="fu">out</span>.<span class="fu">println</span>(sb.<span class="fu">toString</span>());</code></pre></li>
 </ul>
 <h2 id="stringbuilder">StringBuilder</h2>
 <ul>
 <li><em>Mutable</em> - can be modified after creation<br /></li>
 <li><em>Not synchronized</em> - accessing it and modifying it by more than one threads can produce unexpected results!<br /></li>
-<li>Much faster than the <em>StringBuffer</em> class</li>
+<li>Much faster than the <em>StringBuffer</em> class<br /></li>
+<li><p>Code example:</p>
+<pre class="sourceCode java"><code class="sourceCode java">    StringBuilder sb = <span class="kw">new</span> StringBuilder();
+    sb.<span class="fu">append</span>(<span class="st">&quot;Hello&quot;</span>).<span class="fu">append</span>(<span class="st">&quot; StringBuilder!&quot;</span>);
+    System.<span class="fu">out</span>.<span class="fu">println</span>(sb.<span class="fu">toString</span>());</code></pre></li>
 </ul>
-<h2 id="immutable-vs-mutable-operations---example">Immutable vs mutable operations - example</h2>
+<h2 id="immutable-vs-mutable-operations">Immutable vs mutable operations</h2>
+<ul>
+<li>In the following example we create a sequence of numbers for <code>1</code> to <code>N</code> with the three different ways presented in the previous slides</li>
+</ul>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">/* Simple String example */</span>
 String s = <span class="st">&quot;&quot;</span>;
 <span class="dt">int</span> N = <span class="dv">100000</span>;
@@ -96,24 +107,26 @@ String s = <span class="st">&quot;&quot;</span>;
     s += String.<span class="fu">valueOf</span>(i);
 }
 
-<span class="co">/** StringBuilder example */</span>
+<span class="co">/* StringBuilder example */</span>
 StringBuilder builder = <span class="kw">new</span> StringBuilder();
 <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; i++) {
     builder.<span class="fu">append</span>(i);
 }
-builder.<span class="fu">toString</span>();
+s = builder.<span class="fu">toString</span>();
 
-<span class="co">/** StringBuffer example */</span>
+<span class="co">/* StringBuffer example */</span>
 StringBuffer buff = <span class="kw">new</span> StringBuffer();
 <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;N; i++) {
     buff.<span class="fu">append</span>(i);
 }
-buff.<span class="fu">toString</span>();</code></pre>
-<h2 id="immutable-vs-mutable-operations---time-comparison">Immutable vs Mutable operations - time comparison</h2>
-<p>Measuring the separate execution of each solution above resulted to:</p>
-<pre><code>    * 78.5 millisecond using the += operand
-    *  3.7 millisecond using StringBuffer
-    *  1.4 millisecond using StringBuilder</code></pre>
+s = buff.<span class="fu">toString</span>();</code></pre>
+<h2 id="immutable-vs-mutable-operations-2">Immutable vs Mutable operations (2)</h2>
+<ul>
+<li><p>Measuring the separate execution of each solution above resulted to:</p>
+<pre><code>* 78.5 millisecond using the += operand
+*  3.7 millisecond using StringBuffer
+*  1.4 millisecond using StringBuilder</code></pre></li>
+</ul>
 <h2 id="available-string-constructors">Available <em>String</em> Constructors</h2>
 <ul>
 <li>Java offers, among others, the following <em>constructors</em><br /></li>
@@ -131,7 +144,7 @@ buff.<span class="fu">toString</span>();</code></pre>
 <li><em>char charAt(int index)</em><br /></li>
 <li><em>String concat(String string2)</em></li>
 </ul>
-<h2 id="strings-as-arrays---index"><em>Strings</em> as arrays - index</h2>
+<h2 id="strings-as-arrays-2"><em>Strings</em> as arrays (2)</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">// our test String phrase</span>
 String message = <span class="st">&quot;Winter is coming...&quot;</span>;
 
@@ -158,6 +171,7 @@ Contains &#39;sun&#39;: <span class="kw">false</span>
 Last word: coming...</code></pre>
 <h2 id="java-collections-framework"><em>Java Collections Framework</em></h2>
 <ul>
+<li>The Java collections framework (<a href="http://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html">JCF</a>) is a set of classes and interfaces that implement commonly reusable collection data structures.<br /></li>
 <li>A collection framework supports the consistent and coherent representation and handling of <em>Collections</em> regardless of their implementation<br /></li>
 <li>It's a set of <em>interfaces</em> that depicts the basic functionalities that any <em>Collection</em> should offer</li>
 </ul>
@@ -176,7 +190,7 @@ Last word: coming...</code></pre>
 <li>Is an ordered collection (sequence) of objects<br /></li>
 <li>It can dynamically modify its size<br /></li>
 <li>User have complete control of the insertion and removal of an element in the list<br /></li>
-<li>The most common implementation of the List model are the <em>Linked-list</em> the and <em>ArrayList</em>.</li>
+<li>The most common implementation of the List model are the <em>LinkedList</em> (<a href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">link</a>) the and <em>ArrayList</em> (<a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html">link</a>).</li>
 </ul>
 <h2 id="the-arraylist">The ArrayList</h2>
 <ul>
@@ -230,17 +244,17 @@ Last word: coming...</code></pre>
 <h2 id="vector-vs-arraylist"><em>Vector</em> vs <em>ArrayList</em></h2>
 <ul>
 <li>Almost equivalent data structures<br /></li>
-<li><em>Vector</em> is synchronized when<br /></li>
-<li><em>List</em> is not synchronized<br /></li>
+<li><em>Vector</em> (<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html">link</a>) is synchronized when<br /></li>
+<li><em>ArrayList</em> is not synchronized<br /></li>
 <li>If run out of space:<br /></li>
 <li><em>Vector</em> doubles its size, when<br /></li>
-<li><em>List</em> increases its size by 50%</li>
+<li><em>ArrayList</em> increases its size by 50%</li>
 </ul>
-<h2 id="the-linked-list-java-class">The <em>Linked-list</em> Java class</h2>
+<h2 id="the-linkedlist-java-class">The <em>LinkedList</em> Java class</h2>
 <ul>
 <li>Each element (<strong>node</strong>) of a list is comprising of two items<br /></li>
 <li>the data and<br /></li>
-<li>a reference to the next node.<br /></li>
+<li>a reference to the next node<br /></li>
 <li>The last node has a reference to null<br /></li>
 <li><p>The entry point into a linked list is called the head of the list</p>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="co">// class declaration according to Oracle</span>
@@ -254,7 +268,7 @@ Last word: coming...</code></pre>
 <p><img src=media/Lists2.svg width=800 height=500 /></br></p>
 <h2 id="the-linked-list-data-structure-2">The <em>Linked-list</em> data structure</h2>
 <p><img src=media/Lists3.svg width=800 height=500 /></br></p>
-<h2 id="circlelist-a-linked-list-example">CircleList, a linked-list example</h2>
+<h2 id="circlelist-a-linked-list-example">CircleList, a linked list example</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">class</span> Circle {
     <span class="co">/* Linked-list nodes should have a reference of their own</span>
 <span class="co">    type showing the next element in the list */</span>
