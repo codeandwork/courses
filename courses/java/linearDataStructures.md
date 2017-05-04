@@ -1,11 +1,11 @@
 ## Learning objectives
 * Define the linear data structure
 * Learn the characteristics of the linear data structures
-* Learn when to use them, according to your needs
+* Learn when and how to use them, according to your needs
 
 
 ## Linear data structures
-* Data structure whose element(objects) are ordered in a way so that:
+* Data structure whose element(objects) are sequential and ordered in a way so that:
  * there is only one *first element* and has only one *next element*,
  * there is only one *last element* and has only one *previous element*, while
  * all other elements have a *next* and a *previous* element
@@ -20,7 +20,7 @@
 
 
 ## Arrays
-* A group of objects of the same type
+* A sequential group of objects of the same type
 * Predefined (static) size
 * Can access/modify any element of the array 
 * Array examples: <br>
@@ -33,8 +33,8 @@
 
 ## Introduction to the *String* class
 * A sequence/group of alphanumeric characters 
-* The Java platform provides the **String** class [link to API](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) to create and manipulate strings.
-* *String* objects are **immutable** -- they cannot change their state after construction
+* The Java platform provides the **String** class [link to API](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) to create and manipulate strings
+* *String* objects are **immutable** - they cannot change their state after construction
 
 
 ## Concatenating *Strings*
@@ -53,16 +53,30 @@ Hello bootcamp! Winter is coming...
 ## StringBuffer
 * *Mutable* - can be modified after creation 
 * *Synchronized* - multiple threads can access it and modify it without any *side effects* 
-* Relatively slow process. Many *locking* and *unlocking* actions will take place at the cpu
+* Relatively slow process. Many *locking* and *unlocking* actions will take place
+* Code example:
+```java
+	StringBuffer sb = new StringBuffer();
+	sb.append("Hello").append(" StringBuffer!");
+	System.out.println(sb.toString());
+```
 
 
 ## StringBuilder
 * *Mutable* - can be modified after creation
 * *Not synchronized* - accessing it and modifying it by more than one threads can produce unexpected results! 
 * Much faster than the *StringBuffer* class
+* Code example:
+```java
+	StringBuilder sb = new StringBuilder();
+	sb.append("Hello").append(" StringBuilder!");
+	System.out.println(sb.toString());
+```
 
 
-## Immutable vs mutable operations - example
+## Immutable vs mutable operations
+* In the following example we create a sequence of numbers for ```1``` to ```N``` with the three different ways presented in the previous slides
+
 ```java
 /* Simple String example */
 String s = "";
@@ -71,24 +85,24 @@ for(int i=0; i<N; i++) {
     s += String.valueOf(i);
 }
 
-/** StringBuilder example */
+/* StringBuilder example */
 StringBuilder builder = new StringBuilder();
 for(int i=0; i<N; i++) {
     builder.append(i);
 }
-builder.toString();
+s = builder.toString();
 
-/** StringBuffer example */
+/* StringBuffer example */
 StringBuffer buff = new StringBuffer();
 for(int i=0; i<N; i++) {
     buff.append(i);
 }
-buff.toString();
+s = buff.toString();
 ```
 
 
-## Immutable vs Mutable operations - time comparison
-Measuring the separate execution of each solution above resulted to:
+## Immutable vs Mutable operations (2)
+* Measuring the separate execution of each solution above resulted to:
 ```
  	* 78.5 millisecond using the += operand
  	*  3.7 millisecond using StringBuffer
@@ -113,7 +127,7 @@ Measuring the separate execution of each solution above resulted to:
  * *String concat(String string2)*
 
 
-## *Strings* as arrays - index 
+## *Strings* as arrays (2)
 ```java
 // our test String phrase
 String message = "Winter is coming...";
@@ -145,6 +159,7 @@ Last word: coming...
 
 
 ## *Java Collections Framework*
+* The Java collections framework ([JCF](http://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html)) is a set of classes and interfaces that implement commonly reusable collection data structures.
 * A collection framework supports the consistent and coherent representation and handling of *Collections* regardless of their implementation
 * It's a set of *interfaces* that depicts the basic functionalities that any *Collection* should offer
 
@@ -165,7 +180,7 @@ Last word: coming...
 * Is an ordered collection (sequence) of objects
 * It can dynamically modify its size
 * User have complete control of the insertion and removal of an element in the list
-* The most common implementation of the List model are the *Linked-list* the and *ArrayList*. 
+* The most common implementation of the List model are the *LinkedList* ([link](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html)) the and *ArrayList* ([link](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)). 
 
 
 ## The ArrayList
@@ -227,17 +242,17 @@ with output
 
 ## *Vector* vs *ArrayList*
 * Almost equivalent data structures
- * *Vector* is synchronized when
- * *List* is not synchronized
+ * *Vector* ([link](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html)) is synchronized when
+ * *ArrayList* is not synchronized
 * If run out of space:
  * *Vector* doubles its size, when
- * *List* increases its size by 50%
+ * *ArrayList* increases its size by 50%
 
 
-## The *Linked-list* Java class
+## The *LinkedList* Java class
 * Each element (**node**) of a list is comprising of two items
  * the data and 
- * a reference to the next node. 
+ * a reference to the next node 
 * The last node has a reference to null
 * The entry point into a linked list is called the head of the list
 ```java
@@ -260,7 +275,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 <img src=media/Lists3.svg width=800 height=500 /></br>
 
 
-## CircleList, a linked-list example
+## CircleList, a linked list example
 ```java
 class Circle {
     /* Linked-list nodes should have a reference of their own
