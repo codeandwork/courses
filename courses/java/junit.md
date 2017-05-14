@@ -1,5 +1,7 @@
 ## Learning objectives
-//TODO
+* How the ```JUnit``` framework provides Unit Testing support in Java
+* What is considered a *unit* in Java
+* How to perform unit testing
 
 
 ## Motivating example
@@ -59,8 +61,8 @@ The output of the execution should be
 ## Motivating example (4)
 * Do you notice any drawbacks with the aforementioned techniques?
  * Testing many classes and methods may produce very long main methods
- * Very easy to miss some cases in a complex method 
- * The **main** method is usually part of the **production code**, and cannot contain non-functional code
+ * Easy to miss some cases in a complex method 
+ * The **main** method is usually part of the **production code**, and should not contain test code
  * Error-prone to system-wide changes
 * Is there a better solution to test our code? 
 
@@ -83,28 +85,30 @@ The output of the execution should be
 * Not suitable for testing user interface components
 
 
-## Test plan
-* //TODO recreate the graph from SEiP powerpoint slide 5
+## Test Class
+<img src=media/test_class.png width=700 height=200 />
+</br>
+* Test classes are like normal classes, that consist of methods (test cases) that test the functional code of your application
 
 
-## Test class
+## Test class (2)
 * Define test classes and therein implement test methods (known also as “test cases”) 
 * Good practices: 
- * Each class should have its corresponding test class
- * Test classes should have the same name as the functional class with an additional **Test\*** prefix
+ * Each functional class should have its corresponding test class
+ * Test classes should have the same name as the functional class but end with an additional **\*Test** suffix
  * Example:
      - Functional class : MyMathSimple
-     - Test class : TestMyMathSimple
+     - Test class : MyMathSimpleTest
 
 
-## Test class (2)     
-* Test classes should follow the same package structure with the functional classes
-* //TODO picture from the SEiP powerpoint slide 6
+## Test class (3)     
+Test classes should follow the same package structure with the functional classes </br>
+<img src=media/packages_junit.png width=500 height=500 />
 
 
 ## Proper testing of the "simple" example
 * Import the **JUnit 4** library that provides many testing capabilities
-* The *test class of the the *MyMathSimple* functional class should be created with name **TestMyMathSimple**
+* The *test class of the the *MyMathSimple* functional class should be created with name **MyMathSimpleTest**
 
 ```java
 
@@ -113,7 +117,7 @@ package test.main;
 import org.junit.*;
 import main.java.MySimpleMath;
 
-public class TestMySimpleMath {
+public class MySimpleMathTest {
     
     @Test
     public void testCheckSignShouldReturnPositive() {
@@ -133,13 +137,14 @@ public class TestMySimpleMath {
 
 
 ## Executing the test cases
-// TODO show how execution is the same as in any other class with main. Also show how to interpret the results. SEiP slide 7
+<img src=media/eclipseResults.png width=554 height=514 />
+</br>
 
 
 ## JUnit good practices
-* The *test class* should have the same name with the functional class whos functionalities is testing
+* The *test class* should have the same name with the functional class whose functionalities is testing
 * Each ```@Test``` method is a *test case* that tests a very simple functionality of a method. On method can be tested by many *test cases*
-* A *test case*'s name should be self-explanatory of the functianlity that is testing and finish the name with the expected result
+* A *test case*'s name should be self-explanatory of the functionality that is testing and finish the name with the expected result
 * *Special cases* should be always tested (zero, edge cases, ```null```, etc)
 
 
@@ -219,7 +224,7 @@ package test.main;
 import org.junit.*;
 import main.java.MySimpleMath;
 
-public class TestMySimpleMath {
+public class MySimpleMathTest {
     
     @Test
     public void testCheckSignShouldReturnPositive() {
@@ -306,7 +311,7 @@ import static org.junit.Assert.*;
 
 import main.java.MySimpleArrayOperations;
 
-public class TestMySimpleArrayOperations {
+public class MySimpleArrayOperationsTest {
     
     @Test
     public void testFindMin() {
@@ -356,7 +361,7 @@ import static org.junit.Assert.*;
 
 import main.java.MySimpleArrayOperations;
 
-public class TestMySimpleArrayOperations {
+public class MySimpleArrayOperationsTest {
     private MySimpleArrayOperations msao = new MySimpleArrayOperations();
     private int[] array;
     
@@ -392,7 +397,7 @@ public class TestMySimpleArrayOperations {
 }
 
 ```
-* Now that we have two test classes (the ```TestMySimpleMath``` and the ```TestMySimpleArrayOperations```), is there a way to run both of them in one take?
+* Now that we have two test classes (the ```MySimpleMathTest``` and the ```MySimpleArrayOperationsTest```), is there a way to run both of them in one take?
 
 
 ## Test suites
@@ -406,9 +411,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestMyMath.class, TestMyMathSimple.class })
+@Suite.SuiteClasses({ MyMathTest.class, MyMathSimpleTest.class })
 
-public class TestSuiteMath {
+public class MathTestSuite {
     /* the class remains empty, used only as a holder for  
      * the above annotations
      */
@@ -430,8 +435,8 @@ import org.junit.runner.notification.Failure;
 
 public class TestRunner {
    public static void main(String[] args) {
-      Result result = JUnitCore.runClasses(TestSuiteMath.class, 
-              TestMyArrayOperations.class);
+      Result result = JUnitCore.runClasses(MathTestSuite.class, 
+              MyArrayOperationsTest.class);
         
       for (Failure failure : result.getFailures()) {
          System.out.println(failure.toString());
@@ -444,14 +449,12 @@ public class TestRunner {
 
 
 ## Testing ```Lists```
-* ```Lists, Vectors, Stacks``` are ```Collections``` and collections can be represented as ```arrays``` by calling the method ```aList.toArray();```//TODO
+* ```Lists, Vectors, Stacks``` are ```Collections``` and collections can be represented as ```arrays``` by calling the method ```aList.toArray();```
 * We use this feature to transform a ```List``` to an ```array``` and test it as we did in the *testing arrays* slide 
 * Assume that we have a class that uses an ArrayList of Integers and provides the following functionalities: *add*, *remove*, *clear*, *size*, *get (from an index)* 
 
 
 ## Testing ```Lists``` (2)
-* //TODO
-
 ```java
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -495,10 +498,7 @@ public class MyIntegerList {
 ```
 
 
-
-## Testing Lists -3-
-* //TODO complete
- 
+## Testing Lists (3)
 ```java
 package test.main;
 
@@ -507,7 +507,7 @@ import static org.junit.Assert.*;
 
 import main.java.MyIntegerList;
 
-public class TestMyIntegerList {
+public class MyIntegerListTest {
 
     private MyIntegerList myList;
     
@@ -555,7 +555,7 @@ public class TestMyIntegerList {
 
 ## Exercise 1 (continued)
 * Create a package ```test.mymath``` in the same project
-* Create a test class ```TestMyCalculator``` in the package and implement test cases to challenge the functionality of all methods in the ```MyCalculator``` class
+* Create a test class ```MyCalculatorTest``` in the package and implement test cases to challenge the functionality of all methods in the ```MyCalculator``` class
 * Be sure that
  * you use appropriate names for the test cases
  * edge numbers are tested
@@ -580,7 +580,3 @@ public class TestMyIntegerList {
 ## Exercise 3
 * Create a Test Suite which consists of all the Test Classes that you created earlier
 * Execute the Test Suite with the ```JUnitCore.runClasses```, store the results in a ```Result``` object and print the failures (if exist) 
-
-
-## Exercise 4
-* 
