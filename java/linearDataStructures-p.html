@@ -632,6 +632,32 @@ public static void main(String[] args) {
 ```
 * Can you use **only one** *for* loop for solving the exercise?
 
+
+## Exercise 3b
+* Extend the functionality of Exercise 3 by adding the functionality of returning a book and 4 more entities: The UserList, the User, the ReturnBook and RentBook. 
+* Specifically, create a class *User* that represents a user who can perform a transaction with the library. Users should have the following instance variables:
+ * name
+ * id - final and unique for each user
+ * transactions - a TransactionsHistory that stores all Transactions related to the current user
+ * next - a reference to the **next** user, a feature that makes the *User* class an element in a LinkedList
+
+
+## Exercise 3b (continued)
+* Create a class *UserList*, which stores *User* objects
+* *UserList* should behave as a linked-list with elements of type *User*. (It should hold only the "head" of the list)
+* *UserList* should offer the following functionalities:
+ * search for a user
+ * add a user (if he doesn't exist)
+ * remove a user
+ * print all users
+
+
+## Exercise 3b (continued)
+* Add a *user* (of type *User*) instance variable in class Transaction. Every transaction should now store also the user that interacted with the library 
+* Create 2 classes named *RentBook* and *ReturnBook* respectively, who will extend the functionality of class Transaction
+ * Each class should overwrite the *toString* method and print an appropriate message when renting or returning a book
+* Add in the command line graphical UI the option to "return a book". From now on, when renting or returning the book you should ask for the users' name and perform the transaction only if he/she exists. 
+
 					</script>
 				</section>
 				<section>

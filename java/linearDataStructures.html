@@ -561,6 +561,32 @@ Last word: coming...</code></pre>
 <pre><code>    Min is 1 in positions: 0, 2, 10, 13</code></pre></li>
 <li><p>Can you use <strong>only one</strong> <em>for</em> loop for solving the exercise?</p></li>
 </ul>
+<h2 id="exercise-3b">Exercise 3b</h2>
+<ul>
+<li>Extend the functionality of Exercise 3 by adding the functionality of returning a book and 4 more entities: The UserList, the User, the ReturnBook and RentBook.<br /></li>
+<li>Specifically, create a class <em>User</em> that represents a user who can perform a transaction with the library. Users should have the following instance variables:<br /></li>
+<li>name<br /></li>
+<li>id - final and unique for each user<br /></li>
+<li>transactions - a TransactionsHistory that stores all Transactions related to the current user<br /></li>
+<li>next - a reference to the <strong>next</strong> user, a feature that makes the <em>User</em> class an element in a LinkedList</li>
+</ul>
+<h2 id="exercise-3b-continued">Exercise 3b (continued)</h2>
+<ul>
+<li>Create a class <em>UserList</em>, which stores <em>User</em> objects<br /></li>
+<li><em>UserList</em> should behave as a linked-list with elements of type <em>User</em>. (It should hold only the &quot;head&quot; of the list)<br /></li>
+<li><em>UserList</em> should offer the following functionalities:<br /></li>
+<li>search for a user<br /></li>
+<li>add a user (if he doesn't exist)<br /></li>
+<li>remove a user<br /></li>
+<li>print all users</li>
+</ul>
+<h2 id="exercise-3b-continued-1">Exercise 3b (continued)</h2>
+<ul>
+<li>Add a <em>user</em> (of type <em>User</em>) instance variable in class Transaction. Every transaction should now store also the user that interacted with the library<br /></li>
+<li>Create 2 classes named <em>RentBook</em> and <em>ReturnBook</em> respectively, who will extend the functionality of class Transaction<br /></li>
+<li>Each class should overwrite the <em>toString</em> method and print an appropriate message when renting or returning a book<br /></li>
+<li>Add in the command line graphical UI the option to &quot;return a book&quot;. From now on, when renting or returning the book you should ask for the users' name and perform the transaction only if he/she exists.</li>
+</ul>
 
 <hr />
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.

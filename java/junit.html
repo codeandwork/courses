@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Unit Testing with JUnit</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-unit-testing-with-junit">Coding Bootcamp: Unit Testing with JUnit</h1>
+<h2 id="learning-objectives">Learning objectives</h2>
+<ul>
+<li>What is Unit Testing<br /></li>
+<li>What is considered a <em>unit</em> in Java<br /></li>
+<li>How the <code>JUnit</code> framework provides Unit Testing support in Java<br /></li>
+<li>How to perform unit testing</li>
+</ul>
+<h2 id="motivating-example">Motivating example</h2>
+<ul>
+<li><strong>MyMathSimple</strong> : a class with a simple single method located in the package (main)</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package main.java;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> MySimpleMath {
+    <span class="co">/**</span>
+<span class="co">     * A simple method that takes and input and returns</span>
+<span class="co">     * &quot;positive&quot; or &quot;negative&quot; depending on the input number </span>
+<span class="co">     */</span>
+    <span class="kw">public</span> String <span class="fu">checkSign</span>(<span class="dt">int</span> number) {
+        <span class="kw">if</span>(number &gt;= <span class="dv">0</span> ) {
+            <span class="kw">return</span> <span class="st">&quot;positive&quot;</span>;
+        } <span class="kw">else</span> {
+            <span class="kw">return</span> <span class="st">&quot;negative&quot;</span>;
+        }
+    }
+    
+}</code></pre>
+<h2 id="motivating-example-2">Motivating example (2)</h2>
+<ul>
+<li>In order to Test the functionality of our class and methods we used to add some code in a <strong>main</strong> method and compare the output of the execution against the expected one</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String args[]) {
+        MySimpleMath sm = <span class="kw">new</span> <span class="fu">MySimpleMath</span>();
+        <span class="co">// Check a positive</span>
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Input 10: &quot;</span> + sm.<span class="fu">checkSign</span>(<span class="dv">10</span>));
+        <span class="co">// Check a negative</span>
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Input -2: &quot;</span> + sm.<span class="fu">checkSign</span>(-<span class="dv">2</span>));
+        <span class="co">// Check a positive</span>
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Input 0: &quot;</span> + sm.<span class="fu">checkSign</span>(<span class="dv">0</span>));
+        
+    }</code></pre>
+<p>The output of the execution should be</p>
+<pre><code>    Input 10: positive
+    Input -2: negative
+    Input 0: positive</code></pre>
+<h2 id="motivating-example-3">Motivating example (3)</h2>
+<ul>
+<li>Are there any other ways to test the execution of the code?<br /></li>
+<li>Use messages (<code>System.out.println()</code>) in places of interest<br /></li>
+<li>Use the debugger<br /></li>
+<li>Use <strong>Assertions</strong> to verify the value of variables in specific places in your code</li>
+</ul>
+<h2 id="motivating-example-4">Motivating example (4)</h2>
+<ul>
+<li>Do you notice any drawbacks with the aforementioned techniques?<br /></li>
+<li>Testing many classes and methods may produce very long main methods<br /></li>
+<li>Easy to miss some cases in a complex method<br /></li>
+<li>The <strong>main</strong> method is usually part of the <strong>production code</strong>, and should not contain test code<br /></li>
+<li>Error-prone to system-wide changes<br /></li>
+<li>Is there a better solution to test our code?</li>
+</ul>
+<h2 id="testing-definition"><em>Testing</em> definition</h2>
+<p><em>Dynamic verification that the program has the expected behavior in a suitably selected final set of test cases</em></p>
+<ul>
+<li>Unit testing<br /></li>
+<li>Integration testing<br /></li>
+<li>System testing</li>
+</ul>
+<h2 id="unit-testing-definition"><em>Unit testing</em> definition</h2>
+<p><em>Unit testing is a method of testing individual units of source code to determine if they are fit for use</em></p>
+<ul>
+<li>Is performed at the development phase of a software’s life cycle<br /></li>
+<li>Detects problems early in the development process<br /></li>
+<li>Unit tests should be independent from one other<br /></li>
+<li>External dependencies should be removed<br /></li>
+<li>Unit tests are the smallest testable parts of an application<br /></li>
+<li>Simplifies Integration<br /></li>
+<li>Not suitable for testing user interface components</li>
+</ul>
+<h2 id="test-class">Test Class</h2>
+<p><img src=media/test_class.png width=700 height=200 /><br /></br></p>
+<ul>
+<li>Test classes are like normal classes, that consist of methods (test cases) that test the functional code of your application</li>
+</ul>
+<h2 id="test-class-2">Test class (2)</h2>
+<ul>
+<li>Define test classes and therein implement test methods (known also as “test cases”)<br /></li>
+<li>Good practices:<br /></li>
+<li>Each functional class should have its corresponding test class<br /></li>
+<li>Test classes should have the same name as the functional class but end with an additional <strong>*Test</strong> suffix<br /></li>
+<li><p>Example:</p>
+<ul>
+<li>Functional class : MyMathSimple<br /></li>
+<li>Test class : MyMathSimpleTest</li>
+</ul></li>
+</ul>
+<h2 id="test-class-3">Test class (3)</h2>
+<p>Test classes should follow the same package structure with the functional classes </br><br /><img src=media/packages_junit.png width=500 height=500 /></p>
+<h2 id="proper-testing-of-the-simple-example">Proper testing of the &quot;simple&quot; example</h2>
+<ul>
+<li>Import the <strong>JUnit 4</strong> library that provides many testing capabilities<br /></li>
+<li>The <em>test class of the the </em>MyMathSimple* functional class should be created with name <strong>MyMathSimpleTest</strong></li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java">
+<span class="kw">package test.main;</span>
+
+<span class="kw">import org.junit.*;</span>
+<span class="kw">import main.java.MySimpleMath;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> MySimpleMathTest {
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testCheckSignShouldReturnPositive</span>() {
+        MySimpleMath sm = <span class="kw">new</span> <span class="fu">MySimpleMath</span>();
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;positive&quot;</span>, sm.<span class="fu">checkSign</span>(<span class="dv">5</span>));
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;positive&quot;</span>, sm.<span class="fu">checkSign</span>(<span class="dv">0</span>));
+    }
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testCheckSignShouldReturnNegative</span>() {
+        MySimpleMath sm = <span class="kw">new</span> <span class="fu">MySimpleMath</span>();
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;negative&quot;</span>, sm.<span class="fu">checkSign</span>(-<span class="dv">5</span>));
+    }
+    
+}</code></pre>
+<h2 id="executing-the-test-cases">Executing the test cases</h2>
+<p><img src=media/eclipseResults.png width=554 height=514 /><br /></br></p>
+<h2 id="junit-good-practices">JUnit good practices</h2>
+<ul>
+<li>The <em>test class</em> should have the same name with the functional class whose functionalities is testing<br /></li>
+<li>Each <code>@Test</code> method is a <em>test case</em> that tests a very simple functionality of a method. On method can be tested by many <em>test cases</em><br /></li>
+<li>A <em>test case</em>'s name should be self-explanatory of the functionality that is testing and finish the name with the expected result<br /></li>
+<li><em>Special cases</em> should be always tested (zero, edge cases, <code>null</code>, etc)</li>
+</ul>
+<h2 id="test-cases-annotations">Test cases annotations <code>@</code></h2>
+<ul>
+<li>Annotations <code>@xxx</code> are used over the methods in order to depict their functionality<br /></li>
+<li><code>@Test</code> - defines a method as a test method<br /></li>
+<li><code>@Test(expected=Exception.class)</code> – Fails if the method does not throw the expected Exception<br /></li>
+<li><code>@Test(timeout=xxxx)</code> – Fails if the test method requires more time than xxxx milliseconds to execute<br /></li>
+<li><code>@Before</code> &amp; <code>@After</code> – This method is executed before (or after) each test method<br /></li>
+<li><code>@BeforeClass</code> &amp; <code>@AfterClass</code> – This method is executed once before (or after) the execution of all test methods<br /></li>
+<li><code>@Ignore</code> – Ignores a test method during the execution of the tests</li>
+</ul>
+<h2 id="assert"><code>Assert</code></h2>
+<ul>
+<li>Testing of assumptions is done inside each test method by the use of assertions from the Assert class <a href="http://junit.sourceforge.net/javadoc/org/junit/Assert.html">(API)</a><br /></li>
+<li>The assert methods compare the actual value returned by a test to the expected value, throwing an AssertionException if the comparison fails.</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">assertTrue</span>(“message”,<span class="dt">boolean</span> condition)
+<span class="fu">assertFalse</span>(…)
+<span class="fu">assertEquals</span>(“message”, expected, actual, tolerance)
+<span class="fu">assertNotEquals</span>(unexpected, actual);
+<span class="fu">assertNull</span>(“message”, object)
+<span class="fu">assertNotNull</span>(…)
+<span class="fu">assertSame</span>(“message”, expected, actual)
+<span class="fu">assertNotSame</span>(…)
+<span class="fu">assertArrayEquals</span>(…)
+<span class="fu">assertArrayNotEquals</span>(…)
+<span class="fu">fail</span>()</code></pre>
+<h2 id="testing-exceptions">Testing exceptions</h2>
+<ul>
+<li>Lets add a method <code>double divide(int num, int denom)</code> in our <em>MySimpleMath</em> class</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package main.java;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> MySimpleMath {
+    
+    <span class="co">/**</span>
+<span class="co">     * A simple method that takes and input and returns</span>
+<span class="co">     * &quot;positive&quot; or &quot;negative&quot; depending on the input number </span>
+<span class="co">     */</span>
+    <span class="kw">public</span> String <span class="fu">checkSign</span>(<span class="dt">int</span> number) {
+        <span class="kw">if</span>(number &gt;= <span class="dv">0</span> ) {
+            <span class="kw">return</span> <span class="st">&quot;positive&quot;</span>;
+        } <span class="kw">else</span> {
+            <span class="kw">return</span> <span class="st">&quot;negative&quot;</span>;
+        }
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Returns the division of numerator by the denominator.</span>
+<span class="co">     * If the denominator is zero, it throws an Exception</span>
+<span class="co">     */</span>
+    <span class="kw">public</span> <span class="dt">double</span> <span class="fu">divide</span>(<span class="dt">int</span> num, <span class="dt">int</span> denom) {
+        <span class="kw">if</span>(denom == <span class="dv">0</span>) { 
+            <span class="kw">throw</span> <span class="kw">new</span> ArithmeticException(<span class="st">&quot;Cannot divide by zero&quot;</span>);
+        } <span class="kw">else</span> {
+            <span class="kw">return</span> num/(<span class="dt">double</span>)denom;
+        }
+        
+    }
+    
+}</code></pre>
+<h2 id="testing-exceptions-2">Testing exceptions (2)</h2>
+<ul>
+<li>We should add our <em>test cases</em> in our <em>TestMyMathSimple</em> class</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package test.main;</span>
+
+<span class="kw">import org.junit.*;</span>
+<span class="kw">import main.java.MySimpleMath;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> MySimpleMathTest {
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testCheckSignShouldReturnPositive</span>() {
+        MySimpleMath sm = <span class="kw">new</span> <span class="fu">MySimpleMath</span>();
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;positive&quot;</span>, sm.<span class="fu">checkSign</span>(<span class="dv">5</span>));
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;positive&quot;</span>, sm.<span class="fu">checkSign</span>(<span class="dv">0</span>));
+    }
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testCheckSignShouldReturnNegative</span>() {
+        MySimpleMath sm = <span class="kw">new</span> <span class="fu">MySimpleMath</span>();
+        Assert.<span class="fu">assertEquals</span>(<span class="st">&quot;negative&quot;</span>, sm.<span class="fu">checkSign</span>(-<span class="dv">5</span>));
+    }
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testDivisionShouldReturnPositiveQuotient</span>() {
+        MySimpleMath sm = <span class="kw">new</span> <span class="fu">MySimpleMath</span>();
+        Assert.<span class="fu">assertEquals</span>(<span class="fl">2.0</span>, sm.<span class="fu">divide</span>(<span class="dv">10</span>, <span class="dv">5</span>), <span class="dv">0</span>);
+        Assert.<span class="fu">assertEquals</span>(<span class="fl">0.0</span>, sm.<span class="fu">divide</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dv">0</span>);
+    }
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testDivisionShouldReturnNegativeQuotient</span>() {
+        MySimpleMath sm = <span class="kw">new</span> <span class="fu">MySimpleMath</span>();
+        Assert.<span class="fu">assertEquals</span>(-<span class="fl">2.0</span>, sm.<span class="fu">divide</span>(<span class="dv">10</span>, -<span class="dv">5</span>), <span class="dv">0</span>);
+    }
+    
+    <span class="fu">@Test</span> (expected = ArithmeticException.<span class="fu">class</span>)
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testDivisionShouldThrowArithmeticException</span>() {
+        MySimpleMath sm = <span class="kw">new</span> <span class="fu">MySimpleMath</span>();
+        sm.<span class="fu">divide</span>(<span class="dv">10</span>, <span class="dv">0</span>);
+    }
+    
+}</code></pre>
+<h2 id="testing-arrays">Testing <code>Arrays</code></h2>
+<ul>
+<li>Assume that we have a class that offers only two functionalities on an array, the <code>findMin(int[] array)</code> and the <code>multiply(int[] array, int factor)</code> where the first finds the min in an array, and the second multiplies each element of the array with a factor respectivelly</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package main.java;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> MySimpleArrayOperations {
+    
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">findMin</span>(<span class="dt">int</span>[] array) {
+        <span class="kw">if</span>(!(array.<span class="fu">length</span> &gt; <span class="dv">0</span>)) {
+            <span class="kw">throw</span> <span class="kw">new</span> IllegalArgumentException(<span class="st">&quot;Input array is empty&quot;</span>);
+        }
+        
+        <span class="dt">int</span> min = Integer.<span class="fu">MAX_VALUE</span>;
+        <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;array.<span class="fu">length</span>; i++) {
+            <span class="kw">if</span>(array[i] &lt;= min)
+                min = array[i];
+        }
+        
+        <span class="kw">return</span> min;
+    }
+    
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">multiply</span>(<span class="dt">int</span>[] array, <span class="dt">int</span> factor) {
+        <span class="kw">if</span>(!(array.<span class="fu">length</span> &gt; <span class="dv">0</span>)) {
+            <span class="kw">throw</span> <span class="kw">new</span> IllegalArgumentException(<span class="st">&quot;Input array is empty&quot;</span>);
+        }
+        
+        <span class="kw">for</span>( <span class="dt">int</span> i=<span class="dv">0</span>; i&lt;array.<span class="fu">length</span>; i++ ) {
+            array[i] = array[i] * factor;
+        }
+    }
+
+}</code></pre>
+<h2 id="testing-arrays-2">Testing Arrays (2)</h2>
+<ul>
+<li>For comparing the equality of arrays we use the <code>assertArrayEquals(...)</code> method provided by the JUnit library<br /></li>
+<li>The test class should have the following code</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package test.main;</span>
+
+<span class="kw">import org.junit.*;</span>
+<span class="kw">import static org.junit.Assert.*;</span>
+
+<span class="kw">import main.java.MySimpleArrayOperations;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> MySimpleArrayOperationsTest {
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testFindMin</span>() {
+        MySimpleArrayOperations msao = <span class="kw">new</span> <span class="fu">MySimpleArrayOperations</span>();
+        <span class="dt">int</span>[] array = {<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">16</span>, <span class="dv">0</span>, <span class="dv">2</span>};
+        <span class="fu">assertEquals</span>(<span class="dv">0</span>, msao.<span class="fu">findMin</span>(array));
+        <span class="fu">assertNotEquals</span>(<span class="dv">10</span>, msao.<span class="fu">findMin</span>(array));
+    }
+    
+    <span class="fu">@Test</span> (expected = IllegalArgumentException.<span class="fu">class</span>)
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testFindMinShouldThrowException</span>() {
+        MySimpleArrayOperations msao = <span class="kw">new</span> <span class="fu">MySimpleArrayOperations</span>();
+        msao.<span class="fu">findMin</span>(<span class="kw">new</span> <span class="dt">int</span>[]{});
+    }
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testMultiply</span>() {
+        MySimpleArrayOperations msao = <span class="kw">new</span> <span class="fu">MySimpleArrayOperations</span>();
+        <span class="dt">int</span>[] array = {<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">16</span>, <span class="dv">0</span>, <span class="dv">2</span>};
+        msao.<span class="fu">multiply</span>(array, <span class="dv">10</span>);
+        <span class="fu">assertArrayEquals</span>(<span class="kw">new</span> <span class="dt">int</span>[]{<span class="dv">100</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">160</span>, <span class="dv">0</span>, <span class="dv">20</span>}, array);
+    }
+    
+    <span class="fu">@Test</span> (expected = IllegalArgumentException.<span class="fu">class</span>)
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testMultiplyShouldThrowException</span>() {
+        MySimpleArrayOperations msao = <span class="kw">new</span> <span class="fu">MySimpleArrayOperations</span>();
+        msao.<span class="fu">multiply</span>(<span class="kw">new</span> <span class="dt">int</span>[]{}, <span class="dv">0</span>); <span class="co">//method call with dummy arguments</span>
+    }
+    
+}</code></pre>
+<h2 id="simplify-the-test-cases">Simplify the test cases</h2>
+<ul>
+<li>Make objects that are used in many test cases, instance variables<br /></li>
+<li>Create a <code>@Before</code> method if you want to the perform the same operation (ex. initializing instance variables) before the execution of each test case<br /></li>
+<li>After applying the aforementioned changes the class changes to:</li>
+</ul>
+<h2 id="simplify-the-test-cases-2">Simplify the test cases (2)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package test.main;</span>
+
+<span class="kw">import org.junit.*;</span>
+<span class="kw">import static org.junit.Assert.*;</span>
+
+<span class="kw">import main.java.MySimpleArrayOperations;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> MySimpleArrayOperationsTest {
+    <span class="kw">private</span> MySimpleArrayOperations msao = <span class="kw">new</span> <span class="fu">MySimpleArrayOperations</span>();
+    <span class="kw">private</span> <span class="dt">int</span>[] array;
+    
+    <span class="fu">@Before</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">initInstanceVariables</span>() {
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="kw">this</span>.<span class="fu">getClass</span>().<span class="fu">getName</span>() + <span class="st">&quot; --&gt; initializing fields&quot;</span>);
+        <span class="kw">this</span>.<span class="fu">msao</span> = <span class="kw">new</span> <span class="fu">MySimpleArrayOperations</span>();
+        <span class="kw">this</span>.<span class="fu">array</span> = <span class="kw">new</span> <span class="dt">int</span>[] {<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">16</span>, <span class="dv">0</span>, <span class="dv">2</span>};
+    }
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testFindMin</span>() {
+        <span class="fu">assertEquals</span>(<span class="dv">0</span>, msao.<span class="fu">findMin</span>(array));
+        <span class="fu">assertNotEquals</span>(<span class="dv">10</span>, msao.<span class="fu">findMin</span>(array));
+    }
+    
+    <span class="fu">@Test</span> (expected = IllegalArgumentException.<span class="fu">class</span>)
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testFindMinShouldThrowException</span>() {
+        msao.<span class="fu">findMin</span>(<span class="kw">new</span> <span class="dt">int</span>[]{});
+    }
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testMultiply</span>() {
+        msao.<span class="fu">multiply</span>(array, <span class="dv">10</span>);
+        <span class="fu">assertArrayEquals</span>(<span class="kw">new</span> <span class="dt">int</span>[]{<span class="dv">100</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">160</span>, <span class="dv">0</span>, <span class="dv">20</span>}, array);
+    }
+    
+    <span class="fu">@Test</span> (expected = IllegalArgumentException.<span class="fu">class</span>)
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testMultiplyShouldThrowException</span>() {
+        msao.<span class="fu">multiply</span>(<span class="kw">new</span> <span class="dt">int</span>[]{}, <span class="dv">0</span>); <span class="co">//method call with dummy arguments</span>
+    }
+    
+}</code></pre>
+<ul>
+<li>Now that we have two test classes (the <code>MySimpleMathTest</code> and the <code>MySimpleArrayOperationsTest</code>), is there a way to run both of them in one take?</li>
+</ul>
+<h2 id="test-suites">Test suites</h2>
+<ul>
+<li>Suites allow grouping of Test classes. They are empty classes, annotated with the <code>@RunWith</code> and the <code>@Suite.SuiteClasses</code> annotations<br /></li>
+<li>When the suite class run all the tests in the included classes will also run</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package test.java;</span>
+
+<span class="kw">import org.junit.runner.RunWith;</span>
+<span class="kw">import org.junit.runners.Suite;</span>
+
+<span class="fu">@RunWith</span>(Suite.<span class="fu">class</span>)
+<span class="fu">@Suite</span>.<span class="fu">SuiteClasses</span>({ MyMathTest.<span class="fu">class</span>, MyMathSimpleTest.<span class="fu">class</span> })
+
+<span class="kw">public</span> <span class="kw">class</span> MathTestSuite {
+    <span class="co">/* the class remains empty, used only as a holder for  </span>
+<span class="co">     * the above annotations</span>
+<span class="co">     */</span>
+}</code></pre>
+<h2 id="executing-multiple-tests">Executing multiple tests</h2>
+<ul>
+<li>The <code>JUnitCore.runClasses</code> allows the execution of multiple Test classes and suites.<br /></li>
+<li>The results are stored in a <code>Result</code> object as defined by the JUnit framework.<br /></li>
+<li>We can execute the <code>JUnitCore</code> in (for example) <code>main</code> method like the following:</li>
+</ul>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package test.java;</span>
+
+<span class="kw">import org.junit.runner.JUnitCore;</span>
+<span class="kw">import org.junit.runner.Result;</span>
+<span class="kw">import org.junit.runner.notification.Failure;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> TestRunner {
+   <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span>(String[] args) {
+      Result result = JUnitCore.<span class="fu">runClasses</span>(MathTestSuite.<span class="fu">class</span>, 
+              MyArrayOperationsTest.<span class="fu">class</span>);
+        
+      <span class="kw">for</span> (Failure failure : result.<span class="fu">getFailures</span>()) {
+         System.<span class="fu">out</span>.<span class="fu">println</span>(failure.<span class="fu">toString</span>());
+      }
+        
+      System.<span class="fu">out</span>.<span class="fu">println</span>(result.<span class="fu">wasSuccessful</span>());
+   }
+}  </code></pre>
+<h2 id="testing-lists">Testing <code>Lists</code></h2>
+<ul>
+<li><code>Lists, Vectors, Stacks</code> are <code>Collections</code> and collections can be represented as <code>arrays</code> by calling the method <code>aList.toArray();</code><br /></li>
+<li>We use this feature to transform a <code>List</code> to an <code>array</code> and test it as we did in the <em>testing arrays</em> slide<br /></li>
+<li>Assume that we have a class that uses an ArrayList of Integers and provides the following functionalities: <em>add</em>, <em>remove</em>, <em>clear</em>, <em>size</em>, <em>get (from an index)</em></li>
+</ul>
+<h2 id="testing-lists-2">Testing <code>Lists</code> (2)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.ArrayList;</span>
+<span class="kw">import java.util.Arrays;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> MyIntegerList {
+    <span class="kw">private</span> ArrayList&lt;Integer&gt; list;
+    
+    <span class="kw">public</span> <span class="fu">MyIntegerList</span>(Integer[] array) {
+        <span class="kw">this</span>.<span class="fu">list</span> = <span class="kw">new</span> ArrayList&lt;&gt;(Arrays.<span class="fu">asList</span>(array));
+    }
+    
+    <span class="kw">public</span> Integer[] <span class="fu">getListAsAnArray</span>() {
+        <span class="kw">return</span> (Integer[]) <span class="kw">this</span>.<span class="fu">list</span>.<span class="fu">toArray</span>();
+    }
+    
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">add</span>(<span class="dt">int</span> n) {
+        <span class="kw">this</span>.<span class="fu">list</span>.<span class="fu">add</span>(n);
+    }
+    
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">remove</span>() {
+        <span class="kw">if</span>(!<span class="kw">this</span>.<span class="fu">list</span>.<span class="fu">isEmpty</span>())
+            <span class="kw">this</span>.<span class="fu">list</span>.<span class="fu">remove</span>(<span class="kw">this</span>.<span class="fu">list</span>.<span class="fu">size</span>()-<span class="dv">1</span>);
+    }
+    
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">get</span>(<span class="dt">int</span> index) {
+        <span class="kw">if</span>(<span class="kw">this</span>.<span class="fu">list</span>.<span class="fu">size</span>() - <span class="dv">1</span> &gt;= index) 
+            <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">get</span>(index);
+        <span class="kw">else</span> 
+            <span class="kw">return</span> (Integer) <span class="kw">null</span>;
+    }
+    
+    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">size</span>() {
+        <span class="kw">return</span> <span class="kw">this</span>.<span class="fu">list</span>.<span class="fu">size</span>();
+    }
+    
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">clear</span>() {
+        <span class="kw">this</span>.<span class="fu">list</span>.<span class="fu">clear</span>();
+    }
+}</code></pre>
+<h2 id="testing-lists-3">Testing Lists (3)</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">package test.main;</span>
+
+<span class="kw">import org.junit.*;</span>
+<span class="kw">import static org.junit.Assert.*;</span>
+
+<span class="kw">import main.java.MyIntegerList;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> MyIntegerListTest {
+
+    <span class="kw">private</span> MyIntegerList myList;
+    
+    <span class="fu">@Before</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">initInstanceVariables</span>() {
+        System.<span class="fu">out</span>.<span class="fu">println</span>(<span class="kw">this</span>.<span class="fu">getClass</span>().<span class="fu">getName</span>() + <span class="st">&quot;--&gt; initializing array&quot;</span>);
+        Integer array[] = {<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>};
+        <span class="kw">this</span>.<span class="fu">myList</span> = <span class="kw">new</span> <span class="fu">MyIntegerList</span>(array);
+    }
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testSize</span>() {
+        <span class="fu">assertEquals</span>(<span class="dv">5</span>, <span class="kw">this</span>.<span class="fu">myList</span>.<span class="fu">size</span>());
+        <span class="fu">assertEquals</span>(<span class="dv">0</span>, <span class="kw">new</span> <span class="fu">MyIntegerList</span>(<span class="kw">new</span> Integer[]{}).<span class="fu">size</span>());
+        <span class="kw">this</span>.<span class="fu">myList</span>.<span class="fu">add</span>(<span class="dv">6</span>);
+        <span class="fu">assertEquals</span>(<span class="dv">6</span>, <span class="kw">this</span>.<span class="fu">myList</span>.<span class="fu">size</span>());
+    }
+    
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testAdd</span>() {
+        <span class="kw">this</span>.<span class="fu">myList</span>.<span class="fu">add</span>(<span class="dv">10</span>);
+        <span class="fu">assertArrayEquals</span>(<span class="kw">new</span> Integer[]{<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">10</span>},<span class="kw">this</span>.<span class="fu">myList</span>.<span class="fu">getListAsAnArray</span>());
+    }
+    
+    <span class="co">// the other test cases are omitted to simplify the example</span>
+}</code></pre>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li>Create a project (with a name of your preference) and a package <code>main.mymath</code><br /></li>
+<li>In this package create a class <code>MyCalculator</code> that implements a calculator and provides the following functionalities (methods) for any pair of <strong>positive integers</strong> :<br /></li>
+<li>addition<br /></li>
+<li>multiplication<br /></li>
+<li>division</li>
+</ul>
+<h2 id="exercise-1-continued">Exercise 1 (continued)</h2>
+<ul>
+<li>Consider checking the input numbers for their illegibility. For example:<br /></li>
+<li>the denominator of the division cannot be zero,<br /></li>
+<li>input numbers should not result to overflow (ex. the result of adding two <em>double</em> numbers should fit in a double variable)<br /></li>
+<li>think of more cases if exist..<br /></li>
+<li>In cases that the input values violate your constraints, you should throw an IllegalArgumentException with a corresponding message</li>
+</ul>
+<h2 id="exercise-1-continued-1">Exercise 1 (continued)</h2>
+<ul>
+<li>Create a package <code>test.mymath</code> in the same project<br /></li>
+<li>Create a test class <code>MyCalculatorTest</code> in the package and implement test cases to challenge the functionality of all methods in the <code>MyCalculator</code> class<br /></li>
+<li>Be sure that<br /></li>
+<li>you use appropriate names for the test cases<br /></li>
+<li>edge numbers are tested<br /></li>
+<li>exceptions are also tested</li>
+</ul>
+<h2 id="exercise-2">Exercise 2</h2>
+<ul>
+<li>Create a class named <code>MyAdvancedMath</code> and implement the following methods<br /></li>
+<li><code>int factorial(int n)</code> : Calculates and returns the factorial of a given non-negative number <code>n</code>. If <code>n &lt; 0</code> throw an <code>IllegalArgumentException(&quot;n cannot be &lt; 0&quot;)</code>. Also investigate which is the largest factorial that can fit in an integer variable and do not allow the user (throw an <code>IllegalArgumentException</code>) to give an <code>n</code> larger than the value that causes an overflow.</li>
+</ul>
+<h2 id="exercise-2-continued">Exercise 2 (continued)</h2>
+<ul>
+<li><code>double power(int b, int n)</code> : Calculates and returns the power of a number, where <code>b</code> is the base and <code>n</code> is the exponent. The exponent (n) can be any integer between [0, 20]. If the input is larger than that, an <code>IllegalArgumentException(&quot;n should be 0 &lt;= n &lt;= 20&quot;)</code> should be thrown<br /></li>
+<li><code>int[] reverse(int[] array)</code> which should return an array which is the reversed of the one you gave as an input</li>
+</ul>
+<h2 id="exercise-2-continued-1">Exercise 2 (continued)</h2>
+<ul>
+<li>Create a <strong>Test class</strong> which will host all <strong>test cases</strong> for your implemented methods in the calculator class</li>
+</ul>
+<h2 id="exercise-3">Exercise 3</h2>
+<ul>
+<li>Create a Test Suite which consists of all the Test Classes that you created earlier<br /></li>
+<li>Execute the Test Suite with the <code>JUnitCore.runClasses</code>, store the results in a <code>Result</code> object and print the failures (if exist)</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
