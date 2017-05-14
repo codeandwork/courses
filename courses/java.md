@@ -8,6 +8,7 @@
 * [Interfaces](java/interfaces.md)
 * [Exceptions](java/exceptions.md)
 * [Generics and Threads](java/generics_and_threads.md)
+* [Unit Testing with JUnit](java/junit.md)
 
 
 ## Advanced object oriented programming
