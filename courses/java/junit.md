@@ -1,6 +1,7 @@
 ## Learning objectives
-* How the ```JUnit``` framework provides Unit Testing support in Java
+* What is Unit Testing
 * What is considered a *unit* in Java
+* How the ```JUnit``` framework provides Unit Testing support in Java
 * How to perform unit testing
 
 
