@@ -538,6 +538,12 @@ public class MyIntegerListTest {
 ```
 
 
+## References
+* Github JUnit-team, [link](https://github.com/junit-team/junit4/wiki)
+* JUnit tutorial by Vogella, [link](http://www.vogella.com/tutorials/JUnit/article.html) 
+* Pragmatic Unit Testing in Java 8 with JUnit, Langr & Hunt, [link](https://pragprog.com/book/utj2/pragmatic-unit-testing-in-java-8-with-junit)
+
+
 ## Exercise 1
 * Create a project (with a name of your preference) and a package ```main.mymath```
 * In this package create a class ```MyCalculator``` that implements a calculator and provides the following functionalities (methods) for any pair of **positive integers** :
