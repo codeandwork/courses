@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Unit testing</title>
+
+    <!-- Bootstrap -->
+    <!-- JQuery is required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../css/pandoc-syntax.css">
+  </head>
+  <body>
+<h1 id="coding-bootcamp-unit-testing">Coding Bootcamp: Unit testing</h1>
+<h2 id="definition---testing">Definition - Testing</h2>
+<p><em>Dynamic</em> verification that the program has the<br /><em>expected</em> behevior<br />in a suitably <em>selected</em> <em>final</em> set of test cases</p>
+<h2 id="levels-of-testing">Levels of testing</h2>
+<ul>
+<li>Unit Testing<br /></li>
+<li>Component Testing<br /></li>
+<li>Integration Testing<br /></li>
+<li>System Testing<br /></li>
+<li>Acceptance Testing</li>
+</ul>
+<h2 id="testing-by-goal">Testing by goal</h2>
+<ul>
+<li>Acceptance testing<br /></li>
+<li>Installation testing<br /></li>
+<li>Alpha/beta testing<br /></li>
+<li>Regression testing<br /></li>
+<li>Performance testing<br /></li>
+<li>Stress testing<br /></li>
+<li>Recovery testing<br /></li>
+<li>Interface testing<br /></li>
+<li>Configuration testing<br /></li>
+<li>Usability testing</li>
+</ul>
+<h2 id="useful-testing-techniques">Useful testing techniques</h2>
+<ul>
+<li>Ad hoc<br /></li>
+<li>Exploratory<br /></li>
+<li>Extreme values<br /></li>
+<li>Random values<br /></li>
+<li>Cover control paths<br /></li>
+<li>Cover data paths<br /></li>
+<li>Guess probably mistakes</li>
+</ul>
+<h2 id="testing-practices">Testing practices</h2>
+<ul>
+<li>Testing succeeds when it finds faults<br /></li>
+<li>Establish test process and guidelines<br /></li>
+<li>Documentation<br /></li>
+<li>Test-driven development (TDD)<br /></li>
+<li>Internal or through external team<br /></li>
+<li>Integration based on risk analysis</li>
+</ul>
+<h2 id="testing-activities">Testing activities</h2>
+<ul>
+<li>Test plan<br /></li>
+<li>Test cases<br /></li>
+<li>Testing environment<br /></li>
+<li>Test execution<br /></li>
+<li>Test result evaluation<br /></li>
+<li>Issue reporting<br /></li>
+<li>Issue management</li>
+</ul>
+<h2 id="definition---unit-testing">Definition - Unit testing</h2>
+<p>Unit testing is a method of testing individual units of source code to determine if they are fit for use</p>
+<h2 id="unit-testing">Unit testing</h2>
+<ul>
+<li>Unit tests are the smallest testable parts of an application<br /></li>
+<li>Is performed at the development phase of a software’s life cycle<br /></li>
+<li>Detects problems early in the development process<br /></li>
+<li>Simplifies Integration</li>
+</ul>
+<h2 id="xunit-frameworks">xUnit frameworks</h2>
+<ul>
+<li>JUnit for Java<br /></li>
+<li>unittest for Python<br /></li>
+<li>Nunit and/or xUnit for .NET</li>
+</ul>
+<h2 id="the-first-example---junit">The first example - JUnit</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import org.junit.Assert;</span>
+<span class="kw">import org.junit.Test;</span>
+...
+    <span class="fu">@Test</span>
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testCalculateNoc</span>() {
+        RegexBasedMetricsComputer metricsComp = <span class="kw">new</span> <span class="fu">RegexBasedMetricsComputer</span>(<span class="st">&quot;src/designPatterns/RegexBasedMetricsComputer.java&quot;</span>);
+        Assert.<span class="fu">assertEquals</span>(<span class="dv">1</span>, metricsComp.<span class="fu">calculateNoc</span>());
+    }
+...</code></pre>
+<h2 id="unit-test-plan">Unit-test plan</h2>
+<p><img src="media/testPlan.png" /></p>
+<h2 id="unit-testing-practices">Unit testing practices</h2>
+<ul>
+<li>Define test classes and therein implement test methods (known also as “test cases”)<br /></li>
+<li>Each class should have its corresponding test class<br /></li>
+<li>Test classes should have the same name as the functional class with an additional Test* prefix<br /></li>
+<li>Test classes should follow the same package structure with the functional classes<br /></li>
+<li>Unit tests should be independent from one other<br /></li>
+<li>External dependencies should be removed</li>
+</ul>
+<h2 id="annotations---junit">Annotations - JUnit</h2>
+<p>Annotations are used over the methods in the Test classes and suites in order to depict their functionality.</p>
+<ul>
+<li>@Test - defines a method as a test method<br /></li>
+<li>@Test(expected=Exception.class) – Fails if the method does not throw the expected Exception<br /></li>
+<li>@Test(timeout=xxxx) – Fails if the test method requires more time than xxxx milliseconds to execute<br /></li>
+<li>@Before &amp; @After – This method is executed before (or after) each test method<br /></li>
+<li>@BeforeClass &amp; @AfterClass – This method is executed once before (or after) the execution of all test methods<br /></li>
+<li>@Ignore – Ignores a test method</li>
+</ul>
+<h2 id="assert">Assert</h2>
+<p>Testing of assumptions is done inside each test method by the use of assertions from the Assert class.</p>
+<p>The assert methods compare the actual value returned by a test to the expected value, throwing an AssertionException if the comparison fails.</p>
+<ul>
+<li>assertTrue(“message”,boolean condition) – assertFalse(…)<br /></li>
+<li>assertEquals(“message”, expected, actual, tolerance)<br /></li>
+<li>assertNull(“message”, object) - assertNotNull(…)<br /></li>
+<li>assertSame(“message”, expected, actual) – assertNotSame(…)<br /></li>
+<li>assertArrayEquals(…), assertArrayNotEquals(…)<br /></li>
+<li>fail()</li>
+</ul>
+<h2 id="fixtures">Fixtures</h2>
+<ul>
+<li>@before and @after</li>
+</ul>
+<h2 id="exception-testing">Exception testing</h2>
+<pre class="sourceCode java"><code class="sourceCode java"><span class="fu">@Test</span> (expected = NoSuchFileException.<span class="fu">class</span>)
+    <span class="kw">public</span> <span class="dt">void</span> <span class="fu">testCalculateNocException</span>() <span class="kw">throws</span> NoSuchFileException {
+        RegexBasedMetricsComputer metricsComp = <span class="kw">new</span> <span class="fu">RegexBasedMetricsComputer</span>(<span class="st">&quot;somepath/somefile.java&quot;</span>);
+        Assert.<span class="fu">assertEquals</span>(<span class="dv">1</span>, metricsComp.<span class="fu">calculateNoc</span>());
+    }</code></pre>
+<h2 id="test-suites">Test suites</h2>
+<p>Suites allow grouping of Test classes. They are empty classes, annotated with the @RunWith and the @Suite.SuiteClasses annotations</p>
+<p>When the suite class run all the tests in the included classes will also run<br /><img src="media/testSuite.png" /></p>
+<h2 id="exercise-1">Exercise 1</h2>
+<ul>
+<li>Create a class named MySimpleMath and implement the following methods. For the each method create the necessary Test methods in the appropriate Test class in order to challenge the functionality of your code.<br /></li>
+<li>int multiply(int a, int b) : Multiplies two positive given numbers and returns the result. If the result of the division cannot fit in an Integer you should throw an ArithmeticException(“Result cannot fit in an Integer”).<br /></li>
+<li>double divide(int num, int denom) : Performs a division between two numbers and returns the result. num is the numerator and denom is the denominator. When the denom is zero an IllegalArgumentException(&quot;'denominator' cannot be zero&quot;).</li>
+</ul>
+<h2 id="exercise-2">Exercise 2</h2>
+<ul>
+<li>Write tests for your design patterns exercise<br /></li>
+<li>Write tests for your current project(s)</li>
+</ul>
+
+<hr />
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </body>
+</html>
