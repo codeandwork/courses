@@ -51,8 +51,10 @@
 ##Implementation
 ```java
 public class Course {
-private Student student;
-private Instructor instructor;
+
+    private Student student;
+    private Instructor instructor;
+
 	public Course() {
 		student = new Student();
 		instructor = new Instructor();
@@ -81,7 +83,7 @@ public class Program {
 ##Implementation - Cont.
 <ul>
 <li>Is it easy to add a new observer (a new Student or a new Instructor)?
-<ul><li>You need to make multiple changes</li>
+<ul><li class="fragment">You need to make multiple changes</li>
 <li class="fragment">What about adding a new category of observers; for example "Organizer"!</li>
 </ul></ul>
 
@@ -108,21 +110,25 @@ public class Program {
 
 ##Implementation - Take 2
 ```java
-public class Course extends Observable{
+import java.util.Observable;
+
+public class Course extends Observable {
 
 	public void changeTime() {
 		//change time
-		setChanged();
+		setChanged(); // obligatory before notifying observers
 		notifyObservers();
 	}
 }
 ```
 ```java
-public class Student implements Observer{
+import java.util.Observable;
+
+public class Student implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-	
+
 	}
 }
 ```
@@ -241,17 +247,15 @@ Implement a program that notifies the stakeholders whenever the time changes for
 * Write a program to compute following metrics for a C# (or Java) code: 
   * LOC (Lines of Code)
   * Number of classes
-  * Number of methods. 
+  * Number of methods 
   
-Use regular expressions to achieve the same.
-
+Use regular expressions to achieve that.
 
 
 ##Factory Pattern
 * <b>Motivation</b>
   * Creating objects without exposing the instantiation logic to the clients
   * Providing a common interface to refer all objects (of a kind)
-  
 
 
 ##Factory Pattern
