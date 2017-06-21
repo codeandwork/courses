@@ -77,8 +77,10 @@
 <p><img src="../java/media/observerMotivation.png" /></p>
 <h2 id="implementation">Implementation</h2>
 <pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Course {
-<span class="kw">private</span> Student student;
-<span class="kw">private</span> Instructor instructor;
+
+    <span class="kw">private</span> Student student;
+    <span class="kw">private</span> Instructor instructor;
+
     <span class="kw">public</span> <span class="fu">Course</span>() {
         student = <span class="kw">new</span> <span class="fu">Student</span>();
         instructor = <span class="kw">new</span> <span class="fu">Instructor</span>();
@@ -102,7 +104,7 @@
 <h2 id="implementation---cont.">Implementation - Cont.</h2>
 <ul>
 <li>Is it easy to add a new observer (a new Student or a new Instructor)?
-<ul><li>You need to make multiple changes</li>
+<ul><li class="fragment">You need to make multiple changes</li>
 <li class="fragment">What about adding a new category of observers; for example "Organizer"!</li>
 </ul></ul>
 
@@ -125,19 +127,23 @@
     }
 }</code></pre>
 <h2 id="implementation---take-2-1">Implementation - Take 2</h2>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Course <span class="kw">extends</span> Observable{
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.Observable;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Course <span class="kw">extends</span> Observable {
 
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">changeTime</span>() {
         <span class="co">//change time</span>
-        <span class="fu">setChanged</span>();
+        <span class="fu">setChanged</span>(); <span class="co">// obligatory before notifying observers</span>
         <span class="fu">notifyObservers</span>();
     }
 }</code></pre>
-<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> Student <span class="kw">implements</span> Observer{
+<pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import java.util.Observable;</span>
+
+<span class="kw">public</span> <span class="kw">class</span> Student <span class="kw">implements</span> Observer {
 
     <span class="fu">@Override</span>
     <span class="kw">public</span> <span class="dt">void</span> <span class="fu">update</span>(Observable o, Object arg) {
-    
+
     }
 }</code></pre>
 <h2 id="a-motivating-example">A Motivating Example</h2>
@@ -248,9 +254,9 @@ Higher design quality </li>
 <li>Write a program to compute following metrics for a C# (or Java) code:<br /></li>
 <li>LOC (Lines of Code)<br /></li>
 <li>Number of classes<br /></li>
-<li>Number of methods.</li>
+<li>Number of methods</li>
 </ul>
-<p>Use regular expressions to achieve the same.</p>
+<p>Use regular expressions to achieve that.</p>
 <h2 id="factory-pattern">Factory Pattern</h2>
 <ul>
 <li><b>Motivation</b><br /></li>
