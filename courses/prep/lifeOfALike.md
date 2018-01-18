@@ -99,10 +99,10 @@ By Micron Technology Inc.
 
 ## Commonly used programming languages
 * C
-* C++, Go, Swift
-* Java, C#
-* JavaScript
-* Python, Ruby, Perl, PHP
+* C++, Go, Rust
+* Java, C#, Swift
+* JavaScript, PHP
+* Python, Ruby, Perl
 
 
 ## Memory organization
