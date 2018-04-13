@@ -84,7 +84,7 @@
 * 2:   0 10000000 [1]00000000000000000000000
   * 1 × 1 × 2<sup>128 - 127</sup>
 * 3:   0 10000000 [1]10000000000000000000000
-  * 1 × 3 × 2<sup>128 - 127</sup>
+  * 1 × 1.5 × 2<sup>128 - 127</sup>
 * -1:  1 01111111 [1]00000000000000000000000
   * -1 × 1 × 2<sup>127 - 127</sup>
 
@@ -100,7 +100,20 @@
   * 2000000030094932439753377710080
 
 
-## Chips and chip contruction
+## Ranges
+* Integers
+  * 8-bit (byte): -128 to 127 or 0 to 255
+  * 16-bit (short): -32768 to 32767 or 0 to 65535
+  * 32-bit (int): ± 2 bn or 0 to 4 bn
+  * 64-bit (long): ± 10<sup>19</sup>
+* Floating point numbers
+  * 32-bit (float/Single): ± 1.2 × 10<sup>-38</sup> to ± 3.4 × 10<sup>38</sup>
+  * (6 decimal digits)
+  * 64-bit (double/Double): ± 2.2 × 10<sup>-308</sup> to ± 1.8 × 10<sup>308</sup>
+  * (15 decimal digits)
+
+
+## Chips and chip construction
 * Gates are put together in integrated circuits
 * Chips can serve various functions, such as CPU, memory, or interface
 * Early ICs contained 2-6 gates (8-30 transistors)
