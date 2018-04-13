@@ -216,6 +216,11 @@ By Micron Technology Inc.
 * IP
 
 
+## Trace of a DNS query
+
+![](media/dnstrace.PNG)
+
+
 ## Anatomy of a captured network packet
 
 ![](media/packet.PNG)
@@ -231,4 +236,4 @@ By Micron Technology Inc.
 * Load balancing
 * Application servers
 * Databases
-* Microservices
+* Microservice architectures
