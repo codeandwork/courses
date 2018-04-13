@@ -17,6 +17,25 @@
 * How to add 64 bits with 64 bits
 
 
+## A half adder
+
+![](media/half-adder.PNG)
+
+
+
+## A full adder
+
+![](media/full-adder.PNG)
+
+
+
+## A four bit adder
+
+![](media/four-bit-adder.PNG)
+
+[By Cburnett - Own work, CC BY-SA 3.0](https://commons.wikimedia.org/wiki/File:4-bit_ripple_carry_adder.svg)
+
+
 ## A four bit ALU
 
 ![](media/74181aluschematic.png)
